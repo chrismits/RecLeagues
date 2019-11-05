@@ -6,7 +6,6 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 // Connect to db
-mongoose.Promise = global.Promise;
 mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true, useUnifiedTopology: true})
 
 var db = mongoose.connection
