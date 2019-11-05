@@ -2,18 +2,21 @@
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
+global.mongoose = mongoose
+var bodyParser = require('body-parser');
+
 const dotenv = require('dotenv');
 dotenv.config();
 
 // Connect to db
-mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true, useUnifiedTopology: true})
+console.log(process.env.DATABASE_URL)
 
-var db = mongoose.connection
-db.on('error', error => console.error(error))
-db.once('open', () => console.log('Connected to database'))
+mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true, useUnifiedTopology: true}, function (err) {
+    if (err) {
+      console.log(err);
+    }
+  });
 
-
-var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
