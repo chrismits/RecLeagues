@@ -1,20 +1,7 @@
 var Player = require('./models/player');
 
 module.exports = function(app) {
-
-    app.get('/getUser', (req, user) => {
-        //get specific user in db using mongo: Now set to get all
-        Player.find((err, res) => {
-            if (err) { res.send(err) };
-
-            res.json(user)
-
-        });
-    });
-
     app.post('/submit', (req, res) => {
-        console.log("SUBMITTING")
-
         var new_user = new Player({
             first: req.body.first, 
             last: req.body.last,
@@ -22,27 +9,18 @@ module.exports = function(app) {
             cell: req.body.cell
         })
 
-        console.log("Created player")
-        var errHappened = false;
-
         //save to db
-        new_user.save(function(err, new_user) {
+        new_user.save(function(err, new_user, tmp = res) {
             if (err) {
-                console.log("ERROR")
+                console.log("ERROR ADDING USER TO DB")
                 console.log(err)
-                errHappened = true
+                tmp.sendfile('./public/views/dbfail.html')
             }
             else {
-                errHapened = false
+                console.log("USER ADDED TO DB")
+                tmp.sendfile('public/views/dbaccept.html')
             }
         })
-
-        if (errHappened) {
-            res.sendfile('./public/views/dbfail.html')
-        }
-        else {
-            res.sendfile('public/views/dbaccept.html')
-        }
     })
 
     // Frontend
