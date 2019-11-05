@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 require('./routes')(app);
 
 // start app at http://localhost:3000
-var port = 3000
+var port = process.env.PORT || 8080;
 app.listen(port);               
 // shoutout to the user                     
 console.log('Magic happens on port ' + port);
