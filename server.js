@@ -3,13 +3,18 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 
-
 // Connect to db
 var db_setup = require('./config/setup.js')
+mongoose.Promise = global.Promise;
 mongoose.connect(db_setup.db_url, {useNewUrlParser: true, useUnifiedTopology: true})
 var db = mongoose.connection
 db.on('error', error => console.error(error))
 db.once('open', () => console.log('Connected to database'))
+
+
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // routes
 require('./routes')(app);
@@ -21,4 +26,4 @@ app.listen(port);
 console.log('Magic happens on port ' + port);
 
 // expose app           
-exports = module.exports = app;         
+exports = module.exports = app;
