@@ -4,7 +4,7 @@ var playerSchema = new mongoose.Schema({
     _id: {type: mongoose.Schema.Types.ObjectId, auto: true},
     first: {type: String, required: true},
     last: {type: String, required: true},
-    cell: {type: String, required: false},
+    cell: {type: String, required: false, default: undefined},
     email: {type: mongoose.SchemaTypes.Email, required: true},
     teams: {type: [
         {
