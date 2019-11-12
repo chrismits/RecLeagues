@@ -21,6 +21,10 @@
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true
-  }
+    "strictInjectionParameters": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "types": [
+    "jquery"
+  ] 
 }
