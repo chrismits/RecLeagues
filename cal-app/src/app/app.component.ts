@@ -13,9 +13,11 @@ import $ from 'jquery'
 })
 export class AppComponent {
 
+  title = 'League Scheduler';
+
   @ViewChild('calendar', {static: false}) calendarComponent: FullCalendarComponent; // the #calendar in the template
 
-  calendarVisible = true;
+  calendarVisible = false;
   calendarPlugins = [dayGridPlugin, timeGrigPlugin, interactionPlugin];
   calendarWeekends = true;
   calendarEvents: EventInput[] = [] // can load in events here using db info
@@ -26,6 +28,19 @@ export class AppComponent {
 
   toggleWeekends() {
     this.calendarWeekends = !this.calendarWeekends;
+  }
+
+  eventClick(event_info) {
+    var eventObj = event_info.event;
+    var old_matchup = eventObj.title;
+    var old_home = old_matchup.split("vs.")[0];
+    var old_away = old_matchup.split("vs.")[1];
+    var new_home = prompt("Enter new home team's name or leave blank.");
+    var new_away = prompt("Enter new away team's name or leave blank.");
+    if (new_home == "") { new_home = old_home; }
+    if (new_away == "") { new_away = old_away; }
+    var new_matchup = new_home + " vs. " + new_away;
+    eventObj.title = new_matchup;
   }
 
   gotoPast() {

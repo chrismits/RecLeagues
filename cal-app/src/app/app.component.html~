@@ -1,11 +1,16 @@
 
 <div class='app'>
-
+  <h1> {{title}} </h1>
+  <nav>
+    <a routerLink="/teams" routerLinkActive="active"> Teams </a>
+    <a routerLink="/cal" routerLinkActive="active"> Calendar </a>
+  </nav>
+  <router-outlet></router-outlet>
   <div class='app-top'>
-    <button (click)='toggleVisible()'>toggle visible</button>
-    <button (click)='toggleWeekends()'>toggle weekends</button>
+    <button (click)='toggleVisible()'>See Calendar</button>
+    <button (click)='toggleWeekends()'>Toggle Weekends</button>
     <button (click)='gotoPast()'>go to a date in the past</button>
-    (also, click a date/time to add an event)
+    (Click a date/time to add an event)
   </div>
 
   <div class='app-calendar' *ngIf="calendarVisible">
@@ -22,8 +27,6 @@
       [events]="calendarEvents"
       (dateClick)="handleDateClick($event)"
     ></full-calendar>
-    <p> wtf </p>
-    <div> why </div>
   </div>
 
 </div>
