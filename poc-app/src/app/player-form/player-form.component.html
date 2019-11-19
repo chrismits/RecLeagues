@@ -5,7 +5,7 @@
         <label for="first">First Name</label>
         <input type="text" class="form-control" id="first" required
         	[(ngModel)]="model._first" name="_first" #first="ngModel"
-          pattern="[a-zA-Z]*"> 
+          pattern="[a-zA-Z \-]*"> 
 		    <div [hidden]="first.valid || first.pristine" class="alert alert-danger"> 
           Please enter a valid first name.
       	</div>
@@ -15,7 +15,7 @@
         <label for="last">Last Name</label>
         <input type="text" class="form-control" id="last" required
         	[(ngModel)]="model._last" name="_last" #last="ngModel"
-          pattern="[a-zA-Z]*">
+          pattern="[a-zA-Z \-]*">
         <div [hidden]="last.valid || last.pristine" class="alert alert-danger"> 
           Please enter a valid last name.
         </div>
@@ -25,7 +25,7 @@
         <label for="email">Email</label>
         <input type="text" class="form-control" id="email" required
         	[(ngModel)]="model._email" name="_email" #email="ngModel"
-          pattern="[a-zA-Z0-9]*@tufts.edu">
+          pattern="[a-zA-Z0-9\-]*@tufts.edu">
       </div>
 
       <div [hidden]="email.valid || email.pristine" class="alert alert-danger"> 
