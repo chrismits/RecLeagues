@@ -8,17 +8,15 @@ export class Team {
     size:    number;
     captain: Player;
     players: Player[]; 
-    league:  League;
     created: Date;
 
-    constructor (name: string, captain: Player, league: League) {
+    constructor (name: string, captain: Player){
         this._id     = 1; // will change for db
         this.name    = name;
         this.size    = 1;
         this.captain = captain;
         this.players = [];
         this.players.push(captain); 
-        this.league  = league;
         this.created = new Date();
     }
 }

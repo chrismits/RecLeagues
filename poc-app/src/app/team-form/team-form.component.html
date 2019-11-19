@@ -1,0 +1,39 @@
+<div class="container">
+    <h1>Team Form</h1>
+    <form (ngSubmit)="onSubmit()" #teamForm='ngForm'>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" required 
+               [(ngModel)]="model.name" name="name" #name="ngModel"
+               pattern="[a-zA-Z0-9 ]*"> 
+        <div [hidden]="name.valid || name.pristine" 
+              class="alert alert-danger"> 
+          Please enter a valid name.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="captain">Captain</label>
+        <select class="form-control" id="captain" required 
+                [(ngModel)]="model.captain" name="cap" #cap="ngModel">
+          <option *ngFor="let cap of avail_caps" [ngValue]="cap"> 
+            {{cap._first}}
+          </option>
+        </select>
+        <div [hidden]="cap.valid || cap.pristine" 
+              class="alert alert-danger"> 
+          Please enter a valid captain.
+        </div>
+      </div>
+
+      <div class="form-group">
+  		  <label>Team's League</label>
+  		    <select class="form-control" id="league" required>
+  		    <option *ngFor="let league of league_names">{{league}}</option>
+  		    </select>
+	    </div>
+
+      <button type="button" class="btn btn-success" (click)="onSubmit(); teamForm.reset()" [disabled]="name.invalid || !cap.dirty">New Team</button>
+
+    </form>
+</div>
