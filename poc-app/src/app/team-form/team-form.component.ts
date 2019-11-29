@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Team } from '../team'
-import { League } from '../league'
 import { Player } from '../player'
 
 @Component({

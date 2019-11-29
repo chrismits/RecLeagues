@@ -1,1 +1,12 @@
-<p>match works!</p>
+<h2> All Matches </h2>
+<ul class="matches">
+  <li *ngFor="let match of matches">
+  	{{match.home.name}} vs. {{match.away.name}} at {{match.location}}
+  </li> <br> <br> <br>
+  <div> Available teams are: 
+    <li *ngFor="let team of avail_teams">
+  	    {{team.name}} 
+    </li>
+  </div>
+  <app-match-form (added)="addMatch($event)" [avail_teams]="avail_teams"></app-match-form>
+</ul>

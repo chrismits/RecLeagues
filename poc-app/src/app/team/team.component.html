@@ -1,7 +1,7 @@
 <h2> All Teams </h2>
 <ul class="teams">
   <li *ngFor="let team of teams">
-  	Team {{team._id}}: {{team.name}} led by {{team.captain._first}} {{team.captain._last}}
+  	{{team.name}} led by captain {{team.captain._first}} {{team.captain._last}}
   </li> <br> <br> <br>
   <div> Available captains are: 
     <li *ngFor="let cap of avail_caps">

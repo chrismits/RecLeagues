@@ -14,24 +14,24 @@
 
       <div class="form-group">
         <label for="captain">Captain</label>
-        <select class="form-control" id="captain" required 
+        <select class="form-control" id="cap-sel" required 
                 [(ngModel)]="model.captain" name="cap" #cap="ngModel">
           <option *ngFor="let cap of avail_caps" [ngValue]="cap"> 
             {{cap._first}}
           </option>
         </select>
-        <div [hidden]="cap.valid || cap.pristine" 
+        <div [hidden]="cap.valid" 
               class="alert alert-danger"> 
           Please enter a valid captain.
         </div>
       </div>
 
-      <div class="form-group">
+      <!--<div class="form-group">
   		  <label>Team's League</label>
   		    <select class="form-control" id="league" required>
   		    <option *ngFor="let league of league_names">{{league}}</option>
   		    </select>
-	    </div>
+	    </div>-->
 
       <button type="button" class="btn btn-success" (click)="onSubmit(); teamForm.reset()" [disabled]="name.invalid || !cap.dirty">New Team</button>
 

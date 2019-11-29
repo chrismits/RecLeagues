@@ -1,0 +1,46 @@
+<div class="container">
+    <h1>Match Form</h1>
+    <form (ngSubmit)="onSubmit()" #matchForm='ngForm'>
+      <div class="form-group">
+        <label for="h_team">Home Team</label>
+        <select class="form-control" id="h_team" required 
+                [(ngModel)]="model.home" name="h_team" #h_team="ngModel">
+          <option *ngFor="let team of avail_teams" [ngValue]="team"> 
+            {{team.name}}
+          </option>
+        </select>
+        <div [hidden]="h_team.valid" 
+              class="alert alert-danger"> 
+          Please enter a valid home team.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="a_team">Away Team</label>
+        <select class="form-control" id="a_team" required 
+                [(ngModel)]="model.away" name="a_team" #a_team="ngModel">
+          <option *ngFor="let team of avail_teams" [ngValue]="team"> 
+            {{team.name}}
+          </option>
+        </select>
+        <div [hidden]="a_team.valid" 
+              class="alert alert-danger"> 
+          Please enter a valid away team.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="name">Location</label>
+        <input type="text" class="form-control" id="loc" required 
+               [(ngModel)]="model.location" name="loc" #loc="ngModel"
+               pattern="[a-zA-Z0-9\- ]*"> 
+        <div [hidden]="loc.valid || loc.pristine" 
+              class="alert alert-danger"> 
+          Please enter a valid location.
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-success" (click)="onSubmit(); matchForm.reset()" [disabled]="!h_team.dirty || !a_team.dirty || loc.invalid || a_team == h_team">New Match</button>
+
+    </form>
+</div>
