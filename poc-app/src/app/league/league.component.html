@@ -2,6 +2,9 @@
 <ul class="leagues">
   <li *ngFor="let league of leagues">
   	{{league.name}} is {{league.sport}} in {{league.season}} with {{league.num_teams}} teams enrolled
+  	<ul> <li *ngFor="let match of league.schedule">
+  		{{match.home.name}}, {{match.away.name}}
+  	</li> </ul>
   </li> <br> <br> <br>
   <div> Available matches are: 
     <li *ngFor="let match of avail_matches">

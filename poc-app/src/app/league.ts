@@ -30,4 +30,11 @@ export class League {
         this.schedule           = [];
         this.created            = new Date();
     }
+
+    addMatch (m: Match) {
+        if (this.num_teams < this.max_num_teams - 2) {
+            this.schedule.push(m);
+            this.num_teams += 2;
+        }
+    }
 }

@@ -47,7 +47,19 @@
         </div>
       </div>
 
-      <button type="button" class="btn btn-success" (click)="onSubmit(); leagueForm.reset()" [disabled]="sport.invalid || season.invalid || name.invalid">New Match</button>
+      <label for="matches">Matches</label>
+        <select multiple class="form-control" id="matches"  
+                [(ngModel)]="model.schedule" name="matches" #matches="ngModel">
+          <option *ngFor="let match of avail_matches" [ngValue]="match"> 
+            {{match.home.name}} vs. {{match.away.name}}
+          </option>
+        </select>
+        <div [hidden]="matches.valid" 
+              class="alert alert-danger"> 
+          Please enter a valid match.
+        </div>
+
+      <button type="button" class="btn btn-success" (click)="onSubmit(); leagueForm.reset()" [disabled]="sport.invalid || season.invalid || name.invalid">New League</button>
 
     </form>
 </div>

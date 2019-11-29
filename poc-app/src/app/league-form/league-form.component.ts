@@ -16,6 +16,7 @@ export class LeagueFormComponent implements OnInit {
   init_sport: string = '';
   init_season: string = ''; 
   init_date: Date = new Date();
+  matches: Match[] = [];
 
   model = new League(this.init_name, this.init_sport, this.init_season, this.init_date, this.init_date, this.init_date);
 
@@ -24,6 +25,10 @@ export class LeagueFormComponent implements OnInit {
   onSubmit() { 
   	this.submitted = true; 
     var new_model = new League(this.model.name, this.model.sport, this.model.season, this.model.reg_start, this.model.reg_end, this.model.start_date);
+    // Need error checking
+    if (this.model.schedule != null) {
+      this.model.schedule.map(m => new_model.addMatch(m));
+    }
   	this.added.emit(new_model);
   }
 
