@@ -1,1 +1,12 @@
-<p>league works!</p>
+<h2> All Leagues </h2>
+<ul class="leagues">
+  <li *ngFor="let league of leagues">
+  	{{league.name}} is {{league.sport}} in {{league.season}} with {{league.num_teams}} teams enrolled
+  </li> <br> <br> <br>
+  <div> Available matches are: 
+    <li *ngFor="let match of avail_matches">
+  	    {{match.home.name}} vs. {{match.away.name}} 
+    </li>
+  </div>
+  <app-league-form (added)="addLeague($event)" [avail_matches]="avail_matches"></app-league-form>
+</ul>

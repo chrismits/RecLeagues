@@ -6,7 +6,8 @@ export class League {
     name:           string;
     sport:          string;
     season:         string;
-    registration: { start: Date, end: Date }
+    reg_start:      Date;
+    reg_end:        Date;
     num_teams:      number;
     max_num_teams:  number;
     max_team_size:  number;
@@ -14,14 +15,14 @@ export class League {
     schedule:       Match[]; 
     created:        Date;
 
-    constructor (name: string, sport: string, season: string, reg_start: Date,
-                 reg_end: Date, start: Date) {
+    constructor (name: string, sport: string, season: string, 
+                 reg_start: Date, reg_end: Date, start: Date) {
         this._id                = 1; // will change for db
         this.name               = name;
         this.sport              = sport;
         this.season             = season;
-        this.registration.start = reg_start;
-        this.registration.end   = reg_end;
+        this.reg_start          = reg_start;
+        this.reg_end            = reg_end;
         this.num_teams          = 0;
         this.max_num_teams      = 10; // change to global based on Matt
         this.max_team_size      = 15; // change to global

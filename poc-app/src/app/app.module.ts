@@ -13,6 +13,7 @@ import { AdminComponent } from './admin/admin.component';
 import { TeamFormComponent } from './team-form/team-form.component';
 import { PlayerFormComponent } from './player-form/player-form.component';
 import { MatchFormComponent } from './match-form/match-form.component';
+import { LeagueFormComponent } from './league-form/league-form.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { MatchFormComponent } from './match-form/match-form.component';
     AdminComponent,
     TeamFormComponent,
     PlayerFormComponent,
-    MatchFormComponent
+    MatchFormComponent,
+    LeagueFormComponent
   ],
   imports: [
     BrowserModule,
