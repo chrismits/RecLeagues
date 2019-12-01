@@ -5,6 +5,7 @@
         <label for="h_team">Home Team</label>
         <select class="form-control" id="h_team" required 
                 [(ngModel)]="model.home" name="h_team" #h_team="ngModel">
+          <option selected="selected" disabled> Enter home team </option>
           <option *ngFor="let team of avail_teams" [ngValue]="team"> 
             {{team.name}}
           </option>
@@ -19,6 +20,7 @@
         <label for="a_team">Away Team</label>
         <select class="form-control" id="a_team" required 
                 [(ngModel)]="model.away" name="a_team" #a_team="ngModel">
+          <option selected="selected" disabled> Enter away team </option>
           <option *ngFor="let team of avail_teams" [ngValue]="team"> 
             {{team.name}}
           </option>
@@ -40,7 +42,7 @@
         </div>
       </div>
 
-      <button type="button" class="btn btn-success" (click)="onSubmit(); matchForm.reset()" [disabled]="!h_team.dirty || !a_team.dirty || loc.invalid || a_team == h_team">New Match</button>
+      <button type="button" class="btn btn-success" (click)="onSubmit(); matchForm.reset()" [disabled]="!h_team.dirty || !a_team.dirty || loc.invalid || a_team === h_team">New Match</button>
 
     </form>
 </div>

@@ -13,7 +13,7 @@ export class LeagueComponent implements OnInit {
 
   leagues: League[] = LEAGUES;
 
-  matches: Match[] = this.leagues.map(l => l.schedule).flat();
+  matches: Match[] = [].concat(...this.leagues.map(l => l.schedule));
   avail_matches: Match[] = MATCHES.filter(
       m => !this.matches.includes(m));
 

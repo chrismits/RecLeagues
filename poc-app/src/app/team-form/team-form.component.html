@@ -16,6 +16,7 @@
         <label for="captain">Captain</label>
         <select class="form-control" id="cap-sel" required 
                 [(ngModel)]="model.captain" name="cap" #cap="ngModel">
+          <option selected="selected" disabled> Enter captain </option>
           <option *ngFor="let cap of avail_caps" [ngValue]="cap"> 
             {{cap._first}}
           </option>

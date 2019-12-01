@@ -14,8 +14,8 @@ export class MatchFormComponent implements OnInit {
   @Input() avail_teams: Team[];
 
   init_capt: Player = new Player('', '', '');
-  init_home: Team = new Team('', this.init_capt); 
-  init_away: Team = new Team('', this.init_capt); 
+  init_home: Team = new Team('h', this.init_capt); 
+  init_away: Team = new Team('a', this.init_capt); 
   init_date: Date = new Date();
   init_loc: string = '';
 
