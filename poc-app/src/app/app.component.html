@@ -313,8 +313,8 @@
   />
   <span>Welcome to {{ title }}</span>
     <div class="spacer"></div>
-    <button class="myBut" *ngIf="isAdmin" (click)="toggleAdmin()"> Become user </button>
-    <button class="myBut" *ngIf="!isAdmin" (click)="toggleAdmin()"> Become admin </button>
+    <button class="myBut" *ngIf="isAdmin" (click)="toggleAdmin(); selection.value = 'home'"> Become user </button>
+    <button class="myBut" *ngIf="!isAdmin" (click)="toggleAdmin(); selection.value = 'home'"> Become admin </button>
   <a aria-label="Tufts athletics" target="_blank" rel="noopener" href="https://www.gotuftsjumbos.com/landing/index" title="Tufts Athletics">
     
     <img
