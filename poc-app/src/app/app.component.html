@@ -382,7 +382,7 @@
 
   <!-- Next Steps -->
   <h2 *ngIf="isAdmin">Next Steps for Administrators</h2>
-  <h2 *ngIf="!isAdmin">Next Steps</h2>
+  <h2 *ngIf="!isAdmin">Next Steps for Players</h2>
   <p>What do you want to do next with RecLeagues?</p>
 
   <input type="hidden" #selection>
@@ -406,10 +406,16 @@
       <div>New Team</div>
     </div>
 
-    <div class="card card-small" (click)="selection.value = 'player'" tabindex="0" routerLink="/players">
+    <div *ngIf="isAdmin" class="card card-small" (click)="selection.value = 'player'" tabindex="0" routerLink="/players">
       <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
 
       <div>New Player</div>
+    </div>
+
+    <div *ngIf="!isAdmin" class="card card-small" (click)="selection.value = 'join-team'" tabindex="0" routerLink="/join-team">
+      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+
+      <div>Join Team</div>
     </div>
   </div>
 
@@ -420,6 +426,7 @@
       <pre *ngSwitchCase="'match'"><router-outlet></router-outlet></pre>
       <pre *ngSwitchCase="'team'"><router-outlet></router-outlet></pre>
       <pre *ngSwitchCase="'player'"><router-outlet></router-outlet></pre>
+      <pre *ngSwitchCase="'join-team'"><router-outlet></router-outlet></pre>
   </div>
 
   <div class="card-container">

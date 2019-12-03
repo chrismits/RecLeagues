@@ -19,4 +19,13 @@ export class Team {
         this.players.push(captain); 
         this.created = new Date();
     }
+
+    addPlayer(p: Player) {
+        if (!this.players.includes(p)) {
+            this.players.push(p);
+            console.log(this.name);
+            console.log(p._first);
+            console.log(this.players[1]._first);
+        }
+    }
 }
