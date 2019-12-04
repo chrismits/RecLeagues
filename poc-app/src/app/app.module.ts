@@ -14,6 +14,8 @@ import { TeamFormComponent } from './team-form/team-form.component';
 import { PlayerFormComponent } from './player-form/player-form.component';
 import { MatchFormComponent } from './match-form/match-form.component';
 import { LeagueFormComponent } from './league-form/league-form.component';
+import { JoinTeamComponent } from './join-team/join-team.component';
+import { JoinTeamFormComponent } from './join-team-form/join-team-form.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './api.service'
@@ -30,7 +32,9 @@ import { ApiService } from './api.service'
     TeamFormComponent,
     PlayerFormComponent,
     MatchFormComponent,
-    LeagueFormComponent
+    LeagueFormComponent,
+    JoinTeamComponent,
+    JoinTeamFormComponent
   ],
   imports: [
     BrowserModule,
