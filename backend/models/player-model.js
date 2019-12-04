@@ -4,7 +4,7 @@ Fixes:
     - Validation
 */
 
-
+var mongoose = require('mongoose')
 require('mongoose-type-email');
 
 var playerSchema = new mongoose.Schema({

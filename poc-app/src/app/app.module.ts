@@ -17,6 +17,9 @@ import { LeagueFormComponent } from './league-form/league-form.component';
 import { JoinTeamComponent } from './join-team/join-team.component';
 import { JoinTeamFormComponent } from './join-team-form/join-team-form.component';
 
+import { HttpClientModule } from '@angular/common/http';
+import { ApiService } from './api.service'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,9 +39,10 @@ import { JoinTeamFormComponent } from './join-team-form/join-team-form.component
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
