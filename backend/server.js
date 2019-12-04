@@ -10,8 +10,9 @@ app.use(cors())
 app.use(bodyparser.urlencoded({extended: false}))
 app.use(bodyparser.json())
 
+require('dotenv').config();
 
-const db_uri = "ENTER_DB_URI"
+const db_uri = process.env.DATABASE_URL
 mongoose.connect(db_uri, {useNewUrlParser: true, useUnifiedTopology: true}, function (err) {
     if (err) {
       console.log(err);
