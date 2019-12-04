@@ -11,7 +11,7 @@ app.use(bodyparser.urlencoded({extended: false}))
 app.use(bodyparser.json())
 
 
-const db_uri = "mongodb+srv://recleague:wnfpOMoF29PJjfx9@cluster0-5hsxz.mongodb.net/test?retryWrites=true&w=majority"
+const db_uri = "ENTER_DB_URI"
 mongoose.connect(db_uri, {useNewUrlParser: true, useUnifiedTopology: true}, function (err) {
     if (err) {
       console.log(err);

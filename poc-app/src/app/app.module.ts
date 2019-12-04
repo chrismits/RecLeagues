@@ -15,6 +15,9 @@ import { PlayerFormComponent } from './player-form/player-form.component';
 import { MatchFormComponent } from './match-form/match-form.component';
 import { LeagueFormComponent } from './league-form/league-form.component';
 
+import { HttpClientModule } from '@angular/common/http';
+import { ApiService } from './api.service'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,9 +35,10 @@ import { LeagueFormComponent } from './league-form/league-form.component';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
