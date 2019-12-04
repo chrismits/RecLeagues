@@ -17,6 +17,7 @@ export class LeagueFormComponent implements OnInit {
   init_season: string = ''; 
   init_date: Date = new Date();
   matches: Match[] = [];
+  seasons: string[] = ['Fall', 'Winter', 'Spring'];
 
   model = new League(this.init_name, this.init_sport, this.init_season, this.init_date, this.init_date, this.init_date);
 

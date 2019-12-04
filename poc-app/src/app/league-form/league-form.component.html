@@ -2,19 +2,6 @@
     <h1>League Form</h1>
     <form (ngSubmit)="onSubmit()" #leagueForm='ngForm'>
       <div class="form-group">
-        <!--<label for="h_team">Home Team</label>
-        <select class="form-control" id="h_team" required 
-                [(ngModel)]="model.home" name="h_team" #h_team="ngModel">
-          <option *ngFor="let team of avail_teams" [ngValue]="team"> 
-            {{team.name}}
-          </option>
-        </select>
-        <div [hidden]="h_team.valid" 
-              class="alert alert-danger"> 
-          Please enter a valid home team.
-        </div>
-      </div> -->
-
         <label for="name">Name</label>
         <input type="text" class="form-control" id="name" required 
                [(ngModel)]="model.name" name="name" #name="ngModel"
@@ -38,9 +25,12 @@
 
       <div class="form-group">
         <label for="name">Season</label>
-        <input type="text" class="form-control" id="season" required 
-               [(ngModel)]="model.season" name="season" #season="ngModel"
-               pattern="[a-zA-Z0-9\- ]*"> 
+          <select class="form-control" id="season" required 
+                [(ngModel)]="model.season" name="season" #season="ngModel">
+          <option *ngFor="let season of seasons" [ngValue]="season"> 
+            {{season}}
+          </option>
+        </select>
         <div [hidden]="season.valid || season.pristine" 
               class="alert alert-danger"> 
           Please enter a valid season.
