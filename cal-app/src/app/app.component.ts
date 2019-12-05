@@ -20,7 +20,11 @@ export class AppComponent {
   calendarVisible = false;
   calendarPlugins = [dayGridPlugin, timeGrigPlugin, interactionPlugin];
   calendarWeekends = true;
-  calendarEvents: EventInput[] = [] // can load in events here using db info
+  calendarEvents: EventInput[] = [{
+      title: "Red Sox World Series Champs",
+      start: new Date("2004-10-27T20:00:00.000Z"),
+      end: new Date("2004-10-27T23:00:00.000Z"),
+    }] // can load in events here using db info
 
   toggleVisible() {
     this.calendarVisible = !this.calendarVisible;
@@ -30,7 +34,7 @@ export class AppComponent {
     this.calendarWeekends = !this.calendarWeekends;
   }
 
-  eventClick(event_info) {
+  handleEventClick(event_info) {
     var eventObj = event_info.event;
     var old_matchup = eventObj.title;
     var old_home = old_matchup.split("vs.")[0];
@@ -40,12 +44,12 @@ export class AppComponent {
     if (new_home == "") { new_home = old_home; }
     if (new_away == "") { new_away = old_away; }
     var new_matchup = new_home + " vs. " + new_away;
-    eventObj.title = new_matchup;
+    eventObj.setProp("title", new_matchup);
   }
 
   gotoPast() {
     let calendarApi = this.calendarComponent.getApi();
-    calendarApi.gotoDate('2000-01-01'); // call a method on the Calendar object
+    calendarApi.gotoDate('2004-10-27'); // call a method on the Calendar object
   }
 
   handleDateClick(arg) {
@@ -62,12 +66,16 @@ export class AppComponent {
       var team_1 = prompt("Home Team: ", "");
       var team_2 = prompt("Away Team: ", "");
       var match_up = team_1 + " vs. " + team_2;
-      this.calendarEvents = this.calendarEvents.concat({ // add new event data. must create new array
-        // id: from_db -- this is match _id stored in db
-        title: match_up,
-        start: arg.date,
-	end: endDate
-      })
+      if (team_1 == null || team_1 == "" || team_2 == null || team_2 == "") {
+        alert("Invalid matchup!");
+      } else {
+        this.calendarEvents = this.calendarEvents.concat({ // add new event data. must create new array
+          // id: from_db -- this is match _id stored in db
+          title: match_up,
+          start: arg.date,
+  	      end: endDate
+        })
+      }
     }
   }
 

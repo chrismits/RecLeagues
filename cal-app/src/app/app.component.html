@@ -1,11 +1,12 @@
 
 <div class='app'>
   <h1> {{title}} </h1>
-  <nav>
-    <a routerLink="/teams" routerLinkActive="active"> Teams - </a>
-    <a routerLink="/" routerLinkActive="active"> - Remove Teams </a>
+  <!--<nav>
+    <a routerLink="/teams" routerLinkActive="active"> Teams </a>
+    <div class="spacer"></div>
+    <a routerLink="/" routerLinkActive="active"> Remove Teams </a>
   </nav>
-  <router-outlet></router-outlet>
+  <router-outlet></router-outlet>-->
   <div class='app-top'>
     <button (click)='toggleVisible()'>See Calendar</button>
     <button (click)='toggleWeekends()'>Toggle Weekends</button>
@@ -26,6 +27,7 @@
       [weekends]="calendarWeekends"
       [events]="calendarEvents"
       (dateClick)="handleDateClick($event)"
+      (eventClick)="handleEventClick($event)"
     ></full-calendar>
   </div>
 

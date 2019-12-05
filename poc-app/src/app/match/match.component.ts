@@ -18,14 +18,16 @@ export class MatchComponent implements OnInit {
     team => !this.h_teams.includes(team) && !this.a_teams.includes(team));
 
   addMatch(m: Match) {
-  	var new_match = new Match(m.home, m.away, m.date, m.location);
-  	this.matches.push(new_match);
-    this.avail_teams = this.avail_teams.filter(
-      team => team != m.home && team != m.away);
-    // propogate to db
+    if (m.home.name != m.away.name) {
+    	var new_match = new Match(m.home, m.away, m.date, m.location);
+    	this.matches.push(new_match);
+      this.avail_teams = this.avail_teams.filter(
+        team => team != m.home && team != m.away);
+      // propogate to db
 
-    console.log(m.home.name);
-    console.log(this.avail_teams.length);
+      console.log(m.home.name);
+      console.log(this.avail_teams.length);
+    }
   }  
 
   constructor() { }

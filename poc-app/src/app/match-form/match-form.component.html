@@ -10,7 +10,7 @@
             {{team.name}}
           </option>
         </select>
-        <div [hidden]="h_team.valid" 
+        <div [hidden]="h_team.valid || h_team.pristine" 
               class="alert alert-danger"> 
           Please enter a valid home team.
         </div>
@@ -25,7 +25,7 @@
             {{team.name}}
           </option>
         </select>
-        <div [hidden]="a_team.valid" 
+        <div [hidden]="a_team.valid || a_team.pristine" 
               class="alert alert-danger"> 
           Please enter a valid away team.
         </div>
@@ -42,7 +42,7 @@
         </div>
       </div>
 
-      <button type="button" class="btn btn-success" (click)="onSubmit(); matchForm.reset()" [disabled]="!h_team.dirty || !a_team.dirty || loc.invalid || a_team === h_team">New Match</button>
+      <button type="button" class="btn btn-success" (click)="onSubmit(); matchForm.reset()" [disabled]="h_team.invalid || a_team.invalid || loc.invalid || a_team === h_team">New Match</button>
 
     </form>
 </div>
