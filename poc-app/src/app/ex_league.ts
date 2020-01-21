@@ -5,7 +5,7 @@ var now = new Date();
 var name = 'Rec League'
 var sport = 'Baseball'
 var season = 'Spring'
-var tmp_league_1 = new League(name, sport, season, now, now, now);
+var tmp_league_1 = new League(name, false, sport, season, now, now, now, "");
 
 export const LEAGUES: League[] = [
 	tmp_league_1

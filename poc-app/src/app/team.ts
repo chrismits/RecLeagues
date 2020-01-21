@@ -7,6 +7,7 @@ export class Team {
     name:    string;
     size:    number;
     captain: Player;
+    //logo:    any;
     players: Player[]; 
     created: Date;
 
@@ -20,12 +21,29 @@ export class Team {
         this.created = new Date();
     }
 
+    getName() { return this.name; }
+    getSize() { return this.size; }
+    getCaptain() { return this.captain; }
+    getAllPlayers() { return this.players; }
+    getCreated() { return this.created; }
+    isOnTeam(p: Player) {
+        //if(this.players.filter(pl => pl == p) != []) return true;
+        return this.players.includes(p);
+    }
+
+    setName(n: string) { this.name = n; }
+    setSize(s: number) { this.size = s; }
+    setCaptain(c: Player) { 
+        if (this.isOnTeam(c)) this.captain = c; 
+    }
+
     addPlayer(p: Player) {
         if (!this.players.includes(p)) {
             this.players.push(p);
-            console.log(this.name);
-            console.log(p._first);
-            console.log(this.players[1]._first);
         }
+    }
+
+    removePlayer(p: Player) {
+        this.players = this.players.filter(pl => pl != p)
     }
 }

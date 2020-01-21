@@ -19,13 +19,13 @@ export class LeagueFormComponent implements OnInit {
   matches: Match[] = [];
   seasons: string[] = ['Fall', 'Winter', 'Spring'];
 
-  model = new League(this.init_name, this.init_sport, this.init_season, this.init_date, this.init_date, this.init_date);
+  model = new League(this.init_name, false, this.init_sport, this.init_season, this.init_date, this.init_date, this.init_date, "");
 
   submitted = false;
 
   onSubmit() { 
   	this.submitted = true; 
-    var new_model = new League(this.model.name, this.model.sport, this.model.season, this.model.reg_start, this.model.reg_end, this.model.start_date);
+    var new_model = new League(this.model.name, false, this.model.sport, this.model.season, this.model.reg_start, this.model.reg_end, this.model.start_date, "");
     // Need error checking
     if (this.model.schedule != null) {
       this.model.schedule.map(m => new_model.addMatch(m));

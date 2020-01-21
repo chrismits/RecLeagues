@@ -18,4 +18,17 @@ export class Player {
         this.created = new Date();
     }
 
+    getFirst() { return this._first; }
+    getLast() { return this._last; }
+    getEmail() { return this._email; }
+    getCell() { return this._cell; }
+    getWaiver() { return this.waiver; }
+    getCreated() { return this.created; }
+
+    setFirst(first : string) { this._first = first; }
+    setLast(last : string) { return this._last = last; }
+    setEmail(email : string) { return this._email = email; }
+    setCell(cell : string) { return this._cell = cell; }
+    setWaiver(signed : boolean) { this.waiver = signed; }
+
 }
