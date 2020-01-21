@@ -25,19 +25,17 @@ export class League {
         this._id                = 1; // will change for db
         this.name               = name;
         this.is_pickup          = is_pickup;
-        if (is_pickup) {
-            this.sport              = sport;
-            this.season             = season;
-            this.reg_start          = reg_start;
-            this.reg_end            = reg_end;
-            this.num_teams          = 0;
-            this.max_num_teams      = 10; // change to global based on Matt
-            this.max_team_size      = 15; // change to global
-            this.start_date         = start;
-            this.schedule           = [];
-        } else {
-            this.pickup_location    = pickup_location;
-        }
+        this.sport              = sport;
+        this.season             = season;
+        this.reg_start          = reg_start;
+        this.reg_end            = reg_end;
+        this.num_teams          = 0;
+        this.max_num_teams      = 10; // change to global based on Matt
+        this.max_team_size      = 15; // change to global
+        this.start_date         = start;
+        this.schedule           = [];
+        if (!is_pickup) this.pickup_location = "";
+        else this.pickup_location = pickup_location;
         this.created            = new Date();
     }
 
