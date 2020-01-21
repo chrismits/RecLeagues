@@ -45,7 +45,7 @@ export class Admin {
     }
 
     isLeagueAdmin(l: League) {
-        let leagues = this.leagues.filter(lp => l == lp.getLeague());
+        let leagues = this.leagues.filter(lp => lp.getLeague() == l);
         if (leagues == []) return true;
         else return false;
     }
