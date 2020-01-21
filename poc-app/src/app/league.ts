@@ -19,9 +19,9 @@ export class League {
     pickup_location: string
     created:         Date;
 
-    constructor (name: string, is_pickup: boolean, sport: string, season: string, 
-                 reg_start: Date, reg_end: Date, start: Date,
-                 pickup_location: string) {
+    constructor (name: string, is_pickup: boolean, sport: string, 
+                 season: string, reg_start: Date, reg_end: Date, 
+                 start: Date, pickup_location: string) {
         this._id                = 1; // will change for db
         this.name               = name;
         this.is_pickup          = is_pickup;
@@ -100,18 +100,17 @@ export class League {
     removeTeam(t: Team) {
         this.teams = this.teams.filter(team => team != t);
         let matches = this.getMatchesForTeam(t);
-        for (var match in matches) {
-            this.removeMatch(match);
-        }
+        matches.forEach(m => this.removeMatch(m));
         this.num_teams -= 1;
     }
+
     removeMatch(m: Match) {
         let home = m.getHome();
         let away = m.getAway();
-        if (this.getMatchesForTeam(home).length() < 2)
-            this.num_teams -= 1;
-        if (this.getMatchesForTeam(away).length() < 2)
-            this.num_teams -= 1;
+        if (this.getMatchesForTeam(home).length < 2)
+            this.removeTeam(home);
+        if (this.getMatchesForTeam(away).length < 2)
+            this.removeTeam(away);
         this.schedule = this.schedule.filter(match => match != m);
 
     }

@@ -58,10 +58,7 @@ export class Admin {
     }
 
     setPrivToLeague(l: League, p: number) {
-        this.leagues = this.leagues.map( lp =>
-            { if (l == lp.getLeague()) 
-                lp.setPriv(p); }  
-        );
+        this.leagues.filter(lp => lp.getLeague() == l).forEach(lp => lp.setPriv(p)); 
     }
 
     removeLeague(l: League) {

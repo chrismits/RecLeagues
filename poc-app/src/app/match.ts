@@ -1,16 +1,19 @@
  import { Team } from './team'
+ import { Player } from './player'
 
 export class Match {
     private _id: number;
 
-    home:        Team;
-    away:        Team;
-    date:        Date;
-    location:    string;
+    home:           Team;
+    away:           Team;
+    confirmed_home: Player[];
+    confirmed_away: Player[];
+    date:           Date;
+    location:       string;
     // home_stats: Stats;
     // away_stats: Stats;
-    score:       string;
-    created:     Date;
+    score:          string;
+    created:        Date;
 
     constructor (home: Team, away: Team, date: Date, location: string) {
         if (home != away) {
@@ -36,4 +39,29 @@ export class Match {
     setDate(d: Date) { this.date = d; }
     setLocation(l: string) { this.location = l; }
     setScore(s: string) { this.score = s; }
+
+    addHomePlayer(p: Player) {
+        if (!this.confirmed_home.includes(p) &&
+            this.home.isOnTeam(p)) {
+            this.confirmed_home.push(p);
+        }
+    }
+    addAwayPlayer(p: Player) {
+        if (!this.confirmed_away.includes(p) &&
+            this.away.isOnTeam(p)) {
+            this.confirmed_away.push(p);
+        }
+    }
+    removeHomePlayer(p: Player) {
+        if (this.confirmed_home.includes(p)) {
+            this.confirmed_home = this.confirmed_home.filter(pl => pl != p)
+        }
+    }
+    removeAwayPlayer(p: Player) {
+        if (this.confirmed_away.includes(p)) {
+            this.confirmed_away = this.confirmed_home.filter(pl => pl != p)
+        }
+    }
+
+
 }
