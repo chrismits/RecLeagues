@@ -7,10 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'RecLeagues';
-
-  isAdmin = true;
-
-  toggleAdmin() {
-  	this.isAdmin = !this.isAdmin;
-  }
 }

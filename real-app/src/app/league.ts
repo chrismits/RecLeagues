@@ -49,6 +49,10 @@ export class League {
     getMaxNumTeams() { return this.max_num_teams; }
     getMaxTeamSize() { return this.max_team_size; }
     getStartDate() { return this.start_date; }
+    getReadableStartDate() { 
+        let words = this.start_date.toString().split(" "); 
+        return words[1].concat(' ', words[2], ' ', words[3]);
+    }
     getSchedule() { return this.schedule; }
     getCreated() { return this.created; }
     isPickup() { return this.is_pickup; }
