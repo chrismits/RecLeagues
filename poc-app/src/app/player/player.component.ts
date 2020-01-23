@@ -15,11 +15,11 @@ export class PlayerComponent implements OnInit {
   constructor(private apiService: ApiService) {}
 
   addPlayer(p: Player) {
-    var tmp = new Player(p._first, p._last, p._email, p._cell); 
-    this.players.push(tmp);
+    var curr_player = new Player(p._first, p._last, p._email, p._cell); 
+    this.players.push(curr_player);
 
     // Add to db
-    this.apiService.addPlayer(tmp).subscribe((data) => {
+    this.apiService.addPlayer(curr_player).subscribe((data) => {
       console.log(data)
     }, (error) => {
       console.log(error)

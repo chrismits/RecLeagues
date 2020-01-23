@@ -20,7 +20,6 @@ mongoose.connect(db_uri, {useNewUrlParser: true, useUnifiedTopology: true}, func
     console.log("Connected to DB")
 });
 
-
 /************ Routing for server API ************/
 var Player = require('./models/player-model.js')
 
@@ -41,6 +40,7 @@ Next steps: - Check if id already in db so no duplicate players
             - Resolve: Cannot set header after they are sent to client
 */
 app.post('/api/players', function(req, res) {
+    console.log("POST REQUEST SENT")
     Player.create({
         first: req.body._first,
         last: req.body._last,
@@ -51,7 +51,6 @@ app.post('/api/players', function(req, res) {
     function(err, new_player) {
         if (err)
             res.send(err)
-        
         // No error, return all players
         Player.find(function(error, players){
             if (error)
