@@ -1,0 +1,55 @@
+<div class="container">
+    <h1>League Form</h1>
+    <form (ngSubmit)="onSubmit()" #leagueForm='ngForm'>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" required 
+               [(ngModel)]="model.name" name="name" #name="ngModel"
+               pattern="[a-zA-Z0-9\- ]*"> 
+        <div [hidden]="name.valid || name.pristine" 
+              class="alert alert-danger"> 
+          Please enter a valid name.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="name">Sport</label>
+        <input type="text" class="form-control" id="sport" required 
+               [(ngModel)]="model.sport" name="sport" #sport="ngModel"
+               pattern="[a-zA-Z0-9\- ]*"> 
+        <div [hidden]="sport.valid || sport.pristine" 
+              class="alert alert-danger"> 
+          Please enter a valid sport.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="name">Season</label>
+          <select class="form-control" id="season" required 
+                [(ngModel)]="model.season" name="season" #season="ngModel">
+          <option *ngFor="let season of seasons" [ngValue]="season"> 
+            {{season}}
+          </option>
+        </select>
+        <div [hidden]="season.valid || season.pristine" 
+              class="alert alert-danger"> 
+          Please enter a valid season.
+        </div>
+      </div>
+
+      <label for="matches">Matches</label>
+        <select multiple class="form-control" id="matches"  
+                [(ngModel)]="model.schedule" name="matches" #matches="ngModel">
+          <option *ngFor="let match of avail_matches" [ngValue]="match"> 
+            {{match.home.name}} vs. {{match.away.name}}
+          </option>
+        </select>
+        <div [hidden]="matches.valid" 
+              class="alert alert-danger"> 
+          Please enter a valid match.
+        </div>
+
+      <button type="button" class="btn btn-success" (click)="onSubmit(); leagueForm.reset()" [disabled]="sport.invalid || season.invalid || name.invalid">New League</button>
+
+    </form>
+</div>
