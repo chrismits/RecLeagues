@@ -1,16 +1,42 @@
 /* 
 Database schema for match
-Fixes:
-    - Custom validator for scoring: Figure out ideal representation.
+Notes:
+    - Changed score representation to have home and away scores as sub-fields.
+    - Added location field. Update enum values with all Tufts buildings
 */
 
 var matchSchema = new mongoose.Schema({
-    _id: {type: mongoose.Schema.Types.ObjectId, auto: true},
-    date: {type: Date, required: true},
-    home: {type: mongoose.Schema.Types.ObjectId, ref: 'Team', required: true},
-    away: {type: mongoose.Schema.Types.ObjectId, ref: 'Team', required: true},
-    score: {type: String, required: false},
-    created: {type: Date, default: Date.now}
+    _id: {
+        type: mongoose.Schema.Types.ObjectId, 
+        auto: true
+    },
+    date: {
+        type: Date, 
+        required: true
+    },
+    location: {
+        type: String,
+        required: false
+    },
+    home: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Team', 
+        required: true
+    },
+    away: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Team', 
+        required: true
+    },
+    score: {
+        home_score: String,
+        away_score: String,
+        required: false
+    },
+    created: {
+        type: Date, 
+        default: Date.now
+    }
 })
 
 var Match = mongoose.model('Match', matchSchema);
