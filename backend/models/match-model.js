@@ -2,7 +2,6 @@
 Database schema for match
 Notes:
     - Changed score representation to have home and away scores as sub-fields.
-    - Added sport field. Update enum values to add more sports.
     - Added location field. Update enum values with all Tufts buildings
 */
 
@@ -33,11 +32,6 @@ var matchSchema = new mongoose.Schema({
         home_score: String,
         away_score: String,
         required: false
-    },
-    sport: {
-        type: String,
-        enum: ['Basketball', 'Soccer', 'Tennis', 'Other'],
-        default: 'Other'
     },
     created: {
         type: Date, 
