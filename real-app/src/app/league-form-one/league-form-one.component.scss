@@ -1,0 +1,64 @@
+#progress-bar {
+	width: 100%;
+  padding-top: 150px;
+}
+
+.col {
+  float: left;
+  width: 33.33%;
+  margin-top:40px;
+}
+
+.left-col {
+  padding-right: 40px;
+}
+
+.middle-col {
+  padding-right: 24px;
+  padding-left: 24px;
+}
+
+.right-col {
+  float: right;
+  padding-left: 40px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+
+.short {
+	width:30.33%;
+}
+
+.labl {
+	font-size: 20px;
+}
+
+.inline {
+	display: inline-block;
+}
+
+.next-btn {
+	float: right;
+}
+
+.form-control {
+	font-size: 16px;
+}
+
+.top {
+  padding-top: 40px;
+}
+
+

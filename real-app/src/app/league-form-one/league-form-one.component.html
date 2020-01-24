@@ -1,0 +1,81 @@
+<div class="container">
+    <progress id="progress-bar" value="20" max="100"></progress>
+    <form (ngSubmit)="onSubmit()" #leagueForm='ngForm'>
+      <div class="row short">
+        <!-- ********* NAME ******** -->
+        <label class="labl top" for="name">Name</label>
+        <input type="text" class="form-control" id="name" required 
+               [(ngModel)]="model.name" name="name" #name="ngModel"
+               pattern="[a-zA-Z0-9\- ]*"> 
+        <div [hidden]="name.valid || name.pristine" 
+              class="alert alert-danger"> 
+          Please enter a valid name.
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col left-col">
+          <!-- ********* SPORT ******** -->
+          <label class="labl" for="name">Sport</label>
+          <select class="form-control" id="sport" required 
+                [(ngModel)]="model.sport" name="sport" #sport="ngModel">
+            <option *ngFor="let sport of sports" [ngValue]="sport"> 
+              {{sport}}
+            </option>
+          </select>
+          <div [hidden]="sport.valid || sport.pristine" 
+                class="alert alert-danger"> 
+            Please enter a valid sport.
+          </div> <br> <br> <br>
+
+          <!-- ********* COMPETITION LEVEL ******** BUGGY -->
+          <label class="labl" for="comp-level">Competition Level</label>
+          <div class="form-group" *ngFor="let level of levels">
+            <div class="inline">
+              <label for="{{level}}">
+                <input type="radio" class="form-control inline" 
+                      id="level" 
+                      [(ngModel)] ="model.competition_level" 
+                      name="level" [value]="level" required>
+                {{level}}
+              </label>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="form-group col middle-col">
+          <!-- ********* SEASON ******** -->
+          <label class="labl" for="name">Season</label>
+            <select class="form-control" id="season" required 
+                  [(ngModel)]="model.season" name="season" #season="ngModel">
+            <option *ngFor="let season of seasons" [ngValue]="season"> 
+              {{season}}
+            </option>
+          </select>
+          <div [hidden]="season.valid || season.pristine" 
+                class="alert alert-danger"> 
+            Please enter a valid season.
+          </div>
+        </div>
+
+        <div class="form-group col right-col">
+          <!-- ********* LEAGUE TYPE ******** -->
+          <label class="labl" for="name">League Type</label>
+            <select class="form-control" id="type" required 
+                  [(ngModel)]="model.type" name="type" #type="ngModel">
+            <option *ngFor="let type of types" [ngValue]="type"> 
+              {{type}}
+            </option>
+          </select>
+          <div [hidden]="type.valid || type.pristine" 
+                class="alert alert-danger"> 
+            Please enter a valid league type.
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <button type="button" class="btn btn-success next-btn" (click)="onSubmit(); leagueForm.reset()" [disabled]="sport.invalid || season.invalid || name.invalid || type.invalid || levels.pristine" routerLink="/leagues-form-two">Next</button>
+
+</div>

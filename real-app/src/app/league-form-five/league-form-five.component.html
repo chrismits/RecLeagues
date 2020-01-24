@@ -1,0 +1,7 @@
+<div class="container">
+    <h1>{{model.name}}</h1>
+    <progress id="progress-bar" value="100" max="100"></progress>
+    <button type="button" class="btn btn-success back-btn" routerLink="/leagues-form-four">Back</button>
+
+    <button type="button" class="btn btn-success next-btn" (click)="onSubmit(); leagueForm.reset()" routerLink="/admin">Create League</button>
+</div>

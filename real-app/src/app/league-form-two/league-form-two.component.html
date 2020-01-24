@@ -1,0 +1,55 @@
+<div class="container">
+    <h1>{{model.name}}</h1>
+    <progress id="progress-bar" value="40" max="100"></progress>
+    <form (ngSubmit)="onSubmit()" #leagueForm='ngForm'>
+      <div class="row short">
+      	<h2 class="top"> Teams </h2>
+      </div>
+
+      <div class="form-group row">
+        <div class="col left-col">
+          <!-- ********* MAX NUM TEAMS ******** -->
+          <label class="labl" for="name">Maximum Number of Teams</label>
+          <select class="form-control" id="team" required 
+                [(ngModel)]="model.max_num_teams" name="team" #team="ngModel">
+            <option *ngFor="let team of num_teams" [ngValue]="team"> 
+              {{team}}
+            </option>
+          </select>
+          <div [hidden]="team.valid || team.pristine" 
+                class="alert alert-danger"> 
+            Please enter a valid max number of teams.
+          </div> <br> <br> <br>
+
+          <!-- ********* FREE AGENT STATUS ******** BUGGY -->
+          <label class="labl"> Free Agent Status </label> <br> 
+          <label class="switch" for="comp-level">
+            <input type="checkbox">
+  			<span class="slider round"></span>
+  		  </label>
+        </div>
+
+        <div class="form-group col middle-col">
+          <!-- ********* MAX NUM PLAYERS ******** -->
+          <label class="labl" for="name">Maximum Number of Players</label>
+            <select class="form-control" id="player" required 
+                  [(ngModel)]="model.max_team_size" name="player" #player="ngModel">
+            <option *ngFor="let player of num_players" [ngValue]="player"> 
+              {{player}}
+            </option>
+          </select>
+          <div [hidden]="player.valid || player.pristine" 
+                class="alert alert-danger"> 
+            Please enter a valid max number of players per team.
+          </div>
+        </div>
+
+        
+      </div>
+    </form>
+
+    <button type="button" class="btn btn-success back-btn" routerLink="/leagues-form-one">Back</button>
+
+    <button type="button" class="btn btn-success next-btn" (click)="onSubmit(); leagueForm.reset()" [disabled]="team.invalid || player.invalid" routerLink="/leagues-form-three">Next</button>
+
+</div>

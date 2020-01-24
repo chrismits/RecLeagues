@@ -1,0 +1,130 @@
+#progress-bar {
+	width: 100%;
+}
+
+.col {
+  float: left;
+  width: 33.33%;
+  margin-top:40px;
+}
+
+.left-col {
+  padding-right: 40px;
+}
+
+.middle-col {
+  padding-right: 24px;
+  padding-left: 24px;
+}
+
+.right-col {
+  float: right;
+  padding-left: 40px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+
+.short {
+	width:30.33%;
+}
+
+.labl {
+	font-size: 20px;
+}
+
+.inline {
+	display: inline-block;
+}
+
+.back-btn {
+  float: left;
+  background-color: #ff3333;
+}
+
+.next-btn {
+	float: right;
+}
+
+.form-control {
+	font-size: 16px;
+}
+
+.top {
+  padding-top: 100px;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+

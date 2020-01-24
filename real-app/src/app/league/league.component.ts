@@ -18,7 +18,7 @@ export class LeagueComponent implements OnInit {
       m => !this.matches.includes(m));
 
   addLeague(l: League) {
-  	var new_league = new League(l.name, false, l.sport, l.season, l.reg_start, l.reg_end, l.start_date, "");
+  	var new_league = new League(l.name, false, l.sport, l.season, l.reg_start, l.reg_end, l.start_date, "", "", "");
   	this.leagues.push(new_league);
     l.schedule.map(m => new_league.addMatch(m));
     this.avail_matches = this.avail_matches.filter(
