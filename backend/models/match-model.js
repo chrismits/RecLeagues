@@ -5,6 +5,18 @@ Notes:
     - Added location field. Update enum values with all Tufts buildings
 */
 
+
+/* Entries for Match:
+    - _id: ObjectId
+    - date: Date
+    - location: String
+    - home: ObjectId ('Team' ref)
+    - away: ObjectId ('Team' ref)
+    - score:
+        - home_score: String
+        - away_score: String
+    - created: Date
+*/
 var matchSchema = new mongoose.Schema({
     _id: {
         type: mongoose.Schema.Types.ObjectId, 

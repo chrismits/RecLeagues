@@ -9,14 +9,14 @@ import { Observable } from 'rxjs'
   providedIn: 'root'
 })
 export class ApiService {
-  apiuri: string = 'http://localhost:4000/api' //change from localhost to heroku server
+  apiuri: string = 'http://localhost:8080/api' //change from localhost to heroku server
   private headers = new HttpHeaders({'Content-Type': 'application/json'})
 
   constructor(private http: HttpClient) {}
 
   getAllPlayers() {
     console.log("Sending request to backend to get player")
-    return this.http.get(`${this.apiuri}/players`);
+    return this.http.get(`${this.apiuri}/Player/players`);
   }
 
   //check if player already exists -> using id

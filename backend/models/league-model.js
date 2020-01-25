@@ -4,6 +4,24 @@ Notes:
     - Added sport field. Update enum values to add more sports.
 */
 
+
+/* Entries for League:
+    - _id: ObjectId
+    - name: String
+    - sport: String
+    - season: String
+    - dates: All Date Objects
+        - reg_start
+        - reg_end
+        - start_date
+        - end_date
+    - team_info: All Number Objects
+        - num_teams
+        - max_num_teams
+        - max_team_size
+    - matches: Array ('Match' ref)
+    - created: Date
+*/
 var leagueSchema = new mongoose.Schema({
     _id: {
         type: mongoose.Schema.Types.ObjectId,
@@ -35,7 +53,7 @@ var leagueSchema = new mongoose.Schema({
         max_num_teams: { type: Number, required: true },
         max_team_size: { type: Number, required: true}
     },
-    schedule: [{
+    matches: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Match'
     }],
