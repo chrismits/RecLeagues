@@ -8,6 +8,16 @@ Notes:
 var mongoose = require('mongoose')
 require('mongoose-type-email');
 
+/* Entries for Player:
+    - _id: ObjectId
+    - first: String
+    - last: String
+    - cell: String
+    - email: Email
+    - signedWaiver: Boolean
+    - team: ObjectId ('Team' reference)
+    - created: Date
+*/
 var playerSchema = new mongoose.Schema({
     _id: {
         type: mongoose.Schema.Types.ObjectId, 
@@ -43,14 +53,14 @@ var playerSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    created: {
-        type: Date, 
-        default: Date.now
-    },
     team: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Team',
         default: undefined
+    },
+    created: {
+        type: Date, 
+        default: Date.now
     }
 })
 

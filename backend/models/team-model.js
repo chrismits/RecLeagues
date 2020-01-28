@@ -6,6 +6,16 @@ Notes:
 
 */
 
+
+/* Entries for Team:
+    - _id: ObjectId
+    - name: String
+    - size: Number
+    - captain: ObjectId ('Player' ref)
+    - players: Array ('Player' ref)
+    - league: ObjectId ('League' ref)
+    - created: Date
+*/
 var teamSchema = new mongoose.Schema({
     _id: {
         type: mongoose.Schema.Types.ObjectId,
