@@ -38,7 +38,6 @@ var playerSchema = new mongoose.Schema({
     cell: {
         type: String, 
         required: false,
-        default: '',
         validate: {
             validator: function(c) {
                 return /\d{10}/.test(c); // test this

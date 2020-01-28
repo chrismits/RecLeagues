@@ -14,16 +14,16 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-  getAllPlayers() {
-    console.log("Sending request to backend to get player")
-    return this.http.get(`${this.apiuri}/Player/players`);
+  /**** Player API Service ****/
+
+  // GET '/api/Player/players'
+  getPlayers()  {
+    return this.http.get(`${this.apiuri}/Player/players`)
   }
 
-  //check if player already exists -> using id
+  // POST '/api/Player/players'
   addPlayer(pl : Player): Observable<Player> {
-    //let headers = new HttpHeaders({'Content-Type': 'application/json'})
-    console.log("Sending request to backend to add player")
-
-    return this.http.post<Player>(`${this.apiuri}/players`, pl, {headers: this.headers})
+    return this.http.post<Player>(`${this.apiuri}/Player/players`, pl, 
+                                    {headers: this.headers})
   }
 }

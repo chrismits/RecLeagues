@@ -19,6 +19,7 @@ Notes:
         - num_teams
         - max_num_teams
         - max_team_size
+        - add reference objects 
     - matches: Array ('Match' ref)
     - created: Date
 */
