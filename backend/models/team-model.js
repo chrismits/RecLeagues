@@ -3,7 +3,6 @@ Database schema for Team
 Notes: 
     - Does captain requires a validation function?
     - Add entry for picture of logo. Store as buffer or link to object store.
-
 */
 
 
