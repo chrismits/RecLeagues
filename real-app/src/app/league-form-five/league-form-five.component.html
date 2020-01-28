@@ -1,7 +1,33 @@
 <div class="container">
-    <h1>{{model.name}}</h1>
-    <progress id="progress-bar" value="100" max="100"></progress>
-    <button type="button" class="btn btn-success back-btn" routerLink="/leagues-form-four">Back</button>
+    <h1>{{model.getName()}}</h1>
+	<progress id="progress-bar" value="100" max="100"></progress>
+    <div class="my-row">
+	    <div class="header labl" id="Overview">Overview</div> 
+  	</div>
 
-    <button type="button" class="btn btn-success next-btn" (click)="onSubmit(); leagueForm.reset()" routerLink="/admin">Create League</button>
+	<div class="card-container box">
+		<div> 
+			{{model.getName()}} is a {{model.getType()}} {{model.getSeason()}} league for {{model.getSport()}} at a {{model.getCompLevel()}} level.
+		</div>
+		<div>
+			There will be a maximum of {{model.getMaxNumTeams()}} teams, each with {{model.getMaxTeamSize()}}. Free agents are ...
+		</div>
+		<div>
+			Registration will start {{model.getReadableRegStartDate()}}, and end {{model.getReadableRegEndDate()}}. Teams will ... be auto-approved.
+			The League will start {{model.getReadableStartDate()}}, and end {{model.getReadableEndDate()}}. All games will be played at {{model.getLocation()}}
+		</div>
+		<div>
+			Games will be played on 
+			<div *ngFor="let slot of model.getTimeSlots()">
+				{{slot.getDay()}}, starting at {{slot.getReadableStartDate()}}, and ending at {{slot.getReadableEndDate()}}. Each game will be {{slot.getLength()}} minutes, with {{slot.getBuffer()}} minute buffers between them.
+			</div>
+		</div>
+	</div>
+
+	<br> <br> <br> 
+	<div class="header my-row labl">Calendar</div> 
+
+	<button type="button" class="btn btn-success back-btn" routerLink="/leagues-form-four">Back</button>
+
+	<button type="button" class="btn btn-success next-btn" (click)="onSubmit()" routerLink="/admin">Create League</button>
 </div>

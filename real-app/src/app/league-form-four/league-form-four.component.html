@@ -1,9 +1,10 @@
 <div class="container">
-	<h1>{{model.name}}</h1>
+	<h1>{{league_model.name}}</h1>
     <progress id="progress-bar" value="80" max="100"></progress>
     <form (ngSubmit)="onSubmit()" #leagueForm='ngForm'>
       <div class="row short">
-        <h2 class="top"> Game Schedule </h2>
+        <h2> Game Schedule </h2>
+        <p> List times in military time (0900, 1530, 15:30 etc.) </p>
       </div>
 
       <div class="form-group row">
@@ -12,7 +13,7 @@
           <label class="labl" for="days">Day</label>
           <select class="form-control" id="days" required 
                 [(ngModel)]="model.day" name="days" #location="ngModel">
-            <option *ngFor="let day of days" [ngValue]="days"> 
+            <option *ngFor="let day of days" [ngValue]="day"> 
               {{day}}
             </option>
           </select>
@@ -64,8 +65,17 @@
           </div>
         </div>
       </div>
+      <div class="row">
+        <button type="button" (click)="addSlot()" [disabled]="days.invalid || leangth.invalid || start.invalid || buffer.invalid || end.invalid"> Add Times </button>
+      </div>
     </form>
 
-	<button type="button" class="btn btn-success back-btn" routerLink="/leagues-form-three">Back</button>
+    <div class="row" [hidden]="daysAdded()">
+      <div *ngFor="let slot of slots">
+        {{slot.getDay()}} from {{slot.getStart()}} to {{slot.getEnd()}}
+      </div>
+    </div>
+
+	  <button type="button" class="btn btn-success back-btn" routerLink="/leagues-form-three">Back</button>
 
     <button type="button" class="btn btn-success next-btn" (click)="onSubmit(); leagueForm.reset()" [disabled]="days.invalid || leangth.invalid || start.invalid || buffer.invalid || end.invalid" routerLink="/leagues-form-five">Next</button>

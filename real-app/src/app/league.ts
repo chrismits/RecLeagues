@@ -16,6 +16,15 @@ export class TimeSlot {
     getStart() { return this.start; }
     getEnd() { return this.end; }
 
+    getReadableStartDate() { 
+        let words = this.start.toString().split(" "); 
+        return words[1].concat(' ', words[2], ' ', words[3]);
+    }
+    getReadableEndDate() { 
+        let words = this.end.toString().split(" "); 
+        return words[1].concat(' ', words[2], ' ', words[3]);
+    }
+
     setDay(s: string) { this.day = s; }
     setLength(n: number) { this.length = n; }
     setBuffer(n: number) { this.buffer = n; }
@@ -86,6 +95,14 @@ export class League {
     getStartDate() { return this.start_date; }
     getEndDate() { return this.end_date; }
     getTimeSlots() { return this.time_slots; }
+    getReadableRegStartDate() { 
+        let words = this.reg_start.toString().split(" "); 
+        return words[1].concat(' ', words[2], ' ', words[3]);
+    }
+    getReadableRegEndDate() { 
+        let words = this.reg_end.toString().split(" "); 
+        return words[1].concat(' ', words[2], ' ', words[3]);
+    }
     getReadableStartDate() { 
         let words = this.start_date.toString().split(" "); 
         return words[1].concat(' ', words[2], ' ', words[3]);

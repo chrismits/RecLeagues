@@ -3,7 +3,7 @@
     <form (ngSubmit)="onSubmit()" #leagueForm='ngForm'>
       <div class="row short">
         <!-- ********* NAME ******** -->
-        <label class="labl top" for="name">Name</label>
+        <label class="labl" for="name">Name</label>
         <input type="text" class="form-control" id="name" required 
                [(ngModel)]="model.name" name="name" #name="ngModel"
                pattern="[a-zA-Z0-9\- ]*"> 
@@ -76,6 +76,7 @@
       </div>
     </form>
 
-    <button type="button" class="btn btn-success next-btn" (click)="onSubmit(); leagueForm.reset()" [disabled]="sport.invalid || season.invalid || name.invalid || type.invalid || levels.pristine" routerLink="/leagues-form-two">Next</button>
+
+    <button type="button" class="btn btn-success next-btn" (click)="onSubmit(); leagueForm.reset()" [disabled]="sport.invalid || season.invalid || name.invalid || type.invalid || levels.pristine" routerLink="/leagues-form-two" [state]=model>Next</button>
 
 </div>
