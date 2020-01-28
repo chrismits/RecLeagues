@@ -28,48 +28,34 @@ var server = app.listen(process.env.PORT, function () {
     console.log("Server running on port ", process.env.PORT)
 })
 
-
-
 /****************** Player API *******************/
 var Player = require('./models/player-model.js')
 
 // 
 /**** addPlayer
-Next steps: - Check if id already in db so no duplicate players
-            - Resolve: Cannot set header after they are sent to client
+TESTED
 */
-app.post('/api/players', function(req, res) {
+app.post('/api/Player/players', function(req, res) {
+    // Check if player already exists in db.
+    var new_player = new Player()
+    Player.countDocuments({ email: req.body._email}, function(err, count) {
+        if (count > 0) {
+            res.status(400).send("Error: Email already in use")
+        }
+    })
 
-    // Check for duplicates
+    new_player.first = req.body._first
+    new_player.last = req.body._last
+    new_player.email = req.body._email
+    if (req.body._cell !== null)
+        new_player.cell = req.body._cell
 
-
-
-
-
-
-    Player.create({
-        first: req.body._first,
-        last: req.body._last,
-        cell: req.body._cell,
-        email: req.body._email,
-        waiver: req.body.waiver
-    }, 
-    function(err, new_player) {
+    new_player.save(function (err, player) {
         if (err)
-            res.send(err)
-        // No error, return all players
-        Player.find(function(error, players){
-            if (error)
-                res.send(error)
-            res.json(players);
-        })
-    });
-
+            res.send(err) // change for PROD 
+        res.json(player)    
+    })
 });
-
-// getPlayerbyid -- GET
-
-// updatePlayerbyid -- PUT 
 
 /**** deletePlayer 
 - NOT TESTED
@@ -81,7 +67,7 @@ app.delete('api/Player/players/:player_id', function(req, res) {
     });
 });
 
-/**** getAllPlayers
+/**** getPlayers
 - Returns all player documents in db. Will probably not be needed in prod
 ****/
 app.get('/api/Player/players', function(req, res) {
@@ -96,11 +82,27 @@ app.get('/api/Player/players', function(req, res) {
 
 /****************** Team API *******************/
 
+// createTeam
+
+// addPlayertoTeam
+
+// getTeams
+
+// getTeambyName
+
+// getTeambyPlayer
+
+// getTeambyCaptain
 
 /****************** League API *******************/
+
+// joinLeague
+
+// addMatchesToLeague
+
 
 
 /****************** Match API *******************/
 
 
-/****************** Admin API *******************/
+/****************** Other API *******************/

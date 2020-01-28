@@ -3,6 +3,7 @@ Database schema for match
 Notes:
     - Changed score representation to have home and away scores as sub-fields.
     - Added location field. Update enum values with all Tufts buildings
+    - Keep track of the approved players for match
 */
 
 
