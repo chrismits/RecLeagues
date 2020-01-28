@@ -10,7 +10,6 @@ import { League } from '../league'
 export class LeagueFormTwoComponent implements OnInit {
 
   @Output() added = new EventEmitter<League>();
-  @Input() avail_matches: Match[];
 
   init_name: string = 'name';
   init_sport: string = '';
@@ -21,7 +20,7 @@ export class LeagueFormTwoComponent implements OnInit {
   num_teams: number[] = [...Array(11).keys()].map(x => x + 5);
   num_players: number[] = [...Array(16).keys()].map(x => x + 5);
 
-  model = new League(this.init_name, false, this.init_sport, this.init_season, this.init_date, this.init_date, this.init_date, "", "", "");
+  model: League = new League(this.init_name, false, this.init_sport, this.init_season, this.init_date, this.init_date, this.init_date, "", "", "");
 
   submitted = false;
 
@@ -42,6 +41,7 @@ export class LeagueFormTwoComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }
