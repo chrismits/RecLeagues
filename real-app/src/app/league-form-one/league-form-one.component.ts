@@ -37,7 +37,11 @@ export class LeagueFormOneComponent implements OnInit {
 
   onSubmit() { 
   	this.submitted = true; 
-    
+    console.log(this.model.getName());
+    console.log(this.model.sport);
+    console.log(this.model.season);
+    console.log(this.model.getType());
+    console.log(this.model.getCompLevel());
   	this.added.emit(this.model);
   }
 
