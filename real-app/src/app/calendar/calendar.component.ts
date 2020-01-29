@@ -1,10 +1,11 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, Input } from '@angular/core';
 import { FullCalendarComponent } from '@fullcalendar/angular';
 import { EventInput, Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGrigPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction'; // for dateClick
 import $ from 'jquery' 
+import { League } from '../league'
 
 @Component({
   selector: 'app-calendar',
@@ -14,17 +15,20 @@ import $ from 'jquery'
 export class CalendarComponent implements OnInit {
 
   title = 'League Scheduler';
+  @Input() leagues: League[];
 
   ngOnInit() {
-	  document.addEventListener('DOMContentLoaded', function() {
-		var calendarEl = document.getElementById('calendar');
-
-		var calendar = new Calendar(calendarEl, {
-		    plugins: [ dayGridPlugin ]
-		});
-
-		calendar.render();
-	  });
+    // can load in events here using db info
+    console.log('why');
+    this.leagues.forEach(l => 
+        l.getTimeSlots().forEach(s => 
+          this.calendarEvents.push(
+           {
+              title: l.getName(),
+              start: s.getStart(),
+              end: s.getEnd(),
+            })));
+    console.log(this.leagues.length);
   }
 
   @ViewChild('calendar', {static: false}) calendarComponent: FullCalendarComponent; // the #calendar in the template
@@ -32,11 +36,7 @@ export class CalendarComponent implements OnInit {
   calendarVisible = true;
   calendarPlugins = [dayGridPlugin, timeGrigPlugin, interactionPlugin];
   calendarWeekends = true;
-  calendarEvents: EventInput[] = [{
-      title: "Red Sox World Series Champs",
-      start: new Date("2004-10-27T20:00:00.000Z"),
-      end: new Date("2004-10-27T23:00:00.000Z"),
-    }] // can load in events here using db info
+  calendarEvents: EventInput[] = [] 
 
   toggleVisible() {
     this.calendarVisible = !this.calendarVisible;
