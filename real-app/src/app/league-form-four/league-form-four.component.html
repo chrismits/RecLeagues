@@ -66,11 +66,11 @@
         </div>
       </div>
       <div class="row">
-        <button type="button" (click)="addSlot()" [disabled]="days.invalid || leangth.invalid || start.invalid || buffer.invalid || end.invalid"> Add Times </button>
+        <button type="button" (click)="addSlot()" [disabled]="days.invalid || length.invalid || start.invalid || buffer.invalid || end.invalid"> Add Times </button>
       </div>
     </form>
 
-    <div class="row" [hidden]="daysAdded()">
+    <div class="row">
       <div *ngFor="let slot of slots">
         {{slot.getDay()}} from {{slot.getStart()}} to {{slot.getEnd()}}
       </div>
@@ -78,4 +78,4 @@
 
 	  <button type="button" class="btn btn-success back-btn" routerLink="/leagues-form-three">Back</button>
 
-    <button type="button" class="btn btn-success next-btn" (click)="onSubmit(); leagueForm.reset()" [disabled]="days.invalid || leangth.invalid || start.invalid || buffer.invalid || end.invalid" routerLink="/leagues-form-five">Next</button>
+    <button type="button" class="btn btn-success next-btn" (click)="onSubmit(); leagueForm.reset()" [disabled]="days.invalid || length.invalid || start.invalid || buffer.invalid || end.invalid" routerLink="/leagues-form-five">Next</button>

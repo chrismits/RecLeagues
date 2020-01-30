@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { League, TimeSlot } from '../league'
+import { LeagueService } from '../league.service'
 
 @Component({
   selector: 'app-league-form-five',
@@ -8,7 +9,7 @@ import { League, TimeSlot } from '../league'
 })
 export class LeagueFormFiveComponent implements OnInit {
 
-  constructor() { }
+  constructor(public leagueService: LeagueService) { }
 
   init_name: string = 'name';
   init_sport: string = '';
@@ -16,9 +17,20 @@ export class LeagueFormFiveComponent implements OnInit {
   init_date: Date = new Date();
 
   model: League = new League(this.init_name, false, this.init_sport, this.init_season, this.init_date, this.init_date, this.init_date, "", "", ""); 
+  // model: League;
   leagues: League[] = [this.model];
+  slots: TimeSlot[];
+
+  submitted = false;
+
+  onSubmit() {
+    this.submitted = true;
+    this.leagueService.getLeague().deepCopyLeague(this.model);
+    this.leagueService.storeLeague();
+  }
 
   ngOnInit() {
+    this.model = this.leagueService.getLeague();
     let slot = new TimeSlot();
     let now = new Date();
     let diff = 180;
@@ -29,7 +41,7 @@ export class LeagueFormFiveComponent implements OnInit {
     slot.setLength(15);
     slot.setBuffer(5);
     this.model.addTimeSlot(slot);
-    console.log(this.model.getTimeSlots()[0].getDay());
+    // console.log(this.model.getTimeSlots()[0].getDay());
   }
 
 }

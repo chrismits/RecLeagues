@@ -1,17 +1,14 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { League } from '../league'
+import { LeagueService } from '../league.service'
 import { Match } from '../match'
 
 @Component({
   selector: 'app-league-form-one',
   templateUrl: './league-form-one.component.html',
-  styleUrls: ['./league-form-one.component.scss']
+  styleUrls: ['./league-form-one.component.scss'],
 })
 export class LeagueFormOneComponent implements OnInit {
-
-  @Output() added = new EventEmitter<League>();
-  @Input() league: League;
-  @Input() avail_matches: Match[];
 
   seasons: string[] = ['Fall', 'Winter', 'Spring'];
   sports: string[] = ['Indoor Soccer', 'Basketball', 'Volleyball',
@@ -32,22 +29,32 @@ export class LeagueFormOneComponent implements OnInit {
              this.init_date, this.init_date, 
              this.init_loc, this.init_type, 
              this.init_level);
-  //model = this.league;
+  //model = this.leagueService.model;
+
   submitted = false;
 
   onSubmit() { 
   	this.submitted = true; 
     console.log(this.model.getName());
-    console.log(this.model.sport);
-    console.log(this.model.season);
-    console.log(this.model.getType());
-    console.log(this.model.getCompLevel());
-  	this.added.emit(this.model);
+    //this.leagueService.model = this.model;
+    this.leagueService.getLeague().deepCopyLeague(this.model);
+    console.log('carried to service?')
+    console.log(this.leagueService.getLeague().getName());
+    //console.log(this.leagueService.model.getSport());
+    console.log('end one')
+  	//this.added.emit(this.model);
   }
 
-  constructor() { }
+  constructor(public leagueService: LeagueService) { }
 
   ngOnInit() {
+    let lgue = new League('this.init_name', false, this.init_sport, 
+             this.init_season, this.init_date, 
+             this.init_date, this.init_date, 
+             this.init_loc, this.init_type, 
+             this.init_level);
+    this.leagueService.setLeague(lgue);
+    console.log(this.leagueService.getLeague().getName());
   }
 
 }

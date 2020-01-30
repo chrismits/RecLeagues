@@ -1,7 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Match } from '../match'
-import { League } from '../league'  
-import { TimeSlot } from '../league'  
+import { Component, OnInit } from '@angular/core';
+import { League, TimeSlot } from '../league'  
+import { LeagueService } from '../league.service'  
 
 @Component({
   selector: 'app-league-form-four',
@@ -10,27 +9,27 @@ import { TimeSlot } from '../league'
 })
 export class LeagueFormFourComponent implements OnInit {
 
-  @Output() added = new EventEmitter<League>();
-
   days: string[] = ['Sunday', 'Monday', 'Tuesday',
   					'Wednesday', 'Thursday', 'Friday',
   					'Saturday'];
 
   model = new TimeSlot();
 
-  init_name: string = 'name';
-  init_sport: string = '';
-  init_season: string = ''; 
-  init_date: Date = new Date();
+  // init_name: string = 'name';
+  // init_sport: string = '';
+  // init_season: string = ''; 
+  // init_date: Date = new Date();
 
-  league_model = new League(this.init_name, false, this.init_sport, this.init_season, this.init_date, this.init_date, this.init_date, "", "", ""); 
-
+  // league_model = new League(this.init_name, false, this.init_sport, this.init_season, this.init_date, this.init_date, this.init_date, "", "", ""); 
+  league_model: League;
   submitted = false;
 
   slots: TimeSlot[] = [];
 
   onSubmit() { 
   	this.submitted = true; 
+    //this.slots.forEach(slot => this.league_model.addTimeSlot(slot));
+    this.leagueService.getLeague().deepCopyLeague(this.league_model);
     // Need error checking
     //if (this.model.schedule != null) {
     //  this.model.schedule.map(m => new_model.addMatch(m));
@@ -39,6 +38,7 @@ export class LeagueFormFourComponent implements OnInit {
   }
 
   addSlot() {
+    console.log('in this bitch')
     let tempSlot = new TimeSlot();
     tempSlot.setDay(this.model.getDay());
     tempSlot.setLength(this.model.getLength());
@@ -53,9 +53,10 @@ export class LeagueFormFourComponent implements OnInit {
     else return true;
   }
 
-  constructor() { }
+  constructor(public leagueService: LeagueService) { }
 
   ngOnInit() {
+    this.league_model = this.leagueService.getLeague();
   }
 
 }

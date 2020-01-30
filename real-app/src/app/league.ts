@@ -18,11 +18,11 @@ export class TimeSlot {
 
     getReadableStartDate() { 
         let words = this.start.toString().split(" "); 
-        return words[1].concat(' ', words[2], ' ', words[3]);
+        return words[1].concat('. ', words[2], ', ', words[3]);
     }
     getReadableEndDate() { 
         let words = this.end.toString().split(" "); 
-        return words[1].concat(' ', words[2], ' ', words[3]);
+        return words[1].concat('. ', words[2], ', ', words[3]);
     }
 
     setDay(s: string) { this.day = s; }
@@ -68,6 +68,7 @@ export class League {
         this.reg_start          = reg_start;
         this.reg_end            = reg_end;
         this.num_teams          = 0;
+        this.teams              = [];
         this.max_num_teams      = 10; // change to global based on Matt
         this.max_team_size      = 15; // change to global
         this.start_date         = start;
@@ -97,19 +98,19 @@ export class League {
     getTimeSlots() { return this.time_slots; }
     getReadableRegStartDate() { 
         let words = this.reg_start.toString().split(" "); 
-        return words[1].concat(' ', words[2], ' ', words[3]);
+        return words[1].concat('. ', words[2], ', ', words[3]);
     }
     getReadableRegEndDate() { 
         let words = this.reg_end.toString().split(" "); 
-        return words[1].concat(' ', words[2], ' ', words[3]);
+        return words[1].concat('. ', words[2], ', ', words[3]);
     }
     getReadableStartDate() { 
         let words = this.start_date.toString().split(" "); 
-        return words[1].concat(' ', words[2], ' ', words[3]);
+        return words[1].concat('. ', words[2], ', ', words[3]);
     }
     getReadableEndDate() { 
         let words = this.end_date.toString().split(" "); 
-        return words[1].concat(' ', words[2], ' ', words[3]);
+        return words[1].concat('. ', words[2], ', ', words[3]);
     }
     getSchedule() { return this.schedule; }
     getCreated() { return this.created; }
@@ -182,6 +183,25 @@ export class League {
 
     }
 
-
+    deepCopyLeague(l: League) {
+        this.setName(l.getName()); 
+        this.setIsPickup(l.isPickup());
+        this.setSport(l.getSport());
+        this.setSeason(l.getSeason());
+        this.setRegStart(l.getRegStart());
+        this.setRegEnd(l.getRegEnd());
+        this.setNumTeams(l.getNumTeams());
+        l.getTeams().forEach(t => this.addTeam(t));
+        this.setMaxNumTeams(l.getMaxNumTeams());
+        this.setMaxTeamSize(l.getMaxTeamSize());
+        this.setGameLength(l.getGameLength());
+        this.setStartDate(l.getStartDate());
+        this.setEndDate(l.getEndDate());
+        l.getTimeSlots().forEach(s => this.addTimeSlot(s));
+        l.getSchedule().forEach(m => this.addMatch(m));
+        this.setLocation(l.getLocation());
+        this.setType(l.getType());
+        this.setCompLevel(l.getCompLevel());
+    }
 
 }

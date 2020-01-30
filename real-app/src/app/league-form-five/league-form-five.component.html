@@ -17,9 +17,11 @@
 			The League will start {{model.getReadableStartDate()}}, and end {{model.getReadableEndDate()}}. All games will be played at {{model.getLocation()}}
 		</div>
 		<div>
-			Games will be played on 
+			Games will be played at {{model.getLocation()}} on every: 
 			<div *ngFor="let slot of model.getTimeSlots()">
-				{{slot.getDay()}}, starting at {{slot.getReadableStartDate()}}, and ending at {{slot.getReadableEndDate()}}. Each game will be {{slot.getLength()}} minutes, with {{slot.getBuffer()}} minute buffers between them.
+				<ul>
+					{{slot.getDay()}}, starting {{slot.getReadableStartDate()}}, and ending {{slot.getReadableEndDate()}}. Each game will be {{slot.getLength()}} minutes, with {{slot.getBuffer()}} minute buffers between them.
+				</ul>
 			</div>
 		</div>
 	</div>

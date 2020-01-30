@@ -11,12 +11,13 @@ import { LeagueFormTwoComponent } from './league-form-two/league-form-two.compon
 import { LeagueFormThreeComponent } from './league-form-three/league-form-three.component';
 import { LeagueFormFourComponent } from './league-form-four/league-form-four.component';
 import { LeagueFormFiveComponent } from './league-form-five/league-form-five.component';
-import { LeagueCreationComponent } from './league-creation/league-creation.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './api.service';
+import { LeagueService } from './league.service';
 import { CalendarComponent } from './calendar/calendar.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { routing } from './app-routing.module'
 
 @NgModule({
   declarations: [
@@ -24,22 +25,24 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     AdminComponent,
     CalendarComponent,
     LeagueComponent,
-    LeagueCreationComponent,
     LeagueFormOneComponent,
     LeagueFormTwoComponent,
     LeagueFormThreeComponent,
     LeagueFormFourComponent,
     LeagueFormFiveComponent,
-    LeagueCreationComponent,
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     FormsModule,
     FullCalendarModule,
-    HttpClientModule
+    HttpClientModule,
+    routing
   ],
-  providers: [ApiService],
+  providers: [
+    ApiService, 
+    LeagueService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
