@@ -34,7 +34,7 @@
           <!-- ********* START TIME ******** -->
           <label class="labl" for="start">Start Time</label>
           <input type="text" class="form-control" id="start" required 
-                 [(ngModel)]="model.start" name="start" #start="ngModel"
+                 [(ngModel)]="start_time" name="start" #start="ngModel"
                  pattern="^([01]\d|2[0-3]):?([0-5]\d)$"> 
           <div [hidden]="start.valid || start.pristine" 
                 class="alert alert-danger"> 
@@ -57,7 +57,7 @@
           <!-- ********* END TIME ******** -->
           <label class="labl" for="end">End Time</label>
           <input type="text" class="form-control" id="end" required 
-                 [(ngModel)]="model.end" name="end" #end="ngModel"
+                 [(ngModel)]="end_time" name="end" #end="ngModel"
                  pattern="^([01]\d|2[0-3]):?([0-5]\d)$"> 
           <div [hidden]="end.valid || end.pristine" 
                 class="alert alert-danger"> 

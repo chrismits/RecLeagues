@@ -96,6 +96,7 @@ export class League {
     getStartDate() { return this.start_date; }
     getEndDate() { return this.end_date; }
     getTimeSlots() { return this.time_slots; }
+
     getReadableRegStartDate() { 
         let words = this.reg_start.toString().split(" "); 
         return words[1].concat('. ', words[2], ', ', words[3]);
@@ -136,6 +137,9 @@ export class League {
     }
     removeTimeSlot(slot: TimeSlot) {
         this.time_slots.filter(s => s != slot);
+    }
+    removeAllTimeSlots() {
+        this.time_slots = [];
     }
 
     setIsPickup(b: boolean) { this.is_pickup = b; }

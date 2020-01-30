@@ -18,8 +18,7 @@ export class LeagueFormFiveComponent implements OnInit {
 
   model: League = new League(this.init_name, false, this.init_sport, this.init_season, this.init_date, this.init_date, this.init_date, "", "", ""); 
   // model: League;
-  leagues: League[] = [this.model];
-  slots: TimeSlot[];
+  leagues: League[] = [];
 
   submitted = false;
 
@@ -30,6 +29,7 @@ export class LeagueFormFiveComponent implements OnInit {
   }
 
   ngOnInit() {
+    //this.leagueService.getLeague().removeAllTimeSlots();
     this.model = this.leagueService.getLeague();
     let slot = new TimeSlot();
     let now = new Date();
@@ -41,6 +41,7 @@ export class LeagueFormFiveComponent implements OnInit {
     slot.setLength(15);
     slot.setBuffer(5);
     this.model.addTimeSlot(slot);
+    this.leagues.push(this.model);
     // console.log(this.model.getTimeSlots()[0].getDay());
   }
 

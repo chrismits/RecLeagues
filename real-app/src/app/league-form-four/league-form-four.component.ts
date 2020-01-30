@@ -14,6 +14,8 @@ export class LeagueFormFourComponent implements OnInit {
   					'Saturday'];
 
   model = new TimeSlot();
+  start_time: string;
+  end_time: string;
 
   // init_name: string = 'name';
   // init_sport: string = '';
@@ -38,13 +40,15 @@ export class LeagueFormFourComponent implements OnInit {
   }
 
   addSlot() {
-    console.log('in this bitch')
+    let now = new Date();
+    let diff = 180;
+    let end = new Date(now.getTime() + diff * 60000)
     let tempSlot = new TimeSlot();
     tempSlot.setDay(this.model.getDay());
     tempSlot.setLength(this.model.getLength());
     tempSlot.setBuffer(this.model.getBuffer());
-    tempSlot.setStart(this.model.getStart());
-    tempSlot.setEnd(this.model.getEnd());
+    tempSlot.setStart(now);
+    tempSlot.setEnd(end);
     this.slots.push(tempSlot);
   }
 
