@@ -32,9 +32,11 @@ export class LeagueFormFiveComponent implements OnInit {
     //this.leagueService.getLeague().removeAllTimeSlots();
     this.model = this.leagueService.getLeague();
     let slot = new TimeSlot();
-    let now = new Date();
+    //let now = new Date();
+    let now = "11:00 am";
     let diff = 180;
-    let end = new Date(now.getTime() + diff * 60000)
+    //let end = new Date(now.getTime() + diff * 60000)
+    let end = "1:00 pm";
     slot.setDay('Tuesday');
     slot.setStart(now);
     slot.setEnd(end);

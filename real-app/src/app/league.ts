@@ -5,8 +5,8 @@ export class TimeSlot {
     day: string;
     length: number;
     buffer: number;
-    start: Date;
-    end: Date;
+    start: string;
+    end: string;
 
     constructor() {}
 
@@ -16,20 +16,20 @@ export class TimeSlot {
     getStart() { return this.start; }
     getEnd() { return this.end; }
 
-    getReadableStartDate() { 
-        let words = this.start.toString().split(" "); 
-        return words[1].concat('. ', words[2], ', ', words[3]);
-    }
-    getReadableEndDate() { 
-        let words = this.end.toString().split(" "); 
-        return words[1].concat('. ', words[2], ', ', words[3]);
-    }
+    // getReadableStartDate() { 
+    //     let words = this.start.toString().split(" "); 
+    //     return words[1].concat('. ', words[2], ', ', words[3]);
+    // }
+    // getReadableEndDate() { 
+    //     let words = this.end.toString().split(" "); 
+    //     return words[1].concat('. ', words[2], ', ', words[3]);
+    // }
 
     setDay(s: string) { this.day = s; }
     setLength(n: number) { this.length = n; }
     setBuffer(n: number) { this.buffer = n; }
-    setStart(d: Date) { this.start = d; }
-    setEnd(d: Date) { this.end = d; }
+    setStart(s: string) { this.start = s; }
+    setEnd(s: string) { this.end = s; }
 
 }
 

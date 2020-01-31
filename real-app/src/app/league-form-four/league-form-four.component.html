@@ -35,7 +35,7 @@
           <label class="labl" for="start">Start Time</label>
           <input type="text" class="form-control" id="start" required 
                  [(ngModel)]="start_time" name="start" #start="ngModel"
-                 pattern="^([01]\d|2[0-3]):?([0-5]\d)$"> 
+                 pattern="^((1[0-2]|0?[1-9]):([0-5][0-9]) ([AaPp][Mm]))$"> 
           <div [hidden]="start.valid || start.pristine" 
                 class="alert alert-danger"> 
             Please enter a valid game start time.
@@ -58,7 +58,7 @@
           <label class="labl" for="end">End Time</label>
           <input type="text" class="form-control" id="end" required 
                  [(ngModel)]="end_time" name="end" #end="ngModel"
-                 pattern="^([01]\d|2[0-3]):?([0-5]\d)$"> 
+                 pattern="^((1[0-2]|0?[1-9]):([0-5][0-9]) ([AaPp][Mm]))$"> 
           <div [hidden]="end.valid || end.pristine" 
                 class="alert alert-danger"> 
             Please enter a valid game end time.
