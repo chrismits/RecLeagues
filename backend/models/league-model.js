@@ -4,6 +4,7 @@ Notes:
     - Added sport field. Update enum values to add more sports.
 */
 
+var mongoose = require('mongoose');
 
 /* Entries for League:
     - _id: ObjectId
@@ -15,12 +16,21 @@ Notes:
         - reg_end
         - start_date
         - end_date
+        - time_slots: [
+            - day: String
+            - length: Number
+            - buffer: Number
+            - start: Number
+            - end: Number
+        ]
     - team_info: All Number Objects
         - num_teams
         - max_num_teams
         - max_team_size
-        - add reference objects 
+        - teams: Array ('Team' ref)
     - matches: Array ('Match' ref)
+    - league_type: String
+    - competitition_level: String
     - created: Date
 */
 var leagueSchema = new mongoose.Schema({
@@ -35,29 +45,48 @@ var leagueSchema = new mongoose.Schema({
         maxlength: 20
     },
     sport: {
-        type: String,
-        enum: ['Basketball', 'Soccer', 'Tennis', 'Other'],
-        default: 'Other'
+        type: String
     },
     season: {
-        type: String, 
+        type: String,
+        enum: ['Fall', 'Winter', 'Spring'], 
         required: true
     },
     dates: {
         reg_start: Date,
         reg_end: Date,
         start_date: Date,
-        end_date: Date
+        end_date: Date,
+        
+        time_slots: [{
+            day: String,
+            length: Number,
+            buffer: Number,
+            start: Number,
+            end: Number
+        }]
     },
     team_info: {
         num_teams: { type: Number, required: true },
         max_num_teams: { type: Number, required: true },
-        max_team_size: { type: Number, required: true}
+        max_team_size: { type: Number, required: true},
+        teams: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Team'
+        }]
     },
     matches: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Match'
     }],
+    league_type: {
+        type: String,
+        enum: ['Male', 'Female', 'Co-ed']
+    },
+    competition_level: {
+        type: String,
+        enum: ['Competitive', 'Recreational']
+    },
     created: {
         type: Date, 
         default: Date.now
