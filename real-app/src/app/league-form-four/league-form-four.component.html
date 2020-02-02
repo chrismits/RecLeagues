@@ -4,7 +4,7 @@
     <form (ngSubmit)="onSubmit()" #leagueForm='ngForm'>
       <div class="row short">
         <h2> Game Schedule </h2>
-        <p> List times in military time (0900, 1530, 15:30 etc.) </p>
+        <p> List times in with 'am/pm' (10:30 am, 12:00 pm, 6:45 pm) </p>
       </div>
 
       <div class="form-group row">
@@ -34,7 +34,7 @@
           <!-- ********* START TIME ******** -->
           <label class="labl" for="start">Start Time</label>
           <input type="text" class="form-control" id="start" required 
-                 [(ngModel)]="start_time" name="start" #start="ngModel"
+                 [(ngModel)]="model.start" name="start" #start="ngModel"
                  pattern="^((1[0-2]|0?[1-9]):([0-5][0-9]) ([AaPp][Mm]))$"> 
           <div [hidden]="start.valid || start.pristine" 
                 class="alert alert-danger"> 
@@ -57,7 +57,7 @@
           <!-- ********* END TIME ******** -->
           <label class="labl" for="end">End Time</label>
           <input type="text" class="form-control" id="end" required 
-                 [(ngModel)]="end_time" name="end" #end="ngModel"
+                 [(ngModel)]="model.end" name="end" #end="ngModel"
                  pattern="^((1[0-2]|0?[1-9]):([0-5][0-9]) ([AaPp][Mm]))$"> 
           <div [hidden]="end.valid || end.pristine" 
                 class="alert alert-danger"> 
@@ -72,7 +72,7 @@
 
     <div class="row">
       <div *ngFor="let slot of slots">
-        {{slot.getDay()}} from {{slot.getStart()}} to {{slot.getEnd()}}
+        {{slot.getDay()}} from {{slot.getStart()}} to {{slot.getEnd()}}, with {{slot.getLength()}} minute games seperated by {{slot.getBuffer()}} minute buffers.
       </div>
     </div>
 

@@ -14,18 +14,27 @@ export class LeagueFormThreeComponent implements OnInit {
   reg_end_date: string = "";
   start_date: string = "";
   end_date: string = "";
+  auto_approval: boolean;
   
   model: League;
   submitted = false;
 
   onSubmit() { 
   	this.submitted = true; 
+    if (this.auto_approval) {
+      this.model.setIsAutoApproval(true);
+    }
     this.model.setRegStart(this.stringToDate(this.reg_start_date));
     this.model.setRegEnd(this.stringToDate(this.reg_end_date));
     this.model.setStartDate(this.stringToDate(this.start_date));
     this.model.setEndDate(this.stringToDate(this.end_date));
     this.leagueService.getLeague().deepCopyLeague(this.model);
     console.log(this.model.getReadableStartDate());
+    console.log(this.model.getLocation());
+    console.log(this.model.getMaxNumTeams());
+    if(this.leagueService.getLeague().isAutoApproval()) {
+      console.log('nice');
+    }
   }
 
   constructor(public leagueService: LeagueService) { }

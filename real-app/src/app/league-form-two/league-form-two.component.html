@@ -22,11 +22,10 @@
           </div> <br> <br> <br>
 
           <!-- ********* FREE AGENT STATUS ******** BUGGY -->
-          <label class="labl"> Free Agent Status </label> <br> 
-          <label class="switch" for="comp-level">
-            <input type="checkbox">
-  			<span class="slider round"></span>
-  		  </label>
+          <label class="labl"> Free Agent Status <br>
+            <input type="checkbox" name="free_agent" 
+              [(ngModel)]="free_agent" value="true">
+  		    </label>
         </div>
 
         <div class="form-group col middle-col">

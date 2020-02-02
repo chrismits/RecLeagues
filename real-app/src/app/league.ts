@@ -16,15 +16,6 @@ export class TimeSlot {
     getStart() { return this.start; }
     getEnd() { return this.end; }
 
-    // getReadableStartDate() { 
-    //     let words = this.start.toString().split(" "); 
-    //     return words[1].concat('. ', words[2], ', ', words[3]);
-    // }
-    // getReadableEndDate() { 
-    //     let words = this.end.toString().split(" "); 
-    //     return words[1].concat('. ', words[2], ', ', words[3]);
-    // }
-
     setDay(s: string) { this.day = s; }
     setLength(n: number) { this.length = n; }
     setBuffer(n: number) { this.buffer = n; }
@@ -54,6 +45,8 @@ export class League {
     location:          string;
     league_type:       string;
     competition_level: string;
+    free_agents:       boolean;
+    auto_approval:     boolean;
     created:           Date;
 
     constructor (name: string, is_pickup: boolean, sport: string, 
@@ -78,6 +71,8 @@ export class League {
         this.league_type        = type;
         this.competition_level  = level;
         this.location           = location;
+        this.free_agents        = false;
+        this.auto_approval      = false;
         this.created            = new Date();
     }
 
@@ -117,6 +112,8 @@ export class League {
     getCreated() { return this.created; }
     isPickup() { return this.is_pickup; }
     getLocation() { return this.location; }
+    isFreeAgents() { return this.free_agents; }
+    isAutoApproval() { return this.auto_approval; }
 
     setName(name: string) { this.name = name; }
     setSport(sport: string) { this.sport = sport; }
@@ -143,6 +140,8 @@ export class League {
     }
 
     setIsPickup(b: boolean) { this.is_pickup = b; }
+    setIsFreeAgents(b: boolean) { this.free_agents = b; }
+    setIsAutoApproval(b: boolean) { this.auto_approval = b; }
     setLocation(loc: string) { this.location = loc; }
 
     addTeam (t: Team) {
@@ -206,6 +205,8 @@ export class League {
         this.setLocation(l.getLocation());
         this.setType(l.getType());
         this.setCompLevel(l.getCompLevel());
+        this.setIsFreeAgents(l.isFreeAgents());
+        this.setIsAutoApproval(l.isAutoApproval());
     }
 
 }

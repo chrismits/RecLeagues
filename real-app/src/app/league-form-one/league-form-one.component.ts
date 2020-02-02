@@ -29,32 +29,27 @@ export class LeagueFormOneComponent implements OnInit {
              this.init_date, this.init_date, 
              this.init_loc, this.init_type, 
              this.init_level);
-  //model = this.leagueService.model;
 
   submitted = false;
 
   onSubmit() { 
   	this.submitted = true; 
     console.log(this.model.getName());
-    //this.leagueService.model = this.model;
     this.leagueService.getLeague().deepCopyLeague(this.model);
     console.log('carried to service?')
     console.log(this.leagueService.getLeague().getName());
-    //console.log(this.leagueService.model.getSport());
     console.log('end one')
-  	//this.added.emit(this.model);
   }
 
   constructor(public leagueService: LeagueService) { }
 
   ngOnInit() {
-    let lgue = new League('this.init_name', false, this.init_sport, 
+    let lgue = new League('initialized', false, this.init_sport, 
              this.init_season, this.init_date, 
              this.init_date, this.init_date, 
              this.init_loc, this.init_type, 
              this.init_level);
     this.leagueService.setLeague(lgue);
-    console.log(this.leagueService.getLeague().getName());
   }
 
 }
