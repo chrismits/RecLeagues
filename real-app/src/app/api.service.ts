@@ -11,7 +11,7 @@ import { League } from './league'
   providedIn: 'root'
 })
 export class ApiService {
-  apiuri: string = 'http://localhost:8080/api' //change from localhost to heroku server
+  apiuri: string = 'http://localhost:8080/api/' //change from localhost to heroku server
   private headers = new HttpHeaders({'Content-Type': 'application/json'})
 
   constructor(private http: HttpClient) {}
@@ -26,13 +26,13 @@ export class ApiService {
     //let headers = new HttpHeaders({'Content-Type': 'application/json'})
     console.log("Sending request to backend to add player")
 
-    return this.http.post<Player>(`${this.apiuri}/players`, pl, {headers: this.headers})
+    return this.http.post<Player>(`${this.apiuri}players`, pl, {headers: this.headers})
   }
 
 
   createLeague(lg : League) : Observable<League> {
     console.log("Sending request to backend to create league")
 
-    return this.http.post<League>(`${this.apiuri}/League/leagues`, lg, {headers: this.headers})
+    return this.http.post<League>(`${this.apiuri}leagues`, lg, {headers: this.headers})
   }
 }

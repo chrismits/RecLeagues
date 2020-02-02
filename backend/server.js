@@ -22,12 +22,6 @@ mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true, useUnifiedTop
 var db = mongoose.connection
 console.log("DB Connected")
 
-/***************** Server Setup ******************/
-
-var server = app.listen(process.env.PORT, function () {
-    console.log("Server running on port ", process.env.PORT)
-})
-
 /****************** Player API *******************/
 var Player = require('./models/player-model.js')
 
@@ -35,7 +29,7 @@ var Player = require('./models/player-model.js')
 /**** addPlayer
 TESTED
 */
-app.post('/api/Player/players', function(req, res) {
+app.post('/api/players', function(req, res) {
     // Check if player already exists in db.
     var new_player = new Player()
     Player.countDocuments({ email: req.body._email}, function(err, count) {
@@ -60,7 +54,7 @@ app.post('/api/Player/players', function(req, res) {
 /**** deletePlayer 
 - NOT TESTED
 ****/
-app.delete('api/Player/players/:player_id', function(req, res) {
+app.delete('api/players/:player_id', function(req, res) {
     Player.remove({_id: req.params.player_id}, function(err, player) {
         if (err)
             res.send(err)
@@ -70,7 +64,7 @@ app.delete('api/Player/players/:player_id', function(req, res) {
 /**** getPlayers
 - Returns all player documents in db. Will probably not be needed in prod
 ****/
-app.get('/api/Player/players', function(req, res) {
+app.get('/api/players', function(req, res) {
     console.log("Getting all players")
     Player.find(function(err, players) {
         if (err)
@@ -104,11 +98,12 @@ var League = require('./models/league-model.js')
 
 
 // createLeague
-app.post('api/League/leagues', function(req, res) {
+app.post('api/leagues/', function(req, res) {
     /* No league exists with same name
         FUTURE: - Check for leagues in db with coinciding 
         timeslots.
     */
+    console.log("IN DA POST")
     League.countDocuments({name: req.body.name}, function(err, count) {
         if (count > 0) {
             res.status(400).send("Error: League name already in use")
@@ -148,3 +143,9 @@ app.post('api/League/leagues', function(req, res) {
 
 
 /****************** Other API *******************/
+
+/***************** Server Setup ******************/
+
+var server = app.listen(process.env.PORT, function () {
+    console.log("Server running on port ", process.env.PORT)
+})
