@@ -13,9 +13,9 @@ export class LeagueFormFourComponent implements OnInit {
   					'Wednesday', 'Thursday', 'Friday',
   					'Saturday'];
 
-  model = new TimeSlot();
-  start_time: string = "";
-  end_time: string = "";
+  model: TimeSlot = new TimeSlot();
+  // start_time: string = "";
+  // end_time: string = "";
 
   league_model: League;
   submitted = false;
@@ -24,25 +24,18 @@ export class LeagueFormFourComponent implements OnInit {
 
   onSubmit() { 
   	this.submitted = true; 
-    //this.slots.forEach(slot => this.league_model.addTimeSlot(slot));
+    console.log(this.slots.length);
+    this.slots.forEach(slot => this.league_model.addTimeSlot(slot));
     this.leagueService.getLeague().deepCopyLeague(this.league_model);
-    // Need error checking
-    //if (this.model.schedule != null) {
-    //  this.model.schedule.map(m => new_model.addMatch(m));
-    //}
-  	//this.added.emit(new_model);
   }
 
   addSlot() {
-    let now = "11:00 am";
-    let diff = 180;
-    let end = "1:00 pm";
     let tempSlot = new TimeSlot();
     tempSlot.setDay(this.model.getDay());
     tempSlot.setLength(this.model.getLength());
     tempSlot.setBuffer(this.model.getBuffer());
-    tempSlot.setStart(now);
-    tempSlot.setEnd(end);
+    tempSlot.setStart(this.model.getStart());
+    tempSlot.setEnd(this.model.getEnd());
     this.slots.push(tempSlot);
   }
 
@@ -55,6 +48,7 @@ export class LeagueFormFourComponent implements OnInit {
 
   ngOnInit() {
     this.league_model = this.leagueService.getLeague();
+    console.log(this.league_model.getLocation());
   }
 
 }

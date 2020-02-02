@@ -21,7 +21,8 @@
 
           <!-- ********* AUTO-APPROVAL ******** -->
           <label class="switch" for="auto-approval">
-            <input type="checkbox"> Auto-approval
+            <input type="checkbox" name="auto-approval" 
+              [(ngModel)]="auto_approval" value="true"> Auto-approval
   		    </label>
         </div>
 
@@ -58,8 +59,9 @@
           <!-- ********* LOCATION ******** -->
           <label class="labl" for="name">Facility</label>
           <select class="form-control" id="location" required 
-                [(ngModel)]="model.location" name="location" #location="ngModel">
-            <option *ngFor="let location of locations" [ngValue]="location"> 
+                  [(ngModel)]="model.location" name="location" #location="ngModel">
+            <option *ngFor="let location of locations" 
+                    [ngValue]="location"> 
               {{location}}
             </option>
           </select>
@@ -84,4 +86,4 @@
     </form>
 	<button type="button" class="btn btn-success back-btn" routerLink="/leagues-form-two">Back</button>
 
-    <button type="button" class="btn btn-success next-btn" (click)="onSubmit(); leagueForm.reset()" [disabled]="location.invalid" routerLink="/leagues-form-four">Next</button>
+    <button type="button" class="btn btn-success next-btn" (click)="onSubmit()" [disabled]="location.invalid || rs_date.invalid || re_date.invalid || ls_date.invalid || le_date.invalid " routerLink="/leagues-form-four">Next</button>

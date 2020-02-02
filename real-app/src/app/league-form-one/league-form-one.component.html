@@ -31,17 +31,16 @@
           <!-- ********* COMPETITION LEVEL ******** BUGGY -->
           <label class="labl" for="comp-level">Competition Level</label>
           <div class="form-group">
-            <label>
-              <input type="radio" class="form-control" 
-                    id="level" required
-                    [(ngModel)]="model.competition_level" 
-                    name="level" value="Competitive"> Competitive <br>
-            
-              <input type="radio" class="form-control inline" 
-                    id="level" 
-                    [(ngModel)]="model.competition_level" 
-                    name="level" value="Recreational"> Recreational <br>
-            </label>  
+            <input type="radio" class="form-control" 
+                  id="level" required #level="ngModel"
+                  [(ngModel)]="model.competition_level" 
+                  name="level" value="Competitive"> 
+                  <label> Competitive </label>
+            <input type="radio" class="form-control" 
+                  id="level" #level="ngModel"
+                  [(ngModel)]="model.competition_level" 
+                  name="level" value="Recreational"> 
+                  <label> Recreational </label>
           </div>
 
         </div>
@@ -81,6 +80,6 @@
 
     <button type="button" class="btn btn-success back-btn" routerLink="/admin">Cancel</button>
 
-    <button type="button" class="btn btn-success next-btn" (click)="onSubmit(); leagueForm.reset()" [disabled]="sport.invalid || season.invalid || name.invalid || type.invalid || levels.invalid" routerLink="/leagues-form-two">Next</button>
+    <button type="button" class="btn btn-success next-btn" (click)="onSubmit()" [disabled]="sport.invalid || season.invalid || name.invalid || type.invalid || level.pristine" routerLink="/leagues-form-two">Next</button>
 
 </div>

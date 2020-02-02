@@ -19,7 +19,7 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit() {
     // can load in events here using db info
-    console.log('why');
+    console.log('in cal init');
     this.leagues.forEach(l => 
         l.getTimeSlots().forEach(s => 
           this.calendarEvents.push(
