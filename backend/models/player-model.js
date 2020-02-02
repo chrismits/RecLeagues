@@ -5,7 +5,7 @@ Notes:
     - Added reference field for team
 */
 
-var mongoose = require('mongoose')
+var mongoose = require('mongoose');
 require('mongoose-type-email');
 
 /* Entries for Player:

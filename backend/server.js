@@ -96,12 +96,54 @@ app.get('/api/Player/players', function(req, res) {
 
 /****************** League API *******************/
 
+var League = require('./models/league-model.js')
+
 // joinLeague
 
 // addMatchesToLeague
 
 
+// createLeague
+app.post('api/League/leagues', function(req, res) {
+    /* No league exists with same name
+        FUTURE: - Check for leagues in db with coinciding 
+        timeslots.
+    */
+    League.countDocuments({name: req.body.name}, function(err, count) {
+        if (count > 0) {
+            res.status(400).send("Error: League name already in use")
+        }
+    })
 
+    var new_lg = new League({
+        name: req.body.name,
+        sport: req.body.sport,
+        season: req.body.season,
+        dates: {
+            reg_start: req.body.reg_start,
+            reg_end: req.body.reg_end,
+            start_date: req.body.start_date,
+            end_date: req.body.end_date
+            // time_slots: req.body.time_slots --> Get JSON Array Already
+        },
+        team_info: {
+            num_teams: req.body.num_teams,
+            max_num_teams: req.body.max_num_teams,
+            max_team_size: req.body.max_team_size,
+            //teams: Array of team refs --> NULL for now as no registration
+        },
+        league_type: req.body.league_type,
+        competition_level: req.body.competition_level
+    });
+
+    new_lg.save(function(err, lg) {
+        if (err) {
+            res.send(err)
+        }
+
+        res.json(lg)
+    });
+});
 /****************** Match API *******************/
 
 
