@@ -21,33 +21,6 @@
     margin: 0;
   }
 
-  .spacer {
-    flex: 1;
-  }
-
-  .toolbar {
-    height: 60px;
-    margin: -8px;
-    display: flex;
-    align-items: center;
-    background-color: #3E8EDE;
-    color: white;
-    font-weight: 600;
-  }
-
-  .toolbar img {
-    margin: 0 16px;
-  }
-
-  .toolbar #twitter-logo {
-    height: 40px;
-    margin: 0 16px;
-  }
-
-  .toolbar #twitter-logo:hover {
-    opacity: 0.8;
-  }
-
   .content {
     display: flex;
     margin: 32px auto;
@@ -296,28 +269,8 @@
 </style>
 
 <!-- Toolbar -->
-<div class="toolbar" role="banner">
-  <img
-    width="40"
-    alt="Tufts Logo"
-    src="assets/img/tufts_jumbo.jpg"
-  />
-  <span>Welcome to {{ title }}</span>
-  <div class="spacer"></div>
-      <a class="my-nav" routerLink="/admin">Admin</a>
-      <div class="spacer"></div>
-      <a class="my-nav" routerLink="/leagues">Leagues</a>
-  <div class="spacer"></div>
-  <a aria-label="Tufts Athletics" target="_blank" rel="noopener" href="https://www.gotuftsjumbos.com/landing/index" title="Tufts Athletics">
-    
-    <img
-      width="40"
-      alt="Tufts Logo"
-      src="assets/img/tufts_jumbo.jpg"
-    />
-    
-  </a>
-</div>
+<app-header></app-header>
+
 <!-- main content container -->
 <router-outlet></router-outlet>
             
