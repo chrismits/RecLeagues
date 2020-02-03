@@ -15,6 +15,7 @@ export class LeagueService {
 
   storeLeague() {
     // add to db
+    console.log("Adding league to DB")
     this.apiService.createLeague(this.model).subscribe((data) => {
       console.log(data)
     }, (error) => {

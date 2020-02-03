@@ -54,7 +54,7 @@ app.post('/api/players', function(req, res) {
 /**** deletePlayer 
 - NOT TESTED
 ****/
-app.delete('api/players/:player_id', function(req, res) {
+app.delete('/api/players/:player_id', function(req, res) {
     Player.remove({_id: req.params.player_id}, function(err, player) {
         if (err)
             res.send(err)
@@ -97,52 +97,57 @@ var League = require('./models/league-model.js')
 // addMatchesToLeague
 
 
-// createLeague
-app.post('api/leagues/', function(req, res) {
+/****  createLeague
+ * Adds league to db. Intended for admin registration,
+ * where team_info is unknown 
+ */
+app.post('/api/leagues/', function(req, res) {
     /* No league exists with same name
         FUTURE: - Check for leagues in db with coinciding 
         timeslots.
     */
-    console.log("IN DA POST")
+    console.log("Backend: createLeague running")
+    console.log(req.body)
+
     League.countDocuments({name: req.body.name}, function(err, count) {
         if (count > 0) {
-            res.status(400).send("Error: League name already in use")
+            return res.status(400).send("Error: League name already in use")
         }
+        var new_lg = new League({
+            name: req.body.name,
+            sport: req.body.sport,
+            season: req.body.season,
+            dates: {
+                reg_start: req.body.reg_start,
+                reg_end: req.body.reg_end,
+                start_date: req.body.start_date,
+                end_date: req.body.end_date
+                // time_slots: req.body.time_slots --> Get JSON Array Already
+            },
+            team_info: {
+                num_teams: req.body.num_teams,
+                max_num_teams: req.body.max_num_teams,
+                max_team_size: req.body.max_team_size,
+                //teams: Array of team refs --> NULL for now as no registration
+            },
+            league_type: req.body.league_type,
+            competition_level: req.body.competition_level
+        });
+    
+        new_lg.save(function(err, lg) {
+            if (err) {
+                res.send(err)
+            }
+            res.json(lg._id)
+        });
     })
-
-    var new_lg = new League({
-        name: req.body.name,
-        sport: req.body.sport,
-        season: req.body.season,
-        dates: {
-            reg_start: req.body.reg_start,
-            reg_end: req.body.reg_end,
-            start_date: req.body.start_date,
-            end_date: req.body.end_date
-            // time_slots: req.body.time_slots --> Get JSON Array Already
-        },
-        team_info: {
-            num_teams: req.body.num_teams,
-            max_num_teams: req.body.max_num_teams,
-            max_team_size: req.body.max_team_size,
-            //teams: Array of team refs --> NULL for now as no registration
-        },
-        league_type: req.body.league_type,
-        competition_level: req.body.competition_level
-    });
-
-    new_lg.save(function(err, lg) {
-        if (err) {
-            res.send(err)
-        }
-
-        res.json(lg)
-    });
 });
 /****************** Match API *******************/
 
 
 /****************** Other API *******************/
+
+
 
 /***************** Server Setup ******************/
 
