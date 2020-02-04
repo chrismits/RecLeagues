@@ -19,7 +19,8 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { routing } from './app-routing.module';
 import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component'
+import { FooterComponent } from './footer/footer.component';
+import { LeagueInfoComponent } from './league-info/league-info.component'
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { FooterComponent } from './footer/footer.component'
     LeagueFormFiveComponent,
     HeaderComponent,
     FooterComponent,
+    LeagueInfoComponent,
   ],
   imports: [
     AppRoutingModule,

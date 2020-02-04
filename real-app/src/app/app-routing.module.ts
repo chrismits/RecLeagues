@@ -7,6 +7,7 @@ import { LeagueFormTwoComponent } from './league-form-two/league-form-two.compon
 import { LeagueFormThreeComponent } from './league-form-three/league-form-three.component';
 import { LeagueFormFourComponent } from './league-form-four/league-form-four.component';
 import { LeagueFormFiveComponent } from './league-form-five/league-form-five.component';
+import { LeagueInfoComponent } from './league-info/league-info.component';
 
 const routes: Routes = [
 	{ path: 'admin', component: AdminComponent},	
@@ -15,7 +16,8 @@ const routes: Routes = [
 	{ path: 'leagues-form-two', component: LeagueFormTwoComponent},	
 	{ path: 'leagues-form-three', component: LeagueFormThreeComponent},	
 	{ path: 'leagues-form-four', component: LeagueFormFourComponent},	
-	{ path: 'leagues-form-five', component: LeagueFormFiveComponent},	
+	{ path: 'leagues-form-five', component: LeagueFormFiveComponent},
+	{ path: 'league-info', component: LeagueInfoComponent},	
 ];
 export const routing: ModuleWithProviders =  
     RouterModule.forRoot(routes); 
