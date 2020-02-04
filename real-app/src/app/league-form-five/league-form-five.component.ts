@@ -33,6 +33,8 @@ export class LeagueFormFiveComponent implements OnInit {
       this.free_agents_are = "allowed";
     }
 
+    console.log(this.model.getTimeSlots());
+
     console.log(this.model.getMaxNumTeams());
   }
 

@@ -132,6 +132,10 @@ export class League {
     addTimeSlot(slot: TimeSlot) { 
         this.time_slots.push(slot);
     }
+    addTimeSlots(slots: TimeSlot[]) { 
+        console.log(slots);
+        slots.forEach(s => this.time_slots.push(s));
+    }
     removeTimeSlot(slot: TimeSlot) {
         this.time_slots.filter(s => s != slot);
     }

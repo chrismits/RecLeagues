@@ -14,8 +14,6 @@ export class LeagueFormFourComponent implements OnInit {
   					'Saturday'];
 
   model: TimeSlot = new TimeSlot();
-  // start_time: string = "";
-  // end_time: string = "";
 
   league_model: League;
   submitted = false;
@@ -25,8 +23,13 @@ export class LeagueFormFourComponent implements OnInit {
   onSubmit() { 
   	this.submitted = true; 
     console.log(this.slots.length);
-    this.slots.forEach(slot => this.league_model.addTimeSlot(slot));
+    /* DEBUG - appends the slots array twice */
+    console.log(this.league_model.getTimeSlots());
+    this.league_model.addTimeSlots(this.slots);
     this.leagueService.getLeague().deepCopyLeague(this.league_model);
+    console.log(this.league_model.getTimeSlots());
+    console.log(this.leagueService.getLeague().getTimeSlots());
+
   }
 
   addSlot() {
