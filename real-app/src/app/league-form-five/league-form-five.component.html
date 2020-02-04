@@ -30,12 +30,11 @@
 			</div>
 		</div>
 	</div>
-
-	<br> <br> <br> 
-	<div class="header my-row labl">Calendar</div> 
-    <app-calendar [leagues]="leagues"></app-calendar>
-
+	<br> 
 	<button type="button" class="btn btn-success back-btn" routerLink="/leagues-form-four">Back</button>
 
 	<button type="button" class="btn btn-success next-btn" (click)="onSubmit()" routerLink="/admin">Create League</button>
+	<br> <br>
+	<div class="header my-row labl">Calendar</div> 
+    <app-calendar [leagues]="leagues"></app-calendar>
 </div>
