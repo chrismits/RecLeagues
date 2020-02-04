@@ -23,8 +23,13 @@ export class LeagueService {
     }) 
   }
 
+  // NOT TESTED
   getAllLeagues() {
-    
+    this.apiService.getAllLeagues().subscribe((lgs) => {
+      console.log(lgs)
+    }, (error) => {
+      console.log(error)
+    })
   }
 
 }
