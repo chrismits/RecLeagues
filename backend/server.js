@@ -144,6 +144,23 @@ app.post('/api/leagues/', function(req, res) {
         });
     })
 });
+
+
+/* getLeagues
+- Returns all league documents in db
+{ "dates": {"end_date": {$gte: curr_date}}}
+*/
+app.get('/api/leagues/', function(req, res) {
+    console.log("Backend: Get Leagues")
+    var curr_date = new Date();
+    League.find({ "dates": {"end_date": {$gte: curr_date}}}, function(err, leagues) {
+        if (err)
+            res.send(err)
+
+        res.json(leagues) // return all leagues in JSON format
+    });
+});
+
 /****************** Match API *******************/
 
 
