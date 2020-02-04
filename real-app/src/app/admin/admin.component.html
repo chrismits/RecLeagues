@@ -308,7 +308,7 @@
   	<p id="season-id"> {{ season }} </p>
       <div class="league-box" target="_blank" rel="noopener" *ngFor="let league of leagues" routerLink="/league-info"> 
         <p id="sport"> {{league.getSport()}} </p>
-        <p id="date"> {{ league.getReadableStartDate() }} - {{ league.getReadableStartDate() }} </p>
+        <p id="date"> {{ league.getReadableStartDate() }} - {{ league.getReadableEndDate() }} </p>
       </div>
   </div>
 

@@ -23,16 +23,35 @@ export class CalendarComponent implements OnInit {
     if (time.split(":")[1].split(" ")[1].toUpperCase() === "PM") {
       d.setHours(d.getHours() + 12);
     }
+  }
 
+  setZeroTime(d: Date) {
+    d.setHours(0);
+    d.setMinutes(0);
+    d.setSeconds(0);
+    d.setMilliseconds(0);
+    return d;
+  }
+  setMaxTime(d : Date) {
+    d.setHours(23);
+    d.setMinutes(59);
+    d.setSeconds(59);
+    d.setMilliseconds(999);
+    return d;
   }
 
   ngOnInit() {
     /* - Can load in events here using db info
        - Create all of the league game days */
     for (let l of this.leagues) {
-      let league_start = l.getStartDate();
-      let league_end   = l.getEndDate();
+      let league_start = this.setZeroTime(l.getStartDate());
+      let league_end   = this.setMaxTime(l.getEndDate());
+      console.log("league start and end");
+      console.log(league_start);
+      console.log(league_end);
       for (let s of l.getTimeSlots()) {
+        console.log('got slot');
+        console.log(s);
         /* Populate a date object with date/time info */
         var all_starts: Date[] = [];
         var all_ends  : Date[] = [];
@@ -49,6 +68,9 @@ export class CalendarComponent implements OnInit {
 
         /* Generate all date objects needed for a complete schedule */
         while (curr_date >= league_start && curr_date <= league_end) {
+          console.log('in while');
+          console.log(curr_date);
+          console.log(curr_end_date);
           all_starts.push(new Date(curr_date));
           all_ends.push(new Date(curr_end_date));
           curr_date.setDate(curr_date.getDate() + 7);
