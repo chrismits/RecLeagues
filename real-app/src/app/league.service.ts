@@ -20,7 +20,10 @@ export class LeagueService {
       console.log(data)
     }, (error) => {
       console.log(error)
-    })
+    }) 
+  }
+
+  getAllLeagues() {
     
   }
 
