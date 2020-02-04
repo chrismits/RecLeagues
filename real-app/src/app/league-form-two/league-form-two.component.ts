@@ -11,6 +11,8 @@ export class LeagueFormTwoComponent implements OnInit {
 
   num_teams: number[] = [...Array(11).keys()].map(x => x + 5);
   num_players: number[] = [...Array(16).keys()].map(x => x + 5);
+  max_num_teams: number;
+  max_team_size: number;
 
   model: League;
   submitted = false;
@@ -22,6 +24,8 @@ export class LeagueFormTwoComponent implements OnInit {
       this.model.setIsFreeAgents(true);
     }
     this.leagueService.getLeague().deepCopyLeague(this.model);
+    this.leagueService.getLeague().setMaxNumTeams(this.max_num_teams);
+    this.leagueService.getLeague().setMaxTeamSize(this.max_team_size);
     console.log(this.leagueService.getLeague().getMaxNumTeams());
     console.log(this.leagueService.getLeague().getSport());
     if(this.leagueService.getLeague().isFreeAgents()) {

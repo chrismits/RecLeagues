@@ -32,6 +32,7 @@ export class LeagueFormThreeComponent implements OnInit {
     console.log(this.model.getReadableStartDate());
     console.log(this.model.getLocation());
     console.log(this.model.getMaxNumTeams());
+    console.log(this.leagueService.getLeague().getMaxNumTeams());
     if(this.leagueService.getLeague().isAutoApproval()) {
       console.log('nice');
     }
@@ -41,6 +42,9 @@ export class LeagueFormThreeComponent implements OnInit {
 
   ngOnInit() {
     this.model = this.leagueService.getLeague();
+    console.log('start');
+    console.log(this.leagueService.getLeague().getMaxNumTeams());
+
   }
 
   stringToDate(s: string) {

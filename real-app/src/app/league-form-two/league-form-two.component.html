@@ -11,7 +11,7 @@
           <!-- ********* MAX NUM TEAMS ******** -->
           <label class="labl" for="name">Maximum Number of Teams</label>
           <select class="form-control" id="team" required 
-                [(ngModel)]="model.max_num_teams" name="team" #team="ngModel">
+                [(ngModel)]="max_num_teams" name="team" #team="ngModel">
             <option *ngFor="let team of num_teams" [ngValue]="team"> 
               {{team}}
             </option>
@@ -32,7 +32,7 @@
           <!-- ********* MAX NUM PLAYERS ******** -->
           <label class="labl" for="name">Maximum Number of Players</label>
             <select class="form-control" id="player" required 
-                  [(ngModel)]="model.max_team_size" name="player" #player="ngModel">
+                  [(ngModel)]="max_team_size" name="player" #player="ngModel">
             <option *ngFor="let player of num_players" [ngValue]="player"> 
               {{player}}
             </option>
