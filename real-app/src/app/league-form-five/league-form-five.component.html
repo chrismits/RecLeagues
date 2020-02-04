@@ -22,7 +22,7 @@
 		</div>
 		<!-- ********* LOCATION & TIME SLOTS ******** -->
 		<div>
-			Games will be played at {{model.getLocation()}} on every: 
+			Games will be played at {{model.getLocation()}} every: 
 			<div *ngFor="let slot of model.getTimeSlots()">
 				<ul>
 					{{slot.getDay()}}, starting {{slot.getStart()}}, and ending {{slot.getEnd()}}. Each game will be {{slot.getLength()}} minutes, with {{slot.getBuffer()}} minute buffers between them.

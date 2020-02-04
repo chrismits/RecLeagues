@@ -11,6 +11,15 @@ export class TimeSlot {
     constructor() {}
 
     getDay() { return this.day; }
+    getDayNum() { 
+        let days = ['Sunday', 'Monday', 'Tuesday',
+                    'Wednesday', 'Thursday', 'Friday',
+                    'Saturday'];
+        for (var i = 0; i < days.length; i++) {
+            if (days[i] == this.day) return i;
+        }
+        return -1; 
+    }
     getLength() { return this.length; }
     getBuffer() { return this.buffer; }
     getStart() { return this.start; }
@@ -66,6 +75,7 @@ export class League {
         this.max_team_size      = 15; // change to global
         this.start_date         = start;
         this.end_date           = start;
+        //this.end_date.setDate(this.end_date.getDate() + 30);
         this.schedule           = [];
         this.time_slots         = [];
         this.league_type        = type;

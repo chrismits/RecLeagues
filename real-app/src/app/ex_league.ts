@@ -22,7 +22,6 @@ var tmp_league_4 = new League(name, false, sport, season, now, now, now, "", "",
 var slot = new TimeSlot();
 var now2 = "11:30 am";
 var diff = 180;
-//var end = new Date(now.getTime() + diff * 60000)
 var end = "2:00 pm";
 slot.setStart(now2);
 slot.setEnd(end);
