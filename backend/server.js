@@ -121,17 +121,19 @@ app.post('/api/leagues/', function(req, res) {
                 reg_start: req.body.reg_start,
                 reg_end: req.body.reg_end,
                 start_date: req.body.start_date,
-                end_date: req.body.end_date
-                // time_slots: req.body.time_slots --> Get JSON Array Already
+                end_date: req.body.end_date,
+                time_slots: req.body.time_slots
             },
             team_info: {
                 num_teams: req.body.num_teams,
                 max_num_teams: req.body.max_num_teams,
                 max_team_size: req.body.max_team_size,
+                auto_approval: req.body.auto_approval
                 //teams: Array of team refs --> NULL for now as no registration
             },
             league_type: req.body.league_type,
-            competition_level: req.body.competition_level
+            competition_level: req.body.competition_level,
+            free_agents: req.body.free_agents
         });
     
         new_lg.save(function(err, lg) {

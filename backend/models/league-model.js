@@ -20,17 +20,19 @@ var mongoose = require('mongoose');
             - day: String
             - length: Number
             - buffer: Number
-            - start: Number
-            - end: Number
+            - start: String 
+            - end: String
         ]
-    - team_info: All Number Objects
-        - num_teams
-        - max_num_teams
-        - max_team_size
+    - team_info: 
+        - auto_approval: Boolean
+        - num_teams: Number
+        - max_num_teams: Number
+        - max_team_size: Number
         - teams: Array ('Team' ref)
     - matches: Array ('Match' ref)
     - league_type: String
     - competitition_level: String
+    - free_agents: Boolean
     - created: Date
 */
 var leagueSchema = new mongoose.Schema({
@@ -62,20 +64,22 @@ var leagueSchema = new mongoose.Schema({
             day: String,
             length: Number,
             buffer: Number,
-            start: Number,
-            end: Number
+            start: String,
+            end: String
         }]
     },
     team_info: {
         num_teams: { type: Number, required: true },
         max_num_teams: { type: Number, required: true },
-        max_team_size: { type: Number, required: true},
+        max_team_size: { type: Number, required: true },
+        auto_approval: { type: Boolean, default: false },
         teams: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Team'
         }]
     },
     matches: [{
+        // ADD LOCATION??
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Match'
     }],
@@ -86,6 +90,10 @@ var leagueSchema = new mongoose.Schema({
     competition_level: {
         type: String,
         enum: ['Competitive', 'Recreational']
+    },
+    free_agents: {
+        type: Boolean,
+        default: false
     },
     created: {
         type: Date, 

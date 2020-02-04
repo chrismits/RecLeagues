@@ -37,6 +37,7 @@ export class ApiService {
   createLeague(lg : League) : Observable<League> {
     console.log("Sending request to backend to create league")
     console.log(`${API_URL}/leagues`)
+    console.log(lg)
     return this.http.post<League>(`${API_URL}/leagues`, lg, {headers: this.headers})
   }
 }
