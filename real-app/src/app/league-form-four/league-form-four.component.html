@@ -69,12 +69,13 @@
         <button type="button" (click)="addSlot()" [disabled]="days.invalid || length.invalid || start.invalid || buffer.invalid || end.invalid"> Add Times </button>
       </div>
     </form>
-
+    <br> 
     <div class="row">
       <div *ngFor="let slot of slots">
         {{slot.getDay()}} from {{slot.getStart()}} to {{slot.getEnd()}}, with {{slot.getLength()}} minute games seperated by {{slot.getBuffer()}} minute buffers.
       </div>
     </div>
+    <br> 
 
 	  <button type="button" class="btn btn-success back-btn" routerLink="/leagues-form-three">Back</button>
 
