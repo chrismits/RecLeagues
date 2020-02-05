@@ -43,7 +43,29 @@ export class CalendarComponent implements OnInit {
   ngOnInit() {
     /* - Can load in events here using db info
        - Create all of the league game days */
+
+
+
     for (let l of this.leagues) {
+      /* Registration Period */
+      let reg_start = this.setZeroTime(l.getRegStart());
+      let reg_s_end = new Date(reg_start);
+      let reg_end   = this.setMaxTime(l.getRegEnd());
+      let reg_e_start = new Date(reg_end);
+      this.calendarEvents.push(
+        {
+          title: l.getName() + " Registration Start",
+          start: reg_start,
+          end:   reg_s_end.setHours(reg_start.getHours() + 3),
+        });
+      this.calendarEvents.push(
+        {
+          title: l.getName() + " Registration End",
+          start: reg_e_start.setHours(reg_end.getHours() - 3),
+          end:   reg_end,
+        });
+
+      /* League Period */
       let league_start = this.setZeroTime(l.getStartDate());
       let league_end   = this.setMaxTime(l.getEndDate());
       console.log("league start and end");
@@ -110,6 +132,10 @@ export class CalendarComponent implements OnInit {
   handleEventClick(event_info) {
     /* can do routing to game info from here */
     var eventObj = event_info.event;
+    var start_str = eventObj.start.toDateString();
+    var end_str = eventObj.end.toDateString();
+    var alert_str = eventObj.title + " from " + start_str + " - " + end_str;
+    alert(alert_str);
 
     // var old_matchup = eventObj.title;
     // var old_home = old_matchup.split("vs.")[0];
