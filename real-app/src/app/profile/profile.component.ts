@@ -11,11 +11,13 @@ export class ProfileComponent implements OnInit {
   name: string = "Matt Callahan";
   email: string = "Matt.Callahan@tufts.edu";
   cell: string = "1-800-123-4567";
-  profile: Profile = new Profile(this.name, this.email, this.cell);
+  profile: Profile; 
 
   constructor() { }
 
   ngOnInit() {
+    /* get user profile from db */
+    this.profile = new Profile(this.name, this.email, this.cell);
   }
 
 }

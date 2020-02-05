@@ -1,55 +1,11 @@
-.box {
-	background-color: #e0e0eb;
-	width: 100%;
-	padding-bottom: 10px;
-	padding-left: 10px;
-	padding-right: 10px;
-	height: 70%;
-}
-
-#blank {
-	color: #e0e0eb;
-	color: black;
-}
-
-.my-row {
-	width: 100%;
-}
-
-@media screen and (max-width: 600px) {
-  .column {
-    width: 100%;
-  }
-}
 
 #settings {
 	display: inline-block;
 }
 
-.header {
-	font-size: 18px;
-}
-
-#edit-but {
-	display: inline-block;
-	float: right;
-}
 
 .justified {
 	margin-left: 5%;
 	text-align: left;
 }
 
-.content {
-	display: flex;
-	margin: 32px auto;
-	padding: 0 16px;
-	max-width: 960px;
-	flex-direction: column;
-	align-items: center;
-}
-
-.top {
-	padding-top: 20px;
-	padding-bottom: 20px;
-}

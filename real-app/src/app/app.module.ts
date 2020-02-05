@@ -22,7 +22,9 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LeagueInfoComponent } from './league-info/league-info.component';
 import { ProfileComponent } from './profile/profile.component';
-import { SettingsComponent } from './settings/settings.component'
+import { SettingsComponent } from './settings/settings.component';
+import { ProfileEditComponent } from './profile-edit/profile-edit.component';
+import { SettingsEditComponent } from './settings-edit/settings-edit.component'
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { SettingsComponent } from './settings/settings.component'
     LeagueInfoComponent,
     ProfileComponent,
     SettingsComponent,
+    ProfileEditComponent,
+    SettingsEditComponent,
   ],
   imports: [
     AppRoutingModule,

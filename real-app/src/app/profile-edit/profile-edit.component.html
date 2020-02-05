@@ -1,0 +1,56 @@
+<div class="content" role="main">
+
+  <!-- Launchpad -->
+  <div class="my-row">
+    <div class="header" id="profile">Edit Profile</div> 
+    <button class="edit" id="edit-but" target="_blank" rel="noopener" 
+    		tabindex="0" (click)="onSubmit()" [disabled]="name.invalid 
+    		|| email.invalid || cell.invalid" routerLink="/profile">
+      	Save 
+    </button>
+  </div>
+
+  <br> 
+  <div class="box">
+    <div class="top">
+      <!--<img src="assets/img/tufts_jumbo.jpg" alt="Profile Image">-->
+      <div class="justified">
+      	<!-- ******** IMAGE ********* -->
+
+
+      	<!-- ******** NAME ********* -->
+      	<label class="labl" for="name">Full Name</label>
+        <input type="text" class="form-control short" id="name" required 
+               [(ngModel)]="profile.full_name" name="name" #name="ngModel"
+               pattern="[a-zA-Z\- ]*"> 
+        <div [hidden]="name.valid || name.pristine" 
+              class="alert alert-danger short"> 
+          Please enter a name with letters and hyphens.
+        </div>
+
+        <!-- ******** EMAIL ********* -->
+        <label class="labl" for="email">Email</label>
+        <input type="text" class="form-control short" id="email" required
+               [(ngModel)]="profile.email" name="email" #email="ngModel"
+               pattern="[a-zA-Z0-9\-]*@tufts.edu"> 
+        <div [hidden]="email.valid || email.pristine" 
+              class="alert alert-danger short"> 
+          Please enter a valid Tufts email.
+        </div>
+
+        <!-- ******** CELL ********* -->
+        <label class="labl" for="cell">Cell</label>
+        <input type="text" class="form-control short" id="cell" required 
+               [(ngModel)]="profile.cell" name="cell" #cell="ngModel"
+               pattern="^[2-9]\d{2}-\d{3}-\d{4}$"> 
+        <div [hidden]="cell.valid || cell.pristine" 
+              class="alert alert-danger short"> 
+          Please enter a valid cell phone number (ie 781-123-1234).
+        </div>
+        Full Name: {{profile.getName()}} <br>
+        Email: {{profile.getEmail()}} <br>
+        Cell: {{profile.getCell()}} 
+      </div>
+    </div>
+  </div>
+</div>

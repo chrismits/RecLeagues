@@ -1,0 +1,74 @@
+<div class="content" role="main">
+
+  <!-- Launchpad -->
+  <div class="my-row">
+    <div class="header" id="settings">Settings</div> 
+    <button class="edit" id="edit-but" target="_blank" rel="noopener" 
+    		tabindex="0" (click)="onSubmit()" [disabled]="name.invalid 
+    		|| pros.invalid || lang.invalid || zone.invalid"
+    		routerLink="/settings">
+      Save </button>
+  </div>
+
+  <br> 
+  <div class="box">
+    <div class="top">
+      <!--<img src="assets/img/tufts_jumbo.jpg" alt="Profile Image">-->
+      <div class="justified">
+      	<!-- ******** NAME ********* -->
+      	<label class="labl" for="name">Full Name</label>
+        <input type="text" class="form-control short" id="name" required 
+               [(ngModel)]="settings.full_name" name="name" #name="ngModel"
+               pattern="[a-zA-Z\- ]*"> 
+        <div [hidden]="name.valid || name.pristine" 
+              class="alert alert-danger short"> 
+          Please enter a name with letters and hyphens.
+        </div>
+
+        <!-- ******** PRONOUNS ********* -->
+        <label class="labl" for="pros">Pronouns</label>
+        <select class="form-control short" id="pros" required 
+              [(ngModel)]="settings.pronouns" name="pros" #pros="ngModel">
+	        <option *ngFor="let pro of prons" [ngValue]="pro"> 
+	          {{pro}}
+	        </option>
+      	</select>
+        <div [hidden]="pros.valid || pros.pristine" 
+              class="alert alert-danger short"> 
+          Please enter a valid pronouns.
+        </div>
+
+        <!-- ******** LANGUAGE ********* -->
+        <label class="labl" for="lang">Language</label>
+        <select class="form-control short" id="lang" required 
+                [(ngModel)]="settings.language" name="lang" #lang="ngModel">
+	        <option *ngFor="let lang of langs" [ngValue]="lang"> 
+	          {{lang}}
+	        </option>
+      	</select>
+        <div [hidden]="lang.valid || lang.pristine" 
+              class="alert alert-danger short"> 
+          Please enter a valid language.
+        </div>
+
+        <!-- ******** TIME ZONE ********* -->
+        <label class="labl" for="zone">Time Zone</label>
+        <select class="form-control short" id="pros" required 
+              [(ngModel)]="settings.time_zone" name="zone" #zone="ngModel">
+	        <option *ngFor="let zone of zones" [ngValue]="zone"> 
+	          {{zone}}
+	        </option>
+      	</select>
+        <div [hidden]="zone.valid || zone.pristine" 
+              class="alert alert-danger short"> 
+          Please enter a valid time zone.
+        </div>
+        Full Name: {{settings.getName()}} <br>
+        Pronouns: {{settings.getPronouns()}} <br>
+        Language: {{settings.getLanguage()}} <br>
+        Time Zone: {{settings.getTimeZone()}} 
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -9,7 +9,9 @@ import { LeagueFormFourComponent } from './league-form-four/league-form-four.com
 import { LeagueFormFiveComponent } from './league-form-five/league-form-five.component';
 import { LeagueInfoComponent } from './league-info/league-info.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { SettingsComponent } from './settings/settings.component';
+import { SettingsEditComponent } from './settings-edit/settings-edit.component';
 
 const routes: Routes = [
 	{ path: 'admin', component: AdminComponent},	
@@ -21,7 +23,9 @@ const routes: Routes = [
 	{ path: 'leagues-form-five', component: LeagueFormFiveComponent},
 	{ path: 'league-info', component: LeagueInfoComponent},	
 	{ path: 'profile', component: ProfileComponent},	
+	{ path: 'profile-edit', component: ProfileEditComponent},	
 	{ path: 'settings', component: SettingsComponent},	
+	{ path: 'settings-edit', component: SettingsEditComponent},	
 ];
 export const routing: ModuleWithProviders =  
     RouterModule.forRoot(routes); 
