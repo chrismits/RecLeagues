@@ -20,7 +20,8 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { routing } from './app-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { LeagueInfoComponent } from './league-info/league-info.component'
+import { LeagueInfoComponent } from './league-info/league-info.component';
+import { ProfileComponent } from './profile/profile.component'
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { LeagueInfoComponent } from './league-info/league-info.component'
     HeaderComponent,
     FooterComponent,
     LeagueInfoComponent,
+    ProfileComponent,
   ],
   imports: [
     AppRoutingModule,

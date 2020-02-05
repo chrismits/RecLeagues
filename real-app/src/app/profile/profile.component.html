@@ -1,0 +1,21 @@
+<div class="content" role="main">
+
+  <!-- Launchpad -->
+  <div class="my-row">
+    <div class="header" id="profile">Profile</div> 
+    <button class="edit" id="edit-but" target="_blank" rel="noopener" tabindex="0" routerLink="/">
+      Edit </button>
+  </div>
+
+  <br> 
+  <div class="box">
+    <div class="top">
+      <!--<img src="assets/img/tufts_jumbo.jpg" alt="Profile Image">-->
+      <div class="justified">
+        {{profile.getName()}} <br>
+        {{profile.getEmail()}} <br>
+        {{profile.getCell()}} 
+      </div>
+    </div>
+  </div>
+</div>
