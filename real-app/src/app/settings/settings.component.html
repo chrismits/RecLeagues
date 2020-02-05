@@ -2,7 +2,7 @@
 
   <!-- Launchpad -->
   <div class="my-row">
-    <div class="header" id="profile">Profile</div> 
+    <div class="header" id="settings">Settings</div> 
     <button class="edit" id="edit-but" target="_blank" rel="noopener" tabindex="0" routerLink="/">
       Edit </button>
   </div>
@@ -12,9 +12,10 @@
     <div class="top">
       <!--<img src="assets/img/tufts_jumbo.jpg" alt="Profile Image">-->
       <div class="justified">
-        Full Name: {{profile.getName()}} <br>
-        Email: {{profile.getEmail()}} <br>
-        Cell: {{profile.getCell()}} 
+        Full Name: {{settings.getName()}} <br>
+        Pronouns: {{settings.getPronouns()}} <br>
+        Language: {{settings.getLanguage()}} <br>
+        Time Zone: {{settings.getTimeZone()}} 
       </div>
     </div>
   </div>

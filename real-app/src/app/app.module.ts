@@ -21,7 +21,8 @@ import { routing } from './app-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LeagueInfoComponent } from './league-info/league-info.component';
-import { ProfileComponent } from './profile/profile.component'
+import { ProfileComponent } from './profile/profile.component';
+import { SettingsComponent } from './settings/settings.component'
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { ProfileComponent } from './profile/profile.component'
     FooterComponent,
     LeagueInfoComponent,
     ProfileComponent,
+    SettingsComponent,
   ],
   imports: [
     AppRoutingModule,
