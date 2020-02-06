@@ -24,7 +24,8 @@ import { LeagueInfoComponent } from './league-info/league-info.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
-import { SettingsEditComponent } from './settings-edit/settings-edit.component'
+import { SettingsEditComponent } from './settings-edit/settings-edit.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { SettingsEditComponent } from './settings-edit/settings-edit.component'
     FormsModule,
     FullCalendarModule,
     HttpClientModule,
-    routing
+    routing,
+    NoopAnimationsModule,
   ],
   providers: [
     ApiService, 

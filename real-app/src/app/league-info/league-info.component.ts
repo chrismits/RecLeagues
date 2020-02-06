@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { League } from '../league'
+import { LeagueService } from '../league.service'
+import { Team } from '../team'
+import { TEAMS } from '../ex_teams'
 
 @Component({
   selector: 'app-league-info',
@@ -7,9 +11,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeagueInfoComponent implements OnInit {
 
-  constructor() { }
+  season: string = "Winter 2020";
+  sport: string = "Volleyball";
+  approvedTeams: Team[] = TEAMS;
 
-  ngOnInit() {
+  constructor(public leagueService: LeagueService) { }
+
+  ngOnInit()  {
   }
 
 }
