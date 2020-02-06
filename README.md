@@ -11,5 +11,5 @@ run the bash script 'run' with the command: `./run`
 if this fails, run `ng serve --open --port 8000`     
 the angular app will run on localhost:8000
 
-# For PoC and to be able to add players to db:
-nodejs server needs to run to add players to db. In another terminal cd into backend and create a .env file. There add DATABASE_URL = <db_link>. Let me know and i'll send you the <db_link> and logins for the MongoDB Atlas database. This step is required to connect to the remote database. After doing this run nodemon server.js and the server should start running locally on port 4000.
+# Start up backend server before running real-app.
+cd into backend directory. Make sure you have a .env file with the DATABASE_URL and PORT fields. Run nodemon server.js and server should run locally on port 8080.
