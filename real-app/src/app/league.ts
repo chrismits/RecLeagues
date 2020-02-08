@@ -34,7 +34,7 @@ export class TimeSlot {
 }
 
 export class League {
-    private _id:       number;
+    _id:       number;
 
     name:              string;
     is_pickup:         boolean;
@@ -60,7 +60,7 @@ export class League {
 
     constructor (name: string, is_pickup: boolean, sport: string, 
                  season: string, reg_start: Date, reg_end: Date, 
-                 start: Date, location: string, type: string,
+                 start: Date, end: Date, location: string, type: string,
                  level: string) {
         this._id                = 1; // will change for db
         this.name               = name;
@@ -74,7 +74,7 @@ export class League {
         this.max_num_teams      = 10; // change to global based on Matt
         this.max_team_size      = 15; // change to global
         this.start_date         = start;
-        this.end_date           = start;
+        this.end_date           = end;
         //this.end_date.setDate(this.end_date.getDate() + 30);
         this.schedule           = [];
         this.time_slots         = [];
@@ -143,8 +143,9 @@ export class League {
         this.time_slots.push(slot);
     }
     addTimeSlots(slots: TimeSlot[]) { 
-        console.log(slots);
-        slots.forEach(s => this.time_slots.push(s));
+        for (let i = 0; i < slots.length; i++) {
+            this.addTimeSlot(slots[i]);
+        }
     }
     removeTimeSlot(slot: TimeSlot) {
         this.time_slots.filter(s => s != slot);
@@ -214,7 +215,7 @@ export class League {
         this.setGameLength(l.getGameLength());
         this.setStartDate(l.getStartDate());
         this.setEndDate(l.getEndDate());
-        l.getTimeSlots().forEach(s => this.addTimeSlot(s));
+        this.addTimeSlots(l.getTimeSlots()); 
         l.getSchedule().forEach(m => this.addMatch(m));
         this.setLocation(l.getLocation());
         this.setType(l.getType());

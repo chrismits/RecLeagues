@@ -22,13 +22,9 @@ export class LeagueFormFourComponent implements OnInit {
 
   onSubmit() { 
   	this.submitted = true; 
-    console.log(this.slots.length);
-    /* DEBUG - appends the slots array twice */
-    console.log(this.league_model.getTimeSlots());
     this.league_model.addTimeSlots(this.slots);
-    this.leagueService.getLeague().deepCopyLeague(this.league_model);
-    console.log(this.league_model.getTimeSlots());
-    console.log(this.leagueService.getLeague().getTimeSlots());
+    /* redundant */
+    // this.leagueService.getLeague().deepCopyLeague(this.league_model);
 
   }
 
@@ -51,7 +47,6 @@ export class LeagueFormFourComponent implements OnInit {
 
   ngOnInit() {
     this.league_model = this.leagueService.getLeague();
-    console.log(this.league_model.getLocation());
   }
 
 }

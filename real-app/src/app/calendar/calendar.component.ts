@@ -68,12 +68,12 @@ export class CalendarComponent implements OnInit {
       /* League Period */
       let league_start = this.setZeroTime(l.getStartDate());
       let league_end   = this.setMaxTime(l.getEndDate());
-      console.log("league start and end");
-      console.log(league_start);
-      console.log(league_end);
+      // console.log("league start and end");
+      // console.log(league_start);
+      // console.log(league_end);
       for (let s of l.getTimeSlots()) {
-        console.log('got slot');
-        console.log(s);
+        // console.log('got slot');
+        // console.log(s);
         /* Populate a date object with date/time info */
         var all_starts: Date[] = [];
         var all_ends  : Date[] = [];
@@ -90,9 +90,9 @@ export class CalendarComponent implements OnInit {
 
         /* Generate all date objects needed for a complete schedule */
         while (curr_date >= league_start && curr_date <= league_end) {
-          console.log('in while');
-          console.log(curr_date);
-          console.log(curr_end_date);
+          // console.log('in while');
+          // console.log(curr_date);
+          // console.log(curr_end_date);
           all_starts.push(new Date(curr_date));
           all_ends.push(new Date(curr_end_date));
           curr_date.setDate(curr_date.getDate() + 7);
@@ -110,7 +110,7 @@ export class CalendarComponent implements OnInit {
         }
       }
     }
-    console.log(this.leagues.length);
+    // console.log(this.leagues.length);
   }
 
   @ViewChild('calendar', {static: false}) calendarComponent: FullCalendarComponent; // the #calendar in the template
@@ -128,24 +128,28 @@ export class CalendarComponent implements OnInit {
     this.calendarWeekends = !this.calendarWeekends;
   }
 
+  dateTimeToString(d: Date) {
+    var hr = d.getHours();
+    var mins = d.getMinutes().toString();
+    var isAm = false;
+    var tod = "pm"
+    if (hr < 12) { isAm = true; tod = "am"; }
+    if (hr == 0) { hr += 12; }
+    if (hr > 12) { hr -= 12; }
+    if (mins.length == 1) {
+      mins = '0' + mins;
+    }
+    var str = hr.toString() + ':' + mins + ' ' + tod;
+    return str;
+  }
 
   handleEventClick(event_info) {
     /* can do routing to game info from here */
     var eventObj = event_info.event;
-    var start_str = eventObj.start.toDateString();
-    var end_str = eventObj.end.toDateString();
+    var start_str = this.dateTimeToString(eventObj.start);
+    var end_str = this.dateTimeToString(eventObj.end);
     var alert_str = eventObj.title + " from " + start_str + " - " + end_str;
     alert(alert_str);
-
-    // var old_matchup = eventObj.title;
-    // var old_home = old_matchup.split("vs.")[0];
-    // var old_away = old_matchup.split("vs.")[1];
-    // var new_home = prompt("Enter new home team's name or leave blank.");
-    // var new_away = prompt("Enter new away team's name or leave blank.");
-    // if (new_home == "") { new_home = old_home; }
-    // if (new_away == "") { new_away = old_away; }
-    // var new_matchup = new_home + " vs. " + new_away;
-    // eventObj.setProp("title", new_matchup);
   }
 
   gotoPast() {

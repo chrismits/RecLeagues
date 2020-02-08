@@ -35,7 +35,7 @@ export class LeagueFormFiveComponent implements OnInit {
 
     console.log(this.model.getTimeSlots());
 
-    console.log(this.model.getMaxNumTeams());
+    // console.log(this.model.getMaxNumTeams());
   }
 
 }

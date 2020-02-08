@@ -26,18 +26,18 @@ export class LeagueFormTwoComponent implements OnInit {
     this.leagueService.getLeague().deepCopyLeague(this.model);
     this.leagueService.getLeague().setMaxNumTeams(this.max_num_teams);
     this.leagueService.getLeague().setMaxTeamSize(this.max_team_size);
-    console.log(this.leagueService.getLeague().getMaxNumTeams());
-    console.log(this.leagueService.getLeague().getSport());
-    if(this.leagueService.getLeague().isFreeAgents()) {
-      console.log('nice');
-    }
+    // console.log(this.leagueService.getLeague().getMaxNumTeams());
+    // console.log(this.leagueService.getLeague().getSport());
+    // if(this.leagueService.getLeague().isFreeAgents()) {
+    //   console.log('nice');
+    // }
   }
 
   constructor(public leagueService: LeagueService) { }
 
   ngOnInit() {
-    console.log('start two');
-    console.log(this.leagueService.getLeague().getName());
+    // console.log('start two');
+    // console.log(this.leagueService.getLeague().getName());
     this.model = this.leagueService.getLeague();
   }
 

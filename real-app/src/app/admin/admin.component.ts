@@ -17,6 +17,7 @@ export class AdminComponent implements OnInit {
   constructor(public leagueService: LeagueService) { }
 
   ngOnInit() {
+  	// this.leagues = this.leagueService.getAllLeagues();
   }
 
 }

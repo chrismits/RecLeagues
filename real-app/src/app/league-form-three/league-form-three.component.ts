@@ -29,21 +29,21 @@ export class LeagueFormThreeComponent implements OnInit {
     this.model.setStartDate(this.stringToDate(this.start_date));
     this.model.setEndDate(this.stringToDate(this.end_date));
     this.leagueService.getLeague().deepCopyLeague(this.model);
-    console.log(this.model.getReadableStartDate());
-    console.log(this.model.getLocation());
-    console.log(this.model.getMaxNumTeams());
-    console.log(this.leagueService.getLeague().getMaxNumTeams());
-    if(this.leagueService.getLeague().isAutoApproval()) {
-      console.log('nice');
-    }
+    // console.log(this.model.getReadableStartDate());
+    // console.log(this.model.getLocation());
+    // console.log(this.model.getMaxNumTeams());
+    // console.log(this.leagueService.getLeague().getMaxNumTeams());
+    // if(this.leagueService.getLeague().isAutoApproval()) {
+    //   console.log('nice');
+    // }
   }
 
   constructor(public leagueService: LeagueService) { }
 
   ngOnInit() {
     this.model = this.leagueService.getLeague();
-    console.log('start');
-    console.log(this.leagueService.getLeague().getMaxNumTeams());
+    // console.log('start');
+    // console.log(this.leagueService.getLeague().getMaxNumTeams());
 
   }
 
@@ -53,8 +53,8 @@ export class LeagueFormThreeComponent implements OnInit {
     let day = numbers[1];
     let year = numbers[2];
     let new_date = new Date();
-    new_date.setDate(parseInt(day, 10));
     new_date.setMonth(parseInt(month, 10) - 1);
+    new_date.setDate(parseInt(day, 10));
     new_date.setFullYear(parseInt(year, 10));
     return new_date;
   }

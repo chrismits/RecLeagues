@@ -2,28 +2,28 @@ import { League, TimeSlot } from './league'
 
 var now = new Date();
 var end = new Date(now);
+var start = new Date(now);
+var reg_end = new Date(now);
+reg_end.setDate(reg_end.getDate() + 5);
+start.setDate(start.getDate() + 6);
 end.setDate(end.getDate() + 30);
 var season = 'Spring';
 
 var sport = 'Baseball';
 var name = season + ' ' + sport;
-var tmp_league_1 = new League(name, false, sport, season, now, now, now, "", "", "");
-tmp_league_1.setEndDate(end);
+var tmp_league_1 = new League(name, false, sport, season, now, reg_end, start, end, "", "", "");
 
 sport = 'Volleybal'
 name = season + ' ' + sport;
-var tmp_league_2 = new League(name, false, sport, season, now, now, now, "", "", "");
-tmp_league_2.setEndDate(end);
+var tmp_league_2 = new League(name, false, sport, season, now, reg_end, start, end, "", "", "");
 
 sport = 'Tennis'
 name = season + ' ' + sport;
-var tmp_league_3 = new League(name, false, sport, season, now, now, now, "", "", "");
-tmp_league_3.setEndDate(end);
+var tmp_league_3 = new League(name, false, sport, season, now, reg_end, start, end, "", "", "");
 
 sport = 'Indoor Soccer'
 name = season + ' ' + sport;
-var tmp_league_4 = new League(name, false, sport, season, now, now, now, "", "", "");
-tmp_league_4.setEndDate(end);
+var tmp_league_4 = new League(name, false, sport, season, now, reg_end, start, end, "", "", "");
 
 var slot1 = new TimeSlot();
 var slot2 = new TimeSlot();

@@ -13,7 +13,7 @@ export class LeagueFormOneComponent implements OnInit {
   seasons: string[] = ['Fall', 'Winter', 'Spring'];
   sports: string[] = ['Indoor Soccer', 'Basketball', 'Volleyball',
                       'Tennis', 'Dodgeball'];
-  types: string[] = ['Male', 'Female', 'Co-Ed'];
+  types: string[] = ['Male', 'Female', 'Co-ed'];
   levels: string[] = ['Competitive', 'Recreational'];
 
   init_name: string = '';
@@ -26,7 +26,7 @@ export class LeagueFormOneComponent implements OnInit {
 
   model = new League(this.init_name, false, this.init_sport, 
              this.init_season, this.init_date, 
-             this.init_date, this.init_date, 
+             this.init_date, this.init_date, this.init_date, 
              this.init_loc, this.init_type, 
              this.init_level);
 
@@ -34,11 +34,11 @@ export class LeagueFormOneComponent implements OnInit {
 
   onSubmit() { 
   	this.submitted = true; 
-    console.log(this.model.getName());
+    // console.log(this.model.getName());
     this.leagueService.getLeague().deepCopyLeague(this.model);
-    console.log('carried to service?')
-    console.log(this.leagueService.getLeague().getName());
-    console.log('end one')
+    // console.log('carried to service?')
+    // console.log(this.leagueService.getLeague().getName());
+    // console.log('end one')
   }
 
   constructor(public leagueService: LeagueService) { }
@@ -46,7 +46,7 @@ export class LeagueFormOneComponent implements OnInit {
   ngOnInit() {
     let lgue = new League('initialized', false, this.init_sport, 
              this.init_season, this.init_date, 
-             this.init_date, this.init_date, 
+             this.init_date, this.init_date, this.init_date, 
              this.init_loc, this.init_type, 
              this.init_level);
     this.leagueService.setLeague(lgue);
