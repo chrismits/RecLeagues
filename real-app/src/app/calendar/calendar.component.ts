@@ -103,7 +103,7 @@ export class CalendarComponent implements OnInit {
         for (var idx = 0; idx < all_starts.length; idx++) {
           this.calendarEvents.push(
             {
-               title: l.getName(),
+               title: l.getName() + " game day",
                start: all_starts[idx],
                end:   all_ends[idx],
             });
@@ -164,26 +164,6 @@ export class CalendarComponent implements OnInit {
        cal.changeView('timeGridWeek', arg.dateStr);
        return;
     }      
-
-    // if (confirm('Would you like to add a match to ' + arg.dateStr.split("T")[0] + ' at ' + 
-    //    		 arg.dateStr.split("T")[1].split("-")[0] + ' ?')) {
-    //   var diff = 30; // currently hardcoded, but should be time from db
-    //   var endDate = new Date(arg.date.getTime() + diff*60000);
-    //   var team_1 = prompt("Home Team: ", "");
-    //   var team_2 = prompt("Away Team: ", "");
-    //   var match_up = team_1 + " vs. " + team_2;
-    //   if (team_1 == null || team_1 == "" || team_2 == null || team_2 == "") {
-    //     alert("Invalid matchup!");
-    //   } else {
-    //     this.calendarEvents = this.calendarEvents.concat({ // add new event data. must create new array
-    //       // id: from_db -- this is match _id stored in db
-    //       title: match_up,
-    //       start: arg.date,
-  	 //      end: endDate
-    //     })
-    //   }
-    // }
-    
   }
 
 }

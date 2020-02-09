@@ -7,7 +7,7 @@ var reg_end = new Date(now);
 reg_end.setDate(reg_end.getDate() + 5);
 start.setDate(start.getDate() + 6);
 end.setDate(end.getDate() + 30);
-var season = 'Spring';
+var season = 'Winter';
 
 var sport = 'Baseball';
 var name = season + ' ' + sport;
