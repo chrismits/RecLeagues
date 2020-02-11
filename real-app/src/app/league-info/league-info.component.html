@@ -5,7 +5,7 @@
 	}
 
   .containerContainer {
-    margin: 5rem 10rem;
+    margin: 3rem 10rem 0rem 10rem;
     width: 85%;
   }
 
@@ -38,8 +38,7 @@
   .arrow {
     display: inline-block;
     width: 20%;
-    height: 450px;
-    vertical-align: top;
+    height: 100%;
     margin-top: 14rem;
   }
 
@@ -80,6 +79,12 @@
     text-align: right;
   }
 
+  .footer {
+    float: right;
+    margin-top: 4rem;
+    margin-right: 12rem;
+  }
+
 </style>
 
 <div id="leagueInfo">
@@ -87,6 +92,7 @@
 </div>
 
 <div class="containerContainer">
+  
   <div class="containerBox">
     <div class="containerHeader">
       Registered Teams
@@ -100,10 +106,12 @@
       <div id="teamSize">{{team.getSize()}}</div>
     </div>
   </div>
+  
   <div class="arrow">
     <img src="../../assets/img/arrow.png" id="right" alt="Right Arrow">
     <img src="../../assets/img/arrow.png" alt="Left Arrow">
   </div>
+  
   <div class="containerBox">
     <div class="containerHeader">
       Approved Teams
@@ -117,4 +125,9 @@
       <div id="teamSize">{{team.getSize()}}</div>
     </div>
   </div>
+
+</div>
+
+<div class="footer">
+    <button id="approve">Approve</button>
 </div>
