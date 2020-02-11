@@ -27,7 +27,7 @@
     <br> <br> <br> 
     <div class="my-row">
       <div class="header" id="league-rules">League Rules</div> 
-      <button class="league-but" target="_blank" rel="noopener" tabindex="0" routerLink="/info-edit-rules" (click)="goToEdit()">
+      <button class="league-but" target="_blank" rel="noopener" tabindex="0" routerLink="/info-edit-rules" (click)="setLeague()">
         Edit </button>
     </div>
 
@@ -41,7 +41,7 @@
     <br> <br> <br> 
     <div class="my-row">
       <div class="header" id="league-teams">Teams</div> 
-      <button class="league-but" target="_blank" rel="noopener" tabindex="0" routerLink="/league-info">
+      <button class="league-but" target="_blank" rel="noopener" tabindex="0" (click)="setLeague()" routerLink="/league-info">
         Approve Teams </button>
     </div>
 

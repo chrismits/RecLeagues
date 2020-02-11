@@ -19,7 +19,7 @@ export class InfoComponent implements OnInit {
   		   this.league.getRegEnd() > this.now;
   }
 
-  goToEdit() {
+  setLeague() {
   	this.leagueService.setLeague(this.league);
   }
 
