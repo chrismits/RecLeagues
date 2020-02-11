@@ -26,6 +26,8 @@ import { SettingsComponent } from './settings/settings.component';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { SettingsEditComponent } from './settings-edit/settings-edit.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { InfoComponent } from './info/info.component';
+import { InfoEditRulesComponent } from './info-edit-rules/info-edit-rules.component';
 import { LeagueInfoScheduleComponent } from './league-info-schedule/league-info-schedule.component';
 import { LeagueGameScheduleComponent } from './league-game-schedule/league-game-schedule.component';
 
@@ -48,6 +50,8 @@ import { LeagueGameScheduleComponent } from './league-game-schedule/league-game-
     SettingsComponent,
     ProfileEditComponent,
     SettingsEditComponent,
+    InfoComponent,
+    InfoEditRulesComponent,
     LeagueInfoScheduleComponent,
     LeagueGameScheduleComponent,
   ],

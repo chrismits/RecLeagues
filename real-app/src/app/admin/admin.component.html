@@ -306,7 +306,7 @@
 
   <div class="card-container box">
   	<p id="season-id"> {{ season }} </p>
-      <div class="league-box" target="_blank" rel="noopener" *ngFor="let league of leagues" ng-click="onClick(league)" routerLink="/league-info"> 
+      <div class="league-box" target="_blank" rel="noopener" *ngFor="let league of leagues" (click)="goToLeague(league)" routerLink="/info"> 
         <p id="sport"> {{league.getSport()}} </p>
         <p id="date"> {{ league.getReadableStartDate() }} - {{ league.getReadableEndDate() }} </p>
       </div>
