@@ -13,7 +13,8 @@ export class LeagueInfoComponent implements OnInit {
 
   season: string = "Winter 2020";
   sport: string = "Volleyball";
-  approvedTeams: Team[] = TEAMS;
+  unapprovedTeams: Team[] = TEAMS;
+  approvedTeams: Team[] = [];
 
   constructor(public leagueService: LeagueService) { }
 
