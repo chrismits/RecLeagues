@@ -19,27 +19,40 @@
           <div [hidden]="team.valid || team.pristine" 
                 class="alert alert-danger"> 
             Please enter a valid max number of teams.
-          </div> <br> <br> <br>
+          </div> <br> 
 
-          <!-- ********* FREE AGENT STATUS ******** BUGGY -->
+        <!-- ********* NUM PLAYERS ON ******** -->
+          <label class="labl" for="name">Number of Players on Field</label>
+          <select class="form-control" id="num_play" required 
+                [(ngModel)]="players_on" name="num_play" #num_play="ngModel">
+            <option *ngFor="let num_play of num_players_on" [ngValue]="num_play"> 
+              {{num_play}}
+            </option>
+          </select>
+          <div [hidden]="num_play.valid || num_play.pristine" 
+                class="alert alert-danger"> 
+            Please enter a valid number of players on the field.
+          </div> <br>
+
+        <!-- ********* FREE AGENT STATUS ******** BUGGY -->
           <label class="labl"> Free Agent Status <br>
             <input type="checkbox" name="free_agent" 
               [(ngModel)]="free_agent" value="true">
-  		    </label>
+          </label> <br> 
         </div>
 
         <div class="form-group col middle-col">
-          <!-- ********* MAX NUM PLAYERS ******** -->
-          <label class="labl" for="name">Maximum Number of Players</label>
+          <!-- ********* MIN NUM PLAYERS ******** -->
+          <label class="labl" for="name">Minimum Number of Players</label>
             <select class="form-control" id="player" required 
-                  [(ngModel)]="max_team_size" name="player" #player="ngModel">
+                  [(ngModel)]="min_team_size" name="player" #player="ngModel">
             <option *ngFor="let player of num_players" [ngValue]="player"> 
               {{player}}
             </option>
           </select>
           <div [hidden]="player.valid || player.pristine" 
                 class="alert alert-danger"> 
-            Please enter a valid max number of players per team.
+            Please enter a valid min number of players per team.
           </div>
         </div>
 

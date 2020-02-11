@@ -45,7 +45,8 @@ export class League {
     num_teams:         number;
     teams:             Team[];
     max_num_teams:     number;
-    max_team_size:     number;
+    min_team_size:     number;
+    players_on:        number;
     game_length:       number;
     start_date:        Date;
     end_date:          Date;
@@ -56,6 +57,7 @@ export class League {
     competition_level: string;
     free_agents:       boolean;
     auto_approval:     boolean;
+    rules:             string;
     created:           Date;
 
     constructor (name: string, is_pickup: boolean, sport: string, 
@@ -72,7 +74,8 @@ export class League {
         this.num_teams          = 0;
         this.teams              = [];
         this.max_num_teams      = 10; // change to global based on Matt
-        this.max_team_size      = 15; // change to global
+        this.min_team_size      = 15; // change to global
+        this.players_on         = 5; // change to global
         this.start_date         = start;
         this.end_date           = end;
         //this.end_date.setDate(this.end_date.getDate() + 30);
@@ -83,6 +86,7 @@ export class League {
         this.location           = location;
         this.free_agents        = false;
         this.auto_approval      = false;
+        this.rules              = 'No rules made yet';
         this.created            = new Date();
     }
 
@@ -96,11 +100,13 @@ export class League {
     getType() { return this.league_type; }
     getCompLevel() { return this.competition_level; }
     getMaxNumTeams() { return this.max_num_teams; }
-    getMaxTeamSize() { return this.max_team_size; }
+    getMinTeamSize() { return this.min_team_size; }
+    getPlayersOn() { return this.players_on; }
     getGameLength() { return this.game_length; }
     getStartDate() { return this.start_date; }
     getEndDate() { return this.end_date; }
     getTimeSlots() { return this.time_slots; }
+    getRules() { return this.rules; }
 
     getReadableRegStartDate() { 
         let words = this.reg_start.toString().split(" "); 
@@ -134,10 +140,12 @@ export class League {
     setType(s: string) { this.league_type = s; }
     setCompLevel(s: string) { this.competition_level = s; }
     setMaxNumTeams(n: number) { this.max_num_teams = n; }
-    setMaxTeamSize(n: number) { this.max_team_size = n; }
+    setMinTeamSize(n: number) { this.min_team_size = n; }
+    setPlayersOn(n: number) { this.players_on = n; }
     setGameLength(n: number) { this.game_length = n; }
     setStartDate(d: Date) { this.start_date = d; }
     setEndDate(d: Date) { this.end_date = d; }
+    setRules(s: string) { this.rules = s; }
 
     addTimeSlot(slot: TimeSlot) { 
         this.time_slots.push(slot);
@@ -161,7 +169,7 @@ export class League {
 
     addTeam (t: Team) {
         if (this.num_teams < this.max_num_teams - 1 && 
-            t.getSize() <= this.max_team_size &&
+            t.getSize() >= this.min_team_size &&
             !this.teams.includes(t)) {
             this.teams.push(t);
             this.num_teams += 1;
@@ -211,7 +219,7 @@ export class League {
         this.setNumTeams(l.getNumTeams());
         l.getTeams().forEach(t => this.addTeam(t));
         this.setMaxNumTeams(l.getMaxNumTeams());
-        this.setMaxTeamSize(l.getMaxTeamSize());
+        this.setMinTeamSize(l.getMinTeamSize());
         this.setGameLength(l.getGameLength());
         this.setStartDate(l.getStartDate());
         this.setEndDate(l.getEndDate());

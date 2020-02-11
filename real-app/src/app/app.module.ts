@@ -26,6 +26,8 @@ import { SettingsComponent } from './settings/settings.component';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { SettingsEditComponent } from './settings-edit/settings-edit.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { InfoComponent } from './info/info.component';
+import { InfoEditRulesComponent } from './info-edit-rules/info-edit-rules.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     SettingsComponent,
     ProfileEditComponent,
     SettingsEditComponent,
+    InfoComponent,
+    InfoEditRulesComponent,
   ],
   imports: [
     AppRoutingModule,

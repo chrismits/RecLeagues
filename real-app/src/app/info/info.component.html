@@ -1,0 +1,70 @@
+<div class="content" role="main">
+
+  <h2 class="title"> Tufts University <br> 
+  	Intramural {{league.getSport()}} Info <br>
+  </h2>
+
+  <!-- OVERVIEW -->
+  <div class="centered">
+    <div class="my-row">
+      <div class="header" id="league-overview">League Overview</div> 
+    </div>
+
+    <div class="card-container box">
+      <div class="overview-box"> 
+        <p *ngIf="!regOpen()" class="red"> Registration is not yet open 
+        </p>
+        <p> Registration Start: {{league.getReadableRegStartDate()}} </p>
+        <p> Registration End: {{league.getReadableRegEndDate()}} </p>
+        <p> Season Length: {{league.getReadableStartDate()}} - {{league.getReadableEndDate()}} </p>
+        <p> Max Teams: {{league.getMaxNumTeams() }} </p>
+        <p> Min Players per Teams: {{league.getMaxNumTeams() }} </p>
+        <p> Max Teams: {{league.getMaxNumTeams() }} </p>
+
+      </div>
+    </div>
+
+    <br> <br> <br> 
+    <div class="my-row">
+      <div class="header" id="league-rules">League Rules</div> 
+      <button class="league-but" target="_blank" rel="noopener" tabindex="0" routerLink="/info-edit-rules" (click)="goToEdit()">
+        Edit </button>
+    </div>
+
+    <!-- RULES -->
+    <div class="card-container box">
+      <div class="overview-box rules"> 
+        <p> {{league.getRules()}} </p>
+      </div>
+    </div>
+
+    <br> <br> <br> 
+    <div class="my-row">
+      <div class="header" id="league-teams">Teams</div> 
+      <button class="league-but" target="_blank" rel="noopener" tabindex="0" routerLink="/league-info">
+        Approve Teams </button>
+    </div>
+
+    <!-- TEAMS -->
+    <div class="card-container box">
+      <div class="overview-box"> 
+        <p *ngIf="!teamsExist()" class="red"> There are currently no teams signed up. </p>
+      </div>
+    </div>
+
+    <br> <br> <br> 
+    <div class="my-row">
+      <div class="header" id="league-games">Game Schedule</div> 
+      <button class="league-but" target="_blank" rel="noopener" tabindex="0" routerlink="league-info">
+        Print Scorecard </button>
+    </div>
+
+    <!-- GAME SCHEDULE -->
+    <div class="card-container box">
+      <div class="overview-box"> 
+        <p *ngIf="!gamesExist()" class="red"> Games have not been scheduled for this league. </p>
+      </div>
+    </div>
+  </div>
+  <br> <br> <br>
+</div>
