@@ -28,6 +28,8 @@ import { SettingsEditComponent } from './settings-edit/settings-edit.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { InfoComponent } from './info/info.component';
 import { InfoEditRulesComponent } from './info-edit-rules/info-edit-rules.component';
+import { LeagueInfoScheduleComponent } from './league-info-schedule/league-info-schedule.component';
+
 
 @NgModule({
   declarations: [
@@ -49,6 +51,7 @@ import { InfoEditRulesComponent } from './info-edit-rules/info-edit-rules.compon
     SettingsEditComponent,
     InfoComponent,
     InfoEditRulesComponent,
+    LeagueInfoScheduleComponent,
   ],
   imports: [
     AppRoutingModule,

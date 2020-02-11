@@ -1,0 +1,189 @@
+<style>
+	#leagueInfo {
+		margin-left: 10rem;
+		margin-top: 5rem;
+	}
+
+	#containerHeader {
+		font-weight: bold;
+	}
+
+	.container {
+		margin-top: 2rem;
+		height: 550px;
+	}
+
+	.containerContent {
+		margin-top: 1rem;
+		height: 85%;
+		background-color: #DCDCDC;
+		border-radius: 5px;
+		overflow: auto;
+	}
+
+	.contentHeader {
+		padding: 2rem;
+	}
+
+	.miniContainer {
+		width: 80%;
+		margin: 0.5rem 5rem;
+
+	}
+
+	#generate {
+		margin-top: 2rem;
+		float:right;
+	}
+
+	img {
+		height: auto;
+		width: 2%;
+		display: inline-block;
+	}
+
+	p {
+		width: 98%;
+		display: inline-block;
+	}
+
+	.card {
+		display: inline-block;
+		width: 45%;
+		vertical-align: top;
+	}
+
+	.cardContent {
+		background-color: #A9A9A9;
+		border-radius: 5px;
+		height: 30px;
+		margin-top: 0.5rem;
+		padding: 0.4rem 1rem;
+	}
+
+	#cardtocardtext {
+		width: 10%;
+		display: inline-block;
+	}
+
+	#text {
+		text-align: center;
+		padding-top: 3rem;
+	}
+
+	.spacer {
+		height: 30px;
+	}
+
+</style>
+
+<div id="leagueInfo">
+  {{sport}} {{season}}
+</div>
+
+
+<div class="container">
+	<div id="containerHeader">
+		<p>League Info</p>
+		<img src="../../assets/img/edit.png" id="edit" alt="Edit Icon">
+	</div>
+	<div class="containerContent">
+		<div class="contentHeader">League Schedule</div>
+		<div class="miniContainer">
+			<div class="card">
+				<div class="cardHeader">
+					Start Date
+				</div>
+				<div class="cardContent">
+					{{league.getReadableStartDate()}}
+				</div>
+			</div>
+			<div id="cardtocardtext">
+				<div id="text">to</div>
+			</div>
+			<div class="card">
+				<div class="cardHeader">
+					End Date
+				</div>
+				<div class="cardContent">
+					{{league.getReadableEndDate()}}
+				</div>
+			</div>
+		</div>
+
+		<div class="miniContainer">
+			<div class="card">
+				<div class="cardHeader">
+					Facility
+				</div>
+				<div class="cardContent">
+					{{league.getLocation()}}
+				</div>
+			</div>
+		</div>
+
+		<div class="contentHeader">Game Schedule</div>
+
+		<div class="dayBox" *ngFor="let timeslot of league.getTimeSlots()">
+
+			<div class="miniContainer" id="firstContainer">
+				<div class="card">
+					<div class="cardHeader">
+						Day
+					</div>
+					<div class="cardContent">
+						{{timeslot.getDay()}}
+					</div>
+				</div>
+			</div>
+
+
+			<div class="miniContainer">
+				<div class="card">
+					<div class="cardHeader">
+						Start Time
+					</div>
+					<div class="cardContent">
+						{{timeslot.getStart()}}
+					</div>
+				</div>
+				<div id="cardtocardtext">
+				</div>
+				<div class="card">
+					<div class="cardHeader">
+						End Time
+					</div>
+					<div class="cardContent">
+						{{timeslot.getEnd()}}
+					</div>
+				</div>
+			</div>
+
+			<div class="miniContainer">
+				<div class="card">
+					<div class="cardHeader">
+						Game Length
+					</div>
+					<div class="cardContent">
+						{{timeslot.getLength()}}
+					</div>
+				</div>
+				<div id="cardtocardtext"></div>
+				<div class="card">
+					<div class="cardHeader">
+						Buffer Time
+					</div>
+					<div class="cardContent">
+						{{timeslot.getBuffer()}}
+					</div>
+				</div>
+			</div>
+
+			<div class="spacer"></div>
+
+		</div> 
+
+		
+	</div>
+	<button id="generate">Generate</button>
+</div>

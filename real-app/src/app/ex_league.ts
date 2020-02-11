@@ -11,7 +11,7 @@ var season = 'Winter';
 
 var sport = 'Baseball';
 var name = season + ' ' + sport;
-var tmp_league_1 = new League(name, false, sport, season, now, reg_end, start, end, "", "", "");
+var tmp_league_1 = new League(name, false, sport, season, now, reg_end, start, end, "Gantcher", "", "");
 
 sport = 'Volleybal'
 name = season + ' ' + sport;
@@ -54,6 +54,7 @@ slot4.setBuffer(5);
 slot1.setDay('Tuesday');
 tmp_league_1.addTimeSlot(slot1);
 slot2.setDay('Wednesday');
+tmp_league_1.addTimeSlot(slot2);
 tmp_league_2.addTimeSlot(slot2);
 slot3.setDay('Sunday');
 tmp_league_3.addTimeSlot(slot3);
