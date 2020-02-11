@@ -15,14 +15,17 @@ export class LeagueInfoComponent implements OnInit {
 
   leagues: League[] = LEAGUES;
   league = this.leagues[0];
-  season = this.league.getSeason();
-  sport = this.league.getSport();
+  //season = this.league.getSeason();
+  //sport = this.league.getSport();
   unapprovedTeams: Team[] = TEAMS;
   approvedTeams: Team[] = [];
 
   constructor(public leagueService: LeagueService) { }
 
   ngOnInit()  {
+    if (this.leagueService.getLeague() != undefined) {
+      this.league = this.leagueService.getLeague();
+    }
   }
 
   changeStatus(team) {
