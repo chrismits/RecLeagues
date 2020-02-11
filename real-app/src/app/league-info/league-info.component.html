@@ -101,9 +101,9 @@
       <div id="name">Team Name</div>
       <div id="numplayers">Number of Players</div>
     </div>
-    <div class="card" *ngFor="let team of unapprovedTeams">
-      <div id="teamName">{{team.getName()}}</div>
-      <div id="teamSize">{{team.getSize()}}</div>
+    <div class="card" *ngFor="let team of unapprovedTeams" (click)="changeStatus(team)">
+        <div id="teamName">{{team.getName()}}</div>
+        <div id="teamSize">{{team.getSize()}}</div>
     </div>
   </div>
   
@@ -129,5 +129,5 @@
 </div>
 
 <div class="footer">
-    <button id="approve">Approve</button>
+    <button id="approve" routerLink="/league-info-schedule">Approve</button>
 </div>

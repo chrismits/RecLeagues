@@ -8,6 +8,7 @@ import { LeagueFormThreeComponent } from './league-form-three/league-form-three.
 import { LeagueFormFourComponent } from './league-form-four/league-form-four.component';
 import { LeagueFormFiveComponent } from './league-form-five/league-form-five.component';
 import { LeagueInfoComponent } from './league-info/league-info.component';
+import { LeagueInfoScheduleComponent } from './league-info-schedule/league-info-schedule.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { SettingsComponent } from './settings/settings.component';
@@ -25,7 +26,8 @@ const routes: Routes = [
 	{ path: 'profile', component: ProfileComponent},	
 	{ path: 'profile-edit', component: ProfileEditComponent},	
 	{ path: 'settings', component: SettingsComponent},	
-	{ path: 'settings-edit', component: SettingsEditComponent},	
+	{ path: 'settings-edit', component: SettingsEditComponent},
+	{ path: 'league-info-schedule', component: LeagueInfoScheduleComponent},	
 ];
 export const routing: ModuleWithProviders =  
     RouterModule.forRoot(routes); 

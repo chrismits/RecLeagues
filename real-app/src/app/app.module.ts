@@ -26,6 +26,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { SettingsEditComponent } from './settings-edit/settings-edit.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { LeagueInfoScheduleComponent } from './league-info-schedule/league-info-schedule.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     SettingsComponent,
     ProfileEditComponent,
     SettingsEditComponent,
+    LeagueInfoScheduleComponent,
   ],
   imports: [
     AppRoutingModule,
