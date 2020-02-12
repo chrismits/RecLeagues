@@ -153,7 +153,7 @@ app.post('/api/leagues/', function(req, res) {
 app.get('/api/leagues/', function(req, res) {
     console.log("Backend: Get Leagues")
     var curr_date = new Date();
-    League.find({ "dates": {"end_date": {$gte: curr_date}}}, function(err, leagues) {
+    League.find(function(err, leagues) {
         if (err)
             res.send(err)
 

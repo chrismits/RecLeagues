@@ -40,7 +40,7 @@ export class ApiService {
   }
 
   getAllLeagues() {
-    console.log("Sending backend req")
+    console.log("Sending backend req");
     return this.http.get(`${API_URL}/leagues`);
   }
 }

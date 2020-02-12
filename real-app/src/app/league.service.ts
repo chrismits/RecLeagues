@@ -16,20 +16,33 @@ export class LeagueService {
   storeLeague() {
     // add to db
     console.log("Adding league to DB")
-    this.apiService.createLeague(this.model).subscribe((data) => {
-      console.log(data)
-    }, (error) => {
-      console.log(error)
+    this.apiService.createLeague(this.model).subscribe((data) => {   
     }) 
   }
 
   // NOT TESTED
-  getAllLeagues() {
-    this.apiService.getAllLeagues().subscribe((lgs) => {
-      console.log(lgs)
+  getLeagues() {
+    var arr: Array<League> = [];
+
+    this.apiService.getAllLeagues().subscribe((data: any[]) => {
+      for (var l in data) {
+        var curr = new League(data[l].name, 
+                            data[l].is_pickup, 
+                            data[l].sport,
+                            data[l].season,
+                            data[l].dates.reg_start,
+                            data[l].dates.reg_end,
+                            data[l].dates.start_date,
+                            data[l].dates.end_date,
+                            '', data[l].league_type, data[l].competition_level)
+        arr.push(curr);
+        console.log(curr.start_date)
+      }
     }, (error) => {
       console.log(error)
+      return;
     })
-  }
+    return arr;
 
+  }
 }

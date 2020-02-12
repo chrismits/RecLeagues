@@ -3,6 +3,7 @@ import { Admin } from '../admin'
 import { League } from '../league'
 import { LEAGUES } from '../ex_league'
 import { LeagueService } from '../league.service'
+import { ApiService } from '../api.service'
 
 @Component({
   selector: 'app-admin',
@@ -16,8 +17,8 @@ export class AdminComponent implements OnInit {
   leagues: League[] = LEAGUES;
   constructor(public leagueService: LeagueService) { }
 
-  ngOnInit() {
-  	// this.leagues = this.leagueService.getAllLeagues();
+  ngOnInit() { 
+    //console.log(this.leagueService.getLeagues());
+    //this.leagues = this.leagueService.getLeagues();
   }
-
 }

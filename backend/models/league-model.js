@@ -2,6 +2,7 @@
 Database schema for league
 Notes:
     - Added sport field. Update enum values to add more sports.
+    - CHANGE TO MIN NUMBER OF TEAMS.
 */
 
 var mongoose = require('mongoose');
@@ -9,6 +10,7 @@ var mongoose = require('mongoose');
 /* Entries for League:
     - _id: ObjectId
     - name: String
+    - is_pickup: Boolean
     - sport: String
     - season: String
     - dates: All Date Objects
@@ -45,6 +47,10 @@ var leagueSchema = new mongoose.Schema({
         required: true, 
         minlength: 1, 
         maxlength: 20
+    },
+    is_pickup: {
+        type: Boolean,
+        default: false
     },
     sport: {
         type: String
