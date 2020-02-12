@@ -4,7 +4,8 @@
     <form (ngSubmit)="onSubmit()" #leagueForm='ngForm'>
       <div class="row short">
         <h2> Game Schedule </h2>
-        <p> List times in with 'am/pm' (10:30 am, 12:00 pm, 6:45 pm) </p>
+        <p> List times in with 'am/pm' (10:30 am, 6:45 pm) </p>
+        <p> Length and buffer are in minutes </p>
       </div>
 
       <div class="form-group row">
@@ -19,7 +20,7 @@
           </select>
 
           <!-- ********* GAME LENGTH ******** -->
-          <label class="labl" for="length">Game Length</label>
+          <label class="labl" for="length">Game Length </label>
           <input type="text" class="form-control" id="length" required 
                  [(ngModel)]="model.length" name="length" #length="ngModel"
                  pattern="[0-9]*"> 

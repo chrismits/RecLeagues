@@ -4,18 +4,28 @@ import { EventInput, Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGrigPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction'; // for dateClick
-import $ from 'jquery' 
+import * as $ from 'jquery' 
 import { League } from '../league'
+import { LEAGUES } from '../ex_league'
+import { LeagueService } from '../league.service'
 
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss']
 })
+
 export class CalendarComponent implements OnInit {
 
   title = 'League Scheduler';
-  @Input() leagues: League[];
+  @Input() leagues: League[];  
+  @ViewChild('calendar', {static: false}) calendarComponent: FullCalendarComponent; // the #calendar in the template
+  is_populated = false;
+  
+  calendarVisible = true;
+  calendarPlugins = [dayGridPlugin, timeGrigPlugin, interactionPlugin];
+  calendarWeekends = true;
+  calendarEvents: EventInput[] = [] 
 
   setTime(d: Date, time: string) {
     d.setHours(Number(time.split(":")[0]));
@@ -40,34 +50,47 @@ export class CalendarComponent implements OnInit {
     return d;
   }
 
+  constructor(public leagueService: LeagueService) {}
+
   ngOnInit() {
     /* - Can load in events here using db info
        - Create all of the league game days */
+    this.populateCal();
+  }
 
+  ngDoCheck() {
+    if (this.leagues.length != 0 && !this.is_populated) {
+      this.populateCal();
+    }
+  }
 
-
+  populateCal() {
     for (let l of this.leagues) {
       /* Registration Period */
-      let reg_start = this.setZeroTime(l.getRegStart());
+      let real_rs = new Date(l.getRegStart())
+      let real_re = new Date(l.getRegEnd())
+      let reg_start = this.setZeroTime(real_rs);
       let reg_s_end = new Date(reg_start);
-      let reg_end   = this.setMaxTime(l.getRegEnd());
+      let reg_end   = this.setMaxTime(real_re);
       let reg_e_start = new Date(reg_end);
       this.calendarEvents.push(
         {
-          title: l.getName() + " Registration Start",
+          title: l.getSport() + " Registration Start",
           start: reg_start,
           end:   reg_s_end.setHours(reg_start.getHours() + 3),
         });
       this.calendarEvents.push(
         {
-          title: l.getName() + " Registration End",
+          title: l.getSport() + " Registration End",
           start: reg_e_start.setHours(reg_end.getHours() - 3),
           end:   reg_end,
         });
 
       /* League Period */
-      let league_start = this.setZeroTime(l.getStartDate());
-      let league_end   = this.setMaxTime(l.getEndDate());
+      let real_ls = new Date(l.getStartDate());
+      let real_le = new Date(l.getEndDate());
+      let league_start = this.setZeroTime(real_ls);
+      let league_end   = this.setMaxTime(real_le);
       // console.log("league start and end");
       // console.log(league_start);
       // console.log(league_end);
@@ -103,22 +126,16 @@ export class CalendarComponent implements OnInit {
         for (var idx = 0; idx < all_starts.length; idx++) {
           this.calendarEvents.push(
             {
-               title: l.getName() + " game day",
+               title: l.getSport() + " game day",
                start: all_starts[idx],
                end:   all_ends[idx],
             });
         }
       }
+      this.is_populated = true;
+      // console.log(this.calendarEvents);
     }
-    // console.log(this.leagues.length);
   }
-
-  @ViewChild('calendar', {static: false}) calendarComponent: FullCalendarComponent; // the #calendar in the template
-
-  calendarVisible = true;
-  calendarPlugins = [dayGridPlugin, timeGrigPlugin, interactionPlugin];
-  calendarWeekends = true;
-  calendarEvents: EventInput[] = [] 
 
   toggleVisible() {
     this.calendarVisible = !this.calendarVisible;

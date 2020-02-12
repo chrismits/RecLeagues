@@ -9,7 +9,8 @@ import { LeagueService } from '../league.service'
 })
 export class LeagueFormThreeComponent implements OnInit {
 
-  locations: string[] = ['Tisch', 'Bello', 'Cousens', 'Sauna'];
+  locations: string[] = ['Ounjian', 'Bello', 'Gantcher', 
+                         'Carzo Cage'];
   reg_start_date: string = "";
   reg_end_date: string = "";
   start_date: string = "";
@@ -29,21 +30,12 @@ export class LeagueFormThreeComponent implements OnInit {
     this.model.setStartDate(this.stringToDate(this.start_date));
     this.model.setEndDate(this.stringToDate(this.end_date));
     this.leagueService.getLeague().deepCopyLeague(this.model);
-    // console.log(this.model.getReadableStartDate());
-    // console.log(this.model.getLocation());
-    // console.log(this.model.getMaxNumTeams());
-    // console.log(this.leagueService.getLeague().getMaxNumTeams());
-    // if(this.leagueService.getLeague().isAutoApproval()) {
-    //   console.log('nice');
-    // }
   }
 
   constructor(public leagueService: LeagueService) { }
 
   ngOnInit() {
     this.model = this.leagueService.getLeague();
-    // console.log('start');
-    // console.log(this.leagueService.getLeague().getMaxNumTeams());
 
   }
 

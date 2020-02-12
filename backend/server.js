@@ -127,7 +127,7 @@ app.post('/api/leagues/', function(req, res) {
             team_info: {
                 num_teams: req.body.num_teams,
                 max_num_teams: req.body.max_num_teams,
-                max_team_size: req.body.max_team_size,
+                min_team_size: req.body.min_team_size,
                 auto_approval: req.body.auto_approval
                 //teams: Array of team refs --> NULL for now as no registration
             },

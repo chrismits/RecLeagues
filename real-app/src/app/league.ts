@@ -60,34 +60,66 @@ export class League {
     rules:             string;
     created:           Date;
 
-    constructor (name: string, is_pickup: boolean, sport: string, 
-                 season: string, reg_start: Date, reg_end: Date, 
-                 start: Date, end: Date, location: string, type: string,
-                 level: string) {
-        this._id                = 1; // will change for db
+    // constructor (name: string, is_pickup: boolean, sport: string, 
+    //              season: string, reg_start: Date, reg_end: Date, 
+    //              start: Date, end: Date, location: string, type: string,
+    //              level: string) {
+    //     this._id                = 1; // will change for db
+    //     this.name               = name;
+    //     this.is_pickup          = is_pickup;
+    //     this.sport              = sport;
+    //     this.season             = season;
+    //     this.reg_start          = reg_start;
+    //     this.reg_end            = reg_end;
+    //     this.num_teams          = 0;
+    //     this.teams              = [];
+    //     this.max_num_teams      = 10; // change to global based on Matt
+    //     this.min_team_size      = 15; // change to global
+    //     this.players_on         = 5; // change to global
+    //     this.start_date         = start;
+    //     this.end_date           = end;
+    //     this.schedule           = [];
+    //     this.time_slots         = [];
+    //     this.league_type        = type;
+    //     this.competition_level  = level;
+    //     this.location           = location;
+    //     this.free_agents        = false;
+    //     this.auto_approval      = false;
+    //     this.rules              = 'No rules made yet';
+    //     this.created            = new Date();
+    // }
+
+    constructor(id: number, name: string, is_pickup: boolean,
+                    sport: string, season: string, reg_s: Date,
+                    reg_e: Date, num_teams: number, teams: Team[],
+                    max_teams: number, min_size: number, players: number,
+                    start: Date, end: Date, schedule: Match[], 
+                    slots: TimeSlot[], loc: string, type: string, 
+                    level: string, free_ag: boolean, approval: boolean,
+                    rules: string, created: Date) {
+        this._id                = id; // will change for db
         this.name               = name;
         this.is_pickup          = is_pickup;
         this.sport              = sport;
         this.season             = season;
-        this.reg_start          = reg_start;
-        this.reg_end            = reg_end;
-        this.num_teams          = 0;
-        this.teams              = [];
-        this.max_num_teams      = 10; // change to global based on Matt
-        this.min_team_size      = 15; // change to global
-        this.players_on         = 5; // change to global
+        this.reg_start          = reg_s;
+        this.reg_end            = reg_e;
+        this.num_teams          = num_teams;
+        this.teams              = teams;
+        this.max_num_teams      = max_teams; // change to global based on Matt
+        this.min_team_size      = min_size; // change to global
+        this.players_on         = players; // change to global
         this.start_date         = start;
         this.end_date           = end;
-        //this.end_date.setDate(this.end_date.getDate() + 30);
-        this.schedule           = [];
-        this.time_slots         = [];
+        this.schedule           = schedule;
+        this.time_slots         = slots;
         this.league_type        = type;
         this.competition_level  = level;
-        this.location           = location;
-        this.free_agents        = false;
-        this.auto_approval      = false;
-        this.rules              = 'No rules made yet';
-        this.created            = new Date();
+        this.location           = loc;
+        this.free_agents        = free_ag;
+        this.auto_approval      = approval;
+        this.rules              = rules;
+        this.created            = created;
     }
 
     getName() { return this.name; }
@@ -110,19 +142,43 @@ export class League {
 
     getReadableRegStartDate() { 
         let words = this.reg_start.toString().split(" "); 
-        return words[1].concat('. ', words[2], ', ', words[3]);
+        if (words.length == 1) {
+            words = this.reg_start.toString().split("T");
+            let dates = words[0].split("-");
+            return dates[1].concat('/', dates[2], '/', dates[0]);
+        } else { 
+            return words[1].concat('. ', words[2], ', ', words[3]);
+        }
     }
     getReadableRegEndDate() { 
         let words = this.reg_end.toString().split(" "); 
-        return words[1].concat('. ', words[2], ', ', words[3]);
+        if (words.length == 1) {
+            words = this.reg_end.toString().split("T");
+            let dates = words[0].split("-");
+            return dates[1].concat('/', dates[2], '/', dates[0]);
+        } else { 
+            return words[1].concat('. ', words[2], ', ', words[3]);
+        }
     }
     getReadableStartDate() { 
         let words = this.start_date.toString().split(" "); 
-        return words[1].concat('. ', words[2], ', ', words[3]);
+        if (words.length == 1) {
+            words = this.start_date.toString().split("T");
+            let dates = words[0].split("-");
+            return dates[1].concat('/', dates[2], '/', dates[0]);
+        } else { 
+            return words[1].concat('. ', words[2], ', ', words[3]);
+        }
     }
     getReadableEndDate() { 
         let words = this.end_date.toString().split(" "); 
-        return words[1].concat('. ', words[2], ', ', words[3]);
+        if (words.length == 1) {
+            words = this.end_date.toString().split("T");
+            let dates = words[0].split("-");
+            return dates[1].concat('/', dates[2], '/', dates[0]);
+        } else { 
+            return words[1].concat('. ', words[2], ', ', words[3]);
+        }
     }
     getSchedule() { return this.schedule; }
     getCreated() { return this.created; }

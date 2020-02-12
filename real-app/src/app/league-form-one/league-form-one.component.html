@@ -6,7 +6,7 @@
         <label class="labl" for="name">Name</label>
         <input type="text" class="form-control" id="name" required 
                [(ngModel)]="model.name" name="name" #name="ngModel"
-               pattern="[a-zA-Z0-9\- ]*"> 
+               pattern="[a-zA-Z0-9\- ']*"> 
         <div [hidden]="name.valid || name.pristine" 
               class="alert alert-danger"> 
           Please enter a valid name.

@@ -23,6 +23,6 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit() {
-  	// this.leagues = this.leagueService.getAllLeagues();
+  	this.leagues = this.leagueService.getLeagues();
   }
 }

@@ -12,7 +12,7 @@ export class LeagueFormOneComponent implements OnInit {
 
   seasons: string[] = ['Fall', 'Winter', 'Spring'];
   sports: string[] = ['Indoor Soccer', 'Basketball', 'Volleyball',
-                      'Tennis', 'Dodgeball'];
+                      'Flag Football', 'Soccer'];
   types: string[] = ['Male', 'Female', 'Co-ed'];
   levels: string[] = ['Competitive', 'Recreational'];
 
@@ -24,11 +24,11 @@ export class LeagueFormOneComponent implements OnInit {
   init_type: string = '';
   init_level: string = '';
 
-  model = new League(this.init_name, false, this.init_sport, 
+  model = new League(1, this.init_name, false, this.init_sport, 
              this.init_season, this.init_date, 
-             this.init_date, this.init_date, this.init_date, 
-             this.init_loc, this.init_type, 
-             this.init_level);
+             this.init_date, 0, [], 10, 5, 5, this.init_date, this.init_date, 
+             [], [], this.init_loc, this.init_type, 
+             this.init_level, false, false, '', this.init_date);
 
   submitted = false;
 
@@ -44,11 +44,11 @@ export class LeagueFormOneComponent implements OnInit {
   constructor(public leagueService: LeagueService) { }
 
   ngOnInit() {
-    let lgue = new League('initialized', false, this.init_sport, 
+    let lgue = new League(1, 'initialized', false, this.init_sport, 
              this.init_season, this.init_date, 
-             this.init_date, this.init_date, this.init_date, 
-             this.init_loc, this.init_type, 
-             this.init_level);
+             this.init_date, 0, [], 10, 5, 5, this.init_date, this.init_date, 
+             [], [], this.init_loc, this.init_type, 
+             this.init_level, false, false, '', this.init_date);
     this.leagueService.setLeague(lgue);
   }
 

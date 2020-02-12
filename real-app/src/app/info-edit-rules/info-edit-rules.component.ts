@@ -23,6 +23,7 @@ export class InfoEditRulesComponent implements OnInit {
   goToInfo() {
   	this.league.setRules(this.new_rules);
   	this.leagueService.setLeague(this.league);
+    this.leagueService.updateLeague();
   }
 
   teamsExist() {

@@ -29,7 +29,7 @@ var mongoose = require('mongoose');
         - auto_approval: Boolean
         - num_teams: Number
         - max_num_teams: Number
-        - max_team_size: Number
+        - min_team_size: Number
         - teams: Array ('Team' ref)
     - matches: Array ('Match' ref)
     - league_type: String
@@ -77,7 +77,7 @@ var leagueSchema = new mongoose.Schema({
     team_info: {
         num_teams: { type: Number, required: true },
         max_num_teams: { type: Number, required: true },
-        max_team_size: { type: Number, required: true },
+        min_team_size: { type: Number, required: true },
         auto_approval: { type: Boolean, default: false },
         teams: [{
             type: mongoose.Schema.Types.ObjectId,

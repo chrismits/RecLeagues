@@ -1,3 +1,5 @@
+/* NOT SUPPORTED */
+
 import { Component, OnInit } from '@angular/core';
 import { League } from '../league'
 import { Match } from '../match'
@@ -18,12 +20,12 @@ export class LeagueComponent implements OnInit {
       m => !this.matches.includes(m));
 
   addLeague(l: League) {
-  	var new_league = new League(l.name, false, l.sport, l.season, l.reg_start, l.reg_end, l.start_date, l.end_date, "", "", "");
-  	this.leagues.push(new_league);
-    l.schedule.map(m => new_league.addMatch(m));
-    this.avail_matches = this.avail_matches.filter(
-      match => !l.schedule.includes(match));
-    // propogate to db
+  	// var new_league = new League(l.name, false, l.sport, l.season, l.reg_start, l.reg_end, l.start_date, l.end_date, "", "", "");
+  	// this.leagues.push(new_league);
+   //  l.schedule.map(m => new_league.addMatch(m));
+   //  this.avail_matches = this.avail_matches.filter(
+   //    match => !l.schedule.includes(match));
+   //  // propogate to db
 
     //console.log(this.leagues[1].schedule[0].home.name);
   }  

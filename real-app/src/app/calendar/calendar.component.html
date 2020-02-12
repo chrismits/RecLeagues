@@ -1,6 +1,7 @@
 <div class='app'>
   <div class='app-calendar' *ngIf="calendarVisible">
     <full-calendar
+      deepChangeDetection="true"
       #calendar
       defaultView="dayGridMonth"
       [header]="{
