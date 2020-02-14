@@ -17,11 +17,19 @@ export class LeagueService {
     // add to db
     console.log("Adding league to DB")
     this.apiService.createLeague(this.model).subscribe((data) => {   
+    }, (error) => {
+      console.log(error)
     }) 
   }
 
   updateLeague() {
     // update db entry
+    console.log("LS: Updating league")
+    this.apiService.updateLeague(this.model).subscribe((data) => {
+      console.log(data.name + "Updated");
+    }, (error) => {
+      console.log(error);
+    })
   }
 
   // NOT TESTED

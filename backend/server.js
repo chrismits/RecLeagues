@@ -11,7 +11,10 @@ app.use(bodyparser.json())
 
 /************** Database Setup *******************/
 
-mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true, useUnifiedTopology: true}, function (err) {
+mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true, 
+                                            useUnifiedTopology: true,
+                                            useFindAndModify: false}, 
+                                                            function (err) {
     if (err) {
       console.log(err)
       process.exit(1)
@@ -115,6 +118,7 @@ app.post('/api/leagues/', function(req, res) {
         }
         var new_lg = new League({
             name: req.body.name,
+            is_pickup: req.body.is_pickup,
             sport: req.body.sport,
             season: req.body.season,
             dates: {
@@ -128,12 +132,18 @@ app.post('/api/leagues/', function(req, res) {
                 num_teams: req.body.num_teams,
                 max_num_teams: req.body.max_num_teams,
                 min_team_size: req.body.min_team_size,
-                auto_approval: req.body.auto_approval
-                //teams: Array of team refs --> NULL for now as no registration
+                auto_approval: req.body.auto_approval,
+                teams: req.body.teams
             },
             league_type: req.body.league_type,
             competition_level: req.body.competition_level,
-            free_agents: req.body.free_agents
+            free_agents: req.body.free_agents,
+            matches: {
+                location: req.body.location,
+                game_length: req.body.game_length,
+                schedule: req.body.schedule
+            },
+            rules: req.body.rules
         });
     
         new_lg.save(function(err, lg) {
@@ -148,16 +158,29 @@ app.post('/api/leagues/', function(req, res) {
 
 /* getLeagues
 - Returns all league documents in db
-{ "dates": {"end_date": {$gte: curr_date}}}
+{"dates": {"end_date": {$gte: curr_date}}}
 */
 app.get('/api/leagues/', function(req, res) {
     console.log("Backend: Get Leagues")
     var curr_date = new Date();
+    // console.log(curr_date)
     League.find(function(err, leagues) {
         if (err)
             res.send(err)
 
         res.json(leagues) // return all leagues in JSON format
+    });
+});
+
+/* updateLeague
+- Updates database entry by id.
+*/
+app.put('/api/leagues/', function(req, res) {
+    console.log("BACKEND: Updating League");
+    League.findByIdAndUpdate(req.body._id, req.body, {new: true}, function(err, lg) {
+        if (err) {
+            console.log(err) 
+        }
     });
 });
 

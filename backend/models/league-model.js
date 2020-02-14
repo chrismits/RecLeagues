@@ -31,10 +31,14 @@ var mongoose = require('mongoose');
         - max_num_teams: Number
         - min_team_size: Number
         - teams: Array ('Team' ref)
-    - matches: Array ('Match' ref)
+    - matches:
+        - location: String
+        - game_length: Number
+        - schedule: Array ('Match' ref)
     - league_type: String
     - competitition_level: String
     - free_agents: Boolean
+    - rules: String
     - created: Date
 */
 var leagueSchema = new mongoose.Schema({
@@ -84,11 +88,17 @@ var leagueSchema = new mongoose.Schema({
             ref: 'Team'
         }]
     },
-    matches: [{
-        // ADD LOCATION??
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Match'
-    }],
+
+    matches: {
+        location: String,
+        game_length: Number,
+        schedule: [{
+            // ADD LOCATION??
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Match'
+        }]
+    }
+    ,
     league_type: {
         type: String,
         enum: ['Male', 'Female', 'Co-ed']
@@ -100,6 +110,9 @@ var leagueSchema = new mongoose.Schema({
     free_agents: {
         type: Boolean,
         default: false
+    },
+    rules: {
+        type: String
     },
     created: {
         type: Date, 

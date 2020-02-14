@@ -27,7 +27,8 @@ export class ApiService {
     //let headers = new HttpHeaders({'Content-Type': 'application/json'})
     console.log("Sending request to backend to add player")
 
-    return this.http.post<Player>(`${API_URL}/players`, pl, {headers: this.headers})
+    return this.http.post<Player>(`${API_URL}/players`, pl, 
+                                              {headers: this.headers})
   }
 
 
@@ -36,11 +37,20 @@ export class ApiService {
     console.log("Sending request to backend to create league")
     console.log(`${API_URL}/leagues`)
     console.log(lg)
-    return this.http.post<League>(`${API_URL}/leagues`, lg, {headers: this.headers})
+    return this.http.post<League>(`${API_URL}/leagues`, lg, 
+                                              {headers: this.headers})
   }
 
   getAllLeagues() {
     console.log("Sending backend req");
+    // return this.http.get(`${API_URL}/leagues`).map((res: Response) => res.json());
     return this.http.get(`${API_URL}/leagues`);
+  }
+
+  updateLeague(lg : League) : Observable<League> {
+    console.log("APISERVICE: Updating league");
+
+    return this.http.put<League>(`${API_URL}/leagues/`, lg, 
+                                                      {headers: this.headers});
   }
 }
