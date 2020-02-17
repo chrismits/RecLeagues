@@ -20,7 +20,8 @@ export class InfoComponent implements OnInit {
   }
 
   setLeague() {
-  	this.leagueService.setLeague(this.league);
+    this.leagueService.setLeague(this.league);
+  	this.leagueService.updateLeague();
   }
 
   teamsExist() {

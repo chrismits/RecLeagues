@@ -8,7 +8,7 @@ export class LeagueService {
   model: League;
 
   setLeague(l : League) { this.model = l; }
-  getLeague() 		{ return this.model; }
+  getLeague()           { return this.model; }
 
 
   constructor(private apiService: ApiService) {}
@@ -59,6 +59,7 @@ export class LeagueService {
                             data[l].competition_level,
                             data[l].free_agents,
                             data[l].team_info.auto_approval,
+                            /* add rules string to db? */
                             'No rules yet',
                             data[l].created);
         /* Done to change object type */
