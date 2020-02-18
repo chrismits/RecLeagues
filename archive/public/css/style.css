@@ -1,0 +1,26 @@
+.menu_links {
+	    text-align: right;
+	    float: right;
+	    padding-right: 20px;
+}
+
+.menu_name {
+	   text-align: left;
+	   float: left;
+	   padding-left: 20px;
+	   font-size: 18px;
+}
+
+#greeting {
+	  padding: 20px;
+	  font-size: 24px;
+	  text-align: center;
+}
+
+.personal_menu {
+	       text-align: center;
+}
+
+.personal_link {
+	       padding: 24px;
+}

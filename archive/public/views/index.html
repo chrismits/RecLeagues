@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <title>Welcome to RecLeagues</title>
+  </head>
+  <body>
+    <p>
+<!-- Special version of Bootstrap that only affects content wrapped in .bootstrap-iso -->
+<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" /> 
+
+<!-- Inline CSS based on choices in "Settings" tab -->
+<style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: #ffffff !important;} .asteriskField{color: red;}</style>
+
+<!-- HTML Form (wrapped in a .bootstrap-iso div) -->
+<div class="bootstrap-iso">
+ <div class="container-fluid">
+  <div class="row">
+   <div class="col-md-6 col-sm-6 col-xs-12">
+      <h3> Welcome to RecLeagues </h3>
+      <h4>To register, please complete the form below:</h4>
+    <form method="POST" action="/submit">
+     <div class="form-group form-group-sm">
+      <label class="control-label requiredField" for="first">
+       First Name
+       <span class="asteriskField">
+        *
+       </span>
+      </label>
+      <input class="form-control" id="first" name="first" type="text"/>
+     </div>
+     <div class="form-group form-group-sm">
+      <label class="control-label requiredField" for="name1">
+       Last Name
+       <span class="asteriskField">
+        *
+       </span>
+      </label>
+      <input class="form-control" id="last" name="last" type="text"/>
+     </div>
+     <div class="form-group form-group-sm">
+      <label class="control-label requiredField" for="email">
+       Email
+       <span class="asteriskField">
+        *
+       </span>
+      </label>
+      <input class="form-control" id="email" name="email" placeholder="name@example.com" type="text"/>
+      <span class="help-block" id="hint_email">
+       We'll never share your email with anyone else.
+      </span>
+     </div>
+     <div class="form-group form-group-sm">
+      <label class="control-label " for="name2">
+       Mobile phone (US)
+      </label>
+      <input class="form-control" id="cell" name="cell" type="text"/>
+      <span class="help-block" id="hint_name2">
+       We use your number to notify you about upcoming matches.
+      </span>
+     </div>
+     <div class="form-group">
+      <div>
+       <button class="btn btn-success " name="submit" type="submit">
+        Register for a team
+       </button>
+      </div>
+     </div>
+    </form>
+   </div>
+  </div>
+ </div>
+</div>
+    </p>
+  </body>
+</html>

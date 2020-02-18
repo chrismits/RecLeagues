@@ -1,0 +1,12 @@
+<h2> All Teams </h2>
+<ul class="teams">
+  <li *ngFor="let team of teams">
+  	{{team.name}} led by captain {{team.captain._first}} {{team.captain._last}}
+  </li> <br> <br> <br>
+  <div> Available captains are: 
+    <li *ngFor="let cap of avail_caps">
+  	    {{cap._first}} {{cap._last}}
+    </li>
+  </div>
+  <app-team-form (added)="addTeam($event)" [avail_caps]="avail_caps"></app-team-form>
+</ul>

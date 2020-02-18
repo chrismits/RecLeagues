@@ -1,0 +1,7 @@
+<h2> All Teams </h2>
+<ul class="teams">
+  <li *ngFor="let team of teams" (click)="onSelect(team)">
+    <span class="badge"> {{team.id}}.) </span> {{team.name | uppercase }}
+  </li>
+  <p> {{team_a.name}} to win {{team_a.id}} championship</p>
+</ul>
