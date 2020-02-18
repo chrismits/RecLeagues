@@ -52,9 +52,9 @@ export class LeagueService {
                             data[l].team_info.min_team_size,
                             data[l].dates.start_date,
                             data[l].dates.end_date,
-                            data[l].matches,
+                            data[l].matches.schedule,
                             [], /* time slots come later */
-                            data[l].location, 
+                            data[l].matches.location, 
                             data[l].league_type, 
                             data[l].competition_level,
                             data[l].free_agents,
