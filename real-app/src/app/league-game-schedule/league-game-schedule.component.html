@@ -26,8 +26,8 @@
 	}
 
 	.miniContainer {
-		width: 80%;
-		margin: 0.5rem 5rem;
+		width: 60%;
+		margin: 0.5rem 22rem;
 
 	}
 
@@ -57,6 +57,7 @@
 		display: inline-block;
 		width: 100%;
 		vertical-align: top;
+		padding-bottom: 1rem;
 	}
 
 	.cardContent {
@@ -64,7 +65,7 @@
 		border-radius: 5px;
 		height: 40px;
 		margin-top: 0.5rem;
-		padding: 0.4rem 1rem;
+		padding: 1rem 3rem;
 	}
 
 	#cardtocardtext {
@@ -79,6 +80,29 @@
 
 	.spacer {
 		height: 30px;
+	}
+
+	.homeTeam {
+		display: inline-block;
+		width: 45%;
+	}
+
+	.awayTeam {
+		display: inline-block;
+		float: right;
+	}
+
+	.vsSpacer {
+		display: inline-block;
+	}
+
+	.headerDate {
+		display: inline-block;
+	}
+
+	.headerLocation {
+		display: inline-block;
+		float: right;
 	}
 
 </style>
@@ -99,18 +123,30 @@
 			<div class="miniContainer">
 				<div class="card">
 					<div class="cardHeader">
-						{{match.getDate()}}
+						<div class="headerDate">
+							{{match.getDate()}}
+						</div>
+						<div class="headerLocation">
+							{{match.getLocation()}}
+						</div>
 					</div>
 					<div class="cardContent">
 						<div class="homeTeam">
 							{{match.getHome().getName()}}				
 						</div>
+						<div class="vsSpacer">
+							vs.
+						</div>
+						<div class="awayTeam">
+							{{match.getAway().getName()}}
+						</div>
+					</div>
 				</div>
-			</div>
 
-		</div> 
+			</div> 
 
 		
+		</div>
 	</div>
 
 	<div class="footer">
