@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { League } from '../league'
 import { LEAGUES } from '../ex_league' 
+import { PLAYERS } from '../ex_players' 
 import { TEAMS } from '../ex_teams' 
 import { Team } from '../team' 
+import { Player } from '../player' 
 import { LeagueService } from '../league.service'
 import { TeamService } from '../team.service'
 
@@ -16,6 +18,7 @@ export class UserInfoComponent implements OnInit {
   league: League = LEAGUES[0];
   teams: Team[] = TEAMS;
 	now: Date = new Date();
+  me: Player = PLAYERS[2];
 
   regOpen() {
   	// this.now.setDate(this.now.getDate() - 1); // for testing
@@ -28,11 +31,23 @@ export class UserInfoComponent implements OnInit {
   }
 
   teamsExist() {
-  	return false;
+  	return this.teams != [];
   }
 
-  gamesExist() {
-  	return false;
+  joinTeam(t: Team) {
+    console.log("i joined");
+    console.log(t);
+  }
+
+  isOnATeam(){
+    for (let t of this.teams) {
+      if (t.isOnTeam(this.me)) return true;
+    }
+    return false;
+  }
+
+  onThisTeam(t: Team) {
+    return t.isOnTeam(this.me);
   }
 
   constructor(public leagueService: LeagueService,

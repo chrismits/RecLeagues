@@ -24,7 +24,7 @@ export class UserHomeComponent implements OnInit {
   }
 
   ngOnInit() {
-  	//this.leagues = this.leagueService.getLeagues();
+  	this.leagues = this.leagueService.getLeagues();
   }
 
 }

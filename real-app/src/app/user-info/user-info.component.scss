@@ -62,7 +62,7 @@
 	display: inline-block;
 }
 
-.league-but {
+.but {
 	display: inline-block;
 	float: right;
 }
@@ -79,11 +79,24 @@
     transform: translateY(50%);
 }
 
-#date {
-	display: inline-block;
-	float: right;
-	padding-right: 10px;
-	top: 50%;
-    -ms-transform: translateY(50%);
-    transform: translateY(50%);
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.col {
+	float: left;
+	width: 20%;
+}
+
+.overview-box-teams {
+	padding-left: 5%;
+}
+
+.tm-hdr {
+	padding-top: 8px;
+	padding-bottom: 6px;
+	font-weight: bold;
 }

@@ -7,8 +7,8 @@
   <!-- OVERVIEW -->
   <div class="centered">
     <div class="my-row">
-      <div class="header" id="league-overview">League Overview</div> 
-      <button class="league-but" target="_blank" rel="noopener" tabindex="0" routerLink="/create-team" (click)="createTeam()">
+      <div class="header" id="league-name">League Overview</div> 
+      <button class="but" target="_blank" rel="noopener" tabindex="0" routerLink="/create-team" (click)="createTeam()">
         Create New Team </button>
     </div>
 
@@ -46,8 +46,53 @@
 
     <!-- TEAMS -->
     <div class="card-container box">
-      <div class="overview-box"> 
+      <div class="overview-box-teams"> 
         <p *ngIf="!teamsExist()" class="red"> There are currently no teams signed up. </p>
+
+        <!-- ********** HEADER ********** -->
+        <div *ngIf="teamsExist()" class="row tm-hdr">
+          <div class="col col-1">
+            Team Name
+          </div>
+
+          <div class="col col-2">
+            Roster Size
+          </div>
+
+          <div class="col col-3">
+            Status
+          </div>
+
+          <div class="col col-4">
+            Accepting Free Agents
+          </div>
+        </div>
+
+        <!-- ********** REAL TEAMS ********** -->
+        <div *ngFor="let team of teams" class="row">
+          <div class="col col-1" [ngStyle]="{ 'font-weight': (onThisTeam(team)) ? 'bold' : 'normal'}">
+            {{team.getName()}}
+          </div>
+
+          <div class="col col-2">
+            {{team.getSize()}}
+          </div>
+
+          <div class="col col-3">
+            <p *ngIf="team.isApproved()"> Approved </p>
+            <p *ngIf="!team.isApproved()"> Pending </p>
+          </div>
+
+          <div class="col col-4">
+            <p *ngIf="team.isFreeAgents()"> Yes </p>
+            <p *ngIf="!team.isFreeAgents()"> No </p>
+          </div>
+
+          <div class="col col-5">
+            <button type="button" (click)="joinTeam(team)" [disabled]="!team.isFreeAgents() || isOnATeam()"> Join Team </button>
+          </div>
+
+        </div>
       </div>
     </div>
   </div>

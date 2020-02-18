@@ -53,14 +53,13 @@ export class LeagueService {
                             data[l].dates.start_date,
                             data[l].dates.end_date,
                             data[l].matches,
-                            [],
-                            '', 
+                            [], /* time slots come later */
+                            data[l].location, 
                             data[l].league_type, 
                             data[l].competition_level,
                             data[l].free_agents,
                             data[l].team_info.auto_approval,
-                            /* add rules string to db? */
-                            'No rules yet',
+                            data[l].rules,
                             data[l].created);
         /* Done to change object type */
         for (let s of data[l].dates.time_slots) {
