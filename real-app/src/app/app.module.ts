@@ -15,6 +15,7 @@ import { LeagueFormFiveComponent } from './league-form-five/league-form-five.com
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './api.service';
 import { LeagueService } from './league.service';
+import { TeamService } from './team.service';
 import { CalendarComponent } from './calendar/calendar.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { routing } from './app-routing.module';
@@ -30,6 +31,9 @@ import { InfoComponent } from './info/info.component';
 import { InfoEditRulesComponent } from './info-edit-rules/info-edit-rules.component';
 import { LeagueInfoScheduleComponent } from './league-info-schedule/league-info-schedule.component';
 import { LeagueGameScheduleComponent } from './league-game-schedule/league-game-schedule.component';
+import { UserHomeComponent } from './user-home/user-home.component';
+import { UserInfoComponent } from './user-info/user-info.component';
+import { CreateTeamComponent } from './create-team/create-team.component';
 
 
 @NgModule({
@@ -54,6 +58,9 @@ import { LeagueGameScheduleComponent } from './league-game-schedule/league-game-
     InfoEditRulesComponent,
     LeagueInfoScheduleComponent,
     LeagueGameScheduleComponent,
+    UserHomeComponent,
+    UserInfoComponent,
+    CreateTeamComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -66,7 +73,8 @@ import { LeagueGameScheduleComponent } from './league-game-schedule/league-game-
   ],
   providers: [
     ApiService, 
-    LeagueService
+    LeagueService,
+    TeamService,
   ],
   bootstrap: [AppComponent]
 })

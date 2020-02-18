@@ -1,0 +1,16 @@
+<div class="content" role="main">
+
+  <h2 class="title"> {{ title }} </h2>
+  <!-- Launchpad -->
+  <div class="my-row">
+    <div class="header" id="league-name">Leagues</div> 
+  </div>
+  <br>
+  <div class="card-container box">
+  	<p id="season-id"> {{ season }} </p>
+      <div class="league-box" target="_blank" rel="noopener" *ngFor="let league of leagues" (click)="goToLeague(league)" routerLink="/user-info">
+        <p id="sport"> {{league.getSport()}} </p>
+        <p id="date"> {{ league.getReadableStartDate() }} - {{ league.getReadableEndDate() }} </p>
+      </div>
+  </div>
+</div>

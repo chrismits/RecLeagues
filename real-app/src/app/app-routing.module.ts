@@ -1,8 +1,11 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
+import { CreateTeamComponent } from './create-team/create-team.component';
+import { UserHomeComponent } from './user-home/user-home.component';
 import { LeagueComponent } from './league/league.component';
 import { InfoComponent } from './info/info.component';
+import { UserInfoComponent } from './user-info/user-info.component';
 import { InfoEditRulesComponent } from './info-edit-rules/info-edit-rules.component';
 import { LeagueFormOneComponent } from './league-form-one/league-form-one.component';
 import { LeagueFormTwoComponent } from './league-form-two/league-form-two.component';
@@ -19,8 +22,11 @@ import { SettingsEditComponent } from './settings-edit/settings-edit.component';
 
 const routes: Routes = [
 	{ path: 'admin', component: AdminComponent},	
+	{ path: 'create-team', component: CreateTeamComponent},	
+	{ path: 'user-home', component: UserHomeComponent},	
 	{ path: 'leagues', component: LeagueComponent},	
 	{ path: 'info', component: InfoComponent},	
+	{ path: 'user-info', component: UserInfoComponent},	
 	{ path: 'info-edit-rules', component: InfoEditRulesComponent},	
 	{ path: 'leagues-form-one', component: LeagueFormOneComponent},	
 	{ path: 'leagues-form-two', component: LeagueFormTwoComponent},	

@@ -53,4 +53,7 @@ export class ApiService {
     return this.http.put<League>(`${API_URL}/leagues/`, lg, 
                                                       {headers: this.headers});
   }
+
+  /************ PLAYER ****************/ 
+  /* addTeam(t: Team) */  
 }

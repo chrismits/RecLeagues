@@ -1,0 +1,58 @@
+<div class="content" role="main">
+  <div class="my-row">
+    <div class="header" id="league-name">{{sport}}</div> 
+  </div>
+  <br>
+  <div class="card-container box">
+    <p style="padding-left: 20px;padding-top: 20px;"> 
+    Create new team </p>
+    
+    <div class="row">
+
+      <!-- ************* NAME ************** -->
+      <div class="col left-col">
+        <label class="labl" for="name">Team Name</label>
+        <input type="text" class="form-control" id="name" required 
+               [(ngModel)]="team_name" name="name" #name="ngModel"
+               pattern="[a-zA-Z0-9\- ']*"> 
+        <div [hidden]="name.valid || name.pristine" 
+              class="alert alert-danger"> 
+          Please enter a valid name.
+        </div>
+      </div>
+
+      <!-- ************* INVITE ************** -->
+      <div class="col middle-col">
+        <div class="my-row">
+          <label class="labl" for="name">Invite Players</label> 
+          <button type="button" class="but" [disabled]="player.invalid" (click)="addEmail()"> Add </button>
+        </div>
+        <input type="text" class="form-control" id="player" required 
+               [(ngModel)]="player_email" name="player" #player="ngModel"
+               pattern="[a-zA-Z0-9\-]*@tufts.edu"> 
+        <div [hidden]="player.valid || player.pristine" 
+              class="alert alert-danger"> 
+          Please enter a valid Tufts email.
+        </div>
+        <br>
+        <div class="included">
+          <div class="emails" *ngFor="let email of player_emails">
+            <p> {{ email }} 
+            <button type="button" class="but" (click)="removeEmail(email)"> remove </button> </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ************* FREE AGENT ************** -->
+      <div class="col right-col">
+        <label class="labl"> Free Agent Status <br>
+          <input type="checkbox" name="free_agent" 
+            [(ngModel)]="free_agent" value="true">
+        </label> <br> 
+      </div>
+
+    </div>
+    <button type="button" class="btn btn-success next-btn" (click)="onSubmit()" [disabled]="name.invalid" routerLink="/user-info">Create Team</button>
+  </div>
+</div>
