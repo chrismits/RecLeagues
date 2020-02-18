@@ -1,3 +1,0 @@
-#!/bin/bash
-# simple local host on port 8000
-ng serve --open --port 8000
