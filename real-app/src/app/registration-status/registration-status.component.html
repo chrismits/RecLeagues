@@ -1,0 +1,19 @@
+<div class="box">
+	<div class="players bold sep"> Players </div>
+	<div class="status bold sep"> Registration Status </div>
+	<div class="row" *ngFor="let player of players">
+		<div class="players"> 
+			{{player.getFirst()}} {{player.getLast()}}
+		</div>
+		<div class="status"> 
+			{{isRegistered(player)}}
+		</div>
+	</div>
+</div>
+<div class="info">
+	All players must be registered before the registration period
+	ends on <span class="bold"> {{league.getReadableRegEndDate()}}
+	</span>. If not all players
+	are registered, the team will not be able to participate in the 
+	league.
+</div>

@@ -34,6 +34,10 @@ import { LeagueGameScheduleComponent } from './league-game-schedule/league-game-
 import { UserHomeComponent } from './user-home/user-home.component';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { CreateTeamComponent } from './create-team/create-team.component';
+import { RosterComponent } from './roster/roster.component';
+import { TeamHomeComponent } from './team-home/team-home.component';
+import { RankingsComponent } from './rankings/rankings.component';
+import { RegistrationStatusComponent } from './registration-status/registration-status.component';
 
 
 @NgModule({
@@ -61,6 +65,10 @@ import { CreateTeamComponent } from './create-team/create-team.component';
     UserHomeComponent,
     UserInfoComponent,
     CreateTeamComponent,
+    RosterComponent,
+    TeamHomeComponent,
+    RankingsComponent,
+    RegistrationStatusComponent,
   ],
   imports: [
     AppRoutingModule,

@@ -62,4 +62,8 @@ export class UserInfoComponent implements OnInit {
   	}
   }
 
+  setTeam(t: Team){
+    this.teamService.setTeam(t);
+  }
+
 }

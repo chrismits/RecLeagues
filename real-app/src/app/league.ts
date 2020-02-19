@@ -2,15 +2,19 @@ import { Match } from './match'
 import { Team } from './team'
 
 export class TimeSlot {
-    day: string;
+    day:    string;
     length: number;
     buffer: number;
-    start: string;
-    end: string;
+    start:  string;
+    end:    string;
 
     constructor() {}
 
-    getDay() { return this.day; }
+    getDay()    { return this.day; }
+    getLength() { return this.length; }
+    getBuffer() { return this.buffer; }
+    getStart()  { return this.start; }
+    getEnd()    { return this.end; }
     getDayNum() { 
         let days = ['Sunday', 'Monday', 'Tuesday',
                     'Wednesday', 'Thursday', 'Friday',
@@ -20,21 +24,17 @@ export class TimeSlot {
         }
         return -1; 
     }
-    getLength() { return this.length; }
-    getBuffer() { return this.buffer; }
-    getStart() { return this.start; }
-    getEnd() { return this.end; }
 
-    setDay(s: string) { this.day = s; }
+    setDay(s: string)    { this.day = s; }
     setLength(n: number) { this.length = n; }
     setBuffer(n: number) { this.buffer = n; }
-    setStart(s: string) { this.start = s; }
-    setEnd(s: string) { this.end = s; }
+    setStart(s: string)  { this.start = s; }
+    setEnd(s: string)    { this.end = s; }
 
 }
 
 export class League {
-    _id:       number;
+    _id:               number;
 
     name:              string;
     is_pickup:         boolean;
@@ -59,35 +59,6 @@ export class League {
     auto_approval:     boolean;
     rules:             string;
     created:           Date;
-
-    // constructor (name: string, is_pickup: boolean, sport: string, 
-    //              season: string, reg_start: Date, reg_end: Date, 
-    //              start: Date, end: Date, location: string, type: string,
-    //              level: string) {
-    //     this._id                = 1; // will change for db
-    //     this.name               = name;
-    //     this.is_pickup          = is_pickup;
-    //     this.sport              = sport;
-    //     this.season             = season;
-    //     this.reg_start          = reg_start;
-    //     this.reg_end            = reg_end;
-    //     this.num_teams          = 0;
-    //     this.teams              = [];
-    //     this.max_num_teams      = 10; // change to global based on Matt
-    //     this.min_team_size      = 15; // change to global
-    //     this.players_on         = 5; // change to global
-    //     this.start_date         = start;
-    //     this.end_date           = end;
-    //     this.schedule           = [];
-    //     this.time_slots         = [];
-    //     this.league_type        = type;
-    //     this.competition_level  = level;
-    //     this.location           = location;
-    //     this.free_agents        = false;
-    //     this.auto_approval      = false;
-    //     this.rules              = 'No rules made yet';
-    //     this.created            = new Date();
-    // }
 
     constructor(id: number, name: string, is_pickup: boolean,
                     sport: string, season: string, reg_s: Date,

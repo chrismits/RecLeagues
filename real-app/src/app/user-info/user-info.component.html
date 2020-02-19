@@ -70,7 +70,7 @@
 
         <!-- ********** REAL TEAMS ********** -->
         <div *ngFor="let team of teams" class="row">
-          <div class="col col-1" [ngStyle]="{ 'font-weight': (onThisTeam(team)) ? 'bold' : 'normal'}">
+          <div class="col col-1" [ngStyle]="{ 'font-weight': (onThisTeam(team)) ? 'bold' : 'normal'}" (click)="setTeam(team)" routerLink="/team-home">
             {{team.getName()}}
           </div>
 

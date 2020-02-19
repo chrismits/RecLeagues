@@ -1,0 +1,35 @@
+.bold {
+	font-weight: bold;
+}
+
+.players {
+	display: inline-block;
+	margin-left: 5%;
+}
+
+.row + .row {
+	margin-top: 15px;
+}
+
+.status {
+	display: inline-block;
+	float: right;
+	margin-right: 5%;
+}
+
+.box {
+	background-color: #adaaaa;
+	width: 90%;
+	border-radius: 5px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.info {
+	margin-top: 20px;
+	width: 90%;
+}
+
+.sep {
+	padding-bottom: 20px;
+}

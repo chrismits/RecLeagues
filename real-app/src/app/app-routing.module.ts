@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
 import { CreateTeamComponent } from './create-team/create-team.component';
 import { UserHomeComponent } from './user-home/user-home.component';
+import { TeamHomeComponent } from './team-home/team-home.component';
 import { LeagueComponent } from './league/league.component';
 import { InfoComponent } from './info/info.component';
 import { UserInfoComponent } from './user-info/user-info.component';
@@ -24,6 +25,7 @@ const routes: Routes = [
 	{ path: 'admin', component: AdminComponent},	
 	{ path: 'create-team', component: CreateTeamComponent},	
 	{ path: 'user-home', component: UserHomeComponent},	
+	{ path: 'team-home', component: TeamHomeComponent},	
 	{ path: 'leagues', component: LeagueComponent},	
 	{ path: 'info', component: InfoComponent},	
 	{ path: 'user-info', component: UserInfoComponent},	

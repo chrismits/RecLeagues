@@ -1,0 +1,46 @@
+<div class="content" role="main">
+  <h3 style="font-weight: bold"> {{team_name}} </h3>
+  <input type="hidden" #selection>
+  <div class="display">
+    <div class="sidebar">
+      <button class="nav" (click)="selection.value = 'game'"> Game Schedule </button> <br> <br> 
+      <button class="nav" (click)="selection.value = 'rankings'"> League Rankings </button> <br> <br> 
+      <button class="nav" (click)="selection.value = 'roster'"> Roster </button> <br> <br> 
+      <button class="nav" (click)="selection.value = 'reg'"> Team Registration </button>
+    </div>
+
+    <div class="routed">
+      <div [ngSwitch]="selection.value">
+        <div *ngSwitchDefault></div> 
+        <div *ngSwitchCase="'game'">
+          <div class="header"> Game Schedule (Incomplete)</div>
+          <div class="outlet">
+            <app-rankings></app-rankings>
+          </div>
+        </div>
+
+        <div *ngSwitchCase="'rankings'">
+          <div class="header"> League Rankings </div>
+          <div class="outlet">
+            <app-rankings></app-rankings>
+          </div>
+        </div>
+
+        <div *ngSwitchCase="'roster'">
+          <div class="header"> Roster </div>
+          <div class="outlet">
+            <app-roster></app-roster>
+          </div>
+        </div>
+
+        <div *ngSwitchCase="'reg'">
+          <div class="header"> Team Registration </div>
+          <div class="outlet">
+            <app-registration-status></app-registration-status>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
