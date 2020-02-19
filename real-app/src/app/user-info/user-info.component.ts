@@ -59,6 +59,7 @@ export class UserInfoComponent implements OnInit {
     }
     if (this.teamService.getTeam() != undefined) {
   		console.log(this.teamService.getTeam());
+      this.teams.push(this.teamService.getTeam());
   	}
   }
 
