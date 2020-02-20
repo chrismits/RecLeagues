@@ -10,11 +10,19 @@ Notes:
     - _id: ObjectId
     - name: String
     - size: Number
+    - approved: Boolean
+    - free_agents: Boolean ** Might not be needed -> available in league ref
     - captain: ObjectId ('Player' ref)
     - players: Array ('Player' ref)
     - league: ObjectId ('League' ref)
+    - wins: Number
+    - ties: Number
+    - losses: Number
     - created: Date
 */
+
+var mongoose = require('mongoose');
+
 var teamSchema = new mongoose.Schema({
     _id: {
         type: mongoose.Schema.Types.ObjectId,
@@ -48,6 +56,18 @@ var teamSchema = new mongoose.Schema({
     league: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'League'
+    },
+    wins: {
+        type: Number,
+        default: 0
+    },
+    ties: {
+        type: Number,
+        default: 0,
+    },
+    losses: {
+        type: Number,
+        default: 0
     },
     created: {
         type: Date, 

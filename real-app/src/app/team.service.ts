@@ -17,8 +17,15 @@ export class TeamService {
 
   }
 
+  // Not yet tested
   storeTeam() {
-
+    console.log("F -> F: store team");
+    
+    this.apiService.createTeam(this.model).subscribe((data) => {
+      console.log(data)
+    }, (error) => {
+      console.log(error)
+    })
   }
 
   updateTeam() {

@@ -4,7 +4,8 @@ import { map } from 'rxjs/operators'
 import { Observable } from 'rxjs'
 
 import { Player } from './player';
-import { League } from './league'
+import { League } from './league';
+import { Team } from './team';
 import {environment } from '../environments/environment'
 const API_URL = environment.apiUrl
 
@@ -50,10 +51,22 @@ export class ApiService {
   updateLeague(lg : League) : Observable<League> {
     console.log("APISERVICE: Updating league");
 
-    return this.http.put<League>(`${API_URL}/leagues/`, lg, 
+    return this.http.put<League>(`${API_URL}/leagues`, lg, 
                                                       {headers: this.headers});
   }
 
-  /************ PLAYER ****************/ 
-  /* addTeam(t: Team) */  
+  /************ TEAM ****************/ 
+
+
+  // Not yet tested
+  createTeam(t: Team): Observable<Team> {
+    console.log("F -> B: Create team");
+
+    return this.http.post<Team>(`${API_URL}/teams`, t, 
+                                                    {headers: this.headers})
+  }
+  /* addTeam(t: Team) */ 
+
+
+
 }

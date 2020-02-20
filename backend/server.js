@@ -78,8 +78,27 @@ app.get('/api/players', function(req, res) {
 });
 
 /****************** Team API *******************/
+var Team = require('./models/team-model.js');
 
 // createTeam
+app.post('/api/teams/', function(req, res) {
+    //check if team name already in use by league.
+    console.log("B : Creating team")
+
+    var curr_team = new Team();
+
+    curr_team.name = req.body.name;
+    curr_team.size = req.body.size;
+    curr_team.captain = req.body.captain; // ideally, need id only
+    curr_team.players.push(curr_team.captain); // ideally, need id only
+
+    curr_team.save(function (err, team) {
+        if (err) {
+            res.send(err);
+        }
+        res.json(team);
+    })
+});
 
 // addPlayertoTeam
 
