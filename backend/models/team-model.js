@@ -15,9 +15,10 @@ Notes:
     - captain: ObjectId ('Player' ref)
     - players: Array ('Player' ref)
     - league: ObjectId ('League' ref)
-    - wins: Number
-    - ties: Number
-    - losses: Number
+    - record
+        - wins: Number
+        - ties: Number
+        - losses: Number
     - created: Date
 */
 
@@ -57,17 +58,19 @@ var teamSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'League'
     },
-    wins: {
-        type: Number,
-        default: 0
-    },
-    ties: {
-        type: Number,
-        default: 0,
-    },
-    losses: {
-        type: Number,
-        default: 0
+    record: {
+        wins: {
+            type: Number,
+            default: 0
+        },
+        ties: {
+            type: Number,
+            default: 0,
+        },
+        losses: {
+            type: Number,
+            default: 0
+        }
     },
     created: {
         type: Date, 

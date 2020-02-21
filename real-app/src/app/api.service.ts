@@ -49,7 +49,7 @@ export class ApiService {
   }
 
   updateLeague(lg : League) : Observable<League> {
-    console.log("APISERVICE: Updating league");
+    console.log("F -> B: Updating league");
 
     return this.http.put<League>(`${API_URL}/leagues`, lg, 
                                                       {headers: this.headers});
@@ -65,8 +65,12 @@ export class ApiService {
     return this.http.post<Team>(`${API_URL}/teams`, t, 
                                                     {headers: this.headers})
   }
-  /* addTeam(t: Team) */ 
 
+  updateTeam(t: Team): Observable<Team> {
+    console.log("F -> B: Updating Team")
 
+    return this.http.put<Team>(`${API_URL}/teams`, t,
+                                                  {headers: this.headers})
+  }
 
 }

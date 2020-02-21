@@ -9,6 +9,11 @@ app.use(cors())
 app.use(bodyparser.urlencoded({extended: false}))
 app.use(bodyparser.json())
 
+var League = require('./models/league-model.js')
+var Player = require('./models/player-model.js')
+var Team = require('./models/team-model.js');
+
+
 /************** Database Setup *******************/
 
 mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true, 
@@ -26,9 +31,7 @@ var db = mongoose.connection
 console.log("DB Connected")
 
 /****************** Player API *******************/
-var Player = require('./models/player-model.js')
-
-// 
+ 
 /**** addPlayer
 TESTED
 */
@@ -55,7 +58,6 @@ app.post('/api/players', function(req, res) {
 });
 
 /**** deletePlayer 
-- NOT TESTED
 ****/
 app.delete('/api/players/:player_id', function(req, res) {
     Player.remove({_id: req.params.player_id}, function(err, player) {
@@ -77,10 +79,19 @@ app.get('/api/players', function(req, res) {
     });
 });
 
-/****************** Team API *******************/
-var Team = require('./models/team-model.js');
 
-// createTeam
+
+
+
+
+/****************** Team API *******************/
+
+
+/* createTeam
+    - Add league id to team
+    - Check if team name already in use at that league
+    - Check if captain id exists in db if not create new Player.
+*/
 app.post('/api/teams/', function(req, res) {
     //check if team name already in use by league.
     console.log("B : Creating team")
@@ -89,6 +100,9 @@ app.post('/api/teams/', function(req, res) {
 
     curr_team.name = req.body.name;
     curr_team.size = req.body.size;
+
+    // check if captain already exists in db
+    //Player.count({_id: req.body.captain.})
     curr_team.captain = req.body.captain; // ideally, need id only
     curr_team.players.push(curr_team.captain); // ideally, need id only
 
@@ -96,24 +110,40 @@ app.post('/api/teams/', function(req, res) {
         if (err) {
             res.send(err);
         }
-        res.json(team);
+        res.json(team._id);
     })
 });
 
-// addPlayertoTeam
+// update Team
+app.put('api/teams/', function(req, res) {
+    console.log("B : Updating team")
 
-// getTeams
+    // approval change
 
-// getTeambyName
+    // players change
 
-// getTeambyPlayer
+    // record change
 
-// getTeambyCaptain
+})
+
+// get Teams by league id
+app.get('api/teams/', function(req, res) {
+    console.log("B : Getting team");
+    
+    Team.find({"league": {$eq: req.body._id}}, function(err, leagues) {
+        if (err) {
+            console.log(err + " Could not find teams for specified league id")
+        }
+
+        res.json(leagues);
+    }) // assumes that team has league ref. 
+})
+
+
+
+
 
 /****************** League API *******************/
-
-var League = require('./models/league-model.js')
-
 // joinLeague
 
 // addMatchesToLeague
@@ -177,15 +207,17 @@ app.post('/api/leagues/', function(req, res) {
 
 /* getLeagues
 - Returns all league documents in db
-{"dates": {"end_date": {$gte: curr_date}}}
 */
 app.get('/api/leagues/', function(req, res) {
     console.log("Backend: Get Leagues")
     var curr_date = new Date();
-    // console.log(curr_date)
-    League.find(function(err, leagues) {
-        if (err)
+    curr_date.setHours(0, 0, 0, 0);
+
+    // Find all leagues that are currently active.
+    League.find({"dates.end_date": {$gt: curr_date}}, function(err, leagues) {
+        if (err){
             res.send(err)
+        }
 
         res.json(leagues) // return all leagues in JSON format
     });

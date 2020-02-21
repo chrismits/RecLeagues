@@ -20,7 +20,7 @@ export class TeamService {
   // Not yet tested
   storeTeam() {
     console.log("F -> F: store team");
-    
+
     this.apiService.createTeam(this.model).subscribe((data) => {
       console.log(data)
     }, (error) => {
@@ -29,6 +29,15 @@ export class TeamService {
   }
 
   updateTeam() {
+    // Wins or players.
+    console.log("F -> F: update team");
+
+    this.apiService.updateTeam(this.model).subscribe((data) => {
+      console.log(data)
+    }, (error) => {
+      console.log(error)
+    })
+
 
   }
 }
