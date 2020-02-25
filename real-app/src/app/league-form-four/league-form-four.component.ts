@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { League, TimeSlot } from '../league'  
-import { LeagueService } from '../league.service'  
+import { League, TimeSlot } from '../league';
+import { LeagueService } from '../league.service';
 
 @Component({
   selector: 'app-league-form-four',
@@ -10,26 +10,26 @@ import { LeagueService } from '../league.service'
 export class LeagueFormFourComponent implements OnInit {
 
   days: string[] = ['Sunday', 'Monday', 'Tuesday',
-  					'Wednesday', 'Thursday', 'Friday',
-  					'Saturday'];
+                    'Wednesday', 'Thursday', 'Friday',
+                    'Saturday'];
 
   model: TimeSlot = new TimeSlot();
 
-  league_model: League;
+  leagueModel: League;
   submitted = false;
 
   slots: TimeSlot[] = [];
 
-  onSubmit() { 
-  	this.submitted = true; 
-    this.league_model.addTimeSlots(this.slots);
+  onSubmit() {
+    this.submitted = true;
+    this.leagueModel.addTimeSlots(this.slots);
     /* redundant */
-    // this.leagueService.getLeague().deepCopyLeague(this.league_model);
+    // this.leagueService.getLeague().deepCopyLeague(this.leagueModel);
 
   }
 
   addSlot() {
-    let tempSlot = new TimeSlot();
+    const tempSlot = new TimeSlot();
     tempSlot.setDay(this.model.getDay());
     tempSlot.setLength(this.model.getLength());
     tempSlot.setBuffer(this.model.getBuffer());
@@ -39,14 +39,14 @@ export class LeagueFormFourComponent implements OnInit {
   }
 
   daysAdded() {
-    if (this.slots == []) return false;
-    else return true;
+    if (this.slots === []) { return false; }
+    return true;
   }
 
   constructor(public leagueService: LeagueService) { }
 
   ngOnInit() {
-    this.league_model = this.leagueService.getLeague();
+    this.leagueModel = this.leagueService.getLeague();
   }
 
 }

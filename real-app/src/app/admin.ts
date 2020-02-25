@@ -1,17 +1,17 @@
-import { League } from './league'
+import { League } from './league';
 
 
-var ADMIN_PRIV = 1;
-var OFFICIAL_PRIV = 0;
+const ADMIN_PRIV = 1;
+const OFFICIAL_PRIV = 0;
 
 
 class LeaguePrivs {
     league: League;
-    priv:   number;
+    priv: number;
 
-    constructor (league: League, priv: number) {
+    constructor(league: League, priv: number) {
         this.league = league;
-        this.priv   = priv;
+        this.priv = priv;
     }
 
     getLeague() { return this.league; }
@@ -24,13 +24,13 @@ class LeaguePrivs {
 }
 
 export class Admin {
-    private _id: number;
 
+    id: number;
     leagues: LeaguePrivs[];
     created: Date;
 
-    constructor () {
-        this._id     = 1; // will change for db
+    constructor() {
+        this.id      = 1; // will change for db
         this.leagues = [];
         this.created = new Date();
     }
@@ -40,30 +40,30 @@ export class Admin {
     getLeaguesAndPrivs() { return this.leagues; }
     getLeagues() { return this.leagues.map(lp => lp.getLeague()); }
     getPrivOfLeague(l: League) {
-        let privs = this.leagues.filter(lp => lp.getLeague() == l);
+        const privs = this.leagues.filter(lp => lp.getLeague() === l);
         return privs[0].getPriv();
     }
 
     isLeagueAdmin(l: League) {
-        let leagues = this.leagues.filter(lp => lp.getLeague() == l);
-        if (leagues == []) return true;
-        else return false;
+        const leagues = this.leagues.filter(lp => lp.getLeague() === l);
+        if (leagues === []) { return true; }
+        return false;
     }
 
     addLeagueWithPriv(l: League, priv: number) {
         if (!this.isLeagueAdmin(l)) {
-            let newLeague = new LeaguePrivs(l, priv);
+            const newLeague = new LeaguePrivs(l, priv);
             this.leagues.push(newLeague);
         }
     }
 
     setPrivToLeague(l: League, p: number) {
-        this.leagues.filter(lp => lp.getLeague() == l).forEach(lp => lp.setPriv(p)); 
+        this.leagues.filter(lp => lp.getLeague() === l).forEach(lp => lp.setPriv(p));
     }
 
     removeLeague(l: League) {
-        this.leagues = this.leagues.filter( 
-            lp => lp.getLeague() != l);
+        this.leagues = this.leagues.filter(
+            lp => lp.getLeague() !== l);
 
     }
 }
