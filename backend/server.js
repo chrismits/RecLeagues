@@ -131,7 +131,8 @@ function saveTeam(req, res) {
                             wins: 0,
                             ties: 0,
                             losses: 0
-                        }
+                        },
+                        approved: req.body.approved
                     })        
                     curr_team.save(function (err, team) {
                         if (err) {

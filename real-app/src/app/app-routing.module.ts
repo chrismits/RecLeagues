@@ -22,30 +22,30 @@ import { SettingsComponent } from './settings/settings.component';
 import { SettingsEditComponent } from './settings-edit/settings-edit.component';
 
 const routes: Routes = [
-	{ path: 'admin', component: AdminComponent},	
-	{ path: 'create-team', component: CreateTeamComponent},	
-	{ path: 'user-home', component: UserHomeComponent},	
-	{ path: 'team-home', component: TeamHomeComponent},	
-	{ path: 'leagues', component: LeagueComponent},	
-	{ path: 'info', component: InfoComponent},	
-	{ path: 'user-info', component: UserInfoComponent},	
-	{ path: 'info-edit-rules', component: InfoEditRulesComponent},	
-	{ path: 'leagues-form-one', component: LeagueFormOneComponent},	
-	{ path: 'leagues-form-two', component: LeagueFormTwoComponent},	
-	{ path: 'leagues-form-three', component: LeagueFormThreeComponent},	
-	{ path: 'leagues-form-four', component: LeagueFormFourComponent},	
-	{ path: 'leagues-form-five', component: LeagueFormFiveComponent},
-	{ path: 'league-info', component: LeagueInfoComponent},	
-	{ path: 'profile', component: ProfileComponent},	
-	{ path: 'profile-edit', component: ProfileEditComponent},	
-	{ path: 'settings', component: SettingsComponent},	
-	{ path: 'settings-edit', component: SettingsEditComponent},
-	{ path: 'league-info-schedule', component: LeagueInfoScheduleComponent},
-	{ path: 'league-game-schedule', component: LeagueGameScheduleComponent},	
+    { path: 'admin', component: AdminComponent},
+    { path: 'create-team', component: CreateTeamComponent},
+    { path: 'user-home', component: UserHomeComponent},
+    { path: 'team-home', component: TeamHomeComponent},
+    { path: 'leagues', component: LeagueComponent},
+    { path: 'info', component: InfoComponent},
+    { path: 'user-info', component: UserInfoComponent},
+    { path: 'info-edit-rules', component: InfoEditRulesComponent},
+    { path: 'leagues-form-one', component: LeagueFormOneComponent},
+    { path: 'leagues-form-two', component: LeagueFormTwoComponent},
+    { path: 'leagues-form-three', component: LeagueFormThreeComponent},
+    { path: 'leagues-form-four', component: LeagueFormFourComponent},
+    { path: 'leagues-form-five', component: LeagueFormFiveComponent},
+    { path: 'league-info', component: LeagueInfoComponent},
+    { path: 'profile', component: ProfileComponent},
+    { path: 'profile-edit', component: ProfileEditComponent},
+    { path: 'settings', component: SettingsComponent},
+    { path: 'settings-edit', component: SettingsEditComponent},
+    { path: 'league-info-schedule', component: LeagueInfoScheduleComponent},
+    { path: 'league-game-schedule', component: LeagueGameScheduleComponent},
 ];
-export const routing: ModuleWithProviders =  
-    RouterModule.forRoot(routes); 
-    
+export const routing: ModuleWithProviders =
+    RouterModule.forRoot(routes);
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

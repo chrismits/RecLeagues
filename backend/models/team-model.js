@@ -11,7 +11,6 @@ Notes:
     - name: String
     - size: Number
     - approved: Boolean
-    - free_agents: Boolean ** Might not be needed -> available in league ref
     - captain: ObjectId ('Player' ref)
     - players: Array ('Player' ref)
     - league: ObjectId ('League' ref)
@@ -57,6 +56,10 @@ var teamSchema = new mongoose.Schema({
     league: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'League'
+    },
+    approved: {
+        type: Boolean,
+        default: false
     },
     record: {
         wins: {
