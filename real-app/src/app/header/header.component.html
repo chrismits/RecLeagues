@@ -18,6 +18,12 @@
 .my-nav {
 	color: white;
 	margin-left: 200px;
+  display: inline-block;
+  height: 100%;
+}
+
+.profile {
+  height: 50%;
 }
 
 </style>
@@ -27,8 +33,7 @@
   <a id="logo" routerLink="/">RecLeagues</a>
   <a class="my-nav" routerLink="/admin">Admin</a>
   <a class="my-nav" routerLink="/user-home">User</a>
-  <!-- <a class="my-nav" routerLink="/info">Info example</a> -->
-  <!-- <a class="my-nav" routerLink="/leagues">Leagues</a> -->
-  <a class="my-nav" routerLink="/profile">Profile</a>
-  <a class="my-nav" routerLink="/settings">Settings</a>
+  <a class="my-nav" routerLink="/settings">
+    <img src="../../assets/img/user_icon.png" class="profile">
+  </a>
 </div>
