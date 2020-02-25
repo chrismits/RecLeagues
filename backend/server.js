@@ -30,6 +30,12 @@ mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true,
 var db = mongoose.connection
 console.log("DB Connected")
 
+
+
+/*****************************************************************************/
+
+
+
 /****************** Player API *******************/
  
 /**** addPlayer
@@ -79,44 +85,95 @@ app.get('/api/players', function(req, res) {
     });
 });
 
-
+/*****************************************************************************/
 
 
 
 
 /****************** Team API *******************/
-
-
 /* createTeam
-    - Add league id to team
-    - Check if team name already in use at that league
-    - Check if captain id exists in db if not create new Player.
+    Note: * Assumes that req.body is a Team frontend object.
+          * req.body has a league field that is a League db ObjectId.
+
+           - Checks if league exists
+           - Checks if captain exists
+           - Checks if team name is unique in league
+         If all of the above pass, returns the id of the newly created team
+         Otherwise returns an appropriate error message (Status Code: 400)
+
 */
+
+//helper function for createTeam
+function saveTeam(req, res) {
+    //check if captain exists
+    Player.findById(req.body.captain, function(err, pl) {
+        if (err) {
+            return handleError("Error: Captain does not exist", null, res)
+        }
+        else {
+            Team.find({league: req.body.league}).select('name').exec(function(err, teams) {
+                if (err) {
+                    return handleError("Error: League not found", null, res)
+                }
+                else {
+                    for (var i = 0; i < teams.length; i++) {
+                        if (teams[i].name == req.body.name) {
+                            return handleError("Error: Team name already exists in league", null, res)
+                        }
+                    }
+                    var curr_team = new Team({
+                        name: req.body.name,
+                        size: req.body.size,
+                        captain: req.body.captain,
+                        players: [req.body.captain],
+                        league: req.body.league,
+                        record: {
+                            wins: 0,
+                            ties: 0,
+                            losses: 0
+                        }
+                    })        
+                    curr_team.save(function (err, team) {
+                        if (err) {
+                            return handleError("Error: Team could not be saved", null, res)
+                        }
+                        else {
+                            return handleError(null, team._id, res)
+                        }
+                    })
+                }
+            })
+        }
+    })
+}
+
+//helper func
+function handleError(e, obj, res) {
+    if (e) {
+        res.status(400).json(e)
+    }
+    else {
+        res.status(200).json(obj._id)
+    }
+}
+
 app.post('/api/teams/', function(req, res) {
-    //check if team name already in use by league.
     console.log("B : Creating team")
 
-    var curr_team = new Team();
-
-    curr_team.name = req.body.name;
-    curr_team.size = req.body.size;
-
-    // check if captain already exists in db
-    //Player.count({_id: req.body.captain.})
-    curr_team.captain = req.body.captain; // ideally, need id only
-    curr_team.players.push(curr_team.captain); // ideally, need id only
-
-    curr_team.save(function (err, team) {
-        if (err) {
-            res.send(err);
+    League.findById(req.body.league, function(err, lg) {
+        if (err || !lg) {
+            return handleError("Error: League does not exist", null, res)
         }
-        res.json(team._id);
+        else {
+            return saveTeam(req, res)
+        }
     })
 });
 
-// update Team
+
+// update Team: 
 app.put('api/teams/', function(req, res) {
-    console.log("B : Updating team")
+    console.log("B : Updating team NOT WORKING YET")
 
     // approval change
 
@@ -138,6 +195,15 @@ app.get('api/teams/', function(req, res) {
         res.json(leagues);
     }) // assumes that team has league ref. 
 })
+
+
+
+
+
+
+/*****************************************************************************/
+
+
 
 
 
@@ -235,11 +301,16 @@ app.put('/api/leagues/', function(req, res) {
     });
 });
 
+
+/*****************************************************************************/
+
+
+
+
 /****************** Match API *******************/
 
 
 /****************** Other API *******************/
-
 
 
 /***************** Server Setup ******************/
