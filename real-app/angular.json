@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "poc-app": {
+    "real-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/poc-app",
+            "outputPath": "dist/real-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -68,18 +68,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "poc-app:build"
+            "browserTarget": "real-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "poc-app:build:production"
+              "browserTarget": "real-app:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "poc-app:build"
+            "browserTarget": "real-app:build"
           }
         },
         "test": {
@@ -117,16 +117,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "poc-app:serve"
+            "devServerTarget": "real-app:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "poc-app:serve:production"
+              "devServerTarget": "real-app:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "poc-app"
+  "defaultProject": "real-app"
 }

@@ -13,7 +13,7 @@
       <div class="col left-col">
         <label class="labl" for="name">Team Name</label>
         <input type="text" class="form-control" id="name" required 
-               [(ngModel)]="team_name" name="name" #name="ngModel"
+               [(ngModel)]="teamName" name="name" #name="ngModel"
                pattern="[a-zA-Z0-9\- ']*"> 
         <div [hidden]="name.valid || name.pristine" 
               class="alert alert-danger"> 
@@ -28,7 +28,7 @@
           <button type="button" class="but" [disabled]="player.invalid" (click)="addEmail()"> Add </button>
         </div>
         <input type="text" class="form-control" id="player" required 
-               [(ngModel)]="player_email" name="player" #player="ngModel"
+               [(ngModel)]="playerEmail" name="player" #player="ngModel"
                pattern="[a-zA-Z0-9\-]*@tufts.edu"> 
         <div [hidden]="player.valid || player.pristine" 
               class="alert alert-danger"> 
@@ -48,7 +48,7 @@
       <div class="col right-col">
         <label class="labl"> Free Agent Status <br>
           <input type="checkbox" name="free_agent" 
-            [(ngModel)]="free_agent" value="true">
+            [(ngModel)]="freeAgent" value="true">
         </label> <br> 
       </div>
 

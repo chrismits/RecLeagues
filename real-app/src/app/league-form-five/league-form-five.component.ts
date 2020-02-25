@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { League, TimeSlot } from '../league'
-import { LeagueService } from '../league.service'
+import { League, TimeSlot } from '../league';
+import { LeagueService } from '../league.service';
 
 @Component({
   selector: 'app-league-form-five',
@@ -11,8 +11,8 @@ export class LeagueFormFiveComponent implements OnInit {
 
   constructor(public leagueService: LeagueService) { }
 
-  auto_approval: string = "not";
-  free_agents_are: string = "not allowed";
+  autoApproval = 'not';
+  freeAgentsAre = 'not allowed';
 
   model: League;
   leagues: League[] = [this.leagueService.getLeague()];
@@ -26,11 +26,11 @@ export class LeagueFormFiveComponent implements OnInit {
 
   ngOnInit() {
     this.model = this.leagueService.getLeague();
-    if(this.leagueService.getLeague().isAutoApproval()) {
-      this.auto_approval = "";
+    if (this.leagueService.getLeague().isAutoApproval()) {
+      this.autoApproval = '';
     }
-    if(this.leagueService.getLeague().isFreeAgents()) {
-      this.free_agents_are = "allowed";
+    if (this.leagueService.getLeague().isFreeAgents()) {
+      this.freeAgentsAre = 'allowed';
     }
 
     console.log(this.model.getTimeSlots());

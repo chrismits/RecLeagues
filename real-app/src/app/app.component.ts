@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LeagueService } from './league.service'
+import { LeagueService } from './league.service';
 
 @Component({
   selector: 'app-root',

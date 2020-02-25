@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { League } from '../league'
-import { LEAGUES } from '../ex_league' 
-import { LeagueService } from '../league.service'
+import { League } from '../league';
+import { LEAGUES } from '../ex_league';
+import { LeagueService } from '../league.service';
 
 @Component({
   selector: 'app-info',
@@ -10,13 +10,13 @@ import { LeagueService } from '../league.service'
 })
 export class InfoComponent implements OnInit {
 
-	league: League = LEAGUES[0];
-	now: Date = new Date();
+  league: League = LEAGUES[0];
+  now: Date = new Date();
 
   regOpen() {
-  	// this.now.setDate(this.now.getDate() - 1); // for testing
-  	return this.league.getRegStart() < this.now && 
-  		   this.league.getRegEnd() > this.now;
+    // this.now.setDate(this.now.getDate() - 1); // for testing
+    return this.league.getRegStart() < this.now &&
+           this.league.getRegEnd() > this.now;
   }
 
   setLeague() {
@@ -24,21 +24,19 @@ export class InfoComponent implements OnInit {
   }
 
   teamsExist() {
-  	return false;
+    return false;
   }
 
   gamesExist() {
-  	return false;
+    return false;
   }
-
-
 
   constructor(public leagueService: LeagueService) { }
 
   ngOnInit() {
-  	if (this.leagueService.getLeague() != undefined) {
-  		this.league = this.leagueService.getLeague();
-  	}
+    if (this.leagueService.getLeague() !== undefined) {
+      this.league = this.leagueService.getLeague();
+    }
   }
 
 }
