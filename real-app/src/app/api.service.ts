@@ -19,14 +19,14 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   /************ PLAYER ****************/ 
+
   getAllPlayers() {
-    console.log("Sending request to backend to get player")
+    console.log("F -> B: Get all players")
     return this.http.get(`${API_URL}/players`);
   }
 
   addPlayer(pl : Player): Observable<Player> {
-    //let headers = new HttpHeaders({'Content-Type': 'application/json'})
-    console.log("Sending request to backend to add player")
+    console.log("F -> B: Add Player")
 
     return this.http.post<Player>(`${API_URL}/players`, pl, 
                                               {headers: this.headers})
@@ -35,7 +35,7 @@ export class ApiService {
 
   /******** LEAGUE ********/
   createLeague(lg : League) : Observable<League> {
-    console.log("Sending request to backend to create league")
+    console.log("F -> B: Creating League")
     console.log(`${API_URL}/leagues`)
     console.log(lg)
     return this.http.post<League>(`${API_URL}/leagues`, lg, 
@@ -43,7 +43,7 @@ export class ApiService {
   }
 
   getAllLeagues() {
-    console.log("Sending backend req");
+    console.log("F -> B: Get All Leagues");
     // return this.http.get(`${API_URL}/leagues`).map((res: Response) => res.json());
     return this.http.get(`${API_URL}/leagues`);
   }

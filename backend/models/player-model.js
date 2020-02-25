@@ -15,7 +15,7 @@ require('mongoose-type-email');
     - cell: String
     - email: Email
     - signedWaiver: Boolean
-    - team: ObjectId ('Team' reference)
+    - team: ObjectId ('Team' reference) -> Decided to remove this
     - created: Date
 */
 var playerSchema = new mongoose.Schema({
@@ -51,11 +51,6 @@ var playerSchema = new mongoose.Schema({
     signedWaiver: {
         type: Boolean,
         default: false
-    },
-    team: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Team',
-        default: undefined
     },
     created: {
         type: Date, 

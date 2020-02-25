@@ -35,6 +35,15 @@ console.log("DB Connected")
 /*****************************************************************************/
 
 
+//helper func
+function handleError(e, obj, res) {
+    if (e) {
+        res.status(400).json(e)
+    }
+    else {
+        res.status(200).json(obj._id)
+    }
+}
 
 /****************** Player API *******************/
  
@@ -43,47 +52,56 @@ TESTED
 */
 app.post('/api/players', function(req, res) {
     // Check if player already exists in db.
-    var new_player = new Player()
     Player.countDocuments({ email: req.body._email}, function(err, count) {
         if (count > 0) {
-            res.status(400).send("Error: Email already in use")
+            return handleError("Error: Email already in use", null, res)
         }
-    })
 
-    new_player.first = req.body._first
-    new_player.last = req.body._last
-    new_player.email = req.body._email
-    if (req.body._cell !== null)
-        new_player.cell = req.body._cell
+        var new_player = new Player()
 
-    new_player.save(function (err, player) {
-        if (err)
-            res.send(err) // change for PROD 
-        res.json(player)    
+        new_player.first = req.body._first
+        new_player.last = req.body._last
+        new_player.email = req.body._email
+
+        if (req.body._cell !== null)
+            new_player.cell = req.body._cell
+    
+        new_player.save(function (err2, player) {
+            if (err2)
+                return handleError("Error: Player does not abide by schema", null, res)
+            handleError(null, player, res);   
+        })
     })
 });
 
-/**** deletePlayer 
+/**** deletePlayer: For now does nothing, might be needed later
 ****/
 app.delete('/api/players/:player_id', function(req, res) {
-    Player.remove({_id: req.params.player_id}, function(err, player) {
-        if (err)
-            res.send(err)
-    });
+    // Player.remove({_id: req.params.player_id}, function(err, player) {
+    //     if (err)
+    //         handleError("Error: Could not delete player")
+    // });
 });
+
 
 /**** getPlayers
 - Returns all player documents in db. Will probably not be needed in prod
 ****/
+
 app.get('/api/players', function(req, res) {
     console.log("Getting all players")
     Player.find(function(err, players) {
-        if (err)
-            res.send(err)
+        if (err || (players.length == 0))
+            return handleError("Error: Could not find players in db")
 
         res.json(players) // return all players in JSON format
     });
 });
+
+/***  getPlayer
+ * Returns player in db based on email query. 
+ * 
+ */
 
 /*****************************************************************************/
 
@@ -148,16 +166,6 @@ function saveTeam(req, res) {
     })
 }
 
-//helper func
-function handleError(e, obj, res) {
-    if (e) {
-        res.status(400).json(e)
-    }
-    else {
-        res.status(200).json(obj._id)
-    }
-}
-
 app.post('/api/teams/', function(req, res) {
     console.log("B : Creating team")
 
@@ -188,9 +196,10 @@ app.put('api/teams/', function(req, res) {
 app.get('api/teams/', function(req, res) {
     console.log("B : Getting team");
     
-    Team.find({"league": {$eq: req.body._id}}, function(err, leagues) {
+    // change to league from _id? ? ? ? 
+    Team.find({"league": {$eq: req.body._id}}, function(err, teams) {
         if (err) {
-            console.log(err + " Could not find teams for specified league id")
+            return handleError("Error: no team found", null, res);
         }
 
         res.json(leagues);
