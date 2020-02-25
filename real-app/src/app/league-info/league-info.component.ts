@@ -21,12 +21,13 @@ export class LeagueInfoComponent implements OnInit {
   approvedclicked = new Map();
 
   constructor(public leagueService: LeagueService) { 
-    for (var i=0; i<this.unapprovedTeams.length; i++) {
-      this.unapprovedclicked.set(this.unapprovedTeams[i],false);
-    }
+
   }
 
   ngOnInit()  {
+    for (var i=0; i<this.unapprovedTeams.length; i++) {
+      this.unapprovedclicked.set(this.unapprovedTeams[i],false);
+    }
     if (this.leagueService.getLeague() != undefined) {
       this.league = this.leagueService.getLeague();
     }
