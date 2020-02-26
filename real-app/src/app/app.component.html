@@ -269,7 +269,12 @@
 </style>
 
 <!-- Toolbar -->
-<app-header></app-header>
+<default-header *ngIf="!role"></default-header>
+<admin-header *ngIf="role=='admin'"></admin-header>
+<user-header *ngIf="role=='user'"></user-header>
+
+<!-- Login -->
+<app-login *ngIf="!role" (loggedin)="setRole()"></app-login>
 
 <!-- main content container -->
 <router-outlet></router-outlet>

@@ -38,6 +38,9 @@ import { RosterComponent } from './roster/roster.component';
 import { TeamHomeComponent } from './team-home/team-home.component';
 import { RankingsComponent } from './rankings/rankings.component';
 import { RegistrationStatusComponent } from './registration-status/registration-status.component';
+import { LoginComponent } from './login/login.component';
+import { AdminHeaderComponent } from './admin-header/admin-header.component';
+import { UserHeaderComponent } from './user-header/user-header.component';
 
 
 @NgModule({
@@ -69,6 +72,9 @@ import { RegistrationStatusComponent } from './registration-status/registration-
     TeamHomeComponent,
     RankingsComponent,
     RegistrationStatusComponent,
+    LoginComponent,
+    AdminHeaderComponent,
+    UserHeaderComponent,
   ],
   imports: [
     AppRoutingModule,

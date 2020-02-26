@@ -1,0 +1,37 @@
+.inner-box {
+	background-color: #F3F2F2;
+	width: 450px;
+	height: 40%;
+	margin: auto;
+	margin-top: 10rem;
+	border-radius: 25px;
+}
+
+.user {
+	padding: 3rem 5rem 2rem 5rem;
+}
+
+#username {
+	width: 100%;
+	margin-top: 1rem;
+	border-radius: 5px;
+}
+
+.pass {
+	padding: 1rem 5rem;
+}
+
+#password {
+	width: 100%;
+	margin-top: 1rem;
+	border-radius: 5px;
+}
+
+#login {
+	margin: 4rem 5rem 0rem 0rem;
+	float: right;
+	background-color: #CDCDCD;
+	border-radius: 25px;
+	width: 30%;
+	height: 10%;
+}

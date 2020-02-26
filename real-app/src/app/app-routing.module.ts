@@ -20,6 +20,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { SettingsComponent } from './settings/settings.component';
 import { SettingsEditComponent } from './settings-edit/settings-edit.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
     { path: 'admin', component: AdminComponent},
@@ -42,6 +43,7 @@ const routes: Routes = [
     { path: 'settings-edit', component: SettingsEditComponent},
     { path: 'league-info-schedule', component: LeagueInfoScheduleComponent},
     { path: 'league-game-schedule', component: LeagueGameScheduleComponent},
+    { path: 'login', component: LoginComponent},
 ];
 export const routing: ModuleWithProviders =
     RouterModule.forRoot(routes);
