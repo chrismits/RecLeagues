@@ -270,8 +270,8 @@
 
 <!-- Toolbar -->
 <default-header *ngIf="!role"></default-header>
-<admin-header *ngIf="role=='admin'"></admin-header>
-<user-header *ngIf="role=='user'"></user-header>
+<admin-header *ngIf="role=='admin'" (loggedout)="setRole()"></admin-header>
+<user-header *ngIf="role=='user'" (loggedout)="setRole()"></user-header>
 
 <!-- Login -->
 <app-login *ngIf="!role" (loggedin)="setRole()"></app-login>

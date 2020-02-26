@@ -15,11 +15,42 @@
 	left: 50%;  
 }
 
-.my-nav {
-	color: white;
-	margin-left: 200px;
+.dropdown {
+  float: right;
+  color: white;
+  margin-right: 7rem;
   display: inline-block;
   height: 100%;
+  font-weight: 500;
+  line-height: 60px;
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #F3F2F2;
+  right: 0;
+  width: 100px;
+}
+
+.dropdown-content a {
+  color: black;
+  display: block;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.home {
+  float: left;
+	color: white;
+	margin-left: 7rem;
+  display: inline-block;
+  height: 100%;
+  font-weight: 500;
+  line-height: 60px;
 }
 
 .profile {
@@ -30,8 +61,13 @@
 
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
+  <a class="home" routerLink="/admin">Home</a>
   <a id="logo" routerLink="/admin">RecLeagues</a>
-  <a class="my-nav" routerLink="/settings">
+  <a class="dropdown">
     <img src="../../assets/img/user_icon.png" class="profile">
+    <div class="dropdown-content">
+      <a routerLink="/settings">Settings</a>
+      <a routerLink="/" (click)="logout()">Sign Out</a>
+    </div>
   </a>
 </div>
