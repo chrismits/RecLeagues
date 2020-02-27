@@ -13,10 +13,6 @@ export class TeamService {
 
   constructor(private apiService: ApiService) {}
 
-  getTeams() {
-
-  }
-
   // Backend Tested
   storeTeam() {
     console.log("F -> F: store team");
@@ -37,7 +33,16 @@ export class TeamService {
     // }, (error) => {
     //   console.log(error)
     // })
-
+  }
+  
+  
+  // Returns all teams in db for current league
+  getTeamsByLeagueID(league_id) {
+    this.apiService.getTeamsByLeague(league_id).subscribe((data: any[]) => {
+      console.log("Not working: Map db team object to frontend team")
+    }, (error) => {
+      console.log("Error in searching for teams")
+    })
 
   }
 }

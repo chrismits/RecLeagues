@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { map } from 'rxjs/operators'
 import { Observable } from 'rxjs'
 
@@ -57,8 +57,6 @@ export class ApiService {
 
   /************ TEAM ****************/ 
 
-
-  // Not yet tested
   createTeam(t: Team): Observable<Team> {
     console.log("F -> B: Create team");
 
@@ -71,6 +69,12 @@ export class ApiService {
 
     return this.http.put<Team>(`${API_URL}/teams`, t,
                                                   {headers: this.headers})
+  }
+
+
+  getTeamsByLeague(league_id: string) {
+    var params = new HttpParams().set("league_id", league_id);
+    return this.http.get<any []>(`${API_URL}/teams/`, {params});
   }
 
 }

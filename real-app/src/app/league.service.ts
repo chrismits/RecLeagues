@@ -73,7 +73,6 @@ export class LeagueService {
 
         }
         arr.push(curr);
-        //console.log(curr.start_date)
       }
     }, (error) => {
       console.log(error)

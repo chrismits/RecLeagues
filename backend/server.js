@@ -30,8 +30,6 @@ mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true,
 var db = mongoose.connection
 console.log("DB Connected")
 
-
-
 /*****************************************************************************/
 
 
@@ -92,16 +90,26 @@ app.get('/api/players', function(req, res) {
     console.log("Getting all players")
     Player.find(function(err, players) {
         if (err || (players.length == 0))
-            return handleError("Error: Could not find players in db")
+            return handleError("Error: Could not find players in db", null, res)
 
         res.json(players) // return all players in JSON format
     });
 });
 
+
 /***  getPlayer
- * Returns player in db based on email query. 
- * 
- */
+ - Returns a single player from db.
+ -  Expects email as an http param -> req.query.email
+*/
+
+app.get('/api/players', function(req, res) {
+    Player.findOne({email: req.query.email}, function(err, pl) {
+        if (err || !pl)
+            return handleError("Error: Could not find player", null, res)
+        res.status(200).json(pl);
+    })
+})
+
 
 /*****************************************************************************/
 
@@ -109,17 +117,6 @@ app.get('/api/players', function(req, res) {
 
 
 /****************** Team API *******************/
-/* createTeam
-    Note: * Assumes that req.body is a Team frontend object.
-          * req.body has a league field that is a League db ObjectId.
-
-           - Checks if league exists
-           - Checks if captain exists
-           - Checks if team name is unique in league
-         If all of the above pass, returns the id of the newly created team
-         Otherwise returns an appropriate error message (Status Code: 400)
-
-*/
 
 //helper function for createTeam
 function saveTeam(req, res) {
@@ -166,6 +163,17 @@ function saveTeam(req, res) {
     })
 }
 
+/* createTeam
+    Note: * Assumes that req.body is a Team frontend object.
+          * req.body has a league field that is a League db ObjectId.
+
+           - Checks if league exists
+           - Checks if captain exists
+           - Checks if team name is unique in league
+         If all of the above pass, returns the id of the newly created team
+         Otherwise returns an appropriate error message (Status Code: 400)
+
+*/
 app.post('/api/teams/', function(req, res) {
     console.log("B : Creating team")
 
@@ -181,7 +189,7 @@ app.post('/api/teams/', function(req, res) {
 
 
 // update Team: 
-app.put('api/teams/', function(req, res) {
+app.put('/api/teams/', function(req, res) {
     console.log("B : Updating team NOT WORKING YET")
 
     // approval change
@@ -192,22 +200,22 @@ app.put('api/teams/', function(req, res) {
 
 })
 
-// get Teams by league id
-app.get('api/teams/', function(req, res) {
+/* getTeamsByLeagueID:
+Request needs to have a single parameter: league
+req.body.league: the id of the league to be searched
+-- Returns an array of Teams.
+*/
+app.get('/api/teams/', function(req, res) {
     console.log("B : Getting team");
-    
-    // change to league from _id? ? ? ? 
-    Team.find({"league": {$eq: req.body._id}}, function(err, teams) {
+
+    Team.find({"league": {$eq: req.body.league}}, function(err, teams) { // NOT IN REQ.BODY.LEAGUE BUT IN PARAMS
         if (err) {
-            return handleError("Error: no team found", null, res);
+            return handleError("Error: Could not complete team query", null, res);
         }
-
-        res.json(leagues);
-    }) // assumes that team has league ref. 
+        
+        res.status(400).json(teams); // might be empty though 
+    })
 })
-
-
-
 
 
 
