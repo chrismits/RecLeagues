@@ -20,10 +20,17 @@ export class UserInfoComponent implements OnInit {
 	now: Date = new Date();
   me: Player = PLAYERS[2];
 
+  beforeReg() {
+    return this.league.getRegStart() > this.now;
+  }
+
   regOpen() {
-  	// this.now.setDate(this.now.getDate() - 1); // for testing
-  	return this.league.getRegStart() < this.now && 
-  		   this.league.getRegEnd() > this.now;
+  	return this.league.getRegStart() <= this.now && 
+  		     this.league.getRegEnd() >= this.now;
+  }
+
+  afterReg() {
+    return this.league.getRegEnd() < this.now;
   }
 
   createTeam() {
@@ -54,13 +61,17 @@ export class UserInfoComponent implements OnInit {
               public teamService: TeamService) { }
 
   ngOnInit() {
-  	if (this.leagueService.getLeague() != undefined) {
+  	if (this.leagueService.getLeague() !== undefined) {
       this.league = this.leagueService.getLeague();
+      // if (this.teamService.getTeamsByLeagueID(this.league._id) !== []) {
+      //   this.teams = this.teamService.getTeamsByLeagueID(this.league._id);
+      // }
     }
-    if (this.teamService.getTeam() != undefined) {
+    if (this.teamService.getTeam() !== undefined) {
   		console.log(this.teamService.getTeam());
-      this.teams.push(this.teamService.getTeam());
+      //this.teams.push(this.teamService.getTeam());
   	}
+
   }
 
   setTeam(t: Team){

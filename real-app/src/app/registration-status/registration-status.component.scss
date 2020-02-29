@@ -7,8 +7,18 @@
 	margin-left: 5%;
 }
 
+.p_rows {
+	margin-left: -15%;
+	padding-top: 5px;
+}
+
 .row + .row {
 	margin-top: 15px;
+}
+
+.row {
+	width: 90%;
+	margin-left: 5%;
 }
 
 .status {
@@ -32,4 +42,11 @@
 
 .sep {
 	padding-bottom: 20px;
+}
+
+.img {
+	width:25%;
+	height:25%;
+	display: inline-block;
+	float: left;
 }

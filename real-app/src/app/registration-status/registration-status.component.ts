@@ -27,4 +27,8 @@ export class RegistrationStatusComponent implements OnInit {
   	else return "Unregistered";
   }
 
+  isCaptain(p: Player) {
+    return this.team.captain === p;
+  }
+
 }

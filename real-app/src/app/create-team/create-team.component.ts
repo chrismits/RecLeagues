@@ -17,7 +17,6 @@ export class CreateTeamComponent implements OnInit {
   playerEmail = '';
   freeAgent: boolean;
   league: League = LEAGUES[0];
-  sport: string = this.league.getSport();
 
   playerEmails: string[] = [];
 
@@ -25,6 +24,9 @@ export class CreateTeamComponent implements OnInit {
     if (!this.playerEmails.includes(this.playerEmail)) {
       this.playerEmails.push(this.playerEmail);
     }
+
+    console.log(this.playerEmail);
+    console.log(this.playerEmails);
   }
 
   removeEmail(email: string) {
@@ -38,7 +40,10 @@ export class CreateTeamComponent implements OnInit {
     console.log(this.teamName);
     console.log(this.freeAgent);
     const newTeam = new Team(this.teamName, PLAYERS[0]);
+    newTeam.setLeagueID(this.league._id);
+    console.log(newTeam);
     this.teamService.setTeam(newTeam);
+    this.teamService.storeTeam();
   }
 
   constructor(public leagueService: LeagueService,

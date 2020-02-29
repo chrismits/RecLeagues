@@ -3,19 +3,27 @@
   <!-- Launchpad -->
   <div class="my-row">
     <div class="header" id="settings">Settings</div> 
-    <button class="edit" id="edit-but" target="_blank" rel="noopener" tabindex="0" routerLink="/settings-edit">
+    <button class="edit" id="edit-but" target="_blank" rel="noopener" tabindex="0" routerLink="/settings-edit" (click)="toEdit()">
       Edit </button>
   </div>
 
   <br> 
   <div class="box">
-    <div class="top">
-      <!--<img src="assets/img/tufts_jumbo.jpg" alt="Profile Image">-->
+    <div class="sidebar">
+      <img id="prof_img" id="img" src="assets/img/default_prof.jpeg" alt="Profile Image">
+    </div>
+
+    <div class="info">
       <div class="justified">
-        Full Name: {{settings.getName()}} <br>
-        Pronouns: {{settings.getPronouns()}} <br>
-        Language: {{settings.getLanguage()}} <br>
-        Time Zone: {{settings.getTimeZone()}} 
+        <br> <br>
+        <div class="title"> Full Name </div>
+        <div class="data"> {{settings.getName()}} </div> <br>
+        <div class="title"> Email </div>
+        <div class="data"> {{settings.getEmail()}} </div> <br>
+        <div class="title"> Pronouns </div>
+        <div class="data"> {{settings.getPronouns()}} </div> <br>
+        <div class="title"> Password </div>
+        <div class="data"> {{settings.getPassword()}} </div> <br>
       </div>
     </div>
   </div>

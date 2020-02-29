@@ -5,15 +5,19 @@
     <div class="header" id="settings">Settings</div> 
     <button class="edit" id="edit-but" target="_blank" rel="noopener" 
     		tabindex="0" (click)="onSubmit()" [disabled]="name.invalid 
-    		|| pros.invalid || lang.invalid || zone.invalid"
+    		|| pros.invalid || email.invalid || pass.invalid || password_confirm !== settings.password"
     		routerLink="/settings">
       Save </button>
   </div>
 
   <br> 
   <div class="box">
-    <div class="top">
-      <!--<img src="assets/img/tufts_jumbo.jpg" alt="Profile Image">-->
+
+    <div class="sidebar">
+      <img id="prof_img" id="img" src="assets/img/default_prof.jpeg" alt="Profile Image">
+    </div>
+
+    <div class="info">
       <div class="justified">
       	<!-- ******** NAME ********* -->
       	<label class="labl" for="name">Full Name</label>
@@ -25,10 +29,21 @@
           Please enter a name with letters and hyphens.
         </div>
 
+        <!-- ******** EMAIL ********* -->
+        <label class="labl" for="email">Email</label>
+        <input type="text" class="form-control short" id="email" required
+               [(ngModel)]="settings.email" name="email" #email="ngModel"
+               pattern="[a-zA-Z0-9\-]*@tufts.edu"> 
+        <div [hidden]="email.valid || email.pristine" 
+              class="alert alert-danger short"> 
+          Please enter a valid tufts email.
+        </div>
+
         <!-- ******** PRONOUNS ********* -->
         <label class="labl" for="pros">Pronouns</label>
         <select class="form-control short" id="pros" required 
-              [(ngModel)]="settings.pronouns" name="pros" #pros="ngModel">
+              [(ngModel)]="settings.pronouns" name="pros" 
+              #pros="ngModel">
 	        <option *ngFor="let pro of prons" [ngValue]="pro"> 
 	          {{pro}}
 	        </option>
@@ -37,36 +52,24 @@
               class="alert alert-danger short"> 
           Please enter a valid pronouns.
         </div>
-
-        <!-- ******** LANGUAGE ********* -->
-        <label class="labl" for="lang">Language</label>
-        <select class="form-control short" id="lang" required 
-                [(ngModel)]="settings.language" name="lang" #lang="ngModel">
-	        <option *ngFor="let lang of langs" [ngValue]="lang"> 
-	          {{lang}}
-	        </option>
-      	</select>
-        <div [hidden]="lang.valid || lang.pristine" 
+        
+        <!-- ******** PASSWORD ********* -->
+        <label class="labl" for="pass">Password</label>
+        <input type="text" class="form-control short" id="pass" required
+               [(ngModel)]="settings.password" name="pass" #pass="ngModel"> 
+        <div [hidden]="pass.valid || pass.pristine" 
               class="alert alert-danger short"> 
-          Please enter a valid language.
+          Please enter a valid password.
         </div>
 
-        <!-- ******** TIME ZONE ********* -->
-        <label class="labl" for="zone">Time Zone</label>
-        <select class="form-control short" id="pros" required 
-              [(ngModel)]="settings.time_zone" name="zone" #zone="ngModel">
-	        <option *ngFor="let zone of zones" [ngValue]="zone"> 
-	          {{zone}}
-	        </option>
-      	</select>
-        <div [hidden]="zone.valid || zone.pristine" 
-              class="alert alert-danger short"> 
-          Please enter a valid time zone.
+        <!-- ******** PASSWORD CONFIRMATION********* -->
+        <label class="labl" for="pass2">Confirm Password</label>
+        <input type="text" class="form-control short" id="pass2" required
+               [(ngModel)]="password_confirm" name="pass2" #pass2="ngModel"> 
+        <div [hidden]="password_confirm === settings.password || 
+              pass2.pristine" class="alert alert-danger short"> 
+          Please enter a matching password.
         </div>
-        Full Name: {{settings.getName()}} <br>
-        Pronouns: {{settings.getPronouns()}} <br>
-        Language: {{settings.getLanguage()}} <br>
-        Time Zone: {{settings.getTimeZone()}} 
       </div>
     </div>
   </div>

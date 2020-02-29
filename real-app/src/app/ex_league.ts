@@ -12,25 +12,25 @@ var season = 'Winter';
 var sport = 'Baseball';
 var name = season + ' ' + sport;
 // var tmp_league_1 = new League(name, false, sport, season, now, reg_end, start, end, "Gantcher", "", "");
-var tmp_league_1 = new League(1, name, false, sport, season, now, reg_end, 
+var tmp_league_1 = new League('1', name, false, sport, season, now, reg_end, 
 	0, [], 10, 5, 5, start, end, [], [],"Gantcher", 'Co-ed','Competitive',false, false, "none", now);
 
 sport = 'Volleybal'
 name = season + ' ' + sport;
 // var tmp_league_2 = new League(name, false, sport, season, now, reg_end, start, end, "", "", "");
-var tmp_league_2 = new League(1, name, false, sport, season, now, reg_end, 
+var tmp_league_2 = new League('1', name, false, sport, season, now, reg_end, 
 	0, [], 10, 5, 5, start, end, [], [], "Gantcher",'Co-ed','Competitive',false, false, "none", now);
 
 sport = 'Tennis'
 name = season + ' ' + sport;
 // var tmp_league_3 = new League(name, false, sport, season, now, reg_end, start, end, "", "", "");
-var tmp_league_3 = new League(1, name, false, sport, season, now, reg_end, 
+var tmp_league_3 = new League('1', name, false, sport, season, now, reg_end, 
 	0, [], 10, 5, 5, start, end, [], [], "Gantcher",'Co-ed','Competitive',false, false, "none", now);
 
 sport = 'Indoor Soccer'
 name = season + ' ' + sport;
 // var tmp_league_4 = new League(name, false, sport, season, now, reg_end, start, end, "", "", "");
-var tmp_league_4 = new League(1, name, false, sport, season, now, reg_end, 
+var tmp_league_4 = new League('1', name, false, sport, season, now, reg_end, 
 	0, [], 10, 5, 5, start, end, [], [], "Gantcher",'Co-ed','Competitive',false, false, "none", now);
 
 var slot1 = new TimeSlot();

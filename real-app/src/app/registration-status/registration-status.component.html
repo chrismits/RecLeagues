@@ -2,8 +2,14 @@
 	<div class="players bold sep"> Players </div>
 	<div class="status bold sep"> Registration Status </div>
 	<div class="row" *ngFor="let player of players">
-		<div class="players"> 
+		<div class="img"> 
+			<!-- Get image from db..? -->
+			<img class="img" src="assets/img/default_prof.jpeg" alt="Profile Image">
+		</div>
+		<div class="players p_rows" 
+			[ngStyle]="{ 'font-weight': (isCaptain(player)) ? 'bold' : 'normal'}"> 
 			{{player.getFirst()}} {{player.getLast()}}
+			<span *ngIf="isCaptain(player)"> (C) </span>
 		</div>
 		<div class="status"> 
 			{{isRegistered(player)}}

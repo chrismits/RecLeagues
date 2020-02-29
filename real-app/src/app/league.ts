@@ -34,7 +34,7 @@ export class TimeSlot {
 }
 
 export class League {
-    _id:               number;
+    _id:               string;
 
     name:              string;
     is_pickup:         boolean;
@@ -60,7 +60,7 @@ export class League {
     rules:             string;
     created:           Date;
 
-    constructor(id: number, name: string, is_pickup: boolean,
+    constructor(id: string, name: string, is_pickup: boolean,
                     sport: string, season: string, reg_s: Date,
                     reg_e: Date, num_teams: number, teams: Team[],
                     max_teams: number, min_size: number, players: number,

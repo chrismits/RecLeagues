@@ -25,6 +25,7 @@ export class Team {
     //logo:    any;
     players: Player[]; 
     registered_players: Player[]; 
+    league: string; /* object id */
     created: Date;
 
     constructor (name: string, captain: Player){
@@ -49,6 +50,7 @@ export class Team {
     getTies() { return this.record.ties; }
     getLosses() { return this.record.losses; }
     getCreated() { return this.created; }
+    getLeagueID() { return this.league; }
     isOnTeam(p: Player) {
         //if(this.players.filter(pl => pl == p) != []) return true;
         return this.players.includes(p);
@@ -64,6 +66,7 @@ export class Team {
     setTies(n: number) { this.record.ties = n; }
     setLosses(n: number) { this.record.losses = n; }
     setName(n: string) { this.name = n; }
+    setLeagueID(id: string) { this.league = id; }
     setSize(s: number) { this.size = s; }
     setCaptain(c: Player) { 
         if (this.isOnTeam(c)) this.captain = c; 

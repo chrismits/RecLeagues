@@ -1,6 +1,6 @@
 <div class="content" role="main">
   <div class="my-row">
-    <div class="header" id="league-name">{{sport}}</div> 
+    <div class="header" id="league-name">{{league.getSport()}}</div> 
   </div>
   <br>
   <div class="card-container box">
@@ -36,7 +36,7 @@
         </div>
         <br>
         <div class="included">
-          <div class="emails" *ngFor="let email of player_emails">
+          <div class="emails" *ngFor="let email of playerEmails">
             <p> {{ email }} 
             <button type="button" class="but" (click)="removeEmail(email)"> remove </button> </p>
           </div>

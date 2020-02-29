@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Settings } from '../settings';
+import { SettingsService } from '../settings.service';
 
 @Component({
   selector: 'app-settings-edit',
@@ -10,23 +11,23 @@ import { Settings } from '../settings';
 })
 export class SettingsEditComponent implements OnInit {
 
-  settings: Settings = new Settings("", "", "", "");
-  prons: string[] = ['He/Him', 'She/Her', 'They/Them', 'Other'];
-  langs: string[] = ['English', 'Spanish', 'French', 'Italian',
-  					 'German', 'Mandarin'];
-  zones: string[] = ['EST', 'PST', 'CST', 'MST'];
+  settings: Settings = new Settings('', '', '', '');
+  prons: string[] = ['He/Him/His', 'She/Her/Hers', 'They/Them/Their', 'Other'];
+  password_confirm = '';
 
-  constructor() { }
+  constructor(public settingsService: SettingsService) { }
 
   onSubmit() {
+    console.log(this.settings.getName());
+    console.log(this.settings.getPronouns());
+    console.log(this.settings.getEmail());
+    console.log(this.settings.getPassword());
   	/* store in db */
-  	console.log(this.settings.getName());
-  	console.log(this.settings.getPronouns());
-  	console.log(this.settings.getLanguage());
-  	console.log(this.settings.getTimeZone());
+    this.settingsService.setSettings(this.settings);
   }
 
   ngOnInit() {
+    this.settings = this.settingsService.getSettings();
   }
 
 }
