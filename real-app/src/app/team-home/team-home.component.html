@@ -1,5 +1,13 @@
 <div class="content" role="main">
-  <h3 style="font-weight: bold"> {{team_name}} </h3>
+  <div class="row">
+    <h2 id="title">  {{team_name}}  </h2>
+    <button *ngIf="isPlayer" type="button" id="back-btn" routerLink='/user-info'> 
+      Back to League 
+    </button>
+    <button *ngIf="!isPlayer" type="button" id="back-btn" routerLink='/info'> 
+      Back to League 
+    </button>
+  </div>
   <input type="hidden" #selection>
   <div class="display">
     <div class="sidebar">

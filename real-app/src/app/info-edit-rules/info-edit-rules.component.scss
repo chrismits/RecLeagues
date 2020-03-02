@@ -16,6 +16,10 @@
 	color: red;
 }
 
+.green {
+	color: green;
+}
+
 .rules {
 	overflow: auto;
 	max-height: 300px;
@@ -92,3 +96,28 @@
     -ms-transform: translateY(50%);
     transform: translateY(50%);
 }
+
+.col {
+	float: left;
+	width: 20%;
+	padding-left: 30px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.row + .row {
+	padding-top: 14px;
+	padding-bottom: 14px;
+}
+
+.tm-hdr {
+	padding-top: 8px;
+	padding-bottom: 6px;
+	font-weight: bold;
+}
+

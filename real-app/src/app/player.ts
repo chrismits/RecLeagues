@@ -1,3 +1,5 @@
+import { Settings } from './settings';
+
 export class Player {
     id: string;
     first: string;
@@ -34,4 +36,11 @@ export class Player {
     setCell(cell : string) { return this.cell = cell; }
     setWaiver(signed : boolean) { this.waiver = signed; }
     setPronouns(nouns: string) { this.pronouns = nouns; }
+
+    updateWithSettings(s: Settings) {
+        this.first = s.getName().split(' ')[0];
+        this.last = s.getName().split(' ')[1];
+        this.email = s.getEmail();
+        this.pronouns = this.getPronouns();
+    }
 }

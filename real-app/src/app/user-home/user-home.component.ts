@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Player } from '../player'
 import { League } from '../league'
 import { LEAGUES } from '../ex_league'
+import { PLAYERS } from '../ex_players'
 import { LeagueService } from '../league.service'
+import { UserService } from '../user.service'
 import { ApiService } from '../api.service'
 
 @Component({
@@ -16,7 +18,9 @@ export class UserHomeComponent implements OnInit {
   season = "Winter 2020";
   isAdmin = false;
   leagues: League[] = LEAGUES;
-  constructor(public leagueService: LeagueService) { }
+  me: Player = PLAYERS[3];
+  constructor(public leagueService: LeagueService,
+              public userService: UserService) { }
 
   goToLeague(l: League) {
     console.log(l.getName());
@@ -25,6 +29,7 @@ export class UserHomeComponent implements OnInit {
 
   ngOnInit() {
   	this.leagues = this.leagueService.getLeagues();
+    this.userService.setPlayer(this.me);
   }
 
 }

@@ -6,12 +6,18 @@ import {ApiService} from './api.service'
 @Injectable()
 export class TeamService {
   model: Team;
+  newTeam: boolean;
 
   setTeam(t : Team) { this.model = t; }
   getTeam()         { return this.model; }
 
+  setNew(b: boolean) { this.newTeam = b; }
+  isNew()            { return this.newTeam; }
 
-  constructor(private apiService: ApiService) {}
+
+  constructor(private apiService: ApiService) {
+    this.newTeam = false;
+  }
 
   // Backend Tested
   storeTeam() {

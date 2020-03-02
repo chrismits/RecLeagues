@@ -27,9 +27,6 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit() {
     this.settings = new Settings(this.name, this.pronouns, this.email, this.password);
-    if (this.settingsService.getSettings() !== undefined) {
-      this.settings = this.settingsService.getSettings();
-    }
     
     if (this.userService.getPlayer() !== undefined) {
       const player = this.userService.getPlayer();
@@ -42,6 +39,13 @@ export class SettingsComponent implements OnInit {
         admin.getEmail(), '****');
       this.isPlayer = false;
     } else { this.isPlayer = false; }
+
+    if (this.settingsService.getSettings() !== undefined) {
+      this.settings = this.settingsService.getSettings(); 
+      if (this.isPlayer) {
+        this.userService.getPlayer().updateWithSettings(this.settings);
+      }
+    }
   }
 
 }

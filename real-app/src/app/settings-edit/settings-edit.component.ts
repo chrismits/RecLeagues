@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Settings } from '../settings';
 import { SettingsService } from '../settings.service';
+import { UserService } from '../user.service'
 
 @Component({
   selector: 'app-settings-edit',

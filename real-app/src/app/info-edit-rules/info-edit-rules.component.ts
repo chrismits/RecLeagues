@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { League } from '../league';
+import { Team } from '../team';
 import { LEAGUES } from '../ex_league';
+import { TEAMS } from '../ex_teams';
 import { LeagueService } from '../league.service';
 
 @Component({
@@ -11,13 +13,24 @@ import { LeagueService } from '../league.service';
 export class InfoEditRulesComponent implements OnInit {
 
   league: League = LEAGUES[0];
+  teams: Team[] = TEAMS;
   now: Date = new Date();
   newRules: string = this.league.getRules();
 
+  beforeReg() {
+    const start = new Date(this.league.getRegStart());
+    return start > this.now;
+  }
+
   regOpen() {
-    // this.now.setDate(this.now.getDate() - 1); // for testing
-    return this.league.getRegStart() < this.now &&
-         this.league.getRegEnd() > this.now;
+    const start = new Date(this.league.getRegStart());
+    const end = new Date(this.league.getRegEnd());
+    return start <= this.now && end >= this.now;
+  }
+
+  afterReg() {
+    const end = new Date(this.league.getRegEnd());
+    return end < this.now;
   }
 
   goToInfo() {
@@ -27,7 +40,7 @@ export class InfoEditRulesComponent implements OnInit {
   }
 
   teamsExist() {
-    return false;
+    return this.teams !== [];
   }
 
   gamesExist() {
@@ -38,6 +51,7 @@ export class InfoEditRulesComponent implements OnInit {
 
   ngOnInit() {
     this.league = this.leagueService.getLeague();
+    this.newRules = this.league.getRules();
   }
 
 }

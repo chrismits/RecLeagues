@@ -75,6 +75,7 @@ export class Team {
     addPlayer(p: Player) {
         if (!this.players.includes(p)) {
             this.players.push(p);
+            this.size++;
         }
     }
 

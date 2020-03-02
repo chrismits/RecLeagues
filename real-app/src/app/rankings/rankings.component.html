@@ -1,11 +1,17 @@
-<div class="header"> W L T </div>
+<div class="header"> 
+	<span class="wins"> W </span>
+	<span class="losses"> L </span>
+	<span class="ties"> T </span>
+</div>
 <br>
 <div class="row" *ngFor="let team of teams; let i = index;">
 	<div class="rank"> #{{i + 1}} </div> <!-- add player img -->
 	<div class="team-box"> 
 		<div class="name"> {{team.getName()}} </div>
 		<div class="record"> 
-			{{team.getWins()}} {{team.getLosses()}} {{team.getTies()}} 
+			<span class="wins"> {{team.getWins()}} </span>
+			<span class="losses"> {{team.getLosses()}} </span>
+			<span class="ties">{{team.getTies()}} </span>
 		</div>
 	</div>
 </div>

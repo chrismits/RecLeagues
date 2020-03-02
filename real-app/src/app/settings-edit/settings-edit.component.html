@@ -33,7 +33,7 @@
         <label class="labl" for="email">Email</label>
         <input type="text" class="form-control short" id="email" required
                [(ngModel)]="settings.email" name="email" #email="ngModel"
-               pattern="[a-zA-Z0-9\-]*@tufts.edu"> 
+               pattern="[a-zA-Z0-9\-.]*@tufts.edu"> 
         <div [hidden]="email.valid || email.pristine" 
               class="alert alert-danger short"> 
           Please enter a valid tufts email.

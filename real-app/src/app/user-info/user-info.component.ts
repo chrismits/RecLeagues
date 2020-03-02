@@ -18,19 +18,22 @@ export class UserInfoComponent implements OnInit {
   league: League = LEAGUES[0];
   teams: Team[] = TEAMS;
 	now: Date = new Date();
-  me: Player = PLAYERS[2];
+  me: Player = PLAYERS[3];
 
   beforeReg() {
-    return this.league.getRegStart() > this.now;
+    const start = new Date(this.league.getRegStart());
+    return start > this.now;
   }
 
   regOpen() {
-  	return this.league.getRegStart() <= this.now && 
-  		     this.league.getRegEnd() >= this.now;
+    const start = new Date(this.league.getRegStart());
+    const end = new Date(this.league.getRegEnd());
+  	return start <= this.now && end >= this.now;
   }
 
   afterReg() {
-    return this.league.getRegEnd() < this.now;
+    const end = new Date(this.league.getRegEnd());
+    return end < this.now;
   }
 
   createTeam() {
@@ -44,6 +47,8 @@ export class UserInfoComponent implements OnInit {
   joinTeam(t: Team) {
     console.log("i joined");
     console.log(t);
+    /* store to db with userSevice */
+    t.addPlayer(this.me);
   }
 
   isOnATeam(){
@@ -67,9 +72,12 @@ export class UserInfoComponent implements OnInit {
       //   this.teams = this.teamService.getTeamsByLeagueID(this.league._id);
       // }
     }
-    if (this.teamService.getTeam() !== undefined) {
+    if (this.teamService.getTeam() !== undefined &&
+        this.teamService.isNew() !== undefined &&
+        this.teamService.isNew()) {
   		console.log(this.teamService.getTeam());
-      //this.teams.push(this.teamService.getTeam());
+      this.teams.push(this.teamService.getTeam());
+      this.teamService.setNew(false);
   	}
 
   }

@@ -5,6 +5,8 @@ import { League } from '../league';
 import { LEAGUES } from '../ex_league';
 import { Team } from '../team';
 import { TEAMS } from '../ex_teams';
+import { TeamService } from '../team.service';
+import { LeagueService } from '../league.service';
 
 @Component({
   selector: 'app-roster',
@@ -18,9 +20,18 @@ export class RosterComponent implements OnInit {
   team: Team = TEAMS[0];
 
 
-  constructor() { }
+  constructor(public leagueService: LeagueService,
+              public teamService: TeamService) { }
 
   ngOnInit() {
+    if (this.teamService.getTeam() !== undefined) {
+      this.team = this.teamService.getTeam()
+      this.players = this.team.getAllPlayers();
+    }
+
+    if (this.leagueService.getLeague() !== undefined) {
+      this.league = this.leagueService.getLeague();
+    }
   }
 
   isRegistered(p: Player) {

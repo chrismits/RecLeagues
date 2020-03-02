@@ -9,9 +9,9 @@
     <div class="my-row">
       <div class="header" id="league-name">League Overview</div> 
       <button class="but" target="_blank" rel="noopener" tabindex="0" 
-      routerLink="/create-team" [hidden]="!regOpen()" 
+      routerLink="/create-team" [disabled]="regOpen()"
       (click)="createTeam()">
-        Create New Team </button>
+        Register New Team </button>
     </div>
 
     <div class="card-container box">

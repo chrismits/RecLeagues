@@ -90,6 +90,11 @@
   clear: both;
 }
 
+.row + .row {
+	padding-top: 14px;
+	padding-bottom: 14px;
+}
+
 .col {
 	float: left;
 	width: 20%;
