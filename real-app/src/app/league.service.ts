@@ -3,6 +3,10 @@ import { League, TimeSlot } from './league'
 
 import {ApiService} from './api.service'
 
+
+import { map } from 'rxjs/operators'
+
+
 @Injectable()
 export class LeagueService {
   model: League;
@@ -13,26 +17,28 @@ export class LeagueService {
 
   constructor(private apiService: ApiService) {}
 
+  //done
   storeLeague() {
-    // add to db
-    console.log("Adding league to DB")
-    this.apiService.createLeague(this.model).subscribe((data) => {   
+    console.log("F -> F: Storing League")
+    this.apiService.createLeague(this.model).subscribe((l_id) => { 
+      console.log("Successfully added League: ID = " + l_id)  
     }, (error) => {
-      console.log(error)
+      this.apiService.handleError(error);
     }) 
   }
 
+  //done
   updateLeague() {
     // update db entry
-    console.log("LS: Updating league")
+    console.log("F -> F: Updating league")
     this.apiService.updateLeague(this.model).subscribe((data) => {
       console.log(data.name + "Updated");
     }, (error) => {
-      console.log(error);
+      this.apiService.handleError(error)
     })
   }
 
-  // NOT TESTED
+  //done
   getLeagues() {
     var arr: Array<League> = [];
 
@@ -79,6 +85,6 @@ export class LeagueService {
       return;
     })
     return arr;
-
   }
 }
+

@@ -16,6 +16,7 @@ var Team = require('./models/team-model.js');
 
 /************** Database Setup *******************/
 
+
 mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true, 
                                             useUnifiedTopology: true,
                                             useFindAndModify: false}, 
@@ -30,8 +31,8 @@ mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true,
 var db = mongoose.connection
 console.log("DB Connected")
 
-/*****************************************************************************/
 
+/*****************************************************************************/
 
 //helper func
 function handleError(e, obj, res) {
@@ -110,11 +111,7 @@ app.get('/api/players', function(req, res) {
     })
 })
 
-
 /*****************************************************************************/
-
-
-
 
 /****************** Team API *******************/
 
@@ -166,7 +163,6 @@ function saveTeam(req, res) {
 /* createTeam
     Note: * Assumes that req.body is a Team frontend object.
           * req.body has a league field that is a League db ObjectId.
-
            - Checks if league exists
            - Checks if captain exists
            - Checks if team name is unique in league
@@ -208,30 +204,47 @@ req.body.league: the id of the league to be searched
 app.get('/api/teams/', function(req, res) {
     console.log("B : Getting team");
 
-    Team.find({"league": {$eq: req.body.league}}, function(err, teams) { // NOT IN REQ.BODY.LEAGUE BUT IN PARAMS
-        if (err) {
-            return handleError("Error: Could not complete team query", null, res);
-        }
+    // Team.find({"league": {$eq: req.body.league}}, function(err, teams) { // NOT IN REQ.BODY.LEAGUE BUT IN PARAMS
+    //     if (err) {
+    //         return handleError("Error: Could not complete team query", null, res);
+    //     }
         
-        res.status(400).json(teams); // might be empty though 
-    })
+    //     res.status(400).json(teams); // might be empty though 
+    // })
+
+    // Team.find({"league": {$eq: req.body.league}}).populate
+})
+
+
+/* getTeam returns team by id */
+app.get('/api/team', function(req, res) {
+    console.log("B: Getting team by id")
+    Team.findById(req.body._id).
+        populate('league').
+        populate('captain').
+        populate('players').
+        exec(function (err, tm) {
+            if (err || !tm)
+                return handleError("Error: Could not find team", null, res)
+            else {
+                return res.status(200).json(tm)
+            }
+        })
 })
 
 
 
+// ALL PLAYERS IN TEAM
+
+// ALL TEAMS OF THE PLAYER
+
+
 /*****************************************************************************/
 
-
-
-
-
+// ADD AUTHENTICATION FOR EMAIL!!!
 
 
 /****************** League API *******************/
-// joinLeague
-
-// addMatchesToLeague
-
 
 /****  createLeague
  * Adds league to db. Intended for admin registration,
@@ -242,8 +255,7 @@ app.post('/api/leagues/', function(req, res) {
         FUTURE: - Check for leagues in db with coinciding 
         timeslots.
     */
-    console.log("Backend: createLeague running")
-    console.log(req.body)
+    console.log("B: createLeague running")
 
     League.countDocuments({name: req.body.name}, function(err, count) {
         if (count > 0) {
@@ -266,7 +278,7 @@ app.post('/api/leagues/', function(req, res) {
                 max_num_teams: req.body.max_num_teams,
                 min_team_size: req.body.min_team_size,
                 auto_approval: req.body.auto_approval,
-                teams: req.body.teams
+                teams: req.body.teams // empty because no registration yet
             },
             league_type: req.body.league_type,
             competition_level: req.body.competition_level,
@@ -290,34 +302,73 @@ app.post('/api/leagues/', function(req, res) {
 
 
 /* getLeagues
-- Returns all league documents in db
+- Returns all league documents in db whose end date is less than current date
 */
 app.get('/api/leagues/', function(req, res) {
-    console.log("Backend: Get Leagues")
+    console.log("B: Get Leagues")
     var curr_date = new Date();
     curr_date.setHours(0, 0, 0, 0);
 
-    // Find all leagues that are currently active.
     League.find({"dates.end_date": {$gt: curr_date}}, function(err, leagues) {
         if (err){
             res.send(err)
         }
 
-        res.json(leagues) // return all leagues in JSON format
+        res.json(leagues) 
     });
 });
 
+
 /* updateLeague
-- Updates database entry by id.
+    Test update with:
+        - new time slot
+        - new team --> see if map works 
 */
 app.put('/api/leagues/', function(req, res) {
-    console.log("BACKEND: Updating League");
-    League.findByIdAndUpdate(req.body._id, req.body, {new: true}, function(err, lg) {
-        if (err) {
-            console.log(err) 
+    League.findById(req.body._id, function (err, lg) {
+        if (err || !lg)
+            return handleError(err, null, res)
+                
+        // time slot added
+        if (req.body.time_slots && req.body.time_slots.length != 0) {
+            lg.dates.time_slots = req.body.time_slots
         }
-    });
+
+        // num teams and teams update
+        lg.team_info.num_teams = req.body.num_teams
+        
+        if (req.body.teams) {
+            for (var i = 0; i < req.body.teams.length; i++) {
+                lg.team_info.teams.push(req.body.teams[i]._id)
+            }
+        }
+
+        if (req.body.schedule) {
+            // matches changed
+            if (req.body.schedule.length != lg.matches.schedule.length) {
+                lg.matches.schedule = req.body.schedule.map(elem => elem._id);
+            }
+        }
+
+        // rules changed
+        lg.rules = req.body.rules
+
+        lg.save(function(err, lg) {
+            if (err || !lg)
+                return handleError(err, null, res)
+            res.status(200).json(lg)
+        })
+    }) 
 });
+
+/*
+delete league
+*/
+app.delete('/api/leagues', function(req, res) {
+    League.deleteOne({_id: req.body._id}, function(err) {
+        if (err) handleError(err, null, res);
+    })
+})
 
 
 /*****************************************************************************/

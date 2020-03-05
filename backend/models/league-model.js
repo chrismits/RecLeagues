@@ -50,7 +50,7 @@ var leagueSchema = new mongoose.Schema({
         type: String,
         required: true, 
         minlength: 1, 
-        maxlength: 20
+        maxlength: 30
     },
     is_pickup: {
         type: Boolean,
@@ -89,16 +89,14 @@ var leagueSchema = new mongoose.Schema({
         }]
     },
 
-    matches: {
+    matches: { // schedule in league frontend
         location: String,
         game_length: Number,
         schedule: [{
-            // ADD LOCATION??
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Match'
         }]
-    }
-    ,
+    },
     league_type: {
         type: String,
         enum: ['Male', 'Female', 'Co-ed']

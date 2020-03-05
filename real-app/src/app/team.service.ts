@@ -41,11 +41,31 @@ export class TeamService {
     // })
   }
   
-  
+  // getTeamByID(team_id) {
+  //   this.apiService.getTeamById(team_id).subscribe((data: any) => {
+  //     var t = 
+
+
+  //   }, (error) => {
+  //     console.log("Error: Could not find team by specific id")
+  //   })
+  // }
+
+
+
   // Returns all teams in db for current league
   getTeamsByLeagueID(league_id) {
     this.apiService.getTeamsByLeague(league_id).subscribe((data: any[]) => {
-      console.log("Not working: Map db team object to frontend team")
+
+      // CHANGE TEAM CONSTRUCTOR IN TEAM.TS TO CONFORM WITH RESPONSE
+        // for (var t in data) {
+        //   var curr = new Team(t.name, )
+
+        // }
+
+      console.log("Not working yet")
+
+
     }, (error) => {
       console.log("Error in searching for teams")
     })
