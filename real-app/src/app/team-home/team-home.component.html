@@ -11,10 +11,14 @@
   <input type="hidden" #selection>
   <div class="display">
     <div class="sidebar">
-      <button class="nav" (click)="selection.value = 'game'"> Game Schedule </button> <br> <br> 
-      <button class="nav" (click)="selection.value = 'rankings'"> League Rankings </button> <br> <br> 
-      <button class="nav" (click)="selection.value = 'roster'"> Roster </button> <br> <br> 
-      <button class="nav" (click)="selection.value = 'reg'"> Team Registration </button>
+      <div *ngIf="!regOpen()">
+        <button class="nav" (click)="selection.value = 'game'"> Game Schedule </button> <br> <br> 
+        <button class="nav" (click)="selection.value = 'rankings'"> League Rankings </button> <br> <br> 
+        <button class="nav" (click)="selection.value = 'roster'"> Roster </button> <br> <br> 
+      </div>
+      <div *ngIf="regOpen()">
+        <button class="nav" (click)="selection.value = 'reg'"> Team Registration </button>
+      </div>
     </div>
 
     <div class="routed">
@@ -42,7 +46,11 @@
         </div>
 
         <div *ngSwitchCase="'reg'">
-          <div class="header"> Team Registration </div>
+          <div class="row">
+            <div class="header inline"> Team Registration </div>
+            <button *ngIf="amCaptain" type="button" class="btn inline"> Invite More Players 
+            </button>
+          </div>
           <div class="outlet">
             <app-registration-status></app-registration-status>
           </div>

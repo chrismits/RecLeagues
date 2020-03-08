@@ -16,6 +16,7 @@ import { LeagueService } from '../league.service';
 export class RosterComponent implements OnInit {
 
   players: Player[] = PLAYERS;
+  emails: string[] = [];
   league: League = LEAGUES[0];
   team: Team = TEAMS[0];
 
@@ -27,6 +28,7 @@ export class RosterComponent implements OnInit {
     if (this.teamService.getTeam() !== undefined) {
       this.team = this.teamService.getTeam()
       this.players = this.team.getAllPlayers();
+      this.emails = this.team.getEmails();
     }
 
     if (this.leagueService.getLeague() !== undefined) {

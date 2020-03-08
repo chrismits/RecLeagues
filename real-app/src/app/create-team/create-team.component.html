@@ -14,7 +14,7 @@
         <label class="labl" for="name">Team Name</label>
         <input type="text" class="form-control" id="name" required 
                [(ngModel)]="teamName" name="name" #name="ngModel"
-               pattern="[a-zA-Z0-9\- ']*"> 
+               pattern="[a-zA-Z0-9\- '.,:;]*"> 
         <div [hidden]="name.valid || name.pristine" 
               class="alert alert-danger"> 
           Please enter a valid name.
@@ -29,7 +29,7 @@
         </div>
         <input type="text" class="form-control" id="player" required 
                [(ngModel)]="playerEmail" name="player" #player="ngModel"
-               pattern="[a-zA-Z0-9\-]*@tufts.edu"> 
+               pattern="[a-zA-Z0-9\-.]*@tufts.edu"> 
         <div [hidden]="player.valid || player.pristine" 
               class="alert alert-danger"> 
           Please enter a valid Tufts email.
