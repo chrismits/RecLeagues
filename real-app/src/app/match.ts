@@ -30,6 +30,29 @@ export class Match {
     getHome() { return this.home; }
     getAway() { return this.away; }
     getDate() { return this.date; }
+    getReadableDate() {
+        let words = this.date.toString().split(" "); 
+        let str = '';
+        if (words.length == 1) {
+            words = this.date.toString().split("T");
+            let dates = words[0].split("-");
+            str = dates[1].concat('/', dates[2], '/', dates[0]);
+        } else { 
+            str = words[1].concat('. ', words[2], ', ', words[3]);
+            let times = words[4].split(':');
+            let hr = Number(times[0]);
+            let mins = times[1];
+            let tod = 'AM';
+            if (hr > 12) {
+                tod = 'PM';
+                hr -= 12;
+            }
+            let time = hr.toString() + ':' + mins + ' ' + tod;
+            str = str + ' @ ' + time;
+        }
+
+        return str;
+    }
     getLocation() { return this.location; }
     getScore() { return this.score; }
     getCreated() { return this.created; }

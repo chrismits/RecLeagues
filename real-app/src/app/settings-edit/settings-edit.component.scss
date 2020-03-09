@@ -20,9 +20,22 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 10%;
-    margin-bottom: 14%;
-    width: 70%;
-    height: 70%;
+    width: 65%;
+    height: 65%;
+}
+
+#file {
+	margin-bottom: 40px;
+	display: inline-block;
+	padding-left: 5px;
+}
+
+#file-btn {
+	margin-bottom: 40px;
+	display: inline-block;
+	float: right;
+	padding-right: 5px;
+	
 }
 
 .justified {

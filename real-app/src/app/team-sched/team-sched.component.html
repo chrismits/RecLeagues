@@ -1,0 +1,13 @@
+<div class="box">
+	<div class="block" *ngFor="let match of matches">
+		<div class="row">
+			<span class="date"> {{match.getReadableDate()}} </span>
+			<span class="loc"> {{match.getLocation()}} </span>
+		</div>
+		<div class="card">
+			<span class="home"> {{match.getHome().getName()}} </span>
+			<span class="vs"> vs. </span>
+			<span class="away"> {{match.getAway().getName()}} </span>
+		</div>
+	</div>
+</div>

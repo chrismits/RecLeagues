@@ -92,7 +92,7 @@
             <p *ngIf="!team.isFreeAgents()"> No </p>
           </div>
 
-          <div class="col col-5">
+          <div class="col col-5" *ngIf="regOpen()">
             <button type="button" (click)="joinTeam(team)" [disabled]="!team.isFreeAgents() || isOnATeam()"> Join Team </button>
           </div>
 

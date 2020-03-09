@@ -1,0 +1,44 @@
+.home {
+    display: inline-block;
+    width: 45%;
+}
+
+.away {
+    display: inline-block;
+    float: right;
+}
+
+.vs {
+    display: inline-block;
+}
+
+.date {
+    display: inline-block;
+    margin-left: 25px;
+}
+
+.loc {
+    display: inline-block;
+    float: right;
+    margin-right: 25px;
+}
+
+.card {
+    background-color: #A9A9A9;
+    border-radius: 5px;
+    height: 40px;
+    margin-top: 0.5rem;
+    padding: 1rem 3rem;
+}
+
+.block {
+    width: 90%;
+}
+
+.block + .block {
+    padding-top: 20px;
+}
+
+.box {
+    padding-bottom: 20px;
+}
