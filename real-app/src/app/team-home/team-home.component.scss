@@ -11,6 +11,7 @@
 	display: inline-block;
 	float: left;
 	padding-top:2%;
+	overflow: auto;
 }
 
 .routed {
@@ -62,4 +63,43 @@
 .btn {
 	float: right;
 	margin-top: 30px;
+}
+
+/* inv player */
+#inv-col {
+	width: 80%;
+	margin-left: 10%;
+	margin-top: 50px;
+}
+
+#invite {
+	float:right;
+	margin-right: 5px;
+	margin-top: 5px;
+	background-color: #35c04f;
+}
+
+.labl {
+	display: inline-block;
+}
+
+.but {
+	display: inline-block;
+	float: right;
+}
+
+.included {
+	background-color: #bfbfbf;
+	min-height: 275px;
+	max-height: 275px;
+	padding-bottom: 15px;
+	overflow: auto;
+}
+
+.emails {
+	height: 30px;
+	padding-bottom: 5px;
+	padding-top: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
 }

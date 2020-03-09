@@ -18,6 +18,32 @@
       </div>
       <div *ngIf="regOpen()">
         <button class="nav" (click)="selection.value = 'reg'"> Team Registration </button>
+        <div *ngIf="invite">
+
+          <!-- ************* INVITE ************** -->
+          <div id="inv-col">
+            <div class="my-row">
+              <label class="labl" for="name">Invite Players</label> 
+              <button type="button" class="but" [disabled]="player.invalid" (click)="addEmail()"> Add </button>
+            </div>
+            <input type="text" class="form-control" id="player" required 
+                   [(ngModel)]="playerEmail" name="player" #player="ngModel"
+                   pattern="[a-zA-Z0-9\-.]*@tufts.edu"> 
+            <div [hidden]="player.valid || player.pristine" 
+                  class="alert alert-danger"> 
+              Please enter a valid Tufts email.
+            </div>
+            <br>
+            <div class="included">
+              <div class="emails" *ngFor="let email of playerEmails">
+                <p> {{ email }} 
+                <button type="button" class="but" (click)="removeEmail(email)"> remove </button> </p>
+              </div>
+              <button id="invite" (click)="inviteMore()"> Invite! </button>
+            </div>
+          </div>
+        </div>
+        
       </div>
     </div>
 
@@ -48,7 +74,9 @@
         <div *ngSwitchCase="'reg'">
           <div class="row">
             <div class="header inline"> Team Registration </div>
-            <button *ngIf="amCaptain" type="button" class="btn inline"> Invite More Players 
+            <button *ngIf="amCaptain" type="button" class="btn inline"
+                    (click)="startInv()"> 
+                    Invite More Players 
             </button>
           </div>
           <div class="outlet">
