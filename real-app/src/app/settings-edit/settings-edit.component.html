@@ -24,7 +24,7 @@
       	<!-- ******** NAME ********* -->
       	<label class="labl" for="name">Full Name</label>
         <input type="text" class="form-control short" id="name" required 
-               [(ngModel)]="settings.full_name" name="name" #name="ngModel"
+               [(ngModel)]="settings.fullName" name="name" #name="ngModel"
                pattern="[a-zA-Z\- ]*"> 
         <div [hidden]="name.valid || name.pristine" 
               class="alert alert-danger short"> 

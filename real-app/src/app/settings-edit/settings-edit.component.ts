@@ -35,7 +35,8 @@ export class SettingsEditComponent implements OnInit {
     console.log('upload to db');
   }
 
-  constructor(public settingsService: SettingsService) { }
+  constructor(public settingsService: SettingsService,
+              public userService: UserService) { }
 
   onSubmit() {
     console.log(this.settings.getName());
@@ -62,9 +63,4 @@ export class SettingsEditComponent implements OnInit {
       };
     }
   }
-
-  readImage(img) {
-
-  }
-
 }

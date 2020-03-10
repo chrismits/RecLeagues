@@ -74,15 +74,15 @@ export class League {
         this.name               = name;
         this.sport              = sport;
         this.season             = season;
-        this.regStart           = regS;
-        this.regEnd             = regE;
+        this.regStart           = this.setZeroTime(regS);
+        this.regEnd             = this.setMaxTime(regE);
         this.numTeams           = numTeams;
         this.teams              = teams;
         this.maxNumTeams        = maxTeams;
         this.minTeamSize        = minSize;
         this.playersOn          = players;
-        this.startDate          = start;
-        this.endDate            = end;
+        this.startDate          = this.setZeroTime(start);
+        this.endDate            = this.setMaxTime(end);
         this.schedule           = schedule;
         this.timeSlots          = slots;
         this.leagueType         = type;
@@ -144,8 +144,8 @@ export class League {
     setName(name: string) { this.name = name; }
     setSport(sport: string) { this.sport = sport; }
     setSeason(season: string) { this.season = season; }
-    setRegStart(d: Date) { this.regStart = d; }
-    setRegEnd(d: Date) { this.regEnd = d; }
+    setRegStart(d: Date) { this.regStart = this.setZeroTime(d); }
+    setRegEnd(d: Date) { this.regEnd = this.setMaxTime(d); }
     setNumTeams(n: number) { this.numTeams = n; }
     setType(s: string) { this.leagueType = s; }
     setCompLevel(s: string) { this.competitionLevel = s; }
@@ -153,17 +153,14 @@ export class League {
     setMinTeamSize(n: number) { this.minTeamSize = n; }
     setPlayersOn(n: number) { this.playersOn = n; }
     setGameLength(n: number) { this.gameLength = n; }
-    setStartDate(d: Date) { this.startDate = d; }
-    setEndDate(d: Date) { this.endDate = d; }
+    setStartDate(d: Date) { this.startDate = this.setZeroTime(d); }
+    setEndDate(d: Date) { this.endDate = this.setMaxTime(d); }
     setRules(s: string) { this.rules = s; }
 
     addTimeSlot(slot: TimeSlot) {
         this.timeSlots.push(slot);
     }
     addTimeSlots(slots: TimeSlot[]) {
-        // for (let i = 0; i < slots.length; i++) {
-        //     this.addTimeSlot(slots[i]);
-        // }
         slots.forEach(s => this.addTimeSlot(s));
     }
     removeTimeSlot(slot: TimeSlot) {
@@ -240,5 +237,22 @@ export class League {
         this.setCompLevel(l.getCompLevel());
         this.setIsFreeAgents(l.isFreeAgents());
         this.setIsAutoApproval(l.isAutoApproval());
+    }
+
+
+    setZeroTime(d: Date) {
+        d.setHours(0);
+        d.setMinutes(0);
+        d.setSeconds(0);
+        d.setMilliseconds(0);
+        return d;
+    }
+
+    setMaxTime(d: Date) {
+        d.setHours(23);
+        d.setMinutes(59);
+        d.setSeconds(59);
+        d.setMilliseconds(999);
+        return d;
     }
 }
