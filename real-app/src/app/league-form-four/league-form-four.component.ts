@@ -23,9 +23,6 @@ export class LeagueFormFourComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     this.leagueModel.addTimeSlots(this.slots);
-    /* redundant */
-    // this.leagueService.getLeague().deepCopyLeague(this.leagueModel);
-
   }
 
   addSlot() {

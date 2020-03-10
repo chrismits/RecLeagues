@@ -11,7 +11,7 @@
           <!-- ********* START DATE ******** -->
           <label class="labl" for="rs_date">Start Date</label>
           <input type="text" class="form-control" id="rs_date" required 
-                [(ngModel)]="reg_start_date" name="rs_date" #rs_date="ngModel" 
+                [(ngModel)]="regStartDate" name="rs_date" #rs_date="ngModel" 
                 pattern="^(0?[1-9]|1[012])[\/](0?[1-9]|[12][0-9]|3[01])[\/]\d{4}$">
           <div [hidden]="rs_date.valid || rs_date.pristine" 
                 class="alert alert-danger"> 
@@ -22,7 +22,7 @@
           <!-- ********* AUTO-APPROVAL ******** -->
           <label class="switch" for="auto-approval">
             <input type="checkbox" name="auto-approval" 
-              [(ngModel)]="auto_approval" value="true"> Auto-approval
+              [(ngModel)]="autoApproval" value="true"> Auto-approval
   		    </label>
         </div>
 
@@ -30,7 +30,7 @@
           <!-- ********* END DATE ******** -->
           <label class="labl" for="re_date">End Date</label>
           <input type="text" class="form-control" id="re_date" required 
-                [(ngModel)]="reg_end_date" name="re_date" #re_date="ngModel" 
+                [(ngModel)]="regEndDate" name="re_date" #re_date="ngModel" 
                 pattern="^(0?[1-9]|1[012])[\/](0?[1-9]|[12][0-9]|3[01])[\/]\d{4}$">
           <div [hidden]="re_date.valid || re_date.pristine" 
                 class="alert alert-danger"> 
@@ -49,7 +49,7 @@
           <!-- ********* START DATE ******** -->
           <label class="labl" for="ls_date">Start Date</label>
           <input type="text" class="form-control" id="ls_date" required 
-                [(ngModel)]="start_date" name="ls_date" #ls_date="ngModel" 
+                [(ngModel)]="startDate" name="ls_date" #ls_date="ngModel" 
                 pattern="^(0?[1-9]|1[012])[\/](0?[1-9]|[12][0-9]|3[01])[\/]\d{4}$">
           <div [hidden]="ls_date.valid || ls_date.pristine" 
                 class="alert alert-danger"> 
@@ -75,7 +75,7 @@
           <!-- ********* END DATE ******** -->
           <label class="labl" for="le_date">End Date</label>
           <input type="text" class="form-control" id="le_date" required 
-                [(ngModel)]="end_date" name="le_date" #le_date="ngModel" 
+                [(ngModel)]="endDate" name="le_date" #le_date="ngModel" 
                 pattern="^(0?[1-9]|1[012])[\/](0?[1-9]|[12][0-9]|3[01])[\/]\d{4}$">
           <div [hidden]="le_date.valid || le_date.pristine" 
                 class="alert alert-danger"> 

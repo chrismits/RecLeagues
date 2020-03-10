@@ -25,7 +25,7 @@ export class RegistrationStatusComponent implements OnInit {
 
   ngOnInit() {
     if (this.teamService.getTeam() !== undefined) {
-      this.team = this.teamService.getTeam()
+      this.team = this.teamService.getTeam();
       this.players = this.team.getAllPlayers();
       this.emails = this.team.getEmails();
     }
@@ -36,8 +36,9 @@ export class RegistrationStatusComponent implements OnInit {
   }
 
   isRegistered(p: Player) {
-  	if (this.team.playerIsRegistered(p)) return "Registered";
-  	else return "Unregistered";
+    if (this.team.playerIsRegistered(p)) {
+      return 'Registered';
+    } else { return 'Unregistered'; }
   }
 
   isCaptain(p: Player) {

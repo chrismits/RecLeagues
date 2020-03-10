@@ -5,7 +5,7 @@
     <div class="header" id="settings">Settings</div> 
     <button class="edit" id="edit-but" target="_blank" rel="noopener" 
     		tabindex="0" (click)="onSubmit()" [disabled]="name.invalid 
-    		|| pros.invalid || email.invalid || pass.invalid || password_confirm !== settings.password"
+    		|| pros.invalid || email.invalid || pass.invalid || passwordConfirm !== settings.password"
     		routerLink="/settings">
       Save </button>
   </div>
@@ -67,8 +67,8 @@
         <!-- ******** PASSWORD CONFIRMATION********* -->
         <label class="labl" for="pass2">Confirm Password</label>
         <input type="text" class="form-control short" id="pass2" required
-               [(ngModel)]="password_confirm" name="pass2" #pass2="ngModel"> 
-        <div [hidden]="password_confirm === settings.password || 
+               [(ngModel)]="passwordConfirm" name="pass2" #pass2="ngModel"> 
+        <div [hidden]="passwordConfirm === settings.password || 
               pass2.pristine" class="alert alert-danger short"> 
           Please enter a matching password.
         </div>

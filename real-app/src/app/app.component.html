@@ -269,9 +269,9 @@
 </style>
 
 <!-- Toolbar -->
-<default-header *ngIf="!role"></default-header>
-<admin-header *ngIf="role=='admin'" (loggedout)="setRole()"></admin-header>
-<user-header *ngIf="role=='user'" (loggedout)="setRole()"></user-header>
+<app-default-header *ngIf="!role"></app-default-header>
+<app-admin-header *ngIf="role=='admin'" (loggedout)="setRole()"></app-admin-header>
+<app-user-header *ngIf="role=='user'" (loggedout)="setRole()"></app-user-header>
 
 <!-- Login -->
 <app-login *ngIf="!role" (loggedin)="setRole()"></app-login>

@@ -1,5 +1,5 @@
-import { Player } from './player'
-import { League } from './league'
+import { Player } from './player';
+import { League } from './league';
 
 class Record {
     wins: number;
@@ -14,34 +14,35 @@ class Record {
 }
 
 export class Team {
-    private _id: string; //chris change id to string
 
-    name:    string;
-    size:    number;
+    id: string; // chris change id to string
+
+    name: string;
+    size: number;
     captain: Player;
     approved: boolean;
-    free_agents: boolean;
-    record: Record
-    //logo:    any;
-    players: Player[]; 
+    freeAgents: boolean;
+    record: Record;
+    // logo:    any;
+    players: Player[];
     emails: string[];
-    registered_players: Player[]; 
+    registeredPlayers: Player[];
     league: string; /* object id */
     created: Date;
 
-    constructor (name: string, captain: Player) {
-        this._id     = ""; // will change for db
-        this.name    = name;
-        this.size    = 1;
-        this.approved = false;
-        this.free_agents = false;
-        this.captain = captain;
-        this.record = new Record();
-        this.players = [];
-        this.emails = [];
-        this.registered_players = [];
-        this.players.push(captain); 
-        this.created = new Date();
+    constructor(name: string, captain: Player) {
+        this.id                = ''; // will change for db
+        this.name              = name;
+        this.size              = 1;
+        this.approved          = false;
+        this.freeAgents        = false;
+        this.captain           = captain;
+        this.record            = new Record();
+        this.players           = [];
+        this.emails            = [];
+        this.registeredPlayers = [];
+        this.players.push(captain);
+        this.created           = new Date();
     }
 
     getName() { return this.name; }
@@ -62,24 +63,22 @@ export class Team {
     }
 
     isApproved() { return this.approved; }
-    isFreeAgents() { return this.free_agents; }
+    isFreeAgents() { return this.freeAgents; }
     setApproved(b: boolean) { this.approved = b; }
-    setFreeAgents(b: boolean) { this.free_agents = b; }
+    setFreeAgents(b: boolean) { this.freeAgents = b; }
     pushEmails(s: string[]) {
-        s.forEach(str => 
-            { 
-                if (!this.emails.includes(str)) {
-                    this.emails.push(str);
-                    let front = str.split('@')[0];
-                    let first = front.split('.')[0];
-                    let last = front.split('.')[1];
-                    this.addPlayer(new Player('1', first, last, str));
-                }
-
-            });
+        s.forEach(str => {
+            if (!this.emails.includes(str)) {
+                this.emails.push(str);
+                const front = str.split('@')[0];
+                const first = front.split('.')[0];
+                const last = front.split('.')[1];
+                this.addPlayer(new Player('1', first, last, str));
+            }
+        });
     }
-    //chris: added set ID.
-    setID(id: string) {this._id = id}
+    // chris: added set ID.
+    setID(id: string) { this.id = id; }
 
     setWins(n: number) { this.record.wins = n; }
     setTies(n: number) { this.record.ties = n; }
@@ -87,8 +86,8 @@ export class Team {
     setName(n: string) { this.name = n; }
     setLeagueID(id: string) { this.league = id; }
     setSize(s: number) { this.size = s; }
-    setCaptain(c: Player) { 
-        if (this.isOnTeam(c)) this.captain = c; 
+    setCaptain(c: Player) {
+        if (this.isOnTeam(c)) { this.captain = c; }
     }
 
     addPlayer(p: Player) {
@@ -99,17 +98,17 @@ export class Team {
     }
 
     registerPlayer(p: Player) {
-        if (!this.registered_players.includes(p) &&
+        if (!this.registeredPlayers.includes(p) &&
             this.players.includes(p)) {
-            this.registered_players.push(p);
+            this.registeredPlayers.push(p);
         }
     }
 
     playerIsRegistered(p: Player) {
-        return this.registered_players.includes(p);
+        return this.registeredPlayers.includes(p);
     }
 
     removePlayer(p: Player) {
-        this.players = this.players.filter(pl => pl != p)
+        this.players = this.players.filter(pl => pl !== p);
     }
 }

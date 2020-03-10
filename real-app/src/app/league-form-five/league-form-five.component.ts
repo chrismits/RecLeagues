@@ -32,10 +32,6 @@ export class LeagueFormFiveComponent implements OnInit {
     if (this.leagueService.getLeague().isFreeAgents()) {
       this.freeAgentsAre = 'allowed';
     }
-
-    console.log(this.model.getTimeSlots());
-
-    // console.log(this.model.getMaxNumTeams());
   }
 
 }

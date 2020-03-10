@@ -2,7 +2,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { RoleService } from '../role.service';
 
 @Component({
-  selector: 'user-header',
+  selector: 'app-user-header',
   templateUrl: './user-header.component.html',
   styleUrls: ['./user-header.component.scss']
 })

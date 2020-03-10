@@ -54,7 +54,6 @@ export class ApiService {
 
   /******** LEAGUE ********/
 
-  //done
   createLeague(lg : League) : Observable<any> {
       return this.http.post<any>(`${API_URL}/leagues`, 
                             lg, {headers: this.headers})
@@ -185,7 +184,6 @@ export class ApiService {
     convertToLeague(l): League {
         var lg = new League(l._id,
             l.name, 
-            l.is_pickup, 
             l.sport,
             l.season,
             l.dates.reg_start,

@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminComponent } from './admin/admin.component';
-import { LeagueComponent } from './league/league.component';
 import { LeagueFormOneComponent } from './league-form-one/league-form-one.component';
 import { LeagueFormTwoComponent } from './league-form-two/league-form-two.component';
 import { LeagueFormThreeComponent } from './league-form-three/league-form-three.component';
@@ -22,9 +21,7 @@ import { routing } from './app-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LeagueInfoComponent } from './league-info/league-info.component';
-import { ProfileComponent } from './profile/profile.component';
 import { SettingsComponent } from './settings/settings.component';
-import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { SettingsEditComponent } from './settings-edit/settings-edit.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { InfoComponent } from './info/info.component';
@@ -49,7 +46,6 @@ import { TeamSchedComponent } from './team-sched/team-sched.component';
     AppComponent,
     AdminComponent,
     CalendarComponent,
-    LeagueComponent,
     LeagueFormOneComponent,
     LeagueFormTwoComponent,
     LeagueFormThreeComponent,
@@ -58,9 +54,7 @@ import { TeamSchedComponent } from './team-sched/team-sched.component';
     HeaderComponent,
     FooterComponent,
     LeagueInfoComponent,
-    ProfileComponent,
     SettingsComponent,
-    ProfileEditComponent,
     SettingsEditComponent,
     InfoComponent,
     InfoEditRulesComponent,

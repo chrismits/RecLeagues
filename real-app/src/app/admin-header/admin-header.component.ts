@@ -2,7 +2,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { RoleService } from '../role.service';
 
 @Component({
-  selector: 'admin-header',
+  selector: 'app-admin-header',
   templateUrl: './admin-header.component.html',
   styleUrls: ['./admin-header.component.scss']
 })
@@ -16,8 +16,8 @@ export class AdminHeaderComponent implements OnInit {
   }
 
   logout() {
-  	this.roleService.setRole(null);
-  	this.loggedout.emit(null);
+    this.roleService.setRole(null);
+    this.loggedout.emit(null);
   }
 
 }

@@ -17,9 +17,9 @@ export class TeamSchedComponent implements OnInit {
   constructor(public teamService: TeamService) { }
 
   ngOnInit() {
-  	this.team = this.teamService.getTeam();
-  	this.matches = this.matches.filter(m => 
-  		m.getHome() === this.team || m.getAway() === this.team);
+    this.team = this.teamService.getTeam();
+    this.matches = this.matches.filter(m =>
+      m.getHome() === this.team || m.getAway() === this.team);
   }
 
 }

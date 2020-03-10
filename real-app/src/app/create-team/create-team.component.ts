@@ -43,13 +43,13 @@ export class CreateTeamComponent implements OnInit {
     console.log(this.teamName);
     console.log(this.freeAgent);
     const newTeam = new Team(this.teamName, this.me);
-    newTeam.setLeagueID(this.league._id);
+    newTeam.setLeagueID(this.league.id);
     newTeam.setFreeAgents(this.freeAgent);
     console.log(newTeam);
     newTeam.pushEmails(this.playerEmails);
     this.teamService.setTeam(newTeam);
     this.teamService.setNew(true);
-    //this.teamService.storeTeam();
+    // this.teamService.storeTeam();
   }
 
   constructor(public leagueService: LeagueService,
