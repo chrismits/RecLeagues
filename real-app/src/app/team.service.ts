@@ -19,56 +19,24 @@ export class TeamService {
     this.newTeam = false;
   }
 
-  // Backend Tested
+  // adds team to db
   storeTeam() {
-    console.log("F -> F: store team");
-    this.apiService.createTeam(this.model).subscribe((data) => {
-      console.log(data)
-    }, (error) => {
-      console.log(error)
-    })
+    return this.apiService.createTeam(this.model)
   }
 
-  //Not yet functional backend
+  // updates record, num_teams, team array, player array if changed
   updateTeam() {
-    // Wins or players.
     console.log("F -> F: update team");
-
-    // this.apiService.updateTeam(this.model).subscribe((data) => {
-    //   console.log(data)
-    // }, (error) => {
-    //   console.log(error)
-    // })
+    return this.apiService.updateTeam(this.model);
   }
   
-  // getTeamByID(team_id) {
-  //   this.apiService.getTeamById(team_id).subscribe((data: any) => {
-  //     var t = 
-
-
-  //   }, (error) => {
-  //     console.log("Error: Could not find team by specific id")
-  //   })
-  // }
-
-
-
   // Returns all teams in db for current league
   getTeamsByLeagueID(league_id) {
-    this.apiService.getTeamsByLeague(league_id).subscribe((data: any[]) => {
+    return this.apiService.getTeamsByLeague(league_id)
+  }
 
-      // CHANGE TEAM CONSTRUCTOR IN TEAM.TS TO CONFORM WITH RESPONSE
-        // for (var t in data) {
-        //   var curr = new Team(t.name, )
-
-        // }
-
-      console.log("Not working yet")
-
-
-    }, (error) => {
-      console.log("Error in searching for teams")
-    })
-
+  // returns team by id
+  getTeambyId(team_id) {
+    return this.apiService.getTeamById(team_id)
   }
 }

@@ -14,7 +14,7 @@ class Record {
 }
 
 export class Team {
-    private _id: number;
+    private _id: string; //chris change id to string
 
     name:    string;
     size:    number;
@@ -28,8 +28,8 @@ export class Team {
     league: string; /* object id */
     created: Date;
 
-    constructor (name: string, captain: Player){
-        this._id     = 1; // will change for db
+    constructor (name: string, captain: Player) {
+        this._id     = ""; // will change for db
         this.name    = name;
         this.size    = 1;
         this.approved = false;
@@ -61,7 +61,8 @@ export class Team {
     setApproved(b: boolean) { this.approved = b; }
     setFreeAgents(b: boolean) { this.free_agents = b; }
 
-
+    //chris: added set ID.
+    setID(id: string) {this._id = id}
     setWins(n: number) { this.record.wins = n; }
     setTies(n: number) { this.record.ties = n; }
     setLosses(n: number) { this.record.losses = n; }

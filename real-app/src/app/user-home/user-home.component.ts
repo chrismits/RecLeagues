@@ -27,9 +27,19 @@ export class UserHomeComponent implements OnInit {
     this.leagueService.setLeague(l);
   }
 
+  // ngOnInit() {
+  // 	this.leagues = this.leagueService.getLeagues();
+  //   this.userService.setPlayer(this.me);
+  // }
+
+  // test version
   ngOnInit() {
-  	this.leagues = this.leagueService.getLeagues();
-    this.userService.setPlayer(this.me);
+    this.leagueService.getLeagues().subscribe(leagues => {
+      this.leagues = leagues;
+    }, error => {
+      console.log(error)
+    })
+    this.userService.setPlayer(this.me)
   }
 
 }

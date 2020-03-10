@@ -1,4 +1,4 @@
-/* 
+/*
 Database schema for league
 Notes:
     - Added sport field. Update enum values to add more sports.
@@ -22,10 +22,10 @@ var mongoose = require('mongoose');
             - day: String
             - length: Number
             - buffer: Number
-            - start: String 
+            - start: String
             - end: String
         ]
-    - team_info: 
+    - team_info:
         - auto_approval: Boolean
         - num_teams: Number
         - max_num_teams: Number
@@ -48,8 +48,8 @@ var leagueSchema = new mongoose.Schema({
     },
     name: {
         type: String,
-        required: true, 
-        minlength: 1, 
+        required: true,
+        minlength: 1,
         maxlength: 30
     },
     is_pickup: {
@@ -61,7 +61,7 @@ var leagueSchema = new mongoose.Schema({
     },
     season: {
         type: String,
-        enum: ['Fall', 'Winter', 'Spring'], 
+        enum: ['Fall', 'Winter', 'Spring'],
         required: true
     },
     dates: {
@@ -69,7 +69,6 @@ var leagueSchema = new mongoose.Schema({
         reg_end: Date,
         start_date: Date,
         end_date: Date,
-        
         time_slots: [{
             day: String,
             length: Number,
@@ -79,10 +78,10 @@ var leagueSchema = new mongoose.Schema({
         }]
     },
     team_info: {
-        num_teams: { type: Number, required: true },
-        max_num_teams: { type: Number, required: true },
-        min_team_size: { type: Number, required: true },
-        auto_approval: { type: Boolean, default: false },
+        num_teams: {type: Number, required: true},
+        max_num_teams: {type: Number, required: true},
+        min_team_size: {type: Number, required: true},
+        auto_approval: {type: Boolean, default: false},
         teams: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Team'
@@ -113,10 +112,10 @@ var leagueSchema = new mongoose.Schema({
         type: String
     },
     created: {
-        type: Date, 
+        type: Date,
         default: Date.now
     }
-})
+});
 
 
 var League = mongoose.model('League', leagueSchema);
