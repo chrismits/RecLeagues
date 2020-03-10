@@ -1,6 +1,6 @@
-/* 
+/*
 Database schema for Team
-Notes: 
+Notes:
     - Does captain requires a validation function?
     - Add entry for picture of logo. Store as buffer or link to object store.
 */
@@ -21,7 +21,7 @@ Notes:
     - created: Date
 */
 
-var mongoose = require('mongoose');
+var mongoose = require('mongoose')
 
 var teamSchema = new mongoose.Schema({
     _id: {
@@ -29,29 +29,29 @@ var teamSchema = new mongoose.Schema({
         auto: true
     },
     name: {
-        type: String, 
-        required: true, 
-        minlength: 1, 
+        type: String,
+        required: true,
+        minlength: 1,
         maxlength: 30
     },
     size: {
-        type: Number, 
-        required: true, 
+        type: Number,
+        required: true,
         validate: {
-            validator: function(v) {
+            validator: function (v) {
                 return v >= 1 && v < 30
             },
             message: 'Team size should be 1 - 30 players'
         }
     },
     captain: {
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Player', 
-        default: undefined,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Player',
+        default: undefined
     },
     players: [{ // Array of players
-            type: mongoose.Schema.Types.ObjectId, 
-            ref: 'Player'
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Player'
     }],
     league: {
         type: mongoose.Schema.Types.ObjectId,
@@ -68,7 +68,7 @@ var teamSchema = new mongoose.Schema({
         },
         ties: {
             type: Number,
-            default: 0,
+            default: 0
         },
         losses: {
             type: Number,
@@ -76,11 +76,11 @@ var teamSchema = new mongoose.Schema({
         }
     },
     created: {
-        type: Date, 
+        type: Date,
         default: Date.now
     }
 })
 
 
-var Team = mongoose.model('Team', teamSchema);
-module.exports = Team;
+var Team = mongoose.model('Team', teamSchema)
+module.exports = Team

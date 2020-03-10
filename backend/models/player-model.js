@@ -5,8 +5,8 @@ Notes:
     - Added reference field for team
 */
 
-var mongoose = require('mongoose');
-require('mongoose-type-email');
+var mongoose = require('mongoose')
+require('mongoose-type-email')
 
 /* Entries for Player:
     - _id: ObjectId
@@ -40,7 +40,7 @@ var playerSchema = new mongoose.Schema({
         required: false,
         validate: {
             validator: function (c) {
-                return /\d{10}/.test(c); // test this
+                return /\d{10}/.test(c) // test this
             }
         }
     },
@@ -56,9 +56,9 @@ var playerSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     }
-});
+})
 
-const Player = mongoose.model('Player', playerSchema);
-module.exports = Player;
+const Player = mongoose.model('Player', playerSchema)
+module.exports = Player
 
 

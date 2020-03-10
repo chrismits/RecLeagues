@@ -26,7 +26,7 @@ export class SettingsEditComponent implements OnInit {
     reader.readAsDataURL(this.selectedFile); // read file as data url
 
     reader.onload = (event) => { // called once readAsDataURL is completed
-      this.url = event.target.result;
+      // this.url = event.target.result;
     }
 
     this.settings.setPicture(event);
@@ -58,7 +58,7 @@ export class SettingsEditComponent implements OnInit {
       reader.readAsDataURL(selectedFile); // read file as data url
 
       reader.onload = (event) => { // called once readAsDataURL is completed
-        this.url = event.target.result;
+        // this.url = event.target.result;
       }
     }
   }

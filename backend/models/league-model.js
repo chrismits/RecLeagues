@@ -5,7 +5,7 @@ Notes:
     - CHANGE TO MIN NUMBER OF TEAMS.
 */
 
-var mongoose = require('mongoose');
+var mongoose = require('mongoose')
 
 /* Entries for League:
     - _id: ObjectId
@@ -78,10 +78,10 @@ var leagueSchema = new mongoose.Schema({
         }]
     },
     team_info: {
-        num_teams: {type: Number, required: true},
-        max_num_teams: {type: Number, required: true},
-        min_team_size: {type: Number, required: true},
-        auto_approval: {type: Boolean, default: false},
+        num_teams: { type: Number, required: true },
+        max_num_teams: { type: Number, required: true },
+        min_team_size: { type: Number, required: true },
+        auto_approval: { type: Boolean, default: false },
         teams: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Team'
@@ -115,8 +115,7 @@ var leagueSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     }
-});
+})
 
-
-var League = mongoose.model('League', leagueSchema);
-module.exports = League;
+var League = mongoose.model('League', leagueSchema)
+module.exports = League

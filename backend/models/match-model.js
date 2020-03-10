@@ -6,7 +6,7 @@ Notes:
     - Keep track of the approved players for match
 */
 
-var mongoose = require('mongoose');
+var mongoose = require('mongoose')
 
 /* Entries for Match:
     - _id: ObjectId
@@ -51,7 +51,7 @@ var matchSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     }
-});
+})
 
-var Match = mongoose.model('Match', matchSchema);
-module.exports = Match;
+var Match = mongoose.model('Match', matchSchema)
+module.exports = Match
