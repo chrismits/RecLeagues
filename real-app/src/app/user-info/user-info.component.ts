@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { League } from '../league'
-import { LEAGUES } from '../ex_league' 
-import { PLAYERS } from '../ex_players' 
-import { TEAMS } from '../ex_teams' 
-import { Team } from '../team' 
-import { Player } from '../player' 
-import { LeagueService } from '../league.service'
-import { TeamService } from '../team.service'
+import { League } from '../league';
+import { LEAGUES } from '../ex_league';
+import { PLAYERS } from '../ex_players';
+import { TEAMS } from '../ex_teams';
+import { Team } from '../team';
+import { Player } from '../player';
+import { LeagueService } from '../league.service';
+import { TeamService } from '../team.service';
 
 @Component({
   selector: 'app-user-info',
@@ -17,7 +17,7 @@ export class UserInfoComponent implements OnInit {
 
   league: League = LEAGUES[0];
   teams: Team[] = TEAMS;
-	now: Date = new Date();
+  now: Date = new Date();
   me: Player = PLAYERS[3];
 
   beforeReg() {
@@ -28,7 +28,7 @@ export class UserInfoComponent implements OnInit {
   regOpen() {
     const start = new Date(this.league.getRegStart());
     const end = new Date(this.league.getRegEnd());
-  	return start <= this.now && end >= this.now;
+    return start <= this.now && end >= this.now;
   }
 
   afterReg() {
@@ -41,19 +41,19 @@ export class UserInfoComponent implements OnInit {
   }
 
   teamsExist() {
-  	return this.teams != [];
+    return this.teams !== [];
   }
 
   joinTeam(t: Team) {
-    console.log("i joined");
+    console.log('i joined');
     console.log(t);
     /* store to db with userSevice */
     t.addPlayer(this.me);
   }
 
-  isOnATeam(){
-    for (let t of this.teams) {
-      if (t.isOnTeam(this.me)) return true;
+  isOnATeam() {
+    for (const t of this.teams) {
+      if (t.isOnTeam(this.me)) { return true; }
     }
     return false;
   }
@@ -66,7 +66,7 @@ export class UserInfoComponent implements OnInit {
               public teamService: TeamService) { }
 
   ngOnInit() {
-  	if (this.leagueService.getLeague() !== undefined) {
+    if (this.leagueService.getLeague() !== undefined) {
       this.league = this.leagueService.getLeague();
       // if (this.teamService.getTeamsByLeagueID(this.league._id) !== []) {
       //   this.teams = this.teamService.getTeamsByLeagueID(this.league._id);
@@ -75,14 +75,14 @@ export class UserInfoComponent implements OnInit {
     if (this.teamService.getTeam() !== undefined &&
         this.teamService.isNew() !== undefined &&
         this.teamService.isNew()) {
-  		console.log(this.teamService.getTeam());
+      console.log(this.teamService.getTeam());
       this.teams.push(this.teamService.getTeam());
       this.teamService.setNew(false);
-  	}
+    }
 
   }
 
-  setTeam(t: Team){
+  setTeam(t: Team) {
     this.teamService.setTeam(t);
   }
 

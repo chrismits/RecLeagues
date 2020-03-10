@@ -46,7 +46,6 @@ export class LeagueService {
       for (var l in data) {
         var curr = new League(data[l]._id,
                             data[l].name, 
-                            data[l].is_pickup, 
                             data[l].sport,
                             data[l].season,
                             data[l].dates.reg_start,

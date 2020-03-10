@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Team } from '../team'
-import { Player } from '../player'
-import { League } from '../league'
-import { TeamService } from '../team.service'
-import { LeagueService } from '../league.service'
-import { RoleService } from '../role.service'
-import { UserService } from '../user.service'
+import { Team } from '../team';
+import { Player } from '../player';
+import { League } from '../league';
+import { TeamService } from '../team.service';
+import { LeagueService } from '../league.service';
+import { RoleService } from '../role.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-team-home',
@@ -14,16 +14,16 @@ import { UserService } from '../user.service'
 })
 export class TeamHomeComponent implements OnInit {
 
-  team_name: string = "some team's name"; 
+  teamName = 'some team name';
   team: Team;
-  isPlayer: boolean = false;
-  amCaptain: boolean = false;
-  invite: boolean = false;
+  isPlayer = false;
+  amCaptain = false;
+  invite = false;
   user: Player;
   league: League;
   now: Date;
 
-  playerEmail: string = '';
+  playerEmail = '';
   playerEmails: string[] = [];
   existingEmails: string[] = [];
 
@@ -52,10 +52,6 @@ export class TeamHomeComponent implements OnInit {
         !this.existingEmails.includes(this.playerEmail)) {
       this.playerEmails.push(this.playerEmail);
     }
-
-    console.log(this.playerEmail);
-    console.log(this.playerEmails);
-    console.log(this.existingEmails);
   }
 
   inviteMore() {
@@ -71,11 +67,11 @@ export class TeamHomeComponent implements OnInit {
   }
 
   ngOnInit() {
-  	this.team = this.teamService.getTeam();
+    this.team = this.teamService.getTeam();
     this.existingEmails = this.team.getEmails();
     this.league = this.leagueService.getLeague();
-  	this.team_name = this.team.getName();
-    this.isPlayer = this.roleService.getRole() === "user";
+    this.teamName = this.team.getName();
+    this.isPlayer = this.roleService.getRole() === 'user';
     if (this.isPlayer) {
       this.user = this.userService.getPlayer();
       this.amCaptain = this.team.isCaptain(this.user);

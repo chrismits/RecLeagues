@@ -4,7 +4,6 @@ import { AdminComponent } from './admin/admin.component';
 import { CreateTeamComponent } from './create-team/create-team.component';
 import { UserHomeComponent } from './user-home/user-home.component';
 import { TeamHomeComponent } from './team-home/team-home.component';
-import { LeagueComponent } from './league/league.component';
 import { InfoComponent } from './info/info.component';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { InfoEditRulesComponent } from './info-edit-rules/info-edit-rules.component';
@@ -16,8 +15,6 @@ import { LeagueFormFiveComponent } from './league-form-five/league-form-five.com
 import { LeagueInfoComponent } from './league-info/league-info.component';
 import { LeagueGameScheduleComponent } from './league-game-schedule/league-game-schedule.component';
 import { LeagueInfoScheduleComponent } from './league-info-schedule/league-info-schedule.component';
-import { ProfileComponent } from './profile/profile.component';
-import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { SettingsComponent } from './settings/settings.component';
 import { SettingsEditComponent } from './settings-edit/settings-edit.component';
 import { LoginComponent } from './login/login.component';
@@ -27,7 +24,6 @@ const routes: Routes = [
     { path: 'create-team', component: CreateTeamComponent},
     { path: 'user-home', component: UserHomeComponent},
     { path: 'team-home', component: TeamHomeComponent},
-    { path: 'leagues', component: LeagueComponent},
     { path: 'info', component: InfoComponent},
     { path: 'user-info', component: UserInfoComponent},
     { path: 'info-edit-rules', component: InfoEditRulesComponent},
@@ -37,8 +33,6 @@ const routes: Routes = [
     { path: 'leagues-form-four', component: LeagueFormFourComponent},
     { path: 'leagues-form-five', component: LeagueFormFiveComponent},
     { path: 'league-info', component: LeagueInfoComponent},
-    { path: 'profile', component: ProfileComponent},
-    { path: 'profile-edit', component: ProfileEditComponent},
     { path: 'settings', component: SettingsComponent},
     { path: 'settings-edit', component: SettingsEditComponent},
     { path: 'league-info-schedule', component: LeagueInfoScheduleComponent},

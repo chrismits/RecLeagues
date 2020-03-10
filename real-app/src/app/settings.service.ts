@@ -5,10 +5,10 @@ import { Settings } from './settings';
   providedIn: 'root'
 })
 export class SettingsService {
-	model: Settings;
+    model: Settings;
 
-	setSettings(s : Settings) { this.model = s; }
-	getSettings() { return this.model; }
+    setSettings(s: Settings) { this.model = s; }
+    getSettings() { return this.model; }
 
     constructor() { }
 }

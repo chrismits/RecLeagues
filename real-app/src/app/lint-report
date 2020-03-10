@@ -1,0 +1,466 @@
+Linting "real-app"...
+
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:3:37 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:4:34 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:9:57 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:10:35 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:16:1 - trailing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:17:74 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:25:21 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:25:50 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:29:46 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:40:41 - trailing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:43:17 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:43:43 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:47:15 - expected nospace before colon in parameter
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:48:17 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:48:38 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:50:60 - trailing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:51:71 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:59:7 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:59:11 - Identifier 'lg' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:60:16 - trailing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:74:28 - trailing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:75:23 - trailing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:83:5 - statements are not aligned
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:83:14 - Identifier 's' is never reassigned; use 'const' instead of 'let'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:84:7 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:84:11 - Identifier 'slot' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:93:5 - statements are not aligned
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:93:14 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:97:18 - expected nospace before colon in parameter
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:97:28 - expected nospace before colon in call-signature
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:98:55 - trailing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:99:57 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:103:18 - expected nospace before colon in call-signature
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:104:17 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:109:18 - expected nospace before colon in parameter
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:109:28 - expected nospace before colon in call-signature
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:110:17 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:112:59 - trailing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:117:39 - trailing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:120:17 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:122:55 - trailing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:123:77 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:127:17 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:127:41 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:130:75 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:134:20 - variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:135:5 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:135:9 - Identifier 'params' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:135:39 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:139:15 - variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:140:5 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:140:9 - Identifier 'params' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/api.service.ts:140:39 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/app.component.ts:20:3 - Lifecycle interface OnInit should be implemented for method ngOnInit. (https://angular.io/styleguide#style-09-01)
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/app.component.ts:21:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/app.component.ts:22:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/app.component.ts:22:6 - comment must start with a space
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/app.component.ts:23:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/app.component.ts:23:6 - comment must start with a space
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/app.component.ts:27:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/calendar/calendar.component.ts:61:3 - Lifecycle interface DoCheck should be implemented for method ngDoCheck. (https://angular.io/styleguide#style-09-01)
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:1:44 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:3:1 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:3:5 - Identifier 'now' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:4:1 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:4:5 - Identifier 'end' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:5:1 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:5:5 - Identifier 'start' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:6:1 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:6:5 - Identifier 'reg_end' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:6:5 - variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:10:1 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:10:5 - Identifier 'season' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:12:1 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:13:1 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:15:1 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:15:5 - Identifier 'tmp_league_1' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:15:5 - variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:15:70 - trailing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:16:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:16:38 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:16:38 - missing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:16:58 - missing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:16:72 - missing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:16:86 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:18:20 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:21:1 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:21:5 - Identifier 'tmp_league_2' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:21:5 - variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:21:70 - trailing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:22:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:22:39 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:22:50 - missing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:22:58 - missing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:22:72 - missing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:22:86 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:24:17 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:27:1 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:27:5 - Identifier 'tmp_league_3' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:27:5 - variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:27:70 - trailing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:28:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:28:39 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:28:50 - missing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:28:58 - missing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:28:72 - missing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:28:86 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:30:24 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:33:1 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:33:5 - Identifier 'tmp_league_4' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:33:5 - variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:33:70 - trailing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:34:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:34:39 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:34:50 - missing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:34:58 - missing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:34:72 - missing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:34:86 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:36:1 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:36:5 - Identifier 'slot1' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:37:1 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:37:5 - Identifier 'slot2' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:38:1 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:38:5 - Identifier 'slot3' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:39:1 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:39:5 - Identifier 'slot4' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:40:1 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:40:5 - Identifier 'now1' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:40:12 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:41:1 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:41:5 - Identifier 'end1' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:41:12 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:73:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:74:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:75:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:76:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_league.ts:77:3 - file should end with a newline
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_match.ts:1:32 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_match.ts:2:35 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_match.ts:4:1 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_match.ts:4:5 - Identifier 'now' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_match.ts:5:1 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_match.ts:5:5 - Identifier 'loc' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_match.ts:5:11 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_match.ts:5:18 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_match.ts:6:1 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_match.ts:6:5 - Identifier 'tmp_match_1' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_match.ts:6:5 - variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_match.ts:7:1 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_match.ts:7:5 - Identifier 'tmp_match_2' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_match.ts:7:5 - variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_match.ts:8:1 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_match.ts:8:5 - Identifier 'tmp_match_3' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_match.ts:8:5 - variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_match.ts:9:1 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_match.ts:9:5 - Identifier 'tmp_match_4' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_match.ts:9:5 - variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_match.ts:10:1 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_match.ts:10:5 - Identifier 'tmp_match_5' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_match.ts:10:5 - variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_match.ts:11:1 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_match.ts:11:5 - Identifier 'tmp_match_6' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_match.ts:11:5 - variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_match.ts:14:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_match.ts:15:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_match.ts:16:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_match.ts:17:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_match.ts:18:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_match.ts:19:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_match.ts:21:3 - file should end with a newline
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_players.ts:1:34 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_players.ts:3:1 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_players.ts:3:5 - Identifier 'tmp_player_1' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_players.ts:3:5 - variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_players.ts:4:1 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_players.ts:4:5 - Identifier 'tmp_player_2' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_players.ts:4:5 - variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_players.ts:5:1 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_players.ts:5:5 - Identifier 'tmp_player_3' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_players.ts:5:5 - variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_players.ts:6:1 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_players.ts:6:5 - Identifier 'tmp_player_4' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_players.ts:6:5 - variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_players.ts:9:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_players.ts:10:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_players.ts:11:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_players.ts:12:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_players.ts:13:3 - file should end with a newline
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_teams.ts:1:30 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_teams.ts:2:39 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_teams.ts:4:1 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_teams.ts:4:5 - Identifier 'tmp_team_1' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_teams.ts:4:5 - variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_teams.ts:5:1 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_teams.ts:5:5 - Identifier 'tmp_team_2' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_teams.ts:5:5 - variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_teams.ts:6:1 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_teams.ts:6:5 - Identifier 'tmp_team_3' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_teams.ts:6:5 - variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_teams.ts:23:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_teams.ts:24:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_teams.ts:25:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/ex_teams.ts:26:3 - file should end with a newline
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league-game-schedule/league-game-schedule.component.ts:16:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league-game-schedule/league-game-schedule.component.ts:17:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league-game-schedule/league-game-schedule.component.ts:18:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league-game-schedule/league-game-schedule.component.ts:19:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league-game-schedule/league-game-schedule.component.ts:20:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league-game-schedule/league-game-schedule.component.ts:21:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league-info-schedule/league-info-schedule.component.ts:12:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league-info-schedule/league-info-schedule.component.ts:13:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league-info-schedule/league-info-schedule.component.ts:14:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league-info-schedule/league-info-schedule.component.ts:15:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league-info/league-info.component.ts:23:53 - trailing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league-info/league-info.component.ts:28:5 - Expected a 'for-of' loop instead of a 'for' loop with this simple iteration
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league-info/league-info.component.ts:28:10 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league-info/league-info.component.ts:28:15 - missing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league-info/league-info.component.ts:28:16 - missing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league-info/league-info.component.ts:28:20 - missing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league-info/league-info.component.ts:28:21 - missing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league-info/league-info.component.ts:29:58 - missing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league-info/league-info.component.ts:31:40 - != should be !==
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league-info/league-info.component.ts:37:37 - missing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league-info/league-info.component.ts:41:35 - missing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league-info/league-info.component.ts:45:10 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league-info/league-info.component.ts:45:15 - missing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league-info/league-info.component.ts:45:16 - missing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league-info/league-info.component.ts:45:20 - missing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league-info/league-info.component.ts:45:21 - missing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league-info/league-info.component.ts:49:58 - missing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league-info/league-info.component.ts:50:37 - missing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league-info/league-info.component.ts:58:10 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league-info/league-info.component.ts:58:15 - missing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league-info/league-info.component.ts:58:16 - missing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league-info/league-info.component.ts:58:20 - missing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league-info/league-info.component.ts:58:21 - missing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league-info/league-info.component.ts:62:58 - missing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league-info/league-info.component.ts:63:39 - missing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league.service.ts:2:44 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league.service.ts:4:41 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league.service.ts:7:37 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league.service.ts:14:14 - expected nospace before colon in parameter
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league.service.ts:20:5 - comment must start with a space
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league.service.ts:22:17 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league.service.ts:22:42 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league.service.ts:23:57 - variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league.service.ts:23:67 - trailing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league.service.ts:24:19 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league.service.ts:24:61 - trailing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league.service.ts:24:61 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league.service.ts:27:7 - trailing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league.service.ts:27:7 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league.service.ts:30:5 - comment must start with a space
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league.service.ts:33:17 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league.service.ts:33:43 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league.service.ts:35:31 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league.service.ts:37:41 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league.service.ts:38:7 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league.service.ts:41:5 - comment must start with a space
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league.service.ts:43:5 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league.service.ts:43:9 - Identifier 'arr' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league.service.ts:46:7 - for (... in ...) statements must be filtered with an if statement
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league.service.ts:46:12 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league.service.ts:46:16 - Identifier 'l' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league.service.ts:47:9 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league.service.ts:47:13 - Identifier 'curr' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league.service.ts:48:42 - trailing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league.service.ts:62:54 - trailing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league.service.ts:63:49 - trailing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league.service.ts:70:18 - Identifier 's' is never reassigned; use 'const' instead of 'let'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league.service.ts:71:11 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league.service.ts:71:15 - Identifier 'slot' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league.service.ts:83:25 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/league.service.ts:85:7 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:4:24 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:14:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:23:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:23:4 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:23:8 - Identifier 'username' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:23:20 - Type assertion using the '<>' syntax is forbidden. Use the 'as' syntax instead.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:23:38 - missing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:23:62 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:24:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:24:4 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:24:8 - Identifier 'password' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:24:20 - Type assertion using the '<>' syntax is forbidden. Use the 'as' syntax instead.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:24:38 - missing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:24:62 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:25:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:26:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:26:17 - == should be ===
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:26:20 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:26:40 - == should be ===
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:26:43 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:27:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:27:30 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:28:28 - trailing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:30:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:31:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:32:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:33:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:33:4 - misplaced 'else'
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:33:22 - == should be ===
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:33:25 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:33:44 - == should be ===
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:33:47 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:34:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:34:30 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:36:7 - statements are not aligned
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:37:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:38:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:39:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:40:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:40:4 - misplaced 'else'
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:41:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:41:17 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/login/login.component.ts:42:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/match.ts:1:31 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/match.ts:2:35 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/match.ts:4:1 - statements are not aligned
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/match.ts:5:13 - variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/match.ts:7:11 - expected onespace after colon in property-declaration
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/match.ts:8:11 - expected onespace after colon in property-declaration
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/match.ts:9:5 - variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/match.ts:10:5 - variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/match.ts:11:11 - expected onespace after colon in property-declaration
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/match.ts:12:15 - expected onespace after colon in property-declaration
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/match.ts:15:12 - expected onespace after colon in property-declaration
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/match.ts:16:14 - expected onespace after colon in property-declaration
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/match.ts:18:16 - Spaces before function parens are disallowed
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/match.ts:19:18 - != should be !==
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/match.ts:25:29 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/match.ts:34:48 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/match.ts:34:53 - trailing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/match.ts:36:26 - == should be ===
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/match.ts:37:48 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/match.ts:38:17 - Identifier 'dates' is never reassigned; use 'const' instead of 'let'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/match.ts:38:40 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/match.ts:40:17 - trailing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/match.ts:42:17 - Identifier 'times' is never reassigned; use 'const' instead of 'let'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/match.ts:44:17 - Identifier 'mins' is never reassigned; use 'const' instead of 'let'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/match.ts:50:17 - Identifier 'time' is never reassigned; use 'const' instead of 'let'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/match.ts:80:71 - != should be !==
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/match.ts:80:76 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/match.ts:85:71 - != should be !==
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/match.ts:85:76 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/match.ts:90:2 - file should end with a newline
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/player.ts:12:13 - expected onespace after colon in property-declaration
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/player.ts:15:16 - Spaces before function parens are disallowed
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/rankings/rankings.component.ts:17:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/rankings/rankings.component.ts:21:9 - Identifier 'team_and_points' is never reassigned; use 'const' instead of 'let'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/rankings/rankings.component.ts:21:9 - variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/rankings/rankings.component.ts:22:14 - Identifier 'team' is never reassigned; use 'const' instead of 'let'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/rankings/rankings.component.ts:23:11 - Identifier 'team_points' is never reassigned; use 'const' instead of 'let'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/rankings/rankings.component.ts:23:11 - variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/rankings/rankings.component.ts:28:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/rankings/rankings.component.ts:29:21 - non-arrow functions are forbidden
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/rankings/rankings.component.ts:30:11 - Identifier 'f_points' is never reassigned; use 'const' instead of 'let'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/rankings/rankings.component.ts:30:11 - variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/rankings/rankings.component.ts:31:11 - Identifier 's_points' is never reassigned; use 'const' instead of 'let'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/rankings/rankings.component.ts:31:11 - variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/registration-status/registration-status.component.ts:28:45 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/registration-status/registration-status.component.ts:39:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/registration-status/registration-status.component.ts:39:4 - if statements must be braced
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/registration-status/registration-status.component.ts:39:48 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/registration-status/registration-status.component.ts:40:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/registration-status/registration-status.component.ts:40:4 - else statements must be braced
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/registration-status/registration-status.component.ts:40:16 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/role.service.ts:7:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/role.service.ts:9:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/role.service.ts:9:11 - expected nospace before colon in parameter
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/role.service.ts:10:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/roster/roster.component.ts:29:45 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/roster/roster.component.ts:40:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/roster/roster.component.ts:40:4 - if statements must be braced
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/roster/roster.component.ts:40:48 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/roster/roster.component.ts:41:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/roster/roster.component.ts:41:4 - else statements must be braced
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/roster/roster.component.ts:41:16 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/roster/roster.component.ts:45:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings-edit/settings-edit.component.ts:4:46 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings-edit/settings-edit.component.ts:9:54 - trailing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings-edit/settings-edit.component.ts:16:3 - variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings-edit/settings-edit.component.ts:18:8 - Type string trivially inferred from a string literal, remove type annotation
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings-edit/settings-edit.component.ts:18:17 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings-edit/settings-edit.component.ts:23:5 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings-edit/settings-edit.component.ts:23:9 - Identifier 'reader' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings-edit/settings-edit.component.ts:27:22 - Shadowed name: 'event'
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings-edit/settings-edit.component.ts:29:6 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings-edit/settings-edit.component.ts:53:11 - Identifier 'event' is never reassigned; use 'const' instead of 'let'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings-edit/settings-edit.component.ts:54:11 - Identifier 'selectedFile' is never reassigned; use 'const' instead of 'let'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings-edit/settings-edit.component.ts:55:7 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings-edit/settings-edit.component.ts:55:11 - Identifier 'reader' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings-edit/settings-edit.component.ts:59:24 - Shadowed name: 'event'
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings-edit/settings-edit.component.ts:61:8 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings-edit/settings-edit.component.ts:66:1 - trailing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings.service.ts:8:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings.service.ts:10:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings.service.ts:10:15 - expected nospace before colon in parameter
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings.service.ts:11:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings.ts:2:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings.ts:2:2 - variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings.ts:4:12 - expected onespace after colon in property-declaration
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings.ts:8:16 - Spaces before function parens are disallowed
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings.ts:9:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings.ts:9:9 - parameters are not aligned
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings.ts:23:17 - expected nospace before colon in parameter
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings.ts:24:25 - expected nospace before colon in parameter
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings.ts:25:19 - expected nospace before colon in parameter
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings.ts:25:51 - missing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings.ts:26:21 - expected nospace before colon in parameter
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings.ts:26:55 - missing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings.ts:27:19 - expected nospace before colon in parameter
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings.ts:27:48 - missing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings.ts:29:2 - file should end with a newline
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings/settings.component.ts:2:39 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings/settings.component.ts:3:46 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings/settings.component.ts:4:54 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings/settings.component.ts:13:10 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings/settings.component.ts:14:14 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings/settings.component.ts:15:11 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings/settings.component.ts:16:14 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings/settings.component.ts:18:13 - Type boolean trivially inferred from a boolean literal, remove type annotation
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings/settings.component.ts:19:8 - Type string trivially inferred from a string literal, remove type annotation
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings/settings.component.ts:19:17 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings/settings.component.ts:30:1 - trailing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings/settings.component.ts:33:13 - variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings/settings.component.ts:44:58 - trailing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings/settings.component.ts:51:11 - Identifier 'event' is never reassigned; use 'const' instead of 'let'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings/settings.component.ts:52:11 - Identifier 'selectedFile' is never reassigned; use 'const' instead of 'let'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings/settings.component.ts:53:7 - Forbidden 'var' keyword, use 'let' or 'const' instead
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings/settings.component.ts:53:11 - Identifier 'reader' is never reassigned; use 'const' instead of 'var'.
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings/settings.component.ts:57:24 - Shadowed name: 'event'
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/settings/settings.component.ts:59:8 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/team-home/team-home.component.ts:17:3 - variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/team-home/team-home.component.ts:17:14 - Type string trivially inferred from a string literal, remove type annotation
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/team-home/team-home.component.ts:17:23 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/team-home/team-home.component.ts:17:42 - trailing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/team-home/team-home.component.ts:19:13 - Type boolean trivially inferred from a boolean literal, remove type annotation
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/team-home/team-home.component.ts:20:14 - Type boolean trivially inferred from a boolean literal, remove type annotation
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/team-home/team-home.component.ts:21:11 - Type boolean trivially inferred from a boolean literal, remove type annotation
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/team-home/team-home.component.ts:26:16 - Type string trivially inferred from a string literal, remove type annotation
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/team-home/team-home.component.ts:78:52 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/team.service.ts:2:30 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/team.service.ts:4:41 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/team.service.ts:11:12 - expected nospace before colon in parameter
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/team.service.ts:24:17 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/team.service.ts:26:24 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/team.service.ts:28:25 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/team.service.ts:29:7 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/team.service.ts:32:5 - comment must start with a space
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/team.service.ts:35:17 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/team.service.ts:43:1 - trailing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/team.service.ts:46:17 - trailing whitespace
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/team.service.ts:57:22 - variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/team.service.ts:66:19 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/team.service.ts:66:37 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/team.service.ts:70:19 - " should be '
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/team.service.ts:70:50 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/team.service.ts:71:7 - Missing semicolon
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/team.service.ts:74:2 - file should end with a newline
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/user-header/user-header.component.ts:19:1 - space indentation expected
+ERROR: /Users/georgewest/RecLeagues/real-app/src/app/user-header/user-header.component.ts:20:1 - space indentation expected
+

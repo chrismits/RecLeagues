@@ -14,25 +14,25 @@ export class RankingsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  	this.sortTeams();
+    this.sortTeams();
   }
 
   sortTeams() {
-    let team_and_points = [];
-    for (let team of this.teams) {
-      let team_points = 3 * team.getWins() + team.getTies();
-      team_and_points.push({
+    const teamAndPoints = [];
+    for (const team of this.teams) {
+      const teamPoints = 3 * team.getWins() + team.getTies();
+      teamAndPoints.push({
         team: team.getName(),
-        points: team_points
+        points: teamPoints
       });
-  	}
+    }
     this.teams.sort(function(first, second) {
-      let f_points = 3 * first.getWins() + first.getTies();
-      let s_points = 3 * second.getWins() + second.getTies();
-      if (s_points === f_points) {
+      const fPoints = 3 * first.getWins() + first.getTies();
+      const sPoints = 3 * second.getWins() + second.getTies();
+      if (sPoints === fPoints) {
         return first.getLosses() - second.getLosses();
       }
-      return s_points - f_points;
+      return sPoints - fPoints;
     });
   }
 

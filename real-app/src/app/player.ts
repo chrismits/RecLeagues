@@ -3,16 +3,16 @@ import { Settings } from './settings';
 export class Player {
     id: string;
     first: string;
-    last:  string;
+    last: string;
     email: string;
-    cell:  string;
+    cell: string;
     pronouns: string;
     logo: any;
 
-    waiver:  boolean;
+    waiver: boolean;
     created: Date;
 
-    constructor (id: string, first: string, last: string, email: string, cell?: string) {
+    constructor(id: string, first: string, last: string, email: string, cell?: string) {
         this.id     = id; // will change for db
         this.first = first;
         this.last  = last;
@@ -33,11 +33,11 @@ export class Player {
     getLogo() { return this.logo; }
     getCreated() { return this.created; }
 
-    setFirst(first : string) { this.first = first; }
-    setLast(last : string) { return this.last = last; }
-    setEmail(email : string) { return this.email = email; }
-    setCell(cell : string) { return this.cell = cell; }
-    setWaiver(signed : boolean) { this.waiver = signed; }
+    setFirst(first: string) { this.first = first; }
+    setLast(last: string) { return this.last = last; }
+    setEmail(email: string) { return this.email = email; }
+    setCell(cell: string) { return this.cell = cell; }
+    setWaiver(signed: boolean) { this.waiver = signed; }
     setPronouns(nouns: string) { this.pronouns = nouns; }
     setLogo(logo: any) { this.logo = logo; }
 

@@ -37,7 +37,7 @@ export class InfoComponent implements OnInit {
     this.leagueService.setLeague(this.league);
   }
 
-  setTeam(t: Team){
+  setTeam(t: Team) {
     this.teamService.setTeam(t);
   }
 
