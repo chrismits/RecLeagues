@@ -55,13 +55,8 @@ export class SettingsComponent implements OnInit {
       reader.readAsDataURL(selectedFile); // read file as data url
 
       reader.onload = (event) => { // called once readAsDataURL is completed
-<<<<<<< HEAD
-        // this.url = event.target.result;
-      }
-=======
         this.url = reader.result.toString();
       };
->>>>>>> 054722678a398ff9da84ddc53fad5cf96879c3ba
     }
   }
 
