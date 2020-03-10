@@ -184,7 +184,6 @@ export class ApiService {
     convertToLeague(l): League {
         var lg = new League(l._id,
             l.name, 
-            l.is_pickup, 
             l.sport,
             l.season,
             l.dates.reg_start,
