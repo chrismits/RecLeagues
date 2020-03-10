@@ -1,6 +1,6 @@
-/* 
+/*
 Mongoose schema for Player. Exports Player model
-Notes: 
+Notes:
     - Test cell-phone validator function
     - Added reference field for team
 */
@@ -20,32 +20,32 @@ require('mongoose-type-email');
 */
 var playerSchema = new mongoose.Schema({
     _id: {
-        type: mongoose.Schema.Types.ObjectId, 
-        auto: true 
+        type: mongoose.Schema.Types.ObjectId,
+        auto: true
     },
     first: {
-        type: String, 
+        type: String,
         required: true,
         trim: true,
         minlength: [2, 'DB Error: First name too short!']
     },
     last: {
-        type: String, 
-        required: true, 
+        type: String,
+        required: true,
         trim: true,
         minlength: [2, 'DB Error: Last name too short!']
     },
     cell: {
-        type: String, 
+        type: String,
         required: false,
         validate: {
-            validator: function(c) {
+            validator: function (c) {
                 return /\d{10}/.test(c); // test this
             }
         }
     },
     email: {
-        type: mongoose.SchemaTypes.Email, 
+        type: mongoose.SchemaTypes.Email,
         required: true
     },
     signedWaiver: {
@@ -53,10 +53,10 @@ var playerSchema = new mongoose.Schema({
         default: false
     },
     created: {
-        type: Date, 
+        type: Date,
         default: Date.now
     }
-})
+});
 
 const Player = mongoose.model('Player', playerSchema);
 module.exports = Player;

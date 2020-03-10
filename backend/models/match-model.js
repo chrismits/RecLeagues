@@ -1,4 +1,4 @@
-/* 
+/*
 Database schema for match
 Notes:
     - Changed score representation to have home and away scores as sub-fields.
@@ -6,6 +6,7 @@ Notes:
     - Keep track of the approved players for match
 */
 
+var mongoose = require('mongoose');
 
 /* Entries for Match:
     - _id: ObjectId
@@ -20,11 +21,11 @@ Notes:
 */
 var matchSchema = new mongoose.Schema({
     _id: {
-        type: mongoose.Schema.Types.ObjectId, 
+        type: mongoose.Schema.Types.ObjectId,
         auto: true
     },
     date: {
-        type: Date, 
+        type: Date,
         required: true
     },
     location: {
@@ -33,12 +34,12 @@ var matchSchema = new mongoose.Schema({
     },
     home: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Team', 
+        ref: 'Team',
         required: true
     },
     away: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Team', 
+        ref: 'Team',
         required: true
     },
     score: {
@@ -47,10 +48,10 @@ var matchSchema = new mongoose.Schema({
         required: false
     },
     created: {
-        type: Date, 
+        type: Date,
         default: Date.now
     }
-})
+});
 
 var Match = mongoose.model('Match', matchSchema);
 module.exports = Match;

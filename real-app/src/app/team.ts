@@ -14,7 +14,11 @@ class Record {
 }
 
 export class Team {
+<<<<<<< HEAD
     id: number;
+=======
+    private _id: string; //chris change id to string
+>>>>>>> 23e7429b466aa23a5a87e53c14a8fbceea799c0a
 
     name: string;
     size: number;
@@ -29,6 +33,7 @@ export class Team {
     league: string; /* object id */
     created: Date;
 
+<<<<<<< HEAD
     constructor(name: string, captain: Player) {
         this.id                = 1; // will change for db
         this.name              = name;
@@ -42,6 +47,21 @@ export class Team {
         this.registeredPlayers = [];
         this.players.push(captain);
         this.created           = new Date();
+=======
+    constructor (name: string, captain: Player) {
+        this._id     = ""; // will change for db
+        this.name    = name;
+        this.size    = 1;
+        this.approved = false;
+        this.free_agents = false;
+        this.captain = captain;
+        this.record = new Record();
+        this.players = [];
+        this.emails = [];
+        this.registered_players = [];
+        this.players.push(captain); 
+        this.created = new Date();
+>>>>>>> 23e7429b466aa23a5a87e53c14a8fbceea799c0a
     }
 
     getName() { return this.name; }
@@ -76,6 +96,8 @@ export class Team {
             }
         });
     }
+    //chris: added set ID.
+    setID(id: string) {this._id = id}
 
     setWins(n: number) { this.record.wins = n; }
     setTies(n: number) { this.record.ties = n; }
