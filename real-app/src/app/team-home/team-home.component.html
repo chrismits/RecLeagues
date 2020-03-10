@@ -11,19 +11,49 @@
   <input type="hidden" #selection>
   <div class="display">
     <div class="sidebar">
-      <button class="nav" (click)="selection.value = 'game'"> Game Schedule </button> <br> <br> 
-      <button class="nav" (click)="selection.value = 'rankings'"> League Rankings </button> <br> <br> 
-      <button class="nav" (click)="selection.value = 'roster'"> Roster </button> <br> <br> 
-      <button class="nav" (click)="selection.value = 'reg'"> Team Registration </button>
+      <div *ngIf="!regOpen()">
+        <button class="nav" (click)="selection.value = 'game'"> Game Schedule </button> <br> <br> 
+        <button class="nav" (click)="selection.value = 'rankings'"> League Rankings </button> <br> <br> 
+        <button class="nav" (click)="selection.value = 'roster'"> Roster </button> <br> <br> 
+      </div>
+      <div *ngIf="regOpen()">
+        <button class="nav" (click)="selection.value = 'reg'"> Team Registration </button>
+        <div *ngIf="invite">
+
+          <!-- ************* INVITE ************** -->
+          <div id="inv-col">
+            <div class="my-row">
+              <label class="labl" for="name">Invite Players</label> 
+              <button type="button" class="but" [disabled]="player.invalid" (click)="addEmail()"> Add </button>
+            </div>
+            <input type="text" class="form-control" id="player" required 
+                   [(ngModel)]="playerEmail" name="player" #player="ngModel"
+                   pattern="[a-zA-Z0-9\-.]*@tufts.edu"> 
+            <div [hidden]="player.valid || player.pristine" 
+                  class="alert alert-danger"> 
+              Please enter a valid Tufts email.
+            </div>
+            <br>
+            <div class="included">
+              <div class="emails" *ngFor="let email of playerEmails">
+                <p> {{ email }} 
+                <button type="button" class="but" (click)="removeEmail(email)"> remove </button> </p>
+              </div>
+              <button id="invite" (click)="inviteMore()"> Invite! </button>
+            </div>
+          </div>
+        </div>
+        
+      </div>
     </div>
 
     <div class="routed">
       <div [ngSwitch]="selection.value">
         <div *ngSwitchDefault></div> 
         <div *ngSwitchCase="'game'">
-          <div class="header"> Game Schedule (Incomplete)</div>
+          <div class="header"> Game Schedule </div>
           <div class="outlet">
-            <app-rankings></app-rankings>
+            <app-team-sched></app-team-sched>
           </div>
         </div>
 
@@ -42,7 +72,13 @@
         </div>
 
         <div *ngSwitchCase="'reg'">
-          <div class="header"> Team Registration </div>
+          <div class="row">
+            <div class="header inline"> Team Registration </div>
+            <button *ngIf="amCaptain" type="button" class="btn inline"
+                    (click)="startInv()"> 
+                    Invite More Players 
+            </button>
+          </div>
           <div class="outlet">
             <app-registration-status></app-registration-status>
           </div>

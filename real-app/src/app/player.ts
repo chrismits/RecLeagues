@@ -7,6 +7,7 @@ export class Player {
     email: string;
     cell:  string;
     pronouns: string;
+    logo: any;
 
     waiver:  boolean;
     created: Date;
@@ -19,6 +20,7 @@ export class Player {
         this.cell  = cell;
         this.waiver  = false;
         this.pronouns = '';
+        this.logo = null;
         this.created = new Date();
     }
 
@@ -28,6 +30,7 @@ export class Player {
     getCell() { return this.cell; }
     getWaiver() { return this.waiver; }
     getPronouns() { return this.pronouns; }
+    getLogo() { return this.logo; }
     getCreated() { return this.created; }
 
     setFirst(first : string) { this.first = first; }
@@ -36,11 +39,13 @@ export class Player {
     setCell(cell : string) { return this.cell = cell; }
     setWaiver(signed : boolean) { this.waiver = signed; }
     setPronouns(nouns: string) { this.pronouns = nouns; }
+    setLogo(logo: any) { this.logo = logo; }
 
     updateWithSettings(s: Settings) {
         this.first = s.getName().split(' ')[0];
         this.last = s.getName().split(' ')[1];
         this.email = s.getEmail();
-        this.pronouns = this.getPronouns();
+        this.pronouns = s.getPronouns();
+        this.logo = s.getPicture();
     }
 }

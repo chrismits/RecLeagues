@@ -41,6 +41,7 @@ import { RegistrationStatusComponent } from './registration-status/registration-
 import { LoginComponent } from './login/login.component';
 import { AdminHeaderComponent } from './admin-header/admin-header.component';
 import { UserHeaderComponent } from './user-header/user-header.component';
+import { TeamSchedComponent } from './team-sched/team-sched.component';
 
 
 @NgModule({
@@ -75,6 +76,7 @@ import { UserHeaderComponent } from './user-header/user-header.component';
     LoginComponent,
     AdminHeaderComponent,
     UserHeaderComponent,
+    TeamSchedComponent,
   ],
   imports: [
     AppRoutingModule,

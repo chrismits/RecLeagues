@@ -24,6 +24,7 @@ export class Team {
     record: Record
     //logo:    any;
     players: Player[]; 
+    emails: string[];
     registered_players: Player[]; 
     league: string; /* object id */
     created: Date;
@@ -37,6 +38,7 @@ export class Team {
         this.captain = captain;
         this.record = new Record();
         this.players = [];
+        this.emails = [];
         this.registered_players = [];
         this.players.push(captain); 
         this.created = new Date();
@@ -46,23 +48,39 @@ export class Team {
     getSize() { return this.size; }
     getCaptain() { return this.captain; }
     getAllPlayers() { return this.players; }
+    getEmails() { return this.emails; }
     getWins() { return this.record.wins; }
     getTies() { return this.record.ties; }
     getLosses() { return this.record.losses; }
     getCreated() { return this.created; }
     getLeagueID() { return this.league; }
     isOnTeam(p: Player) {
-        //if(this.players.filter(pl => pl == p) != []) return true;
         return this.players.includes(p);
+    }
+    isCaptain(p: Player) {
+        return this.captain === p;
     }
 
     isApproved() { return this.approved; }
     isFreeAgents() { return this.free_agents; }
     setApproved(b: boolean) { this.approved = b; }
     setFreeAgents(b: boolean) { this.free_agents = b; }
+    pushEmails(s: string[]) {
+        s.forEach(str => 
+            { 
+                if (!this.emails.includes(str)) {
+                    this.emails.push(str);
+                    let front = str.split('@')[0];
+                    let first = front.split('.')[0];
+                    let last = front.split('.')[1];
+                    this.addPlayer(new Player('1', first, last, str));
+                }
 
+            });
+    }
     //chris: added set ID.
     setID(id: string) {this._id = id}
+
     setWins(n: number) { this.record.wins = n; }
     setTies(n: number) { this.record.ties = n; }
     setLosses(n: number) { this.record.losses = n; }

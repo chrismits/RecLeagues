@@ -14,7 +14,9 @@
   <div class="box">
 
     <div class="sidebar">
-      <img id="prof_img" id="img" src="assets/img/default_prof.jpeg" alt="Profile Image">
+      <img id="prof_img" id="img" [src]="url" alt="Profile Image">
+      <input type="file" id="file" (change)="onSelectedImage($event)">
+      <button id="file-btn" (click)="uploadImage()"> Upload </button>
     </div>
 
     <div class="info">
