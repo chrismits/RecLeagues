@@ -13,7 +13,7 @@ app.use(bodyparser.json())
 var League = require('./models/league-model.js')
 var Player = require('./models/player-model.js')
 var Team = require('./models/team-model.js')
-// var Match = require('./models/match-model.js')
+var Match = require('./models/match-model.js')
 
 
 /** ************ Database Setup *******************/
@@ -321,17 +321,19 @@ app.get('/api/leagues/', function (req, res) {
 
     League.find({ 'dates.end_date': { $gt: curr_date } })
           .populate({
-path: 'team_info.teams',
-                     populate: 'captain players'
-})
+                    path: 'team_info.teams',
+                    populate: 'captain players'
+                    })
           .populate({
-path: 'matches.schedule',
-                     populate: 'home away'
-})
+                    path: 'matches.schedule',
+                    populate: 'home away'
+            })
           .exec(function (err, leagues) {
-              if (err || !leagues) { return handleError(err, null, res) }
+              if (err || !leagues) { 
+                return handleError(err, null, res)
+            }
 
-              res.status(200).json(leagues)
+            res.status(200).json(leagues)
           })
 })
 

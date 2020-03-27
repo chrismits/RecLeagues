@@ -22,10 +22,6 @@ export class AdminComponent implements OnInit {
       this.leagueService.setLeague(l);
   }
 
-  // ngOnInit() {
-  //     this.leagues = this.leagueService.getLeagues();
-  // }
-
   // test version
   ngOnInit() {
       this.leagueService.getLeagues().subscribe((leagues: League[]) => {
@@ -34,5 +30,4 @@ export class AdminComponent implements OnInit {
         console.log(error)
       });
   }
-  
 }
