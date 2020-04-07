@@ -48,14 +48,17 @@ function handleError (e, obj, res) {
 }
 }
 
-/** **************** Player API *******************/
+/****************** Player API *******************/
 
-/** ** addPlayer
-TESTED
+/** addPlayer
+Backend: Tested
+ApiService: Tested
+Frontend Service: Tested -> user.service.ts
 */
 app.post('/api/players', function (req, res) {
+    console.log("B: Adding Player")
     // Check if player already exists in db.
-    Player.countDocuments({ email: req.body._email }, function (err, count) {
+    Player.countDocuments({ email: req.body.email }, function (err, count) {
         if (err) {
             return handleError('Error: Unexpected result in post player', null, res)
         }
@@ -65,20 +68,103 @@ app.post('/api/players', function (req, res) {
 
         var new_player = new Player()
 
-        new_player.first = req.body._first
-        new_player.last = req.body._last
-        new_player.email = req.body._email
+        new_player.first = req.body.first
+        new_player.last = req.body.last
+        new_player.email = req.body.email
 
-        if (req.body._cell !== null) { new_player.cell = req.body._cell }
+        if (req.body.cell !== null) { 
+            new_player.cell = req.body.cell
+        }
 
         new_player.save(function (err2, player) {
-            if (err2) { return handleError('Error: Player does not abide by schema', null, res) }
-            handleError(null, player, res)
+            if (err2) {
+                return handleError('Error: Player does not abide by schema', null, res) 
+            }
+
+            res.status(200).json(player)
         })
     })
 })
 
-/** ** deletePlayer: For now does nothing, might be needed later
+/***  getPlayerByEmail
+ - Returns a single player from db.
+ -  Expects email as an http param -> req.query.email
+ Backend: Tested
+ ApiService: Tested
+ Frontend Service: Tested
+*/
+
+app.get('/api/players/:email', function (req, res) {
+    console.log("B: Getting Player by Email")
+    Player.findOne({ email: req.params.email }, function (err, pl) {
+        if (err || !pl) {
+            return handleError('Error: Could not find player', null, res)
+        }
+        else {
+            res.status(200).json(pl)
+        }
+    })
+})
+
+/* Update Player
+ Backend: Tested
+ ApiService: Tested
+ Frontend Service: Tested
+*/
+app.put('/api/players', function (req, res) {
+    console.log('B: Updating Player')
+
+    Player.findById(req.body.id, function(err, pl) {
+        if (err || !pl) {
+            return handleError("Error: Player not found in db, cannot update",
+            null, res)
+        }
+
+        // update fields
+        pl.first = req.body.first
+        pl.last = req.body.last
+        pl.cell = req.body.cell
+        pl.email = req.body.email
+        pl.signedWaiver = req.body.waiver
+        pl.pronouns = req.body.pronouns
+
+        // add something to handle logo???
+
+        pl.save(function(err, player) {
+            if (err) {
+                handleError("Error: Could not update player, does not abide by schema", null, res)
+            }
+            else {
+                res.status(200).json(player)
+            }
+        })
+    })
+})
+
+
+/** ** getPlayers
+- Returns all player documents in db
+Backend: 
+ApiService: 
+Frontend Service: 
+****/
+app.get('/api/players', function (req, res) {
+    console.log('B: Getting All Players')
+    Player.find(function (err, players) {
+        if (err || (players.length === 0)) { 
+            return handleError('Error: Could not find players in db', null, res) 
+        }
+
+        console.log(players.length)
+        res.json(players) // return all players in JSON format
+    })
+})
+
+
+/**** deletePlayer: For now does nothing, might be needed later
+Backend: Tested
+ApiService:
+Frontend Service:
 ****/
 app.delete('/api/players/:player_id', function (req, res) {
     // Player.remove({_id: req.params.player_id}, function(err, player) {
@@ -87,32 +173,6 @@ app.delete('/api/players/:player_id', function (req, res) {
     // });
 })
 
-
-/** ** getPlayers
-- Returns all player documents in db. Will probably not be needed in prod
-****/
-
-app.get('/api/players', function (req, res) {
-    console.log('Getting all players')
-    Player.find(function (err, players) {
-        if (err || (players.length === 0)) { return handleError('Error: Could not find players in db', null, res) }
-
-        res.json(players) // return all players in JSON format
-    })
-})
-
-
-/** *  getPlayer
- - Returns a single player from db.
- -  Expects email as an http param -> req.query.email
-*/
-
-app.get('/api/players', function (req, res) {
-    Player.findOne({ email: req.query.email }, function (err, pl) {
-        if (err || !pl) { return handleError('Error: Could not find player', null, res) }
-        res.status(200).json(pl)
-    })
-})
 
 /*****************************************************************************/
 
@@ -220,7 +280,6 @@ req.body.league: the id of the league to be searched
 */
 app.get('/api/teams/', function (req, res) {
     console.log('B : Getting team')
-
     console.log(req.query.league)
 
     Team.find({ league: { $eq: req.query.league } })

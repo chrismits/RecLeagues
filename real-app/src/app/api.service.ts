@@ -32,25 +32,43 @@ export class ApiService {
 
   /*
   TODO IN THIS FILE
-
-  -- Add conversion functions for each model type to clean up frontend.
   -- Add route guards
   */
 
   /************ PLAYER ****************/ 
-
-  getAllPlayers() {
-    console.log("F -> B: Get all players")
-    return this.http.get(`${API_URL}/players`);
-  }
-
+  
+  // In server.js -> app.post(/api/players)
   addPlayer(pl : Player): Observable<Player> {
     console.log("F -> B: Add Player")
 
     return this.http.post<Player>(`${API_URL}/players`, pl, 
-                                              {headers: this.headers})
+                                        {headers: this.headers})
+                    .pipe(map(pl => this.convertToPlayer(pl)))
   }
 
+  // In server.js -> app.get(/api/players)
+  getPlayerByEmail(email : string): Observable<Player> {
+    console.log("F -> B: Get Player by email" )
+    console.log(email)
+    let url = `${API_URL}/players/${email}`
+    return this.http.get<Player>(url).pipe(map(pl => this.convertToPlayer(pl)))
+  }
+
+  // In server.js -> app.put(/api/players)
+  updatePlayer(pl: Player): Observable<Player> {
+    console.log("F -> B: Updating Player")
+
+    return this.http.put<Player>(`${API_URL}/players`, pl, { headers: this.headers })
+                    .pipe(map(player => this.convertToPlayer(player)))
+  }
+
+  // In server.js -> app.get(/api/players)
+  getAllPlayers(): Observable<Player[]> {
+    console.log("F -> B: Get all players")
+    return this.http.get<Player []>(`${API_URL}/players`)
+                    .pipe(map(db_players => 
+                              db_players.map(pl => this.convertToPlayer(pl))))
+  }
 
   /******** LEAGUE ********/
 
@@ -121,8 +139,12 @@ export class ApiService {
             cell = ""
         }
 
-        var curr_player = new Player(pl._id, pl.first, pl.last, pl.email. cell);
+        var curr_player = new Player(pl._id, pl.first, pl.last, pl.email, pl.cell);
         curr_player.setWaiver(pl.signedWaiver)
+        if (pl.pronouns !== '')
+          curr_player.setPronouns(pl.pronouns)
+
+        // add logo
 
         return curr_player
     }

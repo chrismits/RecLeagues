@@ -40,6 +40,7 @@ export class Player {
     setWaiver(signed: boolean) { this.waiver = signed; }
     setPronouns(nouns: string) { this.pronouns = nouns; }
     setLogo(logo: any) { this.logo = logo; }
+    setID(id: string) {this.id = id}
 
     updateWithSettings(s: Settings) {
         this.first = s.getName().split(' ')[0];

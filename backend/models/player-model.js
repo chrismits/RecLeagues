@@ -16,6 +16,7 @@ require('mongoose-type-email')
     - email: Email
     - signedWaiver: Boolean
     - team: ObjectId ('Team' reference) -> Decided to remove this
+    - pronouns: String
     - created: Date
 */
 var playerSchema = new mongoose.Schema({
@@ -46,11 +47,21 @@ var playerSchema = new mongoose.Schema({
     },
     email: {
         type: mongoose.SchemaTypes.Email,
+        validate: {
+            validator: function (em) {
+                return /^\w+([\.-]?\w+)*@tufts.edu/.test(em)
+            }
+        },
         required: true
     },
     signedWaiver: {
         type: Boolean,
         default: false
+    },
+    pronouns: {
+        type: String,
+        required: false,
+        default: ''
     },
     created: {
         type: Date,
