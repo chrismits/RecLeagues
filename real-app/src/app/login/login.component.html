@@ -1,11 +1,15 @@
 <div class="inner-box">
 	<div class="user">
-		<div class="textlabel">Username</div>
-		<input type="username" id="username">
+		<div class="textlabel">Tufts Email</div>
+		<input type="username" class="entry" id="username">
 	</div>
 	<div class="pass">
 		<div class="textlabel">Password</div>
-		<input type="password" id="password">
+		<input type="password" class="entry" id="password">
+		<a class="text" id="recover"> Forgot password? </a>
+	</div>
+	<div class="register">
+		<p class="text"> Don't have an account? Sign up <a class="underl">here</a>! </p>
 	</div>
 
 	<button id="login" (click)="logIn()">Log In</button>

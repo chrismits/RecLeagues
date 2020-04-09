@@ -1,37 +1,83 @@
 .inner-box {
-	background-color: #F3F2F2;
-	width: 450px;
-	height: 40%;
-	margin: auto;
-	margin-top: 10rem;
-	border-radius: 25px;
+	position: absolute;
+	width: 448px;
+	height: 386px;
+	left: 496px;
+	top: 230px;
+
+	background: #EAEFF3;
+	border-radius: 10px;
 }
 
 .user {
 	padding: 3rem 5rem 2rem 5rem;
 }
 
-#username {
+.entry {
+	margin-top: 10px;
 	width: 100%;
-	margin-top: 1rem;
-	border-radius: 5px;
+	height: 37px;
+	background: #FFFFFF;
+	border-radius: 7px;
 }
 
 .pass {
 	padding: 1rem 5rem;
 }
 
-#password {
-	width: 100%;
-	margin-top: 1rem;
-	border-radius: 5px;
+.register {
+	padding: 1rem 5rem;
+	padding-top: 20px;
+}
+
+.underl {
+	text-decoration: underline;
 }
 
 #login {
-	margin: 4rem 5rem 0rem 0rem;
+	width: 128px;
+	height: 35px;
+
+	background: #3E8EDE;
+	border-radius: 100px;
+	font-family: Work Sans;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 19px;
+	/* identical to box height */
+
+	color: #FFFFFF;
+
 	float: right;
-	background-color: #CDCDCD;
-	border-radius: 25px;
-	width: 30%;
-	height: 10%;
+	margin-right: 40px;
+	margin-top: 20px;
+}
+
+.textlabel {
+	height: 22px;
+
+	font-family: Nunito;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 22px;
+	/* identical to box height */
+
+	color: #000000;
+}
+
+.text {
+	margin-top: 8px;
+	font-family: Work Sans;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 16px;
+
+	color: #000000;
+}
+
+#recover {
+	text-decoration-line: underline;
 }
