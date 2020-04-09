@@ -68,10 +68,18 @@ export class UserInfoComponent implements OnInit {
   ngOnInit() {
     if (this.leagueService.getLeague() !== undefined) {
       this.league = this.leagueService.getLeague();
-      // if (this.teamService.getTeamsByLeagueID(this.league._id) !== []) {
-      //   this.teams = this.teamService.getTeamsByLeagueID(this.league._id);
-      // }
+
+      // call to server
+      this.teamService.getTeamsByLeagueID(this.league.id).subscribe(teams => {
+        console.log(teams)
+        if (teams.length !== 0) {
+          this.teams = teams;
+        }
+      }, error => {
+        console.log(error)
+      })
     }
+
     if (this.teamService.getTeam() !== undefined &&
         this.teamService.isNew() !== undefined &&
         this.teamService.isNew()) {

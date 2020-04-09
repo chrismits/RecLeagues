@@ -15,8 +15,7 @@ class Record {
 
 export class Team {
 
-    id: string; // chris change id to string
-
+    id: string;
     name: string;
     size: number;
     captain: Player;

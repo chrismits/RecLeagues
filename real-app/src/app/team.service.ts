@@ -21,22 +21,25 @@ export class TeamService {
 
   // adds team to db
   storeTeam() {
-    return this.apiService.createTeam(this.model)
+    console.log("F -> F: Creating Team")
+    return this.apiService.createTeam(this.model);
+  }
+
+  // Returns all teams in db for current league
+  getTeamsByLeagueID(league_id) {
+    console.log("F -> F: Get Teams by League ID")
+    return this.apiService.getTeamsByLeague(league_id);
+  }
+
+  // Returns a single team by id
+  getTeambyId(team_id) {
+    console.log("F -> F: Get Team by Team ID")
+    return this.apiService.getTeamById(team_id)
   }
 
   // updates record, num_teams, team array, player array if changed
   updateTeam() {
     console.log("F -> F: update team");
     return this.apiService.updateTeam(this.model);
-  }
-  
-  // Returns all teams in db for current league
-  getTeamsByLeagueID(league_id) {
-    return this.apiService.getTeamsByLeague(league_id)
-  }
-
-  // returns team by id
-  getTeambyId(team_id) {
-    return this.apiService.getTeamById(team_id)
   }
 }

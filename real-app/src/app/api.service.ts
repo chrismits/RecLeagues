@@ -75,7 +75,7 @@ export class ApiService {
   /******** LEAGUE ********/
 
   createLeague(lg : League) : Observable<League> {
-    console.log("F -> B: Creating League")
+      console.log("F -> B: Creating League")
       return this.http.post<League>(`${API_URL}/leagues`, 
                             lg, {headers: this.headers})
                       .pipe(map(league => this.convertToLeague(league)))
@@ -103,34 +103,40 @@ export class ApiService {
   // adds team to db
   createTeam(t: Team): Observable<Team> {
     console.log("F -> B: Create team");
-
     return this.http.post<Team>(`${API_URL}/teams`, t, 
-                                                    {headers: this.headers})
+                                        {headers: this.headers})
+                    .pipe(map(team => this.convertToTeam(team)))
+  }
+
+  // Gets all teams in a league.
+  /* Note: This does not mean that all these teams are approved.
+    This is where we would see all teams wanting to register for league.
+    The admin then has to drag them to approved team. 
+        - Then the approved boolean will be set to true
+        - Then the team will be added to the league
+  */
+  getTeamsByLeague(league_id: string): Observable<Team []> {
+    console.log("F -> B: Getting teams by league ID")
+    let url = `${API_URL}/teams/${league_id}`
+    return this.http.get<Team []>(url)
+                    .pipe(map(data => data.map(team => this.convertToTeam(team))));
+  }
+
+  // gets team by id
+  getTeamById(team_id: string): Observable<Team> {
+    console.log("F -> B: Getting team by team ID")
+    let url = `${API_URL}/team/${team_id}` //team rather than teams to differentiatee
+    return this.http.get<Team>(url)
+                    .pipe(map(data => this.convertToTeam(data)));
   }
 
   // changes existing team in db based on t object
   updateTeam(t: Team): Observable<Team> {
     console.log("F -> B: Updating Team")
-
     return this.http.put<Team>(`${API_URL}/teams`, t,
                                                   {headers: this.headers})
   }
-
-
-  // gets all teams in a league.
-  // Note: This does not mean that all these teams are approved.
-  getTeamsByLeague(league_id: string): Observable<Team []> {
-    var params = new HttpParams().set("league_id", league_id);
-    return this.http.get<Team []>(`${API_URL}/teams/`, {params}).pipe(map(data => this.convertToTeamArray(data)));
-  }
-
-  // gets team by id
-  getTeamById(team_id: string): Observable<Team> {
-    var params = new HttpParams().set("team_id", team_id);
-    return this.http.get<Team>(`${API_URL}/teams/`, {params}).pipe(map(data => this.convertToTeam(data)));
-  }
-
- 
+  
     /*******************************/
     // Conversion functions from backend to frontend
     convertToPlayer(pl) : Player {
@@ -168,11 +174,12 @@ export class ApiService {
     }
 
     convertToTeam(t) : Team {
-        var curr_captain = this.convertToPlayer(t.captain)
+        var curr_captain = this.convertToPlayer(t.captain) //isn't captain an ID?
         var curr_team = new Team(t.name, curr_captain)
         curr_team.setID(t._id)
         curr_team.setSize(t.size)
         curr_team.setApproved(t.approved)
+        curr_team.setFreeAgents(t.free_agents)
         curr_team.setLeagueID(String(t.league))
 
         // set record of team
@@ -182,12 +189,11 @@ export class ApiService {
 
         // add other player (BESIDES Captain)
         for (var j = 1; j < t.players.length; j++) {
-            curr_team.addPlayer(this.convertToPlayer(t.players[j]))
+            curr_team.addPlayer(this.convertToPlayer(t.players[j])) //aren't these ID's
         }
 
         return curr_team
     }
-
 
     convertToLeague(l): League {
         var lg = new League(l._id,
@@ -226,7 +232,6 @@ export class ApiService {
 
         return lg
     }
-
 }
 
 
