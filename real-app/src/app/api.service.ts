@@ -70,17 +70,21 @@ export class ApiService {
                               db_players.map(pl => this.convertToPlayer(pl))))
   }
 
+  // deletePlayer() to be added potentially.
+
   /******** LEAGUE ********/
 
-  createLeague(lg : League) : Observable<any> {
-      return this.http.post<any>(`${API_URL}/leagues`, 
+  createLeague(lg : League) : Observable<League> {
+    console.log("F -> B: Creating League")
+      return this.http.post<League>(`${API_URL}/leagues`, 
                             lg, {headers: this.headers})
+                      .pipe(map(league => this.convertToLeague(league)))
   }
 
-  //done
   getAllLeagues() : Observable<League []> {
-      console.log("F -> B: Get All Leagues");
-      return this.http.get<League []>(`${API_URL}/leagues`).pipe(map(data => data.map(p => this.convertToLeague(p))));
+      console.log("F -> B: Get All Leagues")
+      return this.http.get<League []>(`${API_URL}/leagues`)
+                      .pipe(map(data => data.map(p => this.convertToLeague(p))))
   }
     
 
@@ -89,7 +93,8 @@ export class ApiService {
     console.log("F -> B: Updating league");
 
     return this.http.put<League>(`${API_URL}/leagues`, lg, 
-                                                      {headers: this.headers});
+                                      {headers: this.headers})
+                     .pipe(map(league => this.convertToLeague(league)))
   }
 
 
@@ -149,25 +154,6 @@ export class ApiService {
         return curr_player
     }
 
-
-    // convertToTeamArray(team_array: any[]): Team [] {
-    //     var team_arr: Array<Team> = [];
-    //     for (var i = 0; i < team_array.length; i++) {
-    //         var curr_captain = this.convertToPlayer(team_array[i].captain)
-    //         var curr_team = new Team(team_array[i].name, curr_captain)
-    //         curr_team.setID(team_array[i]._id)
-    //         curr_team.setSize(team_array[i].size)
-
-    //         // add other players (BESIDES CAPTAIN)
-    //         for (var j = 1; j < team_array[i].players.length; j++) {
-    //             curr_team.addPlayer(this.convertToPlayer(team_array[i].players[j]))
-    //         }
-
-    //         curr_team.setLeagueID(String(team_array[i].league))
-    //         team_arr.push(curr_team)
-    //     } 
-    //     return team_arr;
-    // }    
 
     //test convert to team array
     convertToTeamArray(team_array: any[]): Team [] {

@@ -166,16 +166,153 @@ Backend: Tested
 ApiService:
 Frontend Service:
 ****/
-app.delete('/api/players/:player_id', function (req, res) {
-    // Player.remove({_id: req.params.player_id}, function(err, player) {
-    //     if (err)
-    //         handleError("Error: Could not delete player")
-    // });
-})
+// app.delete('/api/players/:email', function (req, res) {
+//     Player.deleteOne({_id: req.params.player_id}, function(err, player) {
+//         if (err)
+//             handleError("Error: Could not delete player")
+//     });
+// })
 
 
 /*****************************************************************************/
 
+
+/** **************** League API *******************/
+
+/** **  createLeague
+ * Adds league to db. Intended for admin registration.
+ Backend: Tested
+ ApiService:
+ Frontend Service:
+ */
+app.post('/api/leagues/', function (req, res) {
+    console.log('B: createLeague running')
+
+    League.countDocuments({ name: req.body.name }, function (err, count) {
+        if (err) {
+            return handleError('Error: Unexpected result in post league', null, res)
+        }
+        if (count > 0) {
+            return handleError('Error: League name already in use', null, res)
+        }
+
+        var new_lg = new League({
+            name: req.body.name,
+            sport: req.body.sport,
+            season: req.body.season,
+            dates: {
+                reg_start: req.body.regStart,
+                reg_end: req.body.regEnd,
+                start_date: req.body.startDate,
+                end_date: req.body.endDate,
+                time_slots: req.body.timeSlots
+            },
+            team_info: {
+                num_teams: req.body.numTeams,
+                max_num_teams: req.body.maxNumTeams,
+                min_team_size: req.body.minTeamSize,
+                auto_approval: req.body.autoApproval,
+                players_on: req.body.playersOn,
+                teams: req.body.teams 
+            },
+            league_type: req.body.leagueType,
+            competition_level: req.body.competitionLevel,
+            free_agents: req.body.freeAgents,
+            matches: {
+                location: req.body.location,
+                game_length: req.body.gameLength,
+                schedule: req.body.schedule
+            },
+            rules: req.body.rules
+        })
+
+        new_lg.save(function (err, lg) {
+            if (err) {
+                console.log(err)
+                res.send(err)
+            }
+            res.json(lg)
+        })
+    })
+})
+
+
+/* getLeagues
+- Returns all league documents in db whose end date is less than current date
+*/
+// get leagues (also populate references)
+app.get('/api/leagues/', function (req, res) {
+    console.log('B: Get Leagues')
+    var curr_date = new Date()
+    curr_date.setHours(0, 0, 0, 0)
+
+    League.find({ 'dates.end_date': { $gt: curr_date } })
+          .populate({
+                    path: 'team_info.teams',
+                    populate: 'captain players'
+                    })
+          .populate({
+                    path: 'matches.schedule',
+                    populate: 'home away'
+            })
+          .exec(function (err, leagues) {
+              if (err || !leagues) { 
+                return handleError(err, null, res)
+            }
+
+            res.status(200).json(leagues)
+          })
+})
+
+/* updateLeague
+    Test update with:
+        - new time slot
+        - new team --> see if map works
+*/
+app.put('/api/leagues/', function (req, res) {
+    League.findById(req.body.id, function (err, lg) {
+        if (err || !lg) { return handleError(err, null, res) }
+
+        // time slot added
+        if (req.body.timeSlots && req.body.timeSlots.length !== 0) {
+            lg.dates.time_slots = req.body.timeSlots
+        }
+
+        // num teams and teams update
+        lg.team_info.num_teams = req.body.numTeams
+
+        if (req.body.teams) {
+            lg.team_info.teams = []
+            for (var i = 0; i < req.body.teams.length; i++) {
+                lg.team_info.teams.push(req.body.teams[i].id)
+            }
+        }
+
+        if (req.body.schedule) {
+            // matches changed
+            if (req.body.schedule.length !== lg.matches.schedule.length) {
+                lg.matches.schedule = req.body.schedule.map(elem => elem.id)
+            }
+        }
+
+        // rules changed
+        lg.rules = req.body.rules
+
+        lg.save(function (err, lg) {
+            if (err || !lg) { return handleError(err, null, res) }
+            res.status(200).json(lg)
+        })
+    })
+})
+
+/*
+delete league
+*/
+app.delete('/api/leagues', function (req, res) {
+    League.deleteOne({ _id: req.body._id }, function (err) {
+        if (err) handleError(err, null, res)
+    })
+})
 
 
 /** **************** Team API *******************/
@@ -307,144 +444,6 @@ app.get('/api/team', function (req, res) {
 /*****************************************************************************/
 
 // ADD AUTHENTICATION FOR EMAIL!!!
-
-
-/** **************** League API *******************/
-
-/** **  createLeague
- * Adds league to db. Intended for admin registration,
- * where team_info is unknown
- */
-app.post('/api/leagues/', function (req, res) {
-    /* No league exists with same name
-        FUTURE: - Check for leagues in db with coinciding
-        timeslots.
-    */
-    console.log('B: createLeague running')
-
-    League.countDocuments({ name: req.body.name }, function (err, count) {
-        if (err) {
-            return handleError('Error: Unexpected result in post league', null, res)
-        }
-        if (count > 0) {
-            return res.status(400).send('Error: League name already in use')
-        }
-        var new_lg = new League({
-            name: req.body.name,
-            is_pickup: req.body.is_pickup,
-            sport: req.body.sport,
-            season: req.body.season,
-            dates: {
-                reg_start: req.body.reg_start,
-                reg_end: req.body.reg_end,
-                start_date: req.body.start_date,
-                end_date: req.body.end_date,
-                time_slots: req.body.time_slots
-            },
-            team_info: {
-                num_teams: req.body.num_teams,
-                max_num_teams: req.body.max_num_teams,
-                min_team_size: req.body.min_team_size,
-                auto_approval: req.body.auto_approval,
-                teams: req.body.teams // empty because no registration yet
-            },
-            league_type: req.body.league_type,
-            competition_level: req.body.competition_level,
-            free_agents: req.body.free_agents,
-            matches: {
-                location: req.body.location,
-                game_length: req.body.game_length,
-                schedule: req.body.schedule
-            },
-            rules: req.body.rules
-        })
-
-        new_lg.save(function (err, lg) {
-            if (err) {
-                res.send(err)
-            }
-            res.json(lg._id)
-        })
-    })
-})
-
-
-/* getLeagues
-- Returns all league documents in db whose end date is less than current date
-*/
-// get leagues (also populate references)
-app.get('/api/leagues/', function (req, res) {
-    console.log('B: Get Leagues')
-    var curr_date = new Date()
-    curr_date.setHours(0, 0, 0, 0)
-
-    League.find({ 'dates.end_date': { $gt: curr_date } })
-          .populate({
-                    path: 'team_info.teams',
-                    populate: 'captain players'
-                    })
-          .populate({
-                    path: 'matches.schedule',
-                    populate: 'home away'
-            })
-          .exec(function (err, leagues) {
-              if (err || !leagues) { 
-                return handleError(err, null, res)
-            }
-
-            res.status(200).json(leagues)
-          })
-})
-
-/* updateLeague
-    Test update with:
-        - new time slot
-        - new team --> see if map works
-*/
-app.put('/api/leagues/', function (req, res) {
-    League.findById(req.body._id, function (err, lg) {
-        if (err || !lg) { return handleError(err, null, res) }
-
-        // time slot added
-        if (req.body.time_slots && req.body.time_slots.length !== 0) {
-            lg.dates.time_slots = req.body.time_slots
-        }
-
-        // num teams and teams update
-        lg.team_info.num_teams = req.body.num_teams
-
-        if (req.body.teams) {
-            lg.team_info.teams = []
-            for (var i = 0; i < req.body.teams.length; i++) {
-                lg.team_info.teams.push(req.body.teams[i]._id)
-            }
-        }
-
-        if (req.body.schedule) {
-            // matches changed
-            if (req.body.schedule.length !== lg.matches.schedule.length) {
-                lg.matches.schedule = req.body.schedule.map(elem => elem._id)
-            }
-        }
-
-        // rules changed
-        lg.rules = req.body.rules
-
-        lg.save(function (err, lg) {
-            if (err || !lg) { return handleError(err, null, res) }
-            res.status(200).json(lg)
-        })
-    })
-})
-
-/*
-delete league
-*/
-app.delete('/api/leagues', function (req, res) {
-    League.deleteOne({ _id: req.body._id }, function (err) {
-        if (err) handleError(err, null, res)
-    })
-})
 
 
 /*****************************************************************************/

@@ -49,10 +49,13 @@ export class UserService {
       return this.apiService.updatePlayer(p)
     }
 
+    /*
+    this.userService.getAllPlayers().subscribe(pls=>{}, err=>{})
+    */
     getAllPlayers() {
       return this.apiService.getAllPlayers()
     }
 
-
+    //deletePlayers() to be added potentially.
 
 }

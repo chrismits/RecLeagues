@@ -10,7 +10,6 @@ var mongoose = require('mongoose')
 /* Entries for League:
     - _id: ObjectId
     - name: String
-    - is_pickup: Boolean
     - sport: String
     - season: String
     - dates: All Date Objects
@@ -52,10 +51,6 @@ var leagueSchema = new mongoose.Schema({
         minlength: 1,
         maxlength: 30
     },
-    is_pickup: {
-        type: Boolean,
-        default: false
-    },
     sport: {
         type: String
     },
@@ -77,17 +72,6 @@ var leagueSchema = new mongoose.Schema({
             end: String
         }]
     },
-    team_info: {
-        num_teams: { type: Number, required: true },
-        max_num_teams: { type: Number, required: true },
-        min_team_size: { type: Number, required: true },
-        auto_approval: { type: Boolean, default: false },
-        teams: [{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Team'
-        }]
-    },
-
     matches: { // schedule in league frontend
         location: String,
         game_length: Number,
@@ -96,13 +80,24 @@ var leagueSchema = new mongoose.Schema({
             ref: 'Match'
         }]
     },
+    team_info: {
+        num_teams: { type: Number, required: true },
+        max_num_teams: { type: Number, required: true },
+        min_team_size: { type: Number, required: true },
+        auto_approval: { type: Boolean, default: false },
+        players_on: {type: Number, required: false, default: 0},
+        teams: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Team'
+        }]
+    },
     league_type: {
-        type: String,
-        enum: ['Male', 'Female', 'Co-ed']
+        type: String
+        // ,enum: ['Male', 'Female', 'Co-ed'] add when frontend code works
     },
     competition_level: {
         type: String,
-        enum: ['Competitive', 'Recreational']
+        // ,enum: ['Competitive', 'Recreational'] add when frontend code works
     },
     free_agents: {
         type: Boolean,
