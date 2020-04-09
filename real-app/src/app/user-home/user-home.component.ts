@@ -20,6 +20,8 @@ export class UserHomeComponent implements OnInit {
   isAdmin = false;
   leagues: League[] = LEAGUES;
   myLeagues: League[] = [LEAGUES[0]];
+  leftLeagues: League[];
+  rightLeagues: League[];
   myTeam: string = 'wow';
   me: Player = PLAYERS[0];
   logoUrl = '../../assets/img/tennis.png';
@@ -34,18 +36,20 @@ export class UserHomeComponent implements OnInit {
   getLeagueLogo(l: League) {
     let sport = l.getSport().toLowerCase();
     console.log(sport);
+    let url = this.logoUrl;
     if (sport.indexOf('soccer') >= 0) {
-      this.logoUrl = '../../assets/img/soccer.png';
+      url = '../../assets/img/soccer.png';
     } else if (sport.indexOf('volleyball') >= 0) {
-      this.logoUrl = '../../assets/img/volleyball.png';
+      url = '../../assets/img/volleyball.png';
     } else if (sport.indexOf('basketball') >= 0) {
-      this.logoUrl = '../../assets/img/basketball.png';
+      url = '../../assets/img/basketball.png';
     } else if (sport.indexOf('tennis') >= 0) {
-      this.logoUrl = '../../assets/img/tennis.png';
+      url = '../../assets/img/tennis.png';
     } else if (sport.indexOf('football') >= 0) {
-      this.logoUrl = '../../assets/img/football.png';
+      url = '../../assets/img/football.png';
     }
-    return this.logoUrl;
+    this.logoUrl = url;
+    return url;
   }
 
   getTeam(l: League) {
@@ -58,11 +62,24 @@ export class UserHomeComponent implements OnInit {
     return this.myTeam;
   }
 
+  splitLeagues() {
+    console.log('in here');
+    console.log(this.leagues);
+    let leagues = this.leagues.map(x => x);
+    let length = leagues.length;
+    let half = Math.ceil(length / 2)
+    this.leftLeagues = leagues.splice(0, half);
+    this.rightLeagues = leagues;
+    console.log(this.rightLeagues);
+    console.log(this.leftLeagues);
+  }
+
   // test version
   ngOnInit() {
     this.leagueService.getLeagues().subscribe(leagues => {
       this.leagues = leagues;
       this.myLeagues = [this.leagues[2]];
+      this.splitLeagues();
     }, error => {
       console.log(error)
     })
@@ -71,5 +88,6 @@ export class UserHomeComponent implements OnInit {
     } else {
       this.me = this.userService.getPlayer();
     }
+    this.splitLeagues();
   }
 }
