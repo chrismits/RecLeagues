@@ -1,9 +1,11 @@
 .box {
-	background-color: #e0e0eb;
+	background-color: #EAEFF3;
 	width: 100%;
+	padding-top: 20px;
 	padding-bottom: 20px;
-	padding-left: 10px;
-	padding-right: 10px;
+	padding-left: 40px;
+	padding-right: 40px;
+	border-radius: 7px;
 }
 
 #season-id {
@@ -16,11 +18,19 @@
 .league-box {
   /* Add shadows to create the "card" effect */
   width: 100%;
-  height: 40px;
-  background-color: silver;
+  height: 46px;
+  background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
-  border-radius: 5px;
+  border-radius: 7px;
+
+  font-family: Work Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+
+  color: #000000;
 }
 
 /* On mouse-over, add a deeper shadow */
@@ -48,18 +58,16 @@
 #sport {
 	display: inline-block;
 	padding-left: 10px;
-	top: 50%;
-    -ms-transform: translateY(50%);
-    transform: translateY(50%);
+	margin-top: 15px;
+	font-size: 14px;
 }
 
 #date {
 	display: inline-block;
 	float: right;
 	padding-right: 10px;
-	top: 50%;
-    -ms-transform: translateY(50%);
-    transform: translateY(50%);
+	margin-top: 15px;
+	font-size: 14px;
 }
 
 .content {
@@ -70,5 +78,19 @@
 .title {
 	padding-top: 4%;
 	text-align: center;
-	
+	font-family: Nunito;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 18px;
+	line-height: 25px;
+	/* identical to box height */
+
+	color: #000000;
+}
+
+.sport-logo {
+	margin-top: 4px;
+	margin-left: 8px;
+	height: 30px;
+	width: 30px;
 }

@@ -3,14 +3,34 @@
   <h2 class="title"> {{ title }} </h2>
   <!-- Launchpad -->
   <div class="my-row">
-    <div class="header" id="league-name">Leagues</div> 
+    <div class="header" id="season">{{ season }}</div> 
   </div>
   <br>
+
+  <!-- Leagues -->
   <div class="card-container box">
-  	<p id="season-id"> {{ season }} </p>
       <div class="league-box" target="_blank" rel="noopener" *ngFor="let league of leagues" (click)="goToLeague(league)" routerLink="/user-info">
+        <img [src]="getLeagueLogo(league)" class="sport-logo">
         <p id="sport"> {{league.getSport()}} </p>
         <p id="date"> {{ league.getReadableStartDate() }} - {{ league.getReadableEndDate() }} </p>
       </div>
   </div>
+
+  <!-- My Teams -->
+  <div class="my-row">
+    <div class="header" id="season">My Teams</div> 
+  </div>
+  <br> 
+  <div class="card-container box">
+      <div class="league-box" target="_blank" rel="noopener" *ngFor="let league of myLeagues" (click)="goToLeague(league)" routerLink="/user-info">
+        <img [src]="getLeagueLogo(league)" class="sport-logo">
+        <p id="sport"> {{ getTeam(league) }} </p>
+        <p id="date"> {{ league.getReadableStartDate() }} - {{ league.getReadableEndDate() }} in {{ league.getLocation()}} </p>
+      </div>
+  </div>
+
+  <!-- Calendar -->
+  <div class="header my-row">Calendar</div> 
+  <app-calendar [leagues]="leagues"></app-calendar>
+  <br> <br>
 </div>

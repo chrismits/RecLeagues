@@ -1,10 +1,12 @@
 <style>
 
 .toolbar {
-    height: 60px;
-    background-color: #3E8EDE;
-    text-align: center;
-  }
+  margin-top: 15px;
+  height: 60px;
+  background-color: white;
+  
+  color: black;
+}
 
 #logo {
   color: white;
@@ -12,7 +14,7 @@
   text-align: center;
   vertical-align: middle;
   line-height: 60px;
-  left: 50%;  
+  margin-left: 17%;
 }
 
 .dropdown {
@@ -45,12 +47,29 @@
 
 .home {
   float: left;
-  color: white;
   margin-left: 7rem;
   display: inline-block;
   height: 100%;
-  font-weight: 500;
   line-height: 60px;
+  font-family: Work Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+
+  color: #000000;
+
+}
+
+.my-teams {
+  float: left;
+  margin-left: 7rem;
+  display: inline-block;
+  height: 100%;
+  font-family: Work Sans;
+  font-style: normal;
+  font-size: 14px;
+
+  color: #000000;
 }
 
 .profile {
@@ -63,7 +82,15 @@
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
   <a class="home" routerLink="/user-home">Home</a>
-  <a id="logo" routerLink="/user-home">RecLeagues</a>
+  <a class="dropdown  my-teams">
+    <p> My Teams <img src="../../assets/img/Path.png"> </p>
+    <div class="dropdown-content">
+      <a routerLink="/settings">Settings</a>
+    </div>
+  </a>
+  <a id="logo" routerLink="/user-home">
+      <img src="../../assets/img/RecLeagues_MainLogo.png" class="main-logo">
+  </a>
   <a class="dropdown">
     <img src="../../assets/img/user_icon.png" class="profile">
     <div class="dropdown-content">
