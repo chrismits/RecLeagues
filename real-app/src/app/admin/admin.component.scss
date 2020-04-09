@@ -13,25 +13,6 @@
 	padding-bottom: 5px;
 }
 
-.league-box {
-  /* Add shadows to create the "card" effect */
-  width: 95%;
-  height: 35px;
-  background-color: silver;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  border-radius: 5px;
-}
-
-/* On mouse-over, add a deeper shadow */
-.league-box:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-.league-box + .league-box {
-	margin-top: 15px;
-}
-
 .my-row {
 	width: 100%;
 }
@@ -45,9 +26,7 @@
 	float: right;
 }
 
-.header {
-	font-size: 18px;
-}
+
 
 #sport {
 	display: inline-block;
@@ -64,4 +43,34 @@
 	top: 50%;
     -ms-transform: translateY(50%);
     transform: translateY(50%);
+}
+
+
+
+.container {
+margin-top: 2rem;
+height: 350px;
+}	
+
+
+.containerContent {
+	margin-top: 1rem;
+	height: 85%;
+	background-color: #DCDCDC;
+	border-radius: 5px;
+	overflow: auto;
+}
+
+.contentHeader {
+	padding: 2rem 1.5rem 0.5rem 1.5rem;
+}
+
+.card {
+  width: 90%;
+  height: 40px;
+  border-radius: 5px;
+  margin: 1.5rem 6rem;
+  padding: 0.08rem 1rem;
+  background-color: silver;
+
 }
