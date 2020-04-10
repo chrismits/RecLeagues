@@ -15,7 +15,7 @@
         <p id="sport"> {{leagueL.getSport()}} </p>
         <p id="date"> {{ leagueL.getReadableStartDate() }} - {{ leagueL.getReadableEndDate() }} </p>
       </div>
-      <div *ngIf="i < rightLeagues.length"class="league-box right-half col" (click)="goToLeague(leagueR)" routerLink="/user-info">
+      <div *ngIf="i < rightLeagues.length" class="league-box right-half col" (click)="goToLeague(leagueR)" routerLink="/user-info">
         <img [src]="getLeagueLogo(rightLeagues[i])" class="sport-logo">
         <p id="sport"> {{rightLeagues[i].getSport()}} </p>
         <p id="date"> {{ rightLeagues[i].getReadableStartDate() }} - {{ rightLeagues[i].getReadableEndDate() }} </p>
