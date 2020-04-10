@@ -40,6 +40,9 @@ import { AdminHeaderComponent } from './admin-header/admin-header.component';
 import { UserHeaderComponent } from './user-header/user-header.component';
 import { TeamSchedComponent } from './team-sched/team-sched.component';
 
+import { MatDialogModule } from "@angular/material";
+import { NewLeagueDialogComponent } from "./new-league-dialog/new-league-dialog.component";
+
 
 @NgModule({
   declarations: [
@@ -71,6 +74,7 @@ import { TeamSchedComponent } from './team-sched/team-sched.component';
     AdminHeaderComponent,
     UserHeaderComponent,
     TeamSchedComponent,
+    NewLeagueDialogComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -80,6 +84,7 @@ import { TeamSchedComponent } from './team-sched/team-sched.component';
     HttpClientModule,
     routing,
     NoopAnimationsModule,
+    MatDialogModule,
   ],
   providers: [
     ApiService,
@@ -87,5 +92,7 @@ import { TeamSchedComponent } from './team-sched/team-sched.component';
     TeamService,
   ],
   bootstrap: [AppComponent]
+  ,
+  entryComponents: [NewLeagueDialogComponent]
 })
 export class AppModule { }

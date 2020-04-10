@@ -15,41 +15,26 @@ export class LeagueService {
 
   constructor(private apiService: ApiService) {}
 
+  /* ALL OF the below methods need subscriptions to work.
+
+  AKA: this.apiService.storeLeague().subscribe(league =>
+    {}, error => {})
+  */
+
+  // aka createLeague
   storeLeague() {
-    console.log("F -> F: Storing League")
-    this.apiService.createLeague(this.model).subscribe((league) => { 
-      console.log("Successfully added League")
-      console.log(league)  
-    }, (error) => {
-      this.apiService.handleError(error);
-    }) 
+    console.log("F -> F: Creating League")
+    return this.apiService.createLeague(this.model)
   }
 
-  //test version
   getLeagues() {
+    console.log("F -> F: Get all Leagues")
     return this.apiService.getAllLeagues()
   }
 
-  //done
   updateLeague() {
-    // update db entry
     console.log("F -> F: Updating league")
-    this.apiService.updateLeague(this.model).subscribe((data) => {
-      console.log(data)
-      console.log(data.name + "Updated");
-    }, (error) => {
-      this.apiService.handleError(error)
-    })
+    return this.apiService.updateLeague(this.model)
   }
-
-
-
-  // To subscribe to above run the following: 
-    // this.leagueService.getLeagues().subscribe(data => {
-    //   // data is league array
-    // }, error => {
-    //   // error is error if request fails
-    // })
-
 }
 

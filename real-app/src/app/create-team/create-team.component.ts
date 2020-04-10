@@ -49,7 +49,15 @@ export class CreateTeamComponent implements OnInit {
     newTeam.pushEmails(this.playerEmails);
     this.teamService.setTeam(newTeam);
     this.teamService.setNew(true);
-    // this.teamService.storeTeam();
+
+    
+    // propagate to database
+    this.teamService.storeTeam().subscribe(team => {
+      console.log(team)
+      this.teamService.setTeam(team)
+    }, error => {
+      console.log(error)
+    });
   }
 
   constructor(public leagueService: LeagueService,

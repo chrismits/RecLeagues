@@ -30,9 +30,7 @@ var teamSchema = new mongoose.Schema({
     },
     name: {
         type: String,
-        required: true,
-        minlength: 1,
-        maxlength: 30
+        required: true
     },
     size: {
         type: Number,
@@ -49,15 +47,11 @@ var teamSchema = new mongoose.Schema({
         ref: 'Player',
         default: undefined
     },
-    players: [{ // Array of players
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Player'
-    }],
-    league: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'League'
-    },
     approved: {
+        type: Boolean,
+        default: false
+    },
+    free_agents: {
         type: Boolean,
         default: false
     },
@@ -74,6 +68,14 @@ var teamSchema = new mongoose.Schema({
             type: Number,
             default: 0
         }
+    },
+    players: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Player'
+    }],
+    league: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'League'
     },
     created: {
         type: Date,

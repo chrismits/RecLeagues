@@ -106,6 +106,30 @@ app.get('/api/players/:email', function (req, res) {
     })
 })
 
+/*** getTeamsofPlayer
+ * Gets all teams for one player. Requires player ID
+*/
+
+app.get('/api/players/teams/:id', function (req, res) {
+    console.log("B: Getting all Teams of player")
+    Team.find({"players": mongoose.Types.ObjectId(req.params.id)})
+        .populate('players')
+        .populate('captain')
+        .exec(function(err, teams) {
+            if (err) {
+                console.log(err)
+                return handleError("Error: Something went wrong when searching teams", null, res)
+            }
+            else if (teams.length === 0){
+                console.log("Player is not a member of any team")
+                res.status(200).json([])
+            }
+            else {
+                res.status(200).json(teams)
+            }
+        })
+})
+
 /* Update Player
  Backend: Tested
  ApiService: Tested
@@ -116,8 +140,7 @@ app.put('/api/players', function (req, res) {
 
     Player.findById(req.body.id, function(err, pl) {
         if (err || !pl) {
-            return handleError("Error: Player not found in db, cannot update",
-            null, res)
+            return handleError("Error: Player not found in db, cannot update", null, res)
         }
 
         // update fields
@@ -127,8 +150,6 @@ app.put('/api/players', function (req, res) {
         pl.email = req.body.email
         pl.signedWaiver = req.body.waiver
         pl.pronouns = req.body.pronouns
-
-        // add something to handle logo???
 
         pl.save(function(err, player) {
             if (err) {
@@ -176,14 +197,13 @@ Frontend Service:
 
 /*****************************************************************************/
 
-
-/** **************** League API *******************/
+/******************* League API *********************/
 
 /** **  createLeague
  * Adds league to db. Intended for admin registration.
  Backend: Tested
- ApiService:
- Frontend Service:
+ ApiService: Tested
+ Frontend Service: Tested
  */
 app.post('/api/leagues/', function (req, res) {
     console.log('B: createLeague running')
@@ -228,10 +248,9 @@ app.post('/api/leagues/', function (req, res) {
 
         new_lg.save(function (err, lg) {
             if (err) {
-                console.log(err)
-                res.send(err)
+                return handleError("Error: League could not be saved", null, res)
             }
-            res.json(lg)
+            populatesend_league(lg, res)
         })
     })
 })
@@ -271,11 +290,24 @@ app.get('/api/leagues/', function (req, res) {
 */
 app.put('/api/leagues/', function (req, res) {
     League.findById(req.body.id, function (err, lg) {
-        if (err || !lg) { return handleError(err, null, res) }
+        // League does not exist/id has not been updated.
+        if (err || !lg) { 
+            return handleError(err, null, res) 
+        }
 
-        // time slot added
-        if (req.body.timeSlots && req.body.timeSlots.length !== 0) {
-            lg.dates.time_slots = req.body.timeSlots
+        // time slots:
+        if (req.body.timeSlots && req.body.timeSlots.length !== lg.dates.time_slots.length) {
+            lg.dates.time_slots = []
+
+            //populate time slots
+            for (var i = 0; i < req.body.timeSlots.length; i++) {
+                var new_slot = {day: req.body.timeSlots[i].day,
+                                length: req.body.timeSlots[i].length,
+                                buffer: req.body.timeSlots[i].buffer,
+                                start: req.body.timeSlots[i].start,
+                                end: req.body.timeSlots[i].end}
+                lg.dates.time_slots.push(new_slot)
+            }
         }
 
         // num teams and teams update
@@ -300,13 +332,13 @@ app.put('/api/leagues/', function (req, res) {
 
         lg.save(function (err, lg) {
             if (err || !lg) { return handleError(err, null, res) }
-            res.status(200).json(lg)
+            populatesend_league(lg, res)
         })
     })
 })
 
 /*
-delete league
+delete league: FIIIIIIX
 */
 app.delete('/api/leagues', function (req, res) {
     League.deleteOne({ _id: req.body._id }, function (err) {
@@ -315,12 +347,13 @@ app.delete('/api/leagues', function (req, res) {
 })
 
 
-/** **************** Team API *******************/
+/****************** Team API *******************/
 
 // helper function for createTeam
 function saveTeam (req, res) {
+    console.log("B: SAVING TEAM")
     // check if captain exists
-    Player.findById(req.body.captain, function (err, pl) {
+    Player.findOne({email : req.body.captain.email}, function (err, pl) {
         if (err) {
             return handleError('Error: Captain does not exist', null, res)
         } else {
@@ -335,9 +368,9 @@ function saveTeam (req, res) {
                     }
                     var curr_team = new Team({
                         name: req.body.name,
-                        size: req.body.size,
-                        captain: req.body.captain,
-                        players: [req.body.captain],
+                        size: 1, // currently only captain
+                        captain: pl._id,
+                        players: [pl._id],
                         league: req.body.league,
                         record: {
                             wins: 0,
@@ -348,9 +381,12 @@ function saveTeam (req, res) {
                     })
                     curr_team.save(function (err, team) {
                         if (err) {
+                            console.log(err)
                             return handleError('Error: Team could not be saved', null, res)
                         } else {
-                            res.status(200).json(team)
+                            console.log("Team saved to db")
+                            send_email_registration(req.body.emails)
+                            populatesend_team(team, res)
                         }
                     })
                 }
@@ -367,7 +403,6 @@ function saveTeam (req, res) {
            - Checks if team name is unique in league
          If all of the above pass, returns the id of the newly created team
          Otherwise returns an appropriate error message (Status Code: 400)
-
 */
 app.post('/api/teams/', function (req, res) {
     console.log('B : Creating team')
@@ -376,36 +411,7 @@ app.post('/api/teams/', function (req, res) {
         if (err || !lg) {
             return handleError('Error: League does not exist', null, res)
         } else {
-            return saveTeam(req, res)
-        }
-    })
-})
-
-
-// update Team:
-app.put('/api/teams/', function (req, res) {
-    console.log('B : Updating team')
-
-    Team.findById(req.body._id, function (err, tm) {
-        if (err) { return handleError('Error: Team could not be updated as it does not exist', null, res) } else {
-            // update simple fields
-            tm.approved = req.body.approved
-            tm.size = req.body.size
-            tm.free_agents = req.body.free_agents
-            tm.record.wins = req.body.record.wins
-            tm.record.ties = req.body.record.ties
-            tm.record.losses = req.body.record.losses
-
-            // add player to league.
-            tm.players = []
-            for (var i = 0; i < req.body.players.length; i++) {
-                tm.players.push(req.body.players[i]._id)
-            }
-
-            // finally validate through schema and save
-            tm.save(function (err, new_team) {
-                if (err) { return handleError('Error: Team update not possible', null, res) } else { res.status(200).json(new_team._id) }
-            })
+            saveTeam(req, res)
         }
     })
 })
@@ -415,23 +421,26 @@ Request needs to have a single parameter: league
 req.body.league: the id of the league to be searched
 -- Returns an array of Teams.
 */
-app.get('/api/teams/', function (req, res) {
-    console.log('B : Getting team')
-    console.log(req.query.league)
+app.get('/api/teams/:league_id', function (req, res) {
+    console.log('B : Getting teams by league_id: ' + req.params.league_id)
 
-    Team.find({ league: { $eq: req.query.league } })
+    Team.find({ league: { $eq: req.params.league_id } })
         .populate('players')
         .populate('captain')
-        .exec(function (err, tms) {
-            if (err) { return handleError(err, null, res) } else { res.status(200).json(tms) }
+        .exec(function (err, teams) {
+            if (err) { 
+                return handleError(err, null, res) 
+            } 
+            else { 
+                res.status(200).json(teams)  
+            }
     })
 })
 
-
 /* getTeam returns team by id */
-app.get('/api/team', function (req, res) {
-    console.log('B: Getting team by id')
-    Team.findById(req.body._id)
+app.get('/api/team/:team_id', function (req, res) {
+    console.log('B: Getting team by team id')
+    Team.findById(req.params.team_id)
         .populate('captain')
         .populate('players')
         .exec(function (err, tm) {
@@ -441,18 +450,88 @@ app.get('/api/team', function (req, res) {
         })
 })
 
-/*****************************************************************************/
+// update Team PLAYERS TO ADD SHOULD ALL BE REGISTERED PLAYERS NOT FULLY OPERATIONAL YET
+app.put('/api/teams/', function (req, res) {
+    console.log('B : Updating team')
 
-// ADD AUTHENTICATION FOR EMAIL!!!
+    Team.findById(req.body.id, function (err, tm) {
+        if (err) { return handleError('Error: Team could not be updated as it does not exist', null, res) } else {
+            // update simple fields
+            tm.approved = req.body.approved
+            tm.size = req.body.size
+            tm.free_agents = req.body.freeAgents
+            tm.record.wins = req.body.record.wins
+            tm.record.ties = req.body.record.ties
+            tm.record.losses = req.body.record.losses
+
+            // add player to league.
+            tm.players = []
+            for (var i = 0; i < req.body.players.length; i++) {
+                tm.players.push(req.body.players[i].id)
+            }
+
+            // finally validate through schema and save
+            tm.save(function (err, new_team) {
+                if (err) { 
+                    return handleError('Error: Team update not possible', null, res) 
+                } 
+                else { 
+                    populatesend_team(new_team, res)
+                }
+            })
+        }
+    })
+})
+
+/*****************************************************************************/
 
 
 /*****************************************************************************/
 
 /** **************** Match API *******************/
 
-/** **************** Other API *******************/
 
-/** *************** Server Setup ******************/
+/****************** Other API Functionality *******************/
+
+function populatesend_team(team, res) {
+    Team.findById(team._id)
+        .populate({path: 'captain'})
+        .populate({path: 'players'})
+        .exec(function(err, populated_team) {
+            if (err)
+                return handleError("Error: Team could not be populated", null, res)
+            else {
+                res.status(200).json(populated_team)
+            }
+        })
+}
+
+function populatesend_league(league, res) {
+    League.findById(league._id)
+          .populate({
+                path: 'team_info.teams',
+                populate: 'captain players'
+           })
+          .populate({
+                path: 'matches.schedule',
+                populate: 'home away'
+            })
+          .exec(function(err, populated_league) {
+              if (err)
+                return handleError("Error: League could not be populated", null, res)
+              else
+                res.status(200).json(populated_league)
+          })
+}
+
+// Add email authentication
+function send_email_registration(emails) {
+    console.log("B : Send emails to registration")
+    console.log(emails)
+}
+
+
+/***************** Server Setup ******************/
 
 app.listen(process.env.PORT, function () {
     console.log('Server running on port ', process.env.PORT)

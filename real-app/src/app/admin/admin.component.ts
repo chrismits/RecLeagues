@@ -4,6 +4,8 @@ import { League } from '../league';
 import { LEAGUES } from '../ex_league';
 import { LeagueService } from '../league.service';
 import { ApiService } from '../api.service';
+import { MatDialog, MatDialogRef } from "@angular/material"; 
+import { NewLeagueDialogComponent } from "../new-league-dialog/new-league-dialog.component";
 
 @Component({
   selector: 'app-admin',
@@ -15,7 +17,16 @@ export class AdminComponent implements OnInit {
   season = 'Winter 2020';
   isAdmin = true;
   leagues: League[] = LEAGUES;
-  constructor(public leagueService: LeagueService) { }
+  
+  newLeagueDialogRef: MatDialogRef<NewLeagueDialogComponent>;
+
+  constructor(public leagueService: LeagueService, private dialog: MatDialog) { }
+
+  openNewLeagueDialog() {
+    this.newLeagueDialogRef = this.dialog.open(NewLeagueDialogComponent,
+                                      {width: '50%',
+                                      height: '50%'});
+  }
 
   goToLeague(l: League) {
       console.log(l.getName());
@@ -31,3 +42,5 @@ export class AdminComponent implements OnInit {
       });
   }
 }
+
+
