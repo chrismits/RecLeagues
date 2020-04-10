@@ -1,0 +1,32 @@
+<div class="dialog">
+	<div class="headerContainer">
+		<img src="../../assets/img/close-icon.png" (click)="onClose()" class="close-icon">
+
+		<div class="header">
+			New League
+		</div>
+	</div>
+
+	<div class="content">
+		Would you like to copy league information from a past season?
+	</div>
+
+	<div class="yesno">
+	  <div class="button" id="yes" [style.color]="yestxt" [style.background-color]="yesbgc" (click)="onYes()">Yes</div>
+	  <div class="button" id="no" [style.color]="notxt" [style.background-color]="nobgc" (click)="onNo()">No</div>
+	</div>
+
+	<div class="previous">
+		<div id="previousHeader">
+			Previous Leagues
+		</div>
+
+		<div class="dropdown">
+		</div>
+	</div>
+
+	<div class="footer">
+		<div class="nextbutton"(click)="onNext()" routerLink="/leagues-form-one">Next</div>
+	</div>
+
+</div>

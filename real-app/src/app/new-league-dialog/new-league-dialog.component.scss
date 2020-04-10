@@ -1,0 +1,62 @@
+.headerContainer {
+	width: 90%;
+}
+
+.close-icon {
+	width: 15px;
+	cursor: pointer;
+}
+
+.header {
+	display: inline-block;
+	margin-left: 47%;
+}
+
+.content {
+	text-align: center;
+	margin-top: 3rem;
+}
+
+.yesno {
+	text-align: center;
+	margin-top: 2rem;
+}
+
+.button {
+	background-color: #C4C4C4;
+	border-radius: 5px;
+	width: 100px;
+	height: 30px;
+	display: inline-block;
+	padding: 0.5rem 4rem;
+	margin: 0rem 2rem;
+	cursor: pointer;
+}
+
+.nextbutton {
+	width: 100px;
+	height: 30px;
+	background-color: #3E8EDE;
+	border-radius: 15px;
+	color: white;
+	cursor: pointer;
+	padding: 0.5rem 0rem;
+	text-align: center;
+}
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+
+.dialog {
+	position: relative;
+	height: 100%;
+}
+
+.previous {
+	margin-top: 3rem;
+	text-align: center;
+	width: 70%;
+}
