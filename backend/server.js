@@ -106,6 +106,30 @@ app.get('/api/players/:email', function (req, res) {
     })
 })
 
+/*** getTeamsofPlayer
+ * Gets all teams for one player. Requires player ID
+*/
+
+app.get('/api/players/teams/:id', function (req, res) {
+    console.log("B: Getting all Teams of player")
+    Team.find({"players": mongoose.Types.ObjectId(req.params.id)})
+        .populate('players')
+        .populate('captain')
+        .exec(function(err, teams) {
+            if (err) {
+                console.log(err)
+                return handleError("Error: Something went wrong when searching teams", null, res)
+            }
+            else if (teams.length === 0){
+                console.log("Player is not a member of any team")
+                res.status(200).json([])
+            }
+            else {
+                res.status(200).json(teams)
+            }
+        })
+})
+
 /* Update Player
  Backend: Tested
  ApiService: Tested
@@ -116,8 +140,7 @@ app.put('/api/players', function (req, res) {
 
     Player.findById(req.body.id, function(err, pl) {
         if (err || !pl) {
-            return handleError("Error: Player not found in db, cannot update",
-            null, res)
+            return handleError("Error: Player not found in db, cannot update", null, res)
         }
 
         // update fields
@@ -127,8 +150,6 @@ app.put('/api/players', function (req, res) {
         pl.email = req.body.email
         pl.signedWaiver = req.body.waiver
         pl.pronouns = req.body.pronouns
-
-        // add something to handle logo???
 
         pl.save(function(err, player) {
             if (err) {
@@ -227,10 +248,9 @@ app.post('/api/leagues/', function (req, res) {
 
         new_lg.save(function (err, lg) {
             if (err) {
-                console.log(err)
-                res.send(err)
+                return handleError("Error: League could not be saved", null, res)
             }
-            res.json(lg)
+            populatesend_league(lg, res)
         })
     })
 })
@@ -312,13 +332,13 @@ app.put('/api/leagues/', function (req, res) {
 
         lg.save(function (err, lg) {
             if (err || !lg) { return handleError(err, null, res) }
-            res.status(200).json(lg)
+            populatesend_league(lg, res)
         })
     })
 })
 
 /*
-delete league
+delete league: FIIIIIIX
 */
 app.delete('/api/leagues', function (req, res) {
     League.deleteOne({ _id: req.body._id }, function (err) {
@@ -366,7 +386,7 @@ function saveTeam (req, res) {
                         } else {
                             console.log("Team saved to db")
                             send_email_registration(req.body.emails)
-                            populate_team(team, res)
+                            populatesend_team(team, res)
                         }
                     })
                 }
@@ -412,7 +432,7 @@ app.get('/api/teams/:league_id', function (req, res) {
                 return handleError(err, null, res) 
             } 
             else { 
-                res.status(200).json(teams) 
+                res.status(200).json(teams)  
             }
     })
 })
@@ -452,7 +472,12 @@ app.put('/api/teams/', function (req, res) {
 
             // finally validate through schema and save
             tm.save(function (err, new_team) {
-                if (err) { return handleError('Error: Team update not possible', null, res) } else { res.status(200).json(new_team._id) }
+                if (err) { 
+                    return handleError('Error: Team update not possible', null, res) 
+                } 
+                else { 
+                    populatesend_team(new_team, res)
+                }
             })
         }
     })
@@ -468,7 +493,7 @@ app.put('/api/teams/', function (req, res) {
 
 /****************** Other API Functionality *******************/
 
-function populate_team(team, res) {
+function populatesend_team(team, res) {
     Team.findById(team._id)
         .populate({path: 'captain'})
         .populate({path: 'players'})
@@ -479,6 +504,24 @@ function populate_team(team, res) {
                 res.status(200).json(populated_team)
             }
         })
+}
+
+function populatesend_league(league, res) {
+    League.findById(league._id)
+          .populate({
+                path: 'team_info.teams',
+                populate: 'captain players'
+           })
+          .populate({
+                path: 'matches.schedule',
+                populate: 'home away'
+            })
+          .exec(function(err, populated_league) {
+              if (err)
+                return handleError("Error: League could not be populated", null, res)
+              else
+                res.status(200).json(populated_league)
+          })
 }
 
 // Add email authentication

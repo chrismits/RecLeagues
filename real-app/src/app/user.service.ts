@@ -42,6 +42,11 @@ export class UserService {
       return this.apiService.getPlayerByEmail(e)
     }
 
+    
+    getTeamsByPlayerID(player_id : string) {
+      return this.apiService.getTeamsByPlayer(player_id)
+    }
+
     /*
     this.userService.updatePlayer(p).subscribe((player)=>{}, (err)=>{})
     */
