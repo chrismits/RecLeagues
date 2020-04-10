@@ -36,5 +36,11 @@ export class LeagueService {
     console.log("F -> F: Updating league")
     return this.apiService.updateLeague(this.model)
   }
+
+  getLeagueByID(id : string) {
+    console.log("F -> F: Getting League: " + id)
+    return this.apiService.getLeague(id)
+
+  }
 }
 

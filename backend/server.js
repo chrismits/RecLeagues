@@ -175,8 +175,6 @@ app.get('/api/players', function (req, res) {
         if (err || (players.length === 0)) { 
             return handleError('Error: Could not find players in db', null, res) 
         }
-
-        console.log(players.length)
         res.json(players) // return all players in JSON format
     })
 })
@@ -337,14 +335,33 @@ app.put('/api/leagues/', function (req, res) {
     })
 })
 
+app.get('/api/league/:league_id', function(req, res) {
+    console.log("B: Getting league by id")
+    League.findById(req.params.league_id)
+          .populate({
+                path: 'team_info.teams',
+                populate: 'captain players'
+            })
+          .populate({
+                path: 'matches.schedule',
+                populate: 'home away'
+            })
+          .exec(function (err, league) {
+            if (err) { 
+                return handleError(err, null, res)
+            }
+            res.status(200).json(league)
+           })
+})
+
 /*
 delete league: FIIIIIIX
 */
-app.delete('/api/leagues', function (req, res) {
-    League.deleteOne({ _id: req.body._id }, function (err) {
-        if (err) handleError(err, null, res)
-    })
-})
+// app.delete('/api/leagues', function (req, res) {
+//     League.deleteOne({ _id: req.body._id }, function (err) {
+//         if (err) handleError(err, null, res)
+//     })
+// })
 
 
 /****************** Team API *******************/

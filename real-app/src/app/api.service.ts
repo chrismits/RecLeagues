@@ -99,13 +99,19 @@ export class ApiService {
   }
     
 
-  // done
   updateLeague(lg : League) : Observable<League> {
     console.log("F -> B: Updating league");
-
     return this.http.put<League>(`${API_URL}/leagues`, lg, 
                                       {headers: this.headers})
                      .pipe(map(league => this.convertToLeague(league)))
+  }
+
+  getLeague(id : string) : Observable<League> {
+    console.log("F -> B: Getting single league")
+    let url = `${API_URL}/league/${id}`
+    return this.http.get<League>(url, {headers: this.headers})
+                    .pipe(map(league => this.convertToLeague(league)))
+
   }
 
 
