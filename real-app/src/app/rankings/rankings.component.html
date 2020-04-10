@@ -5,7 +5,7 @@
 </div>
 <br>
 <div class="row" *ngFor="let team of teams; let i = index;">
-	<div class="rank"> #{{i + 1}} </div> <!-- add player img -->
+	<div class="rank"> {{i + 1}} </div> <!-- add player img -->
 	<div class="team-box"> 
 		<div class="name"> {{team.getName()}} </div>
 		<div class="record"> 

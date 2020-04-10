@@ -1,5 +1,10 @@
 .bold {
 	font-weight: bold;
+	font-family: Work Sans;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 16px;
 }
 
 .players {
@@ -17,8 +22,10 @@
 }
 
 .row {
+	height: 46px;
 	width: 90%;
 	margin-left: 5%;
+	font-weight: normal;
 }
 
 .status {
@@ -28,11 +35,11 @@
 }
 
 .box {
-	background-color: #adaaaa;
 	width: 90%;
-	border-radius: 5px;
 	padding-top: 20px;
 	padding-bottom: 20px;
+	background: #FFFFFF;
+	border-radius: 7px;
 }
 
 .info {
@@ -45,8 +52,8 @@
 }
 
 .img {
-	width:25%;
-	height:25%;
+	width:20%;
+    height:75%;
 	display: inline-block;
 	float: left;
 }

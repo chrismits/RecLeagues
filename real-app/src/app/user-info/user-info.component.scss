@@ -1,10 +1,73 @@
 .box {
-	background-color: #e0e0eb;
 	width: 100%;
 	padding-top: 10px;
 	padding-bottom: 20px;
 	padding-left: 10px;
 	padding-right: 10px;
+	background: #EAEFF3;
+	border-radius: 7px;
+}
+
+.card {
+	background: #FFFFFF;
+	border-radius: 7px;
+	height: 46px;
+	padding-top: 15px;
+	padding-left: 20px;
+	font-family: Work Sans;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 16px;
+
+
+}
+
+.info {
+	font-family: Work Sans;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 16px;
+	padding-top: 10px;
+
+	color: #000000;
+}
+
+.info2 {
+	padding-top: 0px;
+}
+
+.info3 {
+	font-size: 16px;
+}
+
+.col2 {
+	width: 40%;
+	float: left;
+}
+
+.left {
+	margin-right: 5%;
+}
+
+.right {
+	width: 30%;
+}
+
+.middle1 {
+	margin-left: 7%;
+}
+.middle2 {
+	margin-left: 24%;
+}
+.middle3 {
+	margin-left: 30%;
+}
+
+.last {
+	float:right;
+	padding-right: 20px;
 }
 
 .centered {
@@ -14,10 +77,12 @@
 
 .red {
 	color: red;
+	padding-top: 10px;
 }
 
 .green {
 	color: green;
+	padding-top: 10px;
 }
 
 .rules {
@@ -41,12 +106,19 @@
 
 .team-box {
   /* Add shadows to create the "card" effect */
-  width: 95%;
-  height: 35px;
-  background-color: silver;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  border-radius: 5px;
+    width: 90%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	transition: 0.3s;
+	background: #FFFFFF;
+	border-radius: 7px;
+	height: 46px;
+	padding-top: 15px;
+	padding-left: 20px;
+	font-family: Work Sans;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 16px;
 }
 
 /* On mouse-over, add a deeper shadow */
@@ -69,6 +141,23 @@
 .but {
 	display: inline-block;
 	float: right;
+	margin-right: 10px;
+	margin-top: 10px;
+	background: #3E8EDE;
+	border-radius: 100px;
+	font-family: Work Sans;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 16px;
+
+	color: #FFFFFF;
+}
+
+.t-but {
+	margin-right: 10px;
+	margin-top: 0px;
+	margin-bottom: 3px;
 }
 
 .header {
@@ -100,7 +189,7 @@
 	width: 20%;
 }
 
-.overview-box-teams {
+.overview-box {
 	padding-left: 5%;
 }
 
@@ -108,4 +197,5 @@
 	padding-top: 8px;
 	padding-bottom: 6px;
 	font-weight: bold;
+	width:90%;
 }

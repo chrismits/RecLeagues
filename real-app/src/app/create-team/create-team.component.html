@@ -1,11 +1,10 @@
 <div class="content" role="main">
   <div class="my-row">
-    <div class="header" id="league-name">{{league.getSport()}}</div> 
+    <div class="header">Team Registration</div> 
   </div>
   <br>
   <div class="card-container box">
-    <p style="padding-left: 20px;padding-top: 20px;"> 
-    Create new team </p>
+    <div class="header" id="league-name">{{league.getSport()}}</div>
     
     <div class="row">
 
@@ -27,13 +26,15 @@
           <label class="labl" for="name">Invite Players</label> 
           <button type="button" class="but" [disabled]="player.invalid" (click)="addEmail()"> Add </button>
         </div>
-        <input type="text" class="form-control" id="player" required 
-               [(ngModel)]="playerEmail" name="player" #player="ngModel"
-               pattern="[a-zA-Z0-9\-.]*@tufts.edu"> 
-        <div [hidden]="player.valid || player.pristine" 
-              class="alert alert-danger"> 
-          Please enter a valid Tufts email.
-        </div>
+        <form>
+          <input type="text" class="form-control" id="player" required 
+                 [(ngModel)]="playerEmail" name="player" #player="ngModel"
+                 pattern="[a-zA-Z0-9\-.]*@tufts.edu"> 
+          <div [hidden]="player.valid || player.pristine" 
+                class="alert alert-danger"> 
+            Please enter a valid Tufts email.
+          </div>
+        </form>
         <br>
         <div class="included">
           <div class="emails" *ngFor="let email of playerEmails">
@@ -46,7 +47,7 @@
 
       <!-- ************* FREE AGENT ************** -->
       <div class="col right-col">
-        <label class="labl"> Free Agent Status <br>
+        <label class="labl"> Accepting Free Agents <br>
           <input type="checkbox" name="free_agent" 
             [(ngModel)]="freeAgent" value="true">
         </label> <br> 

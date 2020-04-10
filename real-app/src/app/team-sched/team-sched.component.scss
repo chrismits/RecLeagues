@@ -10,6 +10,7 @@
 
 .vs {
     display: inline-block;
+    font-weight: normal;
 }
 
 .date {
@@ -24,11 +25,24 @@
 }
 
 .card {
-    background-color: #A9A9A9;
-    border-radius: 5px;
     height: 40px;
     margin-top: 0.5rem;
     padding: 1rem 3rem;
+    background: #FFFFFF;
+    border-radius: 7px;
+    font-family: Work Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.row {
+    font-family: Work Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
 }
 
 .block {

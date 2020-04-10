@@ -1,10 +1,10 @@
 <div class="content" role="main">
   <div class="row">
     <h2 id="title">  {{teamName}}  </h2>
-    <button *ngIf="isPlayer" type="button" id="back-btn" routerLink='/user-info'> 
+    <button *ngIf="isPlayer" type="button" class="back-btn" routerLink='/user-info'> 
       Back to League 
     </button>
-    <button *ngIf="!isPlayer" type="button" id="back-btn" routerLink='/info'> 
+    <button *ngIf="!isPlayer" type="button" class="back-btn" routerLink='/info'> 
       Back to League 
     </button>
   </div>
@@ -12,19 +12,19 @@
   <div class="display">
     <div class="sidebar">
       <div *ngIf="!regOpen()">
-        <button class="nav" (click)="selection.value = 'game'"> Game Schedule </button> <br> <br> 
-        <button class="nav" (click)="selection.value = 'rankings'"> League Rankings </button> <br> <br> 
-        <button class="nav" (click)="selection.value = 'roster'"> Roster </button> <br> <br> 
+        <div class="nav" [ngClass]="{'nav2': selection.value == 'game'}" (click)="selection.value = 'game'"> Game Schedule </div> <br> <br> 
+        <div class="nav" [ngClass]="{'nav2': selection.value == 'rankings'}"(click)="selection.value = 'rankings'"> League Rankings </div> <br> <br> 
+        <div class="nav" [ngClass]="{'nav2': selection.value == 'roster'}"(click)="selection.value = 'roster'"> Roster </div> <br> <br> 
       </div>
       <div *ngIf="regOpen()">
-        <button class="nav" (click)="selection.value = 'reg'"> Team Registration </button>
+        <div class="nav" [ngClass]="{'nav2': selection.value == 'reg'}"(click)="selection.value = 'reg'"> Team Registration </div>
         <div *ngIf="invite">
 
           <!-- ************* INVITE ************** -->
           <div id="inv-col">
             <div class="my-row">
               <label class="labl" for="name">Invite Players</label> 
-              <button type="button" class="but" [disabled]="player.invalid" (click)="addEmail()"> Add </button>
+              <button type="button" class="back-btn but" [disabled]="player.invalid" (click)="addEmail()"> Add </button>
             </div>
             <input type="text" class="form-control" id="player" required 
                    [(ngModel)]="playerEmail" name="player" #player="ngModel"
@@ -74,7 +74,7 @@
         <div *ngSwitchCase="'reg'">
           <div class="row">
             <div class="header inline"> Team Registration </div>
-            <button *ngIf="amCaptain" type="button" class="btn inline"
+            <button *ngIf="amCaptain" type="button" class="back-btn btn inline"
                     (click)="startInv()"> 
                     Invite More Players 
             </button>

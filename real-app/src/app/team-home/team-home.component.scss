@@ -1,32 +1,50 @@
 .content {
 	width: 90%;
 	margin-left: 5%;
-	margin-top: 4%;
+	margin-top: 2%;
+	padding-bottom: 25px;
 }
 
 .sidebar {
 	width:25%;
-	background-color: #e0e0eb;
-	height:500px;
+	height:600px;
 	display: inline-block;
 	float: left;
 	padding-top:2%;
 	overflow: auto;
+	background: #EAEFF3;
+	border-radius: 5px;
 }
 
 .routed {
 	margin-left: 10px;
-	background-color: #e0e0eb;
-	height: 500px;
+	height: 600px;
 	width: 73%;
 	display: inline-block;
 	overflow: scroll;
+	background: #EAEFF3;
+	border-radius: 5px;
 }
 
 .nav {
-	margin-top: 30px;
-	margin-left: 25%;
-	width: 50%;
+	height:46px;
+	width: 100%;
+	background: #EAEFF3;
+	padding-left: 20px;
+	padding-top: 15px;
+	font-family: Work Sans;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 18px;
+	color: black;
+	margin-top: 25px; 
+}
+
+.nav2 {
+	background-color: #3E8EDE;
+	font-weight: 600;
+	color: white;
 }
 
 .header {
@@ -45,10 +63,20 @@
 	padding-right: 25px;
 }
 
-#back-btn {
+.back-btn {
 	display: inline-block;
 	float: right;
 	margin-top: 20px;
+	background: #3E8EDE;
+	font-family: Work Sans;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 19px;
+	/* identical to box height */
+	border-radius: 7px;
+	color: #FFFFFF;
+
 }
 
 #title {
@@ -73,10 +101,12 @@
 }
 
 #invite {
-	float:right;
-	margin-right: 5px;
-	margin-top: 5px;
+	float:left;
+	margin-left: 5px;
+	margin-top: 8px;
 	background-color: #35c04f;
+	border-radius: 7px;
+	font-family: Work Sans;
 }
 
 .labl {
@@ -86,10 +116,14 @@
 .but {
 	display: inline-block;
 	float: right;
+	font-family: Work Sans;
+	border-radius: 7px;
+	color: #FFFFFF;
+	background: #3E8EDE;
 }
 
 .included {
-	background-color: #bfbfbf;
+	background-color: white;
 	min-height: 275px;
 	max-height: 275px;
 	padding-bottom: 15px;

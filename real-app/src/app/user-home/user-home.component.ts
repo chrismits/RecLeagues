@@ -3,6 +3,7 @@ import { Player } from '../player';
 import { Team } from '../team';
 import { League } from '../league';
 import { LEAGUES } from '../ex_league';
+import { TEAMS } from '../ex_teams';
 import { PLAYERS } from '../ex_players';
 import { LeagueService } from '../league.service';
 import { UserService } from '../user.service';
@@ -18,11 +19,12 @@ export class UserHomeComponent implements OnInit {
   title = 'Intramural Leagues';
   season = 'Winter 2020';
   isAdmin = false;
-  leagues: League[] = LEAGUES;
+  leagues: League[] = [];//LEAGUES;
   myLeagues: League[] = [LEAGUES[0]];
   leftLeagues: League[];
   rightLeagues: League[];
   myTeam: string = 'wow';
+  myTeams: Team[] = TEAMS;
   me: Player = PLAYERS[0];
   logoUrl = '../../assets/img/tennis.png';
 
@@ -35,7 +37,6 @@ export class UserHomeComponent implements OnInit {
 
   getLeagueLogo(l: League) {
     let sport = l.getSport().toLowerCase();
-    console.log(sport);
     let url = this.logoUrl;
     if (sport.indexOf('soccer') >= 0) {
       url = '../../assets/img/soccer.png';
@@ -82,12 +83,38 @@ export class UserHomeComponent implements OnInit {
       this.splitLeagues();
     }, error => {
       console.log(error)
-    })
+    });
+
     if (this.userService.getPlayer() === undefined) {
+      this.userService.getAllPlayers().subscribe(pls=>{
+        this.me = pls[0];
+        this.userService.getTeamsByPlayerID(this.me.id).subscribe(teams => {
+          this.myTeams = teams;
+          let league_ids = this.myTeams.map(t => t.league);
+          this.myLeagues = this.leagues.filter(lg => league_ids.indexOf(lg.id) >= 0);
+          console.log(this.myTeams);
+          console.log(this.myLeagues);
+        }, error => {
+          console.log(error);
+        });
+        console.log(this.me);
+        this.me = PLAYERS[0];
+      }, err => { 
+        console.log(err)
+      });
       this.userService.setPlayer(this.me);
     } else {
       this.me = this.userService.getPlayer();
+      this.userService.getTeamsByPlayerID(this.me.id).subscribe(teams => {
+        this.myTeams = teams;
+        console.log(this.myTeams);
+      }, error => {
+        console.log(error);
+      });
     }
+
     this.splitLeagues();
+    console.log(this.me);
+    console.log(this.myTeams);
   }
 }

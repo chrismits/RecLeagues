@@ -1,29 +1,28 @@
 .team-box {
   /* Add shadows to create the "card" effect */
-  width: 85%;
+  width: 80%;
   height: 45px;
-  background-color: silver;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  border-radius: 5px;
-  padding-left: 5%;
+  background: #FFFFFF;
+  border-radius: 7px;
+  margin-left: 5%;
+  padding-left: 4%;
   padding-top: 1%;
   display: inline-block;
-}
-
-/* On mouse-over, add a deeper shadow */
-.team-box:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
 .rank {
 	display: inline-block;	
 	padding-right: 15px;
   font-weight: bold;
+  font-family: Work Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 26px;
 }
 
 .row + .row {
-	margin-top: 30px;
+	margin-top: 43px;
 }
 
 .record {
@@ -34,6 +33,13 @@
 
 .name {
   display: inline-block;  
+  font-family: Work Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+
+  color: #000000;
 }
 
 .header {

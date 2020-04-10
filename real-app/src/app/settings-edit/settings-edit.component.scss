@@ -1,6 +1,7 @@
 
 .box {
-	background-color: #e0e0eb;
+	background: #EAEFF3;
+	border-radius: 5px;
 	width: 100%;
 	padding-bottom: 10px;
 	padding-left: 10px;
@@ -39,6 +40,17 @@
 #edit-but {
 	display: inline-block;
 	float: right;
+	background: #3E8EDE;
+	border-radius: 50px;
+	width: 8%;
+	font-family: Work Sans;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 19px;
+	/* identical to box height */
+
+	color: #FFFFFF;
 }
 
 .justified {
@@ -73,6 +85,14 @@
 
 .labl {
 	padding-top: 5px;
+	font-weight: bold;
+	font-family: Work Sans;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 19px;
+
+	color: #000000;
 }
 
 #settings {
@@ -96,9 +116,21 @@
 
 #file-btn {
 	margin-bottom: 40px;
+	margin-right: 5;
 	display: inline-block;
 	float: right;
-	padding-right: 5px;
+	padding-right: 15px;
+	padding-left: 15px;
+	background: #3E8EDE;
+	border-radius: 50px;
+	font-family: Work Sans;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 19px;
+	/* identical to box height */
+
+	color: #FFFFFF;
 	
 }
 
@@ -110,7 +142,8 @@
 
 .sidebar {
 	width:35%;
-	background-color: #e0e0eb;
+	background: #EAEFF3;
+	border-radius: 5px;
 	height:400px;
 	display: inline-block;
 	float: left;
@@ -118,10 +151,11 @@
 }
 
 .info {
-	padding-top:6px;
+	padding-top:20px;
 	padding-bottom:6px;
 	margin-left: 10px;
-	background-color: #e0e0eb;
+	background: #EAEFF3;
+	border-radius: 5px;
 	height: 400px;
 	width: 63%;
 	display: inline-block;

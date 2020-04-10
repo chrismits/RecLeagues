@@ -8,7 +8,7 @@
   <div class="centered">
     <div class="my-row">
       <div class="header" id="league-name">League Overview</div> 
-      <button class="but" target="_blank" rel="noopener" tabindex="0" 
+      <button *ngIf="regOpen()" class="but" target="_blank" rel="noopener" tabindex="0" 
       routerLink="/create-team" [disabled]="!regOpen()"
       (click)="createTeam()">
         Register New Team </button>
@@ -16,17 +16,57 @@
 
     <div class="card-container box">
       <div class="overview-box"> 
-        <p *ngIf="beforeReg()" class="red"> Registration is not yet open 
-        </p>
-        <p *ngIf="regOpen()" class="green"> Registration is open </p>
-        <p *ngIf="afterReg()" class="red"> Registration is closed </p>
-        <p> Registration Start: {{league.getReadableRegStartDate()}} </p>
-        <p> Registration End: {{league.getReadableRegEndDate()}} </p>
-        <p> Season Length: {{league.getReadableStartDate()}} - {{league.getReadableEndDate()}} </p>
-        <p> Max Teams: {{league.getMaxNumTeams() }} </p>
-        <p> Min Players per Teams: {{league.getMinTeamSize() }} </p>
-        <p> Players on Field: {{league.getPlayersOn() }} </p>
-        <p> Facility: {{league.getLocation()}} </p>
+        <div class="row">
+          <div class="col2 left">
+            <p *ngIf="beforeReg()" class="red"> Registration is not yet open 
+            </p>
+            <p *ngIf="regOpen()" class="green"> Registration is open </p>
+            <p *ngIf="afterReg()" class="red"> Registration is closed </p>
+          </div>
+          <div class="col2 right">
+            <p class="info"> Team Information </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col2 left">
+            <p class="info"> Registration Period </p>
+            <div class="card small">
+              <span class="first"> {{league.getReadableRegStartDate()}} @ 10:00 AM </span>
+              <span class="middle1"> to </span>
+              <span class="last"> {{league.getReadableRegEndDate()}} @ 10:00 PM</span> 
+            </div>
+
+            <p class="info"> Season </p>
+            <div class="card small">
+              <span class="first"> {{league.getReadableStartDate()}} </span>
+              <span class="middle2"> to </span>
+              <span class="last"> {{league.getReadableEndDate()}} </span> 
+            </div>
+
+            <p class="info"> Game Times </p>
+            <div class="card small">
+              <span class="first"> {{ (league.getTimeSlots())[0].getStart()}} </span>
+              <span class="middle3"> to </span>
+              <span class="last"> {{(league.getTimeSlots())[0].getEnd()}} </span> 
+            </div>
+          </div>
+          <div class="col2 right">
+            <p class="info"> Maximum Number of Teams </p>
+            <div class="card small">
+              <span class="first"> {{league.getMaxNumTeams() }}</span> 
+            </div>
+
+            <p class="info"> Minimum Players Per Team</p>
+            <div class="card small">
+              <span class="first"> {{league.getMinTeamSize() }}</span> 
+            </div>
+
+            <p class="info"> Location</p>
+            <div class="card small">
+              <span class="first"> {{league.getLocation()}} </span> 
+            </div>
+          </div>
+        </div>
 
       </div>
     </div>
@@ -50,31 +90,31 @@
 
     <!-- TEAMS -->
     <div class="card-container box">
-      <div class="overview-box-teams"> 
+      <div class="overview-box"> 
         <p *ngIf="!teamsExist()" class="red"> There are currently no teams signed up. </p>
 
         <!-- ********** HEADER ********** -->
         <div *ngIf="teamsExist()" class="row tm-hdr">
-          <div class="col col-1">
+          <div class="col col-1 info info3">
             Team Name
           </div>
 
-          <div class="col col-2">
+          <div class="col col-2 info info3">
             Roster Size
           </div>
 
-          <div class="col col-3">
+          <div class="col col-3 info info3">
             Status
           </div>
 
-          <div class="col col-4">
+          <div class="col col-4 info info3">
             Accepting Free Agents
           </div>
         </div>
 
         <!-- ********** REAL TEAMS ********** -->
-        <div *ngFor="let team of teams" class="row">
-          <div class="col col-1" [ngStyle]="{ 'font-weight': (onThisTeam(team)) ? 'bold' : 'normal'}" (click)="setTeam(team)" routerLink="/team-home">
+        <div *ngFor="let team of teams" class="row card team-box" (click)="setTeam(team)" routerLink="/team-home">
+          <div class="col col-1 info info2" >
             {{team.getName()}}
           </div>
 
@@ -93,7 +133,7 @@
           </div>
 
           <div class="col col-5" *ngIf="regOpen()">
-            <button type="button" (click)="joinTeam(team)" [disabled]="!team.isFreeAgents() || isOnATeam()"> Join Team </button>
+            <button class="but t-but" type="button" (click)="joinTeam(team)" [disabled]="!team.isFreeAgents() || isOnATeam()"> Join Team </button>
           </div>
 
         </div>

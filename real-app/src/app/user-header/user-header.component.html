@@ -18,22 +18,29 @@
 }
 
 .dropdown {
+  margin-top: 10px;
   float: right;
   color: white;
   margin-right: 7rem;
   display: inline-block;
   height: 100%;
   font-weight: 500;
-  line-height: 60px;
+  line-height: 20px;
   position: relative;
 }
 
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #F3F2F2;
   right: 0;
-  width: 100px;
+  width: 150px;
+  height: 80px;
+  background: #EAEFF3;
+  border-radius: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 30px;
+  overflow: auto;
 }
 
 .dropdown-content a {
@@ -45,12 +52,27 @@
   display: block;
 }
 
+.dropped + .dropped {
+  margin-top: 20px;
+}
+
+.dropped {
+  font-family: Work Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
+
+  color: #000000;
+}
+
 .home {
+  margin-top: 10px;
   float: left;
   margin-left: 7rem;
   display: inline-block;
   height: 100%;
-  line-height: 60px;
+  line-height: 20px;
   font-family: Work Sans;
   font-style: normal;
   font-weight: bold;
@@ -82,10 +104,12 @@
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
   <a class="home" routerLink="/user-home">Home</a>
-  <a class="dropdown  my-teams">
+  <a class="dropdown my-teams">
     <p> My Teams <img src="../../assets/img/Path.png"> </p>
     <div class="dropdown-content">
-      <a routerLink="/settings">Settings</a>
+      <div *ngFor="let team of myTeams" (click)="goToLeague(team)" routerLink="/user-info">
+        <p class="team dropped"> {{team.getName()}} </p>
+      </div>
     </div>
   </a>
   <a id="logo" routerLink="/user-home">
@@ -94,8 +118,8 @@
   <a class="dropdown">
     <img src="../../assets/img/user_icon.png" class="profile">
     <div class="dropdown-content">
-      <a routerLink="/settings">Settings</a>
-      <a routerLink="/" (click)="logout()">Sign Out</a>
+      <a class="dropped" routerLink="/settings">Settings</a>
+      <a class="dropped" routerLink="/" (click)="logout()">Log Out</a>
     </div>
   </a>
 </div>
