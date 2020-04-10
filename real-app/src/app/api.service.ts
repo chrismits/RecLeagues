@@ -7,6 +7,7 @@ import { Player } from './player';
 import { League, TimeSlot } from './league';
 import { Team } from './team';
 import {environment } from '../environments/environment'
+import { TeamSchedComponent } from './team-sched/team-sched.component';
 const API_URL = environment.apiUrl
 
 @Injectable({
@@ -46,12 +47,22 @@ export class ApiService {
                     .pipe(map(pl => this.convertToPlayer(pl)))
   }
 
-  // In server.js -> app.get(/api/players)
+  // In server.js -> app.get(/api/players/:email)
   getPlayerByEmail(email : string): Observable<Player> {
     console.log("F -> B: Get Player by email" )
-    console.log(email)
     let url = `${API_URL}/players/${email}`
-    return this.http.get<Player>(url).pipe(map(pl => this.convertToPlayer(pl)))
+    return this.http.get<Player>(url)
+                    .pipe(map(pl => this.convertToPlayer(pl)))
+  }
+
+  // In server.js -> app.get(/api/players/teams/:id)
+  getTeamsByPlayer(pl_id : string): Observable<Team []> {
+    console.log("F -> B: Get Teams of player")
+
+    let url = `${API_URL}/players/teams/${pl_id}`
+    return this.http.get<Team []>(url)
+                    .pipe(map(teams => teams.map(team => this.convertToTeam(team))))
+
   }
 
   // In server.js -> app.put(/api/players)
@@ -134,7 +145,8 @@ export class ApiService {
   updateTeam(t: Team): Observable<Team> {
     console.log("F -> B: Updating Team")
     return this.http.put<Team>(`${API_URL}/teams`, t,
-                                                  {headers: this.headers})
+                                    {headers: this.headers})
+                      .pipe(map(team => this.convertToTeam(team)))
   }
   
     /*******************************/
