@@ -318,12 +318,15 @@ app.put('/api/leagues/', function (req, res) {
             }
         }
 
-        if (req.body.schedule) {
-            // matches changed
-            if (req.body.schedule.length !== lg.matches.schedule.length) {
-                lg.matches.schedule = req.body.schedule.map(elem => elem.id)
-            }
-        }
+
+        // NOTE  --> Probably not good to add matches in update. They should
+        // be done in match.
+        // if (req.body.schedule) {
+        //     // matches changed
+        //     if (req.body.schedule.length !== lg.matches.schedule.length) {
+        //         lg.matches.schedule = req.body.schedule.map(elem => elem.id)
+        //     }
+        // }
 
         // rules changed
         lg.rules = req.body.rules
@@ -507,9 +510,52 @@ app.put('/api/teams/', function (req, res) {
 
 /** **************** Match API *******************/
 
+/* addMatch
+req.body contains home and away teams
+*/
+
+app.post('/api/matches/', function(req, res) {
+    console.log("B: Creating match")
+
+    if (req.body.home.league != req.body.away.league) {
+        return handleError("Error: Teams are not in the same league", null, res)
+    }
+    else {
+        // create match
+        var new_match = new Match({date: req.body.date, 
+                                   location: req.body.location,
+                                   home: req.body.home,
+                                   away: req.body.away})
+
+        new_match.save(function(err, match) {
+            if (err) {
+                return handleError("Error: Match could not be saved", null, res)
+            }
+            League.findByIdAndUpdate(req.body.home.league, 
+                {"$push": {"matches.schedule": mongoose.Types.ObjectId(req.body.home.league)}}, function(error, league) {
+                    if (error) {
+                        return handleError("Find and Update did not work", null, res)
+                    }
+
+                    populatesend_match(match, res)
+                })
+        })
+    }
+})
+
 
 /****************** Other API Functionality *******************/
-
+function populatesend_match(match, res) {
+    Match.findById(match.id)
+         .populate({path: 'home'})
+         .populatee({path: 'away'})
+         .exec(function(err, populated_match) {
+             if (err) {
+                return handleError("Error: Populating Match failed...", null, res)
+             }
+             res.status(200).json(populated_match)
+         })
+}
 function populatesend_team(team, res) {
     Team.findById(team._id)
         .populate({path: 'captain'})

@@ -3,7 +3,7 @@ import { Player } from './player';
 
 export class Match {
 
-    id: number;
+    id: string; // Chris: Changed the ID to a string!!
     home: Team;
     away: Team;
     confirmedHome: Player[];
@@ -17,7 +17,7 @@ export class Match {
 
     constructor(home: Team, away: Team, date: Date, location: string) {
         if (home !== away) {
-            this.id       = 1; // will change for db
+            this.id       = "1"; // will change for db
             this.home     = home;
             this.away     = away;
             this.date     = date;

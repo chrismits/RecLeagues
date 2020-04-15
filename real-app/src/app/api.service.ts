@@ -6,6 +6,7 @@ import { Observable } from 'rxjs'
 import { Player } from './player';
 import { League, TimeSlot } from './league';
 import { Team } from './team';
+import { Match } from './match'
 import {environment } from '../environments/environment'
 import { TeamSchedComponent } from './team-sched/team-sched.component';
 const API_URL = environment.apiUrl
@@ -152,9 +153,21 @@ export class ApiService {
     console.log("F -> B: Updating Team")
     return this.http.put<Team>(`${API_URL}/teams`, t,
                                     {headers: this.headers})
-                      .pipe(map(team => this.convertToTeam(team)))
+                    .pipe(map(team => this.convertToTeam(team)))
   }
-  
+
+
+  /************* MATCH ****************/ 
+
+  createMatch(m: Match): Observable<Match> {
+    console.log("F -> B: Creting Match")
+    return this.http.post<Match>(`${API_URL}/matches`, m, 
+                                  {headers: this.headers})
+                    .pipe(map(match => this.convertToMatch(match))) 
+  }
+
+
+
     /*******************************/
     // Conversion functions from backend to frontend
     convertToPlayer(pl) : Player {
@@ -211,6 +224,15 @@ export class ApiService {
         }
 
         return curr_team
+    }
+
+    convertToMatch(m) : Match {
+      var curr_match = new Match(
+                          this.convertToTeam(m.home),
+                          this.convertToTeam(m.away),
+                          new Date(m.date),
+                          m.location)
+      return curr_match
     }
 
     convertToLeague(l): League {
