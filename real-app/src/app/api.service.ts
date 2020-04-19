@@ -7,9 +7,28 @@ import { Player } from './player';
 import { League, TimeSlot } from './league';
 import { Team } from './team';
 import { Match } from './match'
+import { Admin } from './admin'
 import {environment } from '../environments/environment'
 import { TeamSchedComponent } from './team-sched/team-sched.component';
+import { JsonPipe } from '@angular/common';
 const API_URL = environment.apiUrl
+
+/*** Authentication Interfaces ****/
+
+export interface LoginDetails {
+  _id: string
+  email: string
+  exp: number
+}
+
+interface TokenRes {
+  token: string
+}
+
+export interface TokenPayload {
+  email: string
+  password: string
+}
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +40,108 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
 
+  /***************************** Auth *********************************/
+  // Authentication Methods with local storage...
+  private token: string
+
+  private saveToken(token : string): void {
+    localStorage.setItem('token', token)
+    this.token = token
+  }
+
+  private getToken(): string {
+    if (!this.token) {
+      this.token = localStorage.getItem('token')
+    }
+    return this.token
+  }
+
+  public logout(): void {
+    this.token = '';
+    window.localStorage.removeItem('token')
+
+    // succesfuly navigate to sign in screen
+  }
+
+  public getLoginDetails(): LoginDetails {
+    const token = this.getToken()
+    let pload;
+
+    if (token) {
+      // JWT has encoded type: Header.Payload.Signature
+      pload = token.split('.')[1];
+      pload = window.atob(pload) // decodee base 64 string
+      return JSON.parse(pload)
+    } else {
+      return null
+    }
+  }
+
+  public isLoggedIn(): boolean {
+    const user = this.getLoginDetails()
+    if (user) {
+      return user.exp > Date.now() / 1000;
+    } else {
+      return false;
+    }
+  }
+
+
+  extractTokenAndConvert(response, conversionFunction) {
+    if (response.token) {
+      this.saveToken(response.token)
+    }
+
+    response.user = conversionFunction(response.user)
+    return response
+  }
+
+
+  //admin signup
+  adminSignup(name: string, email: string, password: string): Observable<any> {
+    console.log("F -> B: Admin Signup")
+    var url = `${API_URL}/admin/signup`
+
+    return this.http.post<any>(url, {name: name, email: email, password: password}, 
+                                    {headers: this.headers})
+                    .pipe(
+                      map(res => this.extractTokenAndConvert(res, this.convertToAdmin)))
+  }
+
+  //admin login
+  adminLogin(email: string, password: string): Observable<any> {
+    console.log("F -> B: Admin Login")
+    var url = `${API_URL}/admin/login`
+
+    return this.http.post<any>(url, {email: email, password: password},
+                                    {headers: this.headers})
+                    .pipe(
+                      map(res => this.extractTokenAndConvert(res, this.convertToAdmin)))
+  }
+
+  playerSignup(first: string, last: string,
+               email: string, password: string): Observable<any> {
+      console.log("F -> B: Player Signup")
+      var url = `${API_URL}/players/signup`
+
+      return this.http.post<any>(url, {first: first, last: last, email: email, password: password},
+                                      {headers: this.headers})
+                      .pipe(
+                        map(res => this.extractTokenAndConvert(res, this.convertToPlayer)))
+  }
+
+  playerLogin(email: string, password: string): Observable<any> {
+    console.log("F -> B: Player Login")
+    var url = `${API_URL}/players/login`
+
+    return this.http.post<any>(url, {email: email, password: password},
+                                    {headers: this.headers})
+                    .pipe(
+                      map(res => this.extractTokenAndConvert(res, this.convertToPlayer)))
+  }
+
+
+/*****************************************************************************/ 
   handleError(err: HttpErrorResponse) {
     if (err.error instanceof ErrorEvent) {
       // client-side error event
@@ -31,6 +152,7 @@ export class ApiService {
                     ` Body was ${err.error}`)
     }
   }
+
 
   /*
   TODO IN THIS FILE
@@ -169,7 +291,31 @@ export class ApiService {
 
 
     /*******************************/
+
     // Conversion functions from backend to frontend
+    convertToAdmin(ad) : Admin {
+      if (!ad)
+        return null
+
+      var leagues : League[]
+      if (ad.leagues)
+        leagues = ad.leagues
+      else
+        leagues = []
+
+      var pronouns : string
+      if (!ad.pronouns) {
+        pronouns = ''
+      }
+      else {
+        pronouns = ad.pronouns
+      }
+      
+      var curr_admin = new Admin(ad._id, ad.name, ad.email, leagues, pronouns)
+
+      return curr_admin
+    }
+
     convertToPlayer(pl) : Player {
         if (!pl)
             return null

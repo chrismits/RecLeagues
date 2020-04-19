@@ -7,6 +7,10 @@ Notes:
 
 var mongoose = require('mongoose')
 require('mongoose-type-email')
+var crypto = require('crypto')
+var jwt = require('jsonwebtoken')
+require('dotenv').config()
+
 
 /* Entries for Player:
     - _id: ObjectId
@@ -52,8 +56,11 @@ var playerSchema = new mongoose.Schema({
                 return /^\w+([\.-]?\w+)*@tufts.edu/.test(em)
             }
         },
-        required: true
+        required: true,
+        unique: true
     },
+    hash : String, // Added for authentication purposes
+    salt: String,
     signedWaiver: {
         type: Boolean,
         default: false
@@ -68,6 +75,32 @@ var playerSchema = new mongoose.Schema({
         default: Date.now
     }
 })
+
+/***  AUTHENTICATION MIDDLEWARE (https://www.sitepoint.com/user-authentication-mean-stack/) ***/
+
+//setPassword
+playerSchema.methods.setPassword = function(password) {
+    this.salt = crypto.randomBytes(16).toString('hex')
+    this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex')
+}
+
+
+//validatePassword
+playerSchema.methods.validPassword = function(password) {
+    var hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex')
+    return this.hash === hash;
+}
+
+
+//generateJWT: A JSON Web token
+playerSchema.methods.generateJWT = function() {
+    return jwt.sign({
+        _id: this._id,
+        email: this.email,
+        exp: Math.floor(new Date().getTime() / 1000) + 7 * 24 * 60 * 60
+    }, process.env.JWT_SECRET_PLAYER)
+}
+
 
 const Player = mongoose.model('Player', playerSchema)
 module.exports = Player
