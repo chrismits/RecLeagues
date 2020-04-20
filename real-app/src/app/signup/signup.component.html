@@ -1,0 +1,44 @@
+<div class="inner-box">
+    <div class="first">
+        <div class="textlabel"> First Name </div>
+        <input type="text" class="form-control" id="firstname" required
+                [(ngModel)]="firstName" name="firstname" #firstname="ngModel"
+                pattern="[a-zA-Z0-9\- '.,:;]*">
+                <div [hidden]="firstname.valid || firstname.pristine"
+                     class = "alert alert-danger">
+                    Please enter a valid first name</div>
+    </div>
+    <div class="last">
+        <div class="textlabel"> Last Name </div>
+        <input type="text" class="form-control" id="lastname" required
+        [(ngModel)]="lastName" name="lastname" #lastname="ngModel"
+        pattern="[a-zA-Z0-9\- '.,:;]*">
+        <div [hidden]="lastname.valid || lastname.pristine"
+             class = "alert alert-danger">
+            Please enter a valid last name</div>
+	</div>
+	<div class="user">
+		<div class="textlabel">Tufts Email</div>
+        <input type="text" class="form-control" id="email" required 
+        [(ngModel)]="playerEmail" name="email" #email="ngModel"
+        pattern="[a-zA-Z0-9\-.]*@tufts.edu"> 
+        <div [hidden]="email.valid || email.pristine" 
+        class="alert alert-danger"> 
+            Please enter a valid Tufts email.
+        </div>
+
+
+    </div>
+	<div class="pass">
+		<div class="textlabel">Password</div>
+        <input type="text" class="form-control" id="password" required
+        [(ngModel)]="password" name="pass" #pass="ngModel">
+        <div [hidden]="pass.valid || pass.pristine" 
+        class="alert alert-danger"> 
+            Please enter a Password.
+        </div>
+	</div>
+
+
+	<button id="login" [disabled]="firstname.invalid || lastname.invalid || email.invalid || pass.invalid" (click)="signUp()">Sign Up</button>
+</div>

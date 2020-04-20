@@ -1,4 +1,7 @@
 <div class="inner-box">
+	<div class="register">
+			<p class="textlabel"> Don't have an account? <button id="login" (click)="signUp()"> Sign Up</button></p>
+	</div>
 	<div class="user">
 		<div class="textlabel">Tufts Email</div>
 		<input type="username" class="entry" id="username">
@@ -8,9 +11,22 @@
 		<input type="password" class="entry" id="password">
 		<a class="text" id="recover"> Forgot password? </a>
 	</div>
-	<div class="register">
-		<p class="text"> Don't have an account? Sign up <a class="underl">here</a>! </p>
+
+	      <!-- ************* Admin or Not ************** -->
+	<div class="isadmin">
+		<div class="isadmin">
+			<label class="labl"> Login as Admin
+				<label class="switch">
+					<input type="checkbox" name="admin_flag" [(ngModel)]="adminFlag" value="true">
+					<span class="slider round"></span>
+				  </label>
+			</label> <br> 
+		</div>
 	</div>
+
 
 	<button id="login" (click)="logIn()">Log In</button>
 </div>
+
+
+<!-- Rounded switch -->

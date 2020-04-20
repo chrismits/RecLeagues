@@ -270,11 +270,13 @@
 
 <!-- Toolbar -->
 <app-default-header *ngIf="!role"></app-default-header>
-<app-admin-header *ngIf="role=='admin'" (loggedout)="setRole()"></app-admin-header>
-<app-user-header *ngIf="role=='user'" (loggedout)="setRole()"></app-user-header>
+<app-admin-header *ngIf="role=='admin'"></app-admin-header>
+<app-user-header *ngIf="role=='user'"></app-user-header>
 
 <!-- Login -->
-<app-login *ngIf="!role" (loggedin)="setRole()"></app-login>
+<!-- <app-login *ngIf="!role" (loggedin)="setRole()"></app-login> -->
+<app-login *ngIf="!loggedIn" (successfulLogin) = "setLogin()"></app-login>
+
 
 <!-- main content container -->
 <router-outlet></router-outlet>

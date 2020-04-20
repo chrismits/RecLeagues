@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output} from '@angular/core';
 import { RoleService } from '../role.service';
 import { UserService } from '../user.service';
 import { Router } from "@angular/router";
@@ -11,7 +11,8 @@ import { PLAYERS } from '../ex_players';
 })
 export class LoginComponent implements OnInit {
 
-	@Output() loggedin = new EventEmitter();
+	@Output() successfulLogin = new EventEmitter<string>();
+	adminFlag: boolean
 
   constructor(public roleService: RoleService, private router: Router,
               public userService: UserService) { }
@@ -19,28 +20,42 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  logIn() {
-  	var username = (<HTMLInputElement>document.getElementById("username")).value;
-  	var password = (<HTMLInputElement>document.getElementById("password")).value;
-  	// If admin
-  	if (username == "admin" && password == "admin") {
-  		this.roleService.setRole("admin");
-      /* pull admin from db 
-      this.userService.setAdmin() */
-  		this.router.navigate(['/admin']);
-  		this.loggedin.emit(null);
- 	}
-  	else if (username == "user" && password == "user") {
-  		this.roleService.setRole("user");
-      /* pull user from db */
-      this.userService.setPlayer(PLAYERS[3]);
-  		this.router.navigate(['/user-home']);
-  		this.loggedin.emit(null);
-  	}
-  	else {
-  		console.log("Not a valid username and/or password!");
-  	}
-
+  signUp() {
+	this.router.navigate(['/signup'])
   }
 
+  logIn() {
+  	var username = (<HTMLInputElement>document.getElementById("username")).value;
+	var password = (<HTMLInputElement>document.getElementById("password")).value;
+	  
+	if (this.adminFlag) {
+		this.roleService.adminLogin(username, password)
+						.subscribe(data => {
+							this.successLogIn('/admin')
+						}, error => {
+							alert("Invalid Admin Creds. Please try again") // FRONTEND: change to something better 
+						})
+	} 
+	else {
+		this.roleService.playerLogin(username, password)
+						.subscribe(data => {
+							this.successLogIn('/user-home')
+						}, error => {
+							console.log(error)
+							alert("Please try again")
+						})
+					
+	}
+	}
+
+	successLogIn(route: string) {
+		this.router.navigate([route])
+		if (route === '\admin') {
+			this.roleService.setRole('admin')
+		}
+		else {
+			this.roleService.setRole('user')
+		}
+		this.successfulLogin.emit()
+	}
 }

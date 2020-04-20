@@ -5,7 +5,7 @@ import { ApiService } from './api.service';
   providedIn: 'root'
 })
 export class RoleService {
-	role: string = "user";
+	role: string;
 
 	setRole(r : string) { this.role = r; }
 	getRole() { return this.role; }

@@ -12,19 +12,34 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'RecLeagues';
   role: string;
+  loggedIn: boolean;
 
-  constructor(public roleService: RoleService) {
+  constructor(public roleService: RoleService, private router: Router) {
 
   }
 
   ngOnInit() {
-  	this.setRole();
+    //this.setRole();
+    this.checkLogin();
   	//this.role = "admin";
   	//this.role = "user";
   }
 
-  setRole() {
-  	this.role = this.roleService.getRole();
+  checkLogin() {
+    if (!this.loggedIn) {
+      this.router.navigate['\login']
+    }
+  }
+
+  setLogin() {
+    this.loggedIn = true;
+    this.role = this.roleService.getRole()
+  }
+
+
+  setRole(r: string) {
+    this.roleService.setRole(r);
+    this.role = this.roleService.getRole();
   }
 
 

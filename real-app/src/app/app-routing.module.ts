@@ -18,8 +18,11 @@ import { LeagueInfoScheduleComponent } from './league-info-schedule/league-info-
 import { SettingsComponent } from './settings/settings.component';
 import { SettingsEditComponent } from './settings-edit/settings-edit.component';
 import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 const routes: Routes = [
+  { path: 'login', component: LoginComponent},
+  { path: 'signup', component: SignupComponent},
     { path: 'admin', component: AdminComponent},
     { path: 'create-team', component: CreateTeamComponent},
     { path: 'user-home', component: UserHomeComponent},
@@ -37,7 +40,6 @@ const routes: Routes = [
     { path: 'settings-edit', component: SettingsEditComponent},
     { path: 'league-info-schedule', component: LeagueInfoScheduleComponent},
     { path: 'league-game-schedule', component: LeagueGameScheduleComponent},
-    { path: 'login', component: LoginComponent},
 ];
 export const routing: ModuleWithProviders =
     RouterModule.forRoot(routes);
