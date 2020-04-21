@@ -19,27 +19,28 @@ import { SettingsComponent } from './settings/settings.component';
 import { SettingsEditComponent } from './settings-edit/settings-edit.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { RouteGuardService } from './route-guard.service';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'signup', component: SignupComponent},
-    { path: 'admin', component: AdminComponent},
-    { path: 'create-team', component: CreateTeamComponent},
-    { path: 'user-home', component: UserHomeComponent},
-    { path: 'team-home', component: TeamHomeComponent},
-    { path: 'info', component: InfoComponent},
-    { path: 'user-info', component: UserInfoComponent},
-    { path: 'info-edit-rules', component: InfoEditRulesComponent},
-    { path: 'leagues-form-one', component: LeagueFormOneComponent},
-    { path: 'leagues-form-two', component: LeagueFormTwoComponent},
-    { path: 'leagues-form-three', component: LeagueFormThreeComponent},
-    { path: 'leagues-form-four', component: LeagueFormFourComponent},
-    { path: 'leagues-form-five', component: LeagueFormFiveComponent},
-    { path: 'league-info', component: LeagueInfoComponent},
-    { path: 'settings', component: SettingsComponent},
-    { path: 'settings-edit', component: SettingsEditComponent},
-    { path: 'league-info-schedule', component: LeagueInfoScheduleComponent},
-    { path: 'league-game-schedule', component: LeagueGameScheduleComponent},
+  { path: 'admin', component: AdminComponent, canActivate: [RouteGuardService]},
+  { path: 'create-team', component: CreateTeamComponent, canActivate: [RouteGuardService]},
+  { path: 'user-home', component: UserHomeComponent, canActivate: [RouteGuardService]},
+  { path: 'team-home', component: TeamHomeComponent, canActivate: [RouteGuardService]},
+  { path: 'info', component: InfoComponent, canActivate: [RouteGuardService]},
+  { path: 'user-info', component: UserInfoComponent, canActivate: [RouteGuardService]},
+  { path: 'info-edit-rules', component: InfoEditRulesComponent, canActivate: [RouteGuardService]},
+  { path: 'leagues-form-one', component: LeagueFormOneComponent, canActivate: [RouteGuardService]},
+  { path: 'leagues-form-two', component: LeagueFormTwoComponent, canActivate: [RouteGuardService]},
+  { path: 'leagues-form-three', component: LeagueFormThreeComponent, canActivate: [RouteGuardService]},
+  { path: 'leagues-form-four', component: LeagueFormFourComponent, canActivate: [RouteGuardService]},
+  { path: 'leagues-form-five', component: LeagueFormFiveComponent, canActivate: [RouteGuardService]},
+  { path: 'league-info', component: LeagueInfoComponent, canActivate: [RouteGuardService]},
+  { path: 'settings', component: SettingsComponent, canActivate: [RouteGuardService]},
+  { path: 'settings-edit', component: SettingsEditComponent, canActivate: [RouteGuardService]},
+  { path: 'league-info-schedule', component: LeagueInfoScheduleComponent, canActivate: [RouteGuardService]},
+  { path: 'league-game-schedule', component: LeagueGameScheduleComponent, canActivate: [RouteGuardService]},
 ];
 export const routing: ModuleWithProviders =
     RouterModule.forRoot(routes);

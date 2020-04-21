@@ -27,34 +27,35 @@ export class UserHeaderComponent implements OnInit {
   constructor(public roleService: RoleService, public userService: UserService) { }
 
   ngOnInit() {
-    if (this.userService.getPlayer() === undefined) {
-        this.userService.getAllPlayers().subscribe(pls=>{
-          this.me = pls[0];
-          this.userService.getTeamsByPlayerID(this.me.id).subscribe(teams => {
-            this.myTeams = teams;
-            console.log(this.myTeams);
-          }, error => {
-            console.log(error);
-          });
-          console.log(this.me);
-        }, err => { 
-          console.log(err)
-        });
-        this.userService.setPlayer(this.me);
-      } else {
-        this.me = this.userService.getPlayer();
-        this.userService.getTeamsByPlayerID(this.me.id).subscribe(teams => {
-          this.myTeams = teams;
-          console.log(this.myTeams);
-        }, error => {
-          console.log(error);
-        });
-      }
+    // if (this.userService.getPlayer() === undefined) {
+    //     this.userService.getAllPlayers().subscribe(pls=>{
+    //       this.me = pls[0];
+    //       this.userService.getTeamsByPlayerID(this.me.id).subscribe(teams => {
+    //         this.myTeams = teams;
+    //         console.log(this.myTeams);
+    //       }, error => {
+    //         console.log(error);
+    //       });
+    //       console.log(this.me);
+    //     }, err => { 
+    //       console.log(err)
+    //     });
+    //     this.userService.setPlayer(this.me);
+    //   } else {
+    //     this.me = this.userService.getPlayer();
+    //     this.userService.getTeamsByPlayerID(this.me.id).subscribe(teams => {
+    //       this.myTeams = teams;
+    //       console.log(this.myTeams);
+    //     }, error => {
+    //       console.log(error);
+    //     });
+    //   }
     }
   
 
   logout() {
-  	this.roleService.setRole(null);
+    this.roleService.setRole(null);
+    this.roleService.logout()
   	this.loggedout.emit(null);
   }
 

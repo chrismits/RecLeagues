@@ -43,6 +43,8 @@ import { TeamSchedComponent } from './team-sched/team-sched.component';
 import { MatDialogModule } from "@angular/material";
 import { NewLeagueDialogComponent } from "./new-league-dialog/new-league-dialog.component";
 import { SignupComponent } from './signup/signup.component';
+import { RouteConfigLoadEnd } from '@angular/router';
+import { RouteGuardService } from './route-guard.service';
 
 
 @NgModule({
@@ -92,6 +94,7 @@ import { SignupComponent } from './signup/signup.component';
     ApiService,
     LeagueService,
     TeamService,
+    RouteGuardService
   ],
   bootstrap: [AppComponent]
   ,

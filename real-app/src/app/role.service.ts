@@ -32,4 +32,8 @@ export class RoleService {
 		return this.apiService.playerLogin(email, password)
 	}
 
+	logout() {
+		this.apiService.logout()
+	}
+
 }

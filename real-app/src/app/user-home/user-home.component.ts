@@ -85,36 +85,36 @@ export class UserHomeComponent implements OnInit {
       console.log(error)
     });
 
-    if (this.userService.getPlayer() === undefined) {
-      this.userService.getAllPlayers().subscribe(pls=>{
-        this.me = pls[0];
-        this.userService.getTeamsByPlayerID(this.me.id).subscribe(teams => {
-          this.myTeams = teams;
-          let league_ids = this.myTeams.map(t => t.league);
-          this.myLeagues = this.leagues.filter(lg => league_ids.indexOf(lg.id) >= 0);
-          console.log(this.myTeams);
-          console.log(this.myLeagues);
-        }, error => {
-          console.log(error);
-        });
-        console.log(this.me);
-        this.me = PLAYERS[0];
-      }, err => { 
-        console.log(err)
-      });
-      this.userService.setPlayer(this.me);
-    } else {
-      this.me = this.userService.getPlayer();
-      this.userService.getTeamsByPlayerID(this.me.id).subscribe(teams => {
-        this.myTeams = teams;
-        console.log(this.myTeams);
-      }, error => {
-        console.log(error);
-      });
-    }
+    // if (this.userService.getPlayer() === undefined) {
+    //   this.userService.getAllPlayers().subscribe(pls=>{
+    //     this.me = pls[0];
+    //     this.userService.getTeamsByPlayerID(this.me.id).subscribe(teams => {
+    //       this.myTeams = teams;
+    //       let league_ids = this.myTeams.map(t => t.league);
+    //       this.myLeagues = this.leagues.filter(lg => league_ids.indexOf(lg.id) >= 0);
+    //       console.log(this.myTeams);
+    //       console.log(this.myLeagues);
+    //     }, error => {
+    //       console.log(error);
+    //     });
+    //     console.log(this.me);
+    //     this.me = PLAYERS[0];
+    //   }, err => { 
+    //     console.log(err)
+    //   });
+    //   this.userService.setPlayer(this.me);
+    // } else {
+    //   this.me = this.userService.getPlayer();
+    //   this.userService.getTeamsByPlayerID(this.me.id).subscribe(teams => {
+    //     this.myTeams = teams;
+    //     console.log(this.myTeams);
+    //   }, error => {
+    //     console.log(error);
+    //   });
+    // }
 
-    this.splitLeagues();
-    console.log(this.me);
-    console.log(this.myTeams);
+    // this.splitLeagues();
+    // console.log(this.me);
+    // console.log(this.myTeams);
   }
 }

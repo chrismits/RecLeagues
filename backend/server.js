@@ -179,6 +179,7 @@ app.post('/api/players/login', function(req, res) {
                 "user": user
             })
         } else {
+            console.log(info)
             res.status(401).json(info)
         }
     })(req, res)
@@ -235,8 +236,17 @@ Frontend Service: Tested -> user.service.ts
  - What kind of authentication should I add?
 */
 
-app.get('/api/players/:email', function (req, res) {
+app.get('/api/players/:email', auth_admin, function (req, res) {
     console.log("B: Getting Player by Email")
+
+    if (!req.payload._id || !req.payload.email) {
+        console.log("AUTH FAILED: getplayerbyEmail unathorized access")
+        return res.status(401).json({
+            "message" : "UnauthorizedError: Private Information. Login to access"
+        })
+    }
+    
+
     Player.findOne({ email: req.params.email }, function (err, pl) {
         if (err || !pl) {
             return handleError('Error: Could not find player', null, res)
@@ -253,17 +263,18 @@ app.get('/api/players/:email', function (req, res) {
  *  -- Adding AUTHENTICATION: Needs payload to access by player
 */
 
-app.get('/api/player/teams/', function (req, res) {
+app.get('/api/player/teams/', auth_player, function (req, res) {
     console.log("B: Getting all Teams of player")
 
-    // if (!req.payload._id || !req.payload.email) {
-    //     console.log("Get teams of player. unauthorized access")
-    //     return res.status(401).json({
-    //         "message" : "UnauthorizedError: Private Information. Login to access"
-    //     })
-    // }
+    if (!req.payload._id || !req.payload.email) {
+        console.log("Get teams of player. unauthorized access")
+        return res.status(401).json({
+            "message" : "UnauthorizedError: Private Information. Login to access"
+        })
+    }
 
-    Team.find({"players": mongoose.Types.ObjectId(req.params.id)})
+    // testing for auth
+    Team.find({"players": /*mongoose.Types.ObjectId(req.params.id)*/ mongoose.Types.ObjectId(req.payload._id)})
         .populate('players')
         .populate('captain')
         .exec(function(err, teams) {
@@ -286,17 +297,18 @@ app.get('/api/player/teams/', function (req, res) {
  ApiService: Tested
  Frontend Service: Tested
 */
-app.put('/api/players', function (req, res) {
+app.put('/api/players', auth_player, function (req, res) {
     console.log('B: Updating Player')
 
-    // if (!req.payload._id || !req.payload.email) {
-    //     console.log("Update player. unauthorized access")
-    //     return res.status(401).json({
-    //         "message" : "UnauthorizedError: Private Information. Login to access"
-    //     })
-    // }
+    if (!req.payload._id || !req.payload.email) {
+        console.log("Update player. unauthorized access")
+        return res.status(401).json({
+            "message" : "UnauthorizedError: Private Information. Login to access"
+        })
+    }
 
-    Player.findById(req.body.id, function(err, pl) {
+    //testing for auth
+    Player.findById(req.payload._id, function(err, pl) {
         if (err || !pl) {
             return handleError("Error: Player not found in db, cannot update", null, res)
         }
@@ -328,15 +340,15 @@ Backend:
 ApiService: 
 Frontend Service: 
 ****/
-app.get('/api/players', function (req, res) {
+app.get('/api/players', auth_admin, function (req, res) {
     console.log('B: Getting All Players')
 
-    // if (!req.payload._id || !req.payload.email) {
-    //     console.log("Error in getting all player. Unauthorized access (Admin privileges required)")
-    //     return res.status(401).json({
-    //         "message" : "UnauthorizedError: Private Admin Information. Login to access"
-    //     })
-    // }
+    if (!req.payload._id || !req.payload.email) {
+        console.log("Error in getting all players. Unauthorized access (Admin privileges required)")
+        return res.status(401).json({
+            "message" : "UnauthorizedError: Private Admin Information. Login to access"
+        })
+    }
 
 
     Player.find(function (err, players) {
@@ -371,15 +383,15 @@ Frontend Service:
  ApiService: Tested
  Frontend Service: Tested
  */
-app.post('/api/leagues/', function (req, res) {
+app.post('/api/leagues/', auth_admin, function (req, res) {
     console.log('B: createLeague running')
 
-    // if (!req.payload._id || !req.payload.email) {
-    //     console.log("Create league. unauthorized admin access")
-    //     return res.status(401).json({
-    //         "message" : "UnauthorizedError: Private Admin Information. Login to access"
-    //     })
-    // }
+    if (!req.payload._id || !req.payload.email) {
+        console.log("Create league. unauthorized admin access")
+        return res.status(401).json({
+            "message" : "UnauthorizedError: Private Admin Information. Login to access"
+        })
+    }
 
     League.countDocuments({ name: req.body.name }, function (err, count) {
         if (err) {
@@ -432,7 +444,7 @@ app.post('/api/leagues/', function (req, res) {
 /* getLeagues
 - Returns all league documents in db whose end date is less than current date
 */
-// get leagues (also populate references)
+// get leagues (also populate references) -> NO AUTH FOR NOW, PUBLIC INFORMATION
 app.get('/api/leagues/', function (req, res) {
     console.log('B: Get Leagues')
     var curr_date = new Date()
@@ -456,18 +468,18 @@ app.get('/api/leagues/', function (req, res) {
           })
 })
 
-/* updateLeague
+/* updateLeague -> expects league id
     Test update with:
         - new time slot
         - new team --> see if map works
 */
-app.put('/api/leagues/', function (req, res) {
-    // if (!req.payload._id || !req.payload.email) {
-    //     console.log("Update League. Unauthorized access")
-    //     return res.status(401).json({
-    //         "message" : "UnauthorizedError: Private Admin Information. Login to access"
-    //     })
-    // }
+app.put('/api/leagues/', auth_admin, function (req, res) {
+    if (!req.payload._id || !req.payload.email) {
+        console.log("Update League. Unauthorized access")
+        return res.status(401).json({
+            "message" : "UnauthorizedError: Private Admin Information. Login to access"
+        })
+    }
 
     League.findById(req.body.id, function (err, lg) {
         // League does not exist/id has not been updated.
@@ -520,8 +532,18 @@ app.put('/api/leagues/', function (req, res) {
     })
 })
 
-app.get('/api/league/:league_id', function(req, res) {
+// adding auth for testing
+app.get('/api/league/:league_id', auth_player, function(req, res) {
     console.log("B: Getting league by id")
+
+    if (!req.payload._id || !req.payload.email) {
+        console.log("Error: Unauthorized access")
+        return res.status(401).json({
+            "message" : "UnauthorizedError: Login to access"
+        })
+
+    }
+
     League.findById(req.params.league_id)
           .populate({
                 path: 'team_info.teams',
@@ -606,21 +628,21 @@ function saveTeam (req, res) {
          If all of the above pass, returns the id of the newly created team
          Otherwise returns an appropriate error message (Status Code: 400)
 */
-app.post('/api/teams/', function (req, res) {
+app.post('/api/teams/', auth_player, function (req, res) {
     console.log('B : Creating team')
 
-    // if (!req.payload._id || !req.payload.email) {
-    //     console.log("Update player. unauthorized access")
-    //     return res.status(401).json({
-    //         "message" : "UnauthorizedError: Private Information. Login to access"
-    //     })
-    // }
+    if (!req.payload._id || !req.payload.email) {
+        console.log("Update player. unauthorized access")
+        return res.status(401).json({
+            "message" : "UnauthorizedError: Private Information. Login to access"
+        })
+    }
 
-    // if (req.payload._id !== req.body.id) {
-    //     return res.status(401).json({
-    //         "message" : "UnauthorizedError: Private Information. Login id does not match captain id"
-    //     })
-    // }
+    if (req.payload._id !== req.body.id) {
+        return res.status(401).json({
+            "message" : "UnauthorizedError: Private Information. Login id does not match captain id"
+        })
+    }
 
     League.findById(req.body.league, function (err, lg) {
         if (err || !lg) {
@@ -635,6 +657,8 @@ app.post('/api/teams/', function (req, res) {
 Request needs to have a single parameter: league
 req.body.league: the id of the league to be searched
 -- Returns an array of Teams.
+
+-- No auth, public info
 */
 app.get('/api/teams/:league_id', function (req, res) {
     console.log('B : Getting teams by league_id: ' + req.params.league_id)
@@ -652,7 +676,8 @@ app.get('/api/teams/:league_id', function (req, res) {
     })
 })
 
-/* getTeam returns team by id */
+/* getTeam returns team by id 
+  - No auth, public info*/
 app.get('/api/team/:team_id', function (req, res) {
     console.log('B: Getting team by team id')
     Team.findById(req.params.team_id)
@@ -666,17 +691,16 @@ app.get('/api/team/:team_id', function (req, res) {
 })
 
 // update Team PLAYERS TO ADD SHOULD ALL BE REGISTERED PLAYERS NOT FULLY OPERATIONAL YET
-app.put('/api/teams/', function (req, res) {
+app.put('/api/teams/', auth_player, function (req, res) {
     console.log('B : Updating team')
 
-    // if (!req.payload._id || !req.payload.email) {
-    //     console.log("Update Team. unauthorized access")
-    //     return res.status(401).json({
-    //         "message" : "UnauthorizedError: Private Player Information. Login to access"
-    //     })
-    // }
+    if (!req.payload._id || !req.payload.email) {
+        console.log("Update Team. unauthorized access")
+        return res.status(401).json({
+            "message" : "UnauthorizedError: Private Player Information. Login to access"
+        })
+    }
 
-    
 
     Team.findById(req.body.id, function (err, tm) {
         if (err) { return handleError('Error: Team could not be updated as it does not exist', null, res) } else {
@@ -718,8 +742,15 @@ app.put('/api/teams/', function (req, res) {
 req.body contains home and away teams
 */
 
-app.post('/api/matches/', function(req, res) {
+app.post('/api/matches/', auth_admin, function(req, res) {
     console.log("B: Creating match")
+
+    if (!req.payload._id || !req.payload.email) {
+        console.log("Adding match: unauthorized access")
+        return res.status(401).json({
+            "message" : "UnauthorizedError: Private Information. Login to access"
+        })
+    }
 
     if (req.body.home.league != req.body.away.league) {
         return handleError("Error: Teams are not in the same league", null, res)

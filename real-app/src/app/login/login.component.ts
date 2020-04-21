@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
 						.subscribe(data => {
 							this.successLogIn('/admin')
 						}, error => {
-							alert("Invalid Admin Creds. Please try again") // FRONTEND: change to something better 
+							alert("Please try again") // FRONTEND: change to something better 
 						})
 	} 
 	else {

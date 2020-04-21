@@ -17,6 +17,7 @@ export class AdminHeaderComponent implements OnInit {
 
   logout() {
     this.roleService.setRole(null);
+    this.roleService.logout();
     this.loggedout.emit(null);
   }
 

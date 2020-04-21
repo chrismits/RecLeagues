@@ -11,6 +11,9 @@ import { Admin } from './admin'
 import {environment } from '../environments/environment'
 import { TeamSchedComponent } from './team-sched/team-sched.component';
 import { JsonPipe } from '@angular/common';
+
+import { Router } from '@angular/router'
+
 const API_URL = environment.apiUrl
 
 /*** Authentication Interfaces ****/
@@ -37,7 +40,7 @@ export class ApiService {
   
   private headers = new HttpHeaders({'Content-Type': 'application/json'})
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
 
   /***************************** Auth *********************************/
@@ -59,6 +62,7 @@ export class ApiService {
   public logout(): void {
     this.token = '';
     window.localStorage.removeItem('token')
+    this.router.navigateByUrl('/login')
 
     // succesfuly navigate to sign in screen
   }
@@ -70,7 +74,7 @@ export class ApiService {
     if (token) {
       // JWT has encoded type: Header.Payload.Signature
       pload = token.split('.')[1];
-      pload = window.atob(pload) // decodee base 64 string
+      pload = window.atob(pload) // decode base 64 string
       return JSON.parse(pload)
     } else {
       return null
@@ -82,6 +86,7 @@ export class ApiService {
     if (user) {
       return user.exp > Date.now() / 1000;
     } else {
+      console.log("JWT has expired. Please login again.")
       return false;
     }
   }
@@ -89,6 +94,7 @@ export class ApiService {
 
   extractTokenAndConvert(response, conversionFunction) {
     if (response.token) {
+      console.log("found token in response")
       this.saveToken(response.token)
     }
 
@@ -160,46 +166,57 @@ export class ApiService {
   */
 
   /************ PLAYER ****************/ 
-  
+
+  // ADD PLAYER IS CURRENTLY INACTIVE
   // In server.js -> app.post(/api/players)
   addPlayer(pl : Player): Observable<Player> {
-    console.log("F -> B: Add Player")
+    console.log("F -> B: Add Player is INACTIVE")
 
-    return this.http.post<Player>(`${API_URL}/players`, pl, 
-                                        {headers: this.headers})
-                    .pipe(map(pl => this.convertToPlayer(pl)))
+    return null
+    // return this.http.post<Player>(`${API_URL}/players`, pl, 
+    //                                     {headers: this.headers})
+    //                 .pipe(map(pl => this.convertToPlayer(pl)))
   }
 
+
   // In server.js -> app.get(/api/players/:email)
+  // REQUIRES ADMIN AUTH
   getPlayerByEmail(email : string): Observable<Player> {
     console.log("F -> B: Get Player by email" )
     let url = `${API_URL}/players/${email}`
-    return this.http.get<Player>(url)
+    return this.http.get<Player>(url, {headers: {'Content-Type': 'application/json',
+                                                  'Authorization': `Bearer ${this.getToken()}`}})
                     .pipe(map(pl => this.convertToPlayer(pl)))
   }
 
   // In server.js -> app.get(/api/players/teams/:id)
+  // REQUIRES PLAYER AUTH
   getTeamsByPlayer(pl_id : string): Observable<Team []> {
     console.log("F -> B: Get Teams of player")
 
     let url = `${API_URL}/players/teams/${pl_id}`
-    return this.http.get<Team []>(url)
+    return this.http.get<Team []>(url, {headers: {'Content-Type': 'application/json',
+                                        'Authorization': `Bearer ${this.getToken()}`}})
                     .pipe(map(teams => teams.map(team => this.convertToTeam(team))))
 
   }
 
   // In server.js -> app.put(/api/players)
+  // REQUIRES PLAYER AUTH
   updatePlayer(pl: Player): Observable<Player> {
     console.log("F -> B: Updating Player")
 
-    return this.http.put<Player>(`${API_URL}/players`, pl, { headers: this.headers })
+    return this.http.put<Player>(`${API_URL}/players`, pl, {headers: {'Content-Type': 'application/json',
+                                                                      'Authorization': `Bearer ${this.getToken()}`}})
                     .pipe(map(player => this.convertToPlayer(player)))
   }
 
   // In server.js -> app.get(/api/players)
+  // REQUIRES ADMIN AUTH
   getAllPlayers(): Observable<Player[]> {
     console.log("F -> B: Get all players")
-    return this.http.get<Player []>(`${API_URL}/players`)
+    return this.http.get<Player []>(`${API_URL}/players`, {headers: {'Content-Type': 'application/json',
+                                                                     'Authorization': `Bearer ${this.getToken()}`}})
                     .pipe(map(db_players => 
                               db_players.map(pl => this.convertToPlayer(pl))))
   }
@@ -208,13 +225,16 @@ export class ApiService {
 
   /******** LEAGUE ********/
 
+  // REQUIRES ADMIN AUTHA
   createLeague(lg : League) : Observable<League> {
       console.log("F -> B: Creating League")
       return this.http.post<League>(`${API_URL}/leagues`, 
-                            lg, {headers: this.headers})
+                            lg, {headers: {'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${this.getToken()}`}})
                       .pipe(map(league => this.convertToLeague(league)))
   }
 
+  // No Auth, OPEN SETUP
   getAllLeagues() : Observable<League []> {
       console.log("F -> B: Get All Leagues")
       return this.http.get<League []>(`${API_URL}/leagues`)
@@ -222,17 +242,22 @@ export class ApiService {
   }
     
 
+  // REQUIRES ADMIN AUTH
   updateLeague(lg : League) : Observable<League> {
     console.log("F -> B: Updating league");
     return this.http.put<League>(`${API_URL}/leagues`, lg, 
-                                      {headers: this.headers})
+                                  {headers: {'Content-Type': 'application/json',
+                                  'Authorization': `Bearer ${this.getToken()}`}})
                      .pipe(map(league => this.convertToLeague(league)))
   }
 
+
+  // REQUIRES PLAYER AUTH
   getLeague(id : string) : Observable<League> {
     console.log("F -> B: Getting single league")
     let url = `${API_URL}/league/${id}`
-    return this.http.get<League>(url, {headers: this.headers})
+    return this.http.get<League>(url, {headers: {'Content-Type': 'application/json',
+                                                'Authorization': `Bearer ${this.getToken()}`}})
                     .pipe(map(league => this.convertToLeague(league)))
 
   }
@@ -241,10 +266,12 @@ export class ApiService {
   /************ TEAM ****************/ 
 
   // adds team to db
+  // REQUIRES PLAYER AUTH
   createTeam(t: Team): Observable<Team> {
     console.log("F -> B: Create team");
     return this.http.post<Team>(`${API_URL}/teams`, t, 
-                                        {headers: this.headers})
+                                {headers: {'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${this.getToken()}`}})
                     .pipe(map(team => this.convertToTeam(team)))
   }
 
@@ -255,6 +282,7 @@ export class ApiService {
         - Then the approved boolean will be set to true
         - Then the team will be added to the league
   */
+ // NO AUTH CURRENTLY
   getTeamsByLeague(league_id: string): Observable<Team []> {
     console.log("F -> B: Getting teams by league ID")
     let url = `${API_URL}/teams/${league_id}`
@@ -263,6 +291,7 @@ export class ApiService {
   }
 
   // gets team by id
+  // NO AUTH CURRENTLY
   getTeamById(team_id: string): Observable<Team> {
     console.log("F -> B: Getting team by team ID")
     let url = `${API_URL}/team/${team_id}` //team rather than teams to differentiatee
@@ -271,20 +300,24 @@ export class ApiService {
   }
 
   // changes existing team in db based on t object
+  // PLAYER AUTH
   updateTeam(t: Team): Observable<Team> {
     console.log("F -> B: Updating Team")
     return this.http.put<Team>(`${API_URL}/teams`, t,
-                                    {headers: this.headers})
+                                {headers: {'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${this.getToken()}`}})
                     .pipe(map(team => this.convertToTeam(team)))
   }
 
 
   /************* MATCH ****************/ 
 
+  // ADMIN AUTH
   createMatch(m: Match): Observable<Match> {
     console.log("F -> B: Creting Match")
     return this.http.post<Match>(`${API_URL}/matches`, m, 
-                                  {headers: this.headers})
+                                {headers: {'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${this.getToken()}`}})
                     .pipe(map(match => this.convertToMatch(match))) 
   }
 
