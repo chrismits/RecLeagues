@@ -65,13 +65,9 @@ require('./config/passport')
 app.use(passport.initialize())
 
 var jwt = require('express-jwt')
-var auth_player = jwt({
-    secret: process.env.JWT_SECRET_PLAYER,
-    userProperty: 'payload'
-})
 
-var auth_admin = jwt({
-    secret: process.env.JWT_SECRET_ADMIN,
+var auth = jwt({
+    secret: process.env.JWT_SECRET,
     userProperty: 'payload'
 })
 
@@ -236,7 +232,7 @@ Frontend Service: Tested -> user.service.ts
  - What kind of authentication should I add?
 */
 
-app.get('/api/players/:email', auth_admin, function (req, res) {
+app.get('/api/players/:email', auth, function (req, res) {
     console.log("B: Getting Player by Email")
 
     if (!req.payload._id || !req.payload.email) {
@@ -245,8 +241,14 @@ app.get('/api/players/:email', auth_admin, function (req, res) {
             "message" : "UnauthorizedError: Private Information. Login to access"
         })
     }
-    
 
+    if (!req.payload_admin) {
+        console.log("AUTH FAILED: Not Admin")
+        return res.status(401).json({
+            "message" : "UnauthorizedError: Needs Administrative Privileges"
+        })
+    }
+    
     Player.findOne({ email: req.params.email }, function (err, pl) {
         if (err || !pl) {
             return handleError('Error: Could not find player', null, res)
@@ -259,11 +261,9 @@ app.get('/api/players/:email', auth_admin, function (req, res) {
 
 /*** getTeamsofPlayer
  * Gets all teams for one player. Requires player ID
- * 
- *  -- Adding AUTHENTICATION: Needs payload to access by player
 */
 
-app.get('/api/player/teams/', auth_player, function (req, res) {
+app.get('/api/player/teams/', auth, function (req, res) {
     console.log("B: Getting all Teams of player")
 
     if (!req.payload._id || !req.payload.email) {
@@ -273,8 +273,17 @@ app.get('/api/player/teams/', auth_player, function (req, res) {
         })
     }
 
+    var search_id = mongoose.Types.ObjectId(req.params.id)
+
+    // For now accessible to both player and admin
+    // var search_id = mongoose.Types.ObjectId(req.payload._id)
+    // if (req.payload.admin === true) {
+    //     search_id = mongoose.Types.ObjectId(req.params.id)
+
+    // }
+
     // testing for auth
-    Team.find({"players": /*mongoose.Types.ObjectId(req.params.id)*/ mongoose.Types.ObjectId(req.payload._id)})
+    Team.find({"players": search_id})
         .populate('players')
         .populate('captain')
         .exec(function(err, teams) {
@@ -297,7 +306,7 @@ app.get('/api/player/teams/', auth_player, function (req, res) {
  ApiService: Tested
  Frontend Service: Tested
 */
-app.put('/api/players', auth_player, function (req, res) {
+app.put('/api/players', auth, function (req, res) {
     console.log('B: Updating Player')
 
     if (!req.payload._id || !req.payload.email) {
@@ -333,14 +342,13 @@ app.put('/api/players', auth_player, function (req, res) {
 })
 
 
-
 /** ** getPlayers
 - Returns all player documents in db
-Backend: 
-ApiService: 
-Frontend Service: 
+Backend: Tested
+ApiService: Tested
+Frontend Service: Tested
 ****/
-app.get('/api/players', auth_admin, function (req, res) {
+app.get('/api/players', auth, function (req, res) {
     console.log('B: Getting All Players')
 
     if (!req.payload._id || !req.payload.email) {
@@ -348,6 +356,14 @@ app.get('/api/players', auth_admin, function (req, res) {
         return res.status(401).json({
             "message" : "UnauthorizedError: Private Admin Information. Login to access"
         })
+    }
+
+    if (!req.payload.admin) {
+        console.log("Error: Not an Administrator")
+        return res.status(401).json({
+            "message" : "UnauthorizedError: Private Admin Information. Login to access"
+        })
+       
     }
 
 
@@ -383,7 +399,7 @@ Frontend Service:
  ApiService: Tested
  Frontend Service: Tested
  */
-app.post('/api/leagues/', auth_admin, function (req, res) {
+app.post('/api/leagues/', auth, function (req, res) {
     console.log('B: createLeague running')
 
     if (!req.payload._id || !req.payload.email) {
@@ -391,6 +407,14 @@ app.post('/api/leagues/', auth_admin, function (req, res) {
         return res.status(401).json({
             "message" : "UnauthorizedError: Private Admin Information. Login to access"
         })
+    }
+
+    if (!req.payload.admin) {
+        console.log("Error: Not an Administrator")
+        return res.status(401).json({
+            "message" : "UnauthorizedError: Private Admin Information. Login to access"
+        })
+       
     }
 
     League.countDocuments({ name: req.body.name }, function (err, count) {
@@ -445,7 +469,14 @@ app.post('/api/leagues/', auth_admin, function (req, res) {
 - Returns all league documents in db whose end date is less than current date
 */
 // get leagues (also populate references) -> NO AUTH FOR NOW, PUBLIC INFORMATION
-app.get('/api/leagues/', function (req, res) {
+app.get('/api/leagues/', auth, function (req, res) {
+    if (!req.payload._id || !req.payload.email) {
+        console.log("Get leagues. unauthorized admin")
+        return res.status(401).json({
+            "message" : "UnauthorizedError: Login to access"
+        })
+    }
+
     console.log('B: Get Leagues')
     var curr_date = new Date()
     curr_date.setHours(0, 0, 0, 0)
@@ -473,11 +504,18 @@ app.get('/api/leagues/', function (req, res) {
         - new time slot
         - new team --> see if map works
 */
-app.put('/api/leagues/', auth_admin, function (req, res) {
+app.put('/api/leagues/', auth, function (req, res) {
     if (!req.payload._id || !req.payload.email) {
         console.log("Update League. Unauthorized access")
         return res.status(401).json({
-            "message" : "UnauthorizedError: Private Admin Information. Login to access"
+            "message" : "UnauthorizedError: Private Information. Login to access"
+        })
+    }
+
+    if (req.payload.admin === false) {
+        console.log("Error: Needs Admin")
+        return res.status(401).json({
+            "message" : "UnauthorizedError: Needs Administrator Privileges"
         })
     }
 
@@ -533,7 +571,10 @@ app.put('/api/leagues/', auth_admin, function (req, res) {
 })
 
 // adding auth for testing
-app.get('/api/league/:league_id', auth_player, function(req, res) {
+/*
+Get League by league id
+*/
+app.get('/api/league/:league_id',  function(req, res) {
     console.log("B: Getting league by id")
 
     if (!req.payload._id || !req.payload.email) {
@@ -628,7 +669,7 @@ function saveTeam (req, res) {
          If all of the above pass, returns the id of the newly created team
          Otherwise returns an appropriate error message (Status Code: 400)
 */
-app.post('/api/teams/', auth_player, function (req, res) {
+app.post('/api/teams/', auth, function (req, res) {
     console.log('B : Creating team')
 
     if (!req.payload._id || !req.payload.email) {
@@ -638,7 +679,10 @@ app.post('/api/teams/', auth_player, function (req, res) {
         })
     }
 
-    if (req.payload._id !== req.body.id) {
+    console.log(req.payload._id)
+    console.log(req.body.captain.id)
+
+    if (req.payload._id !== req.body.captain.id) {
         return res.status(401).json({
             "message" : "UnauthorizedError: Private Information. Login id does not match captain id"
         })
@@ -660,7 +704,14 @@ req.body.league: the id of the league to be searched
 
 -- No auth, public info
 */
-app.get('/api/teams/:league_id', function (req, res) {
+app.get('/api/teams/:league_id', auth, function (req, res) {
+    if (!req.payload._id || !req.payload.email) {
+        console.log("Update player. unauthorized access")
+        return res.status(401).json({
+            "message" : "UnauthorizedError: Private Information. Login to access"
+        })
+    }
+    
     console.log('B : Getting teams by league_id: ' + req.params.league_id)
 
     Team.find({ league: { $eq: req.params.league_id } })
@@ -679,6 +730,13 @@ app.get('/api/teams/:league_id', function (req, res) {
 /* getTeam returns team by id 
   - No auth, public info*/
 app.get('/api/team/:team_id', function (req, res) {
+    if (!req.payload._id || !req.payload.email) {
+        console.log("Update player. unauthorized access")
+        return res.status(401).json({
+            "message" : "UnauthorizedError: Private Information. Login to access"
+        })
+    }
+
     console.log('B: Getting team by team id')
     Team.findById(req.params.team_id)
         .populate('captain')
@@ -691,7 +749,7 @@ app.get('/api/team/:team_id', function (req, res) {
 })
 
 // update Team PLAYERS TO ADD SHOULD ALL BE REGISTERED PLAYERS NOT FULLY OPERATIONAL YET
-app.put('/api/teams/', auth_player, function (req, res) {
+app.put('/api/teams/', auth, function (req, res) {
     console.log('B : Updating team')
 
     if (!req.payload._id || !req.payload.email) {
@@ -742,7 +800,7 @@ app.put('/api/teams/', auth_player, function (req, res) {
 req.body contains home and away teams
 */
 
-app.post('/api/matches/', auth_admin, function(req, res) {
+app.post('/api/matches/', auth, function(req, res) {
     console.log("B: Creating match")
 
     if (!req.payload._id || !req.payload.email) {
@@ -751,6 +809,14 @@ app.post('/api/matches/', auth_admin, function(req, res) {
             "message" : "UnauthorizedError: Private Information. Login to access"
         })
     }
+
+    if (!req.payload.admin) {
+        return res.status(401).json({
+            "message" : "UnauthorizedError: Needs Administrator Privileges"
+        })
+    }
+
+
 
     if (req.body.home.league != req.body.away.league) {
         return handleError("Error: Teams are not in the same league", null, res)

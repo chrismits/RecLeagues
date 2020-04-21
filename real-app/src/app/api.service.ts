@@ -22,11 +22,9 @@ export interface LoginDetails {
   _id: string
   email: string
   exp: number
+  admin: boolean
 }
 
-interface TokenRes {
-  token: string
-}
 
 export interface TokenPayload {
   email: string
@@ -92,7 +90,7 @@ export class ApiService {
   }
 
 
-  extractTokenAndConvert(response, conversionFunction) {
+  extractTokenAndConvert(response,conversionFunction, is_admin?) {
     if (response.token) {
       console.log("found token in response")
       this.saveToken(response.token)
@@ -237,7 +235,8 @@ export class ApiService {
   // No Auth, OPEN SETUP
   getAllLeagues() : Observable<League []> {
       console.log("F -> B: Get All Leagues")
-      return this.http.get<League []>(`${API_URL}/leagues`)
+      return this.http.get<League []>(`${API_URL}/leagues`, {headers: {'Content-Type': 'application/json',
+                                                            'Authorization': `Bearer ${this.getToken()}`}})
                       .pipe(map(data => data.map(p => this.convertToLeague(p))))
   }
     
@@ -286,7 +285,8 @@ export class ApiService {
   getTeamsByLeague(league_id: string): Observable<Team []> {
     console.log("F -> B: Getting teams by league ID")
     let url = `${API_URL}/teams/${league_id}`
-    return this.http.get<Team []>(url)
+    return this.http.get<Team []>(url, {headers: {'Content-Type': 'application/json',
+                                        'Authorization': `Bearer ${this.getToken()}`}})
                     .pipe(map(data => data.map(team => this.convertToTeam(team))));
   }
 
@@ -295,7 +295,8 @@ export class ApiService {
   getTeamById(team_id: string): Observable<Team> {
     console.log("F -> B: Getting team by team ID")
     let url = `${API_URL}/team/${team_id}` //team rather than teams to differentiatee
-    return this.http.get<Team>(url)
+    return this.http.get<Team>(url, {headers: {'Content-Type': 'application/json',
+                                    'Authorization': `Bearer ${this.getToken()}`}})
                     .pipe(map(data => this.convertToTeam(data)));
   }
 
