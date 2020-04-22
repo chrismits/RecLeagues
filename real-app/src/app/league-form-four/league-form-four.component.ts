@@ -21,6 +21,9 @@ export class LeagueFormFourComponent implements OnInit {
   slots: TimeSlot[] = [];
 
   onSubmit() {
+    if (!this.daysAdded()) {
+      this.addSlot();
+    }
     this.submitted = true;
     this.leagueModel.addTimeSlots(this.slots);
   }
@@ -33,6 +36,10 @@ export class LeagueFormFourComponent implements OnInit {
     tempSlot.setStart(this.model.getStart());
     tempSlot.setEnd(this.model.getEnd());
     this.slots.push(tempSlot);
+  }
+
+  removeSlot(s: TimeSlot) {
+    this.slots = this.slots.filter(x => x !== s);
   }
 
   daysAdded() {

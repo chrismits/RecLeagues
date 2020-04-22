@@ -1,7 +1,7 @@
 <div class="container">
     <h1>{{model.name}}</h1>
     <progress id="progress-bar" value="40" max="100"></progress>
-    <form (ngSubmit)="onSubmit()" #leagueForm='ngForm'>
+    <form (ngSubmit)="onSubmit()" #leagueForm='ngForm' id="form">
       <div class="row short">
       	<h2> Teams </h2>
       </div>
@@ -19,7 +19,7 @@
           <div [hidden]="team.valid || team.pristine" 
                 class="alert alert-danger"> 
             Please enter a valid max number of teams.
-          </div> <br> 
+          </div> <br> <br> <br> 
 
         <!-- ********* NUM PLAYERS ON ******** -->
           <label class="labl" for="name">Number of Players on Field</label>
@@ -32,7 +32,7 @@
           <div [hidden]="num_play.valid || num_play.pristine" 
                 class="alert alert-danger"> 
             Please enter a valid number of players on the field.
-          </div> <br>
+          </div> <br> <br> <br>
 
         <!-- ********* FREE AGENT STATUS ******** BUGGY -->
           <label class="labl"> Free Agent Status <br>

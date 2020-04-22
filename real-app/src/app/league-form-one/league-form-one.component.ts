@@ -11,8 +11,8 @@ import { Match } from '../match';
 export class LeagueFormOneComponent implements OnInit {
 
   seasons: string[] = ['Fall', 'Winter', 'Spring'];
-  sports: string[] = ['Indoor Soccer', 'Basketball', 'Volleyball',
-                      'Flag Football', 'Soccer'];
+  sports: string[] = ['Soccer', 'Basketball', 'Volleyball',
+                      'Flag Football', 'Tennis', 'Indoor Soccer'];
   types: string[] = ['Male', 'Female', 'Co-ed'];
   levels: string[] = ['Competitive', 'Recreational'];
 

@@ -55,6 +55,15 @@ export class InfoComponent implements OnInit {
   ngOnInit() {
     if (this.leagueService.getLeague() !== undefined) {
       this.league = this.leagueService.getLeague();
+      // call to server
+      this.teamService.getTeamsByLeagueID(this.league.id).subscribe(teams => {
+        console.log(teams)
+        if (teams.length !== 0) {
+          this.teams = teams;
+        }
+      }, error => {
+        console.log(error)
+      })
     }
   }
 

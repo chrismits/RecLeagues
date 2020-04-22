@@ -1,7 +1,7 @@
 <div class="container">
 	<h1>{{leagueModel.name}}</h1>
     <progress id="progress-bar" value="80" max="100"></progress>
-    <form (ngSubmit)="onSubmit()" #leagueForm='ngForm'>
+    <form (ngSubmit)="onSubmit()" #leagueForm='ngForm' id="form">
       <div class="row short">
         <h2> Game Schedule </h2>
         <p> List times in with 'am/pm' (10:30 am, 6:45 pm) </p>
@@ -17,7 +17,7 @@
             <option *ngFor="let day of days" [ngValue]="day"> 
               {{day}}
             </option>
-          </select>
+          </select> <br> <br>
 
           <!-- ********* GAME LENGTH ******** -->
           <label class="labl" for="length">Game Length </label>
@@ -40,7 +40,7 @@
           <div [hidden]="start.valid || start.pristine" 
                 class="alert alert-danger"> 
             Please enter a valid game start time.
-          </div>
+          </div> <br> <br>
 
           <!-- ********* BUFFER TIME ******** -->
           <label class="labl" for="buffer">Buffer Time</label>
@@ -68,17 +68,16 @@
       </div>
       <div class="row">
         <button type="button" (click)="addSlot()" [disabled]="days.invalid || length.invalid || start.invalid || buffer.invalid || end.invalid"> Add Times </button>
+      </div> <br>
+      <div class="row">
+        <div *ngFor="let slot of slots" class="times">
+          {{slot.getDay()}} from {{slot.getStart()}} to {{slot.getEnd()}}, with {{slot.getLength()}} minute games seperated by {{slot.getBuffer()}} minute buffers. <button type="button" (click)="removeSlot(slot)"> Remove </button>
+        </div>
       </div>
+      <br> 
     </form>
-    <br> 
-    <div class="row">
-      <div *ngFor="let slot of slots">
-        {{slot.getDay()}} from {{slot.getStart()}} to {{slot.getEnd()}}, with {{slot.getLength()}} minute games seperated by {{slot.getBuffer()}} minute buffers.
-      </div>
-    </div>
-    <br> 
 
 	  <button type="button" class="btn btn-success back-btn" routerLink="/leagues-form-three">Back</button>
 
-    <button type="button" class="btn btn-success next-btn" (click)="onSubmit(); leagueForm.reset()" [disabled]="days.invalid || length.invalid || start.invalid || buffer.invalid || end.invalid" routerLink="/leagues-form-five">Next</button>
+    <button type="button" class="btn btn-success next-btn" (click)="onSubmit()" [disabled]="days.invalid || length.invalid || start.invalid || buffer.invalid || end.invalid" routerLink="/leagues-form-five">Next</button>
   </div>

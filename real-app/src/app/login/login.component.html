@@ -1,6 +1,6 @@
 <div class="inner-box">
 	<div class="register">
-			<p class="textlabel"> Don't have an account? <button id="login" (click)="signUp()"> Sign Up</button></p>
+			<p class="textlabel"> Don't have an account? <button class="login" (click)="signUp()"> Sign Up</button></p>
 	</div>
 	<div class="user">
 		<div class="textlabel">Tufts Email</div>
@@ -13,7 +13,7 @@
 	</div>
 
 	      <!-- ************* Admin or Not ************** -->
-	<div class="isadmin">
+	<div class="row">
 		<div class="isadmin">
 			<label class="labl"> Login as Admin
 				<label class="switch">
@@ -22,10 +22,10 @@
 				  </label>
 			</label> <br> 
 		</div>
+		<button class="login" id="login" (click)="logIn()">Log In</button>
 	</div>
 
 
-	<button id="login" (click)="logIn()">Log In</button>
 </div>
 
 

@@ -22,6 +22,7 @@ export class AppComponent {
     //this.setRole();
     this.checkLogin();
   	//this.role = "admin";
+    //this.loggedIn = true;
   	//this.role = "user";
   }
 
