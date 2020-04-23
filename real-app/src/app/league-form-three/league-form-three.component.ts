@@ -15,7 +15,7 @@ export class LeagueFormThreeComponent implements OnInit {
   regEndDate = '';
   startDate = '';
   endDate = '';
-  autoApproval: boolean;
+  autoApproval: boolean = false;
 
   model: League;
   submitted = false;

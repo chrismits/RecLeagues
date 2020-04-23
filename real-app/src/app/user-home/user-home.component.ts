@@ -19,7 +19,7 @@ export class UserHomeComponent implements OnInit {
   title = 'Intramural Leagues';
   season = 'Winter 2020';
   isAdmin = false;
-  leagues: League[] = [];//LEAGUES;
+  leagues: League[] = [];
   myLeagues: League[] = [LEAGUES[0]];
   leftLeagues: League[];
   rightLeagues: League[];
@@ -112,9 +112,5 @@ export class UserHomeComponent implements OnInit {
     //     console.log(error);
     //   });
     // }
-
-    // this.splitLeagues();
-    // console.log(this.me);
-    // console.log(this.myTeams);
   }
 }

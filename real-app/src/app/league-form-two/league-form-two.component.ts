@@ -23,7 +23,7 @@ export class LeagueFormTwoComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     if (this.freeAgent) {
-      this.model.setIsFreeAgents(true);
+      this.leagueService.getLeague().setIsFreeAgents(true);
     }
     this.leagueService.getLeague().deepCopyLeague(this.model);
     this.leagueService.getLeague().setMaxNumTeams(this.maxNumTeams);

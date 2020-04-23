@@ -2,39 +2,81 @@
     <h1>{{model.getName()}}</h1>
 	<progress id="progress-bar" value="100" max="100"></progress>
     <div class="my-row">
-	    <div class="header labl" id="Overview">Overview</div> 
+	    <div class="header labl" id="Overview"> League Overview</div> 
   	</div>
 
-  	<!-- ********* OVERVIEW ******** -->
-	<div class="card-container box">
-		<!-- ********* GENERAL ******** -->
-		<div> 
-			{{model.getName()}} is a {{model.getType()}} {{model.getSeason()}} league for {{model.getSport()}} at a {{model.getCompLevel()}} level. {{model.getPlayersOn()}} players are on the field at a time.
-		</div>
-		<!-- ********* TEAM INFO ******** -->
-		<div>
-			There will be a maximum of {{model.getMaxNumTeams()}} teams, each with min of {{model.getMinTeamSize()}} players. Free agents are {{freeAgentsAre}}.
-		</div>
-		<!-- ********* IMPT DATES ******** -->
-		<div>
-			Registration will start {{model.getReadableRegStartDate()}}, and end {{model.getReadableRegEndDate()}}. Teams will {{autoApproval}} be auto-approved.
-			The League will start {{model.getReadableStartDate()}}, and end {{model.getReadableEndDate()}}. 
-		</div>
-		<!-- ********* LOCATION & TIME SLOTS ******** -->
-		<div>
-			Games will be played at {{model.getLocation()}} every: 
-			<div *ngFor="let slot of model.getTimeSlots()">
-				<ul>
-					{{slot.getDay()}}, starting {{slot.getStart()}}, and ending {{slot.getEnd()}}. Each game will be {{slot.getLength()}} minutes, with {{slot.getBuffer()}} minute buffers between them.
-				</ul>
-			</div>
-		</div>
-	</div>
-	<br> 
-	<button type="button" class="btn btn-success back-btn" routerLink="/leagues-form-four">Back</button>
 
-	<button type="button" class="btn btn-success next-btn" (click)="onSubmit()" routerLink="/admin">Create League</button>
-	<br> <br>
+  	<!-- Logistics -->
+    <div class="card-container box">
+      <div class="overview-box"> 
+        <div class="row">
+          <div class="col2 left">
+            <p class="info"> Important Times </p>
+          </div>
+          <div class="col2 right">
+            <p class="info"> Team Information </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col2 left">
+            <p class="info"> Registration Period </p>
+            <div class="card small">
+              <span class="first"> {{model.getReadableRegStartDate()}} @ 10:00 AM </span>
+              <span class="middle1"> to </span>
+              <span class="last"> {{model.getReadableRegEndDate()}} @ 10:00 PM</span> 
+            </div>
+
+            <p class="info"> Season </p>
+            <div class="card small">
+              <span class="first"> {{model.getReadableStartDate()}} </span>
+              <span class="middle2"> to </span>
+              <span class="last"> {{model.getReadableEndDate()}} </span> 
+            </div>
+
+            <p class="info"> Game Times </p>
+            <div class="card small">
+              <span class="first"> {{ (model.getTimeSlots())[0].getStart()}} </span>
+              <span class="middle3"> to </span>
+              <span class="last"> {{(model.getTimeSlots())[0].getEnd()}} </span> 
+            </div>
+
+            <p class="info"> Game Length </p>
+            <div class="card small">
+              <span class="first"> {{ (model.getTimeSlots())[0].getLength()}} mins </span>
+              <span class="middle3">  </span>
+              <span class="last"> Buffer Time: {{(model.getTimeSlots())[0].getBuffer()}} mins</span> 
+            </div>
+          </div>
+
+          <div class="col2 right">
+            <p class="info"> Maximum Number of Teams </p>
+            <div class="card small">
+              <span class="first"> {{model.getMaxNumTeams() }}</span> 
+            </div>
+
+            <p class="info"> Minimum Players Per Team</p>
+            <div class="card small">
+              <span class="first"> {{model.getMinTeamSize() }}</span> 
+            </div>
+
+            <p class="info"> Location</p>
+            <div class="card small">
+              <span class="first"> {{model.getLocation()}} </span> 
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+	<br> 
+
+  <!-- Cal -->
 	<div class="header my-row labl">Calendar</div> 
-    <app-calendar [leagues]="leagues"></app-calendar>
+  <app-calendar [leagues]="leagues"></app-calendar>
+
+  <br>
+  <button type="button" class="btn btn-success back-btn" routerLink="/leagues-form-four">Back</button>
+
+  <button type="button" class="btn btn-success next-btn" (click)="onSubmit()" routerLink="/admin">Create League</button>
+  <br> <br>
 </div>

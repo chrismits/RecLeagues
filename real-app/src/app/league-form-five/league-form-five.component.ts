@@ -11,9 +11,6 @@ export class LeagueFormFiveComponent implements OnInit {
 
   constructor(public leagueService: LeagueService) { }
 
-  autoApproval = 'not';
-  freeAgentsAre = 'not allowed';
-
   model: League;
   leagues: League[] = [this.leagueService.getLeague()];
 
@@ -21,17 +18,12 @@ export class LeagueFormFiveComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
+    this.leagueService.setLeague(this.model);
     this.leagueService.storeLeague();
   }
 
   ngOnInit() {
     this.model = this.leagueService.getLeague();
-    if (this.leagueService.getLeague().isAutoApproval()) {
-      this.autoApproval = '';
-    }
-    if (this.leagueService.getLeague().isFreeAgents()) {
-      this.freeAgentsAre = 'allowed';
-    }
   }
 
 }

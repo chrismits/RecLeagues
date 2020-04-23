@@ -1,7 +1,7 @@
 <div class="container">
     <h1>{{model.name}}</h1>
     <progress id="progress-bar" value="60" max="100"></progress>
-    <form (ngSubmit)="onSubmit()" #leagueForm='ngForm'>
+    <form (ngSubmit)="onSubmit()" #leagueForm='ngForm' id="form">
       <div class="row short">
       	<h2> Registration Schedule </h2>
       </div>
@@ -54,7 +54,7 @@
           <div [hidden]="ls_date.valid || ls_date.pristine" 
                 class="alert alert-danger"> 
             Please enter a valid date.
-          </div>
+          </div> <br> <br> 
 
           <!-- ********* LOCATION ******** -->
           <label class="labl" for="name">Facility</label>
@@ -86,4 +86,6 @@
     </form>
 	<button type="button" class="btn btn-success back-btn" routerLink="/leagues-form-two">Back</button>
 
-    <button type="button" class="btn btn-success next-btn" (click)="onSubmit()" [disabled]="location.invalid || rs_date.invalid || re_date.invalid || ls_date.invalid || le_date.invalid " routerLink="/leagues-form-four">Next</button>
+  <button type="button" class="btn btn-success next-btn" (click)="onSubmit()" [disabled]="location.invalid || rs_date.invalid || re_date.invalid || ls_date.invalid || le_date.invalid " routerLink="/leagues-form-four">Next</button>
+
+</div>

@@ -9,6 +9,17 @@
 	border-radius: 10px;
 }
 
+.isadmin {
+	font-family: Work Sans;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 19px;
+	margin-left: 30px;
+	width: 50%;
+	display: inline-block;
+}
+
 .user {
 	padding: 3rem 5rem 2rem 5rem;
 }
@@ -28,13 +39,14 @@
 .register {
 	padding: 1rem 5rem;
 	padding-top: 20px;
+	display: inline-block
 }
 
 .underl {
 	text-decoration: underline;
 }
 
-#login {
+.login {
 	width: 128px;
 	height: 35px;
 
@@ -50,8 +62,11 @@
 	color: #FFFFFF;
 
 	float: right;
-	margin-right: 40px;
-	margin-top: 20px;
+	margin-left: 40px;
+}
+
+#login {
+	margin-right: 10px;
 }
 
 .textlabel {
@@ -140,4 +155,10 @@ border-radius: 34px;
 
 .slider.round:before {
 border-radius: 50%;
+}
+
+.row {
+	display: inline-block;
+	width: 100%;
+	margin-top: 40px;
 }

@@ -1,23 +1,31 @@
 <div class="container" role="main">
 
-  
+  <h2 class="title"> {{ title }} </h2>
+  <!-- Launchpad -->
   <div class="my-row">
-    <div class="header" id="league-name">Leagues</div> 
+    <div class="header" id="season">{{ season }}</div> 
     <button class="newLeague" id="league-but" (click)="openNewLeagueDialog()">
       New League </button>
   </div>
 
-  <div class="containerContent">
-  	<div class="contentHeader"> {{ season }} </div>
-    
-    <div class="card" *ngFor="let league of leagues" (click)="goToLeague(league)" routerLink="/info"> 
-      <p id="sport"> {{league.getSport()}} </p>
-      <p id="date"> {{ league.getReadableStartDate() }} - {{ league.getReadableEndDate() }} </p>
+  <!-- Leagues -->
+  <div class="card-container box">
+    <div *ngFor="let leagueL of leftLeagues; let i = index" class="row">
+      <div class="league-box left-half col" (click)="goToLeague(leagueL)" routerLink="/info">
+        <img [src]="getLeagueLogo(leagueL)" class="sport-logo">
+        <p id="sport"> {{leagueL.getSport()}} </p>
+        <p id="date"> {{ leagueL.getReadableStartDate() }} - {{ leagueL.getReadableEndDate() }} </p>
+      </div>
+      <div *ngIf="i < rightLeagues.length" class="league-box right-half col" (click)="goToLeague(rightLeagues[i])" routerLink="/info">
+        <img [src]="getLeagueLogo(rightLeagues[i])" class="sport-logo">
+        <p id="sport"> {{rightLeagues[i].getSport()}} </p>
+        <p id="date"> {{ rightLeagues[i].getReadableStartDate() }} - {{ rightLeagues[i].getReadableEndDate() }} </p>
+      </div>
     </div>
   </div>
 
-  <br> <br> <br> 
+  <!-- Cal -->
   <div class="header my-row">Calendar</div> 
   <app-calendar [leagues]="leagues"></app-calendar>
-
+  <br> <br>
 </div>
