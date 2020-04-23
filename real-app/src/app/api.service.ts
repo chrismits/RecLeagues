@@ -57,6 +57,13 @@ export class ApiService {
     return this.token
   }
 
+  public hasToken(): boolean {
+    if (!this.getToken()) {
+      return false
+    }
+    return true
+  }
+
   public logout(): void {
     this.token = '';
     window.localStorage.removeItem('token')
