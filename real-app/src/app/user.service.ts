@@ -48,19 +48,21 @@ export class UserService {
     }
 
     /*
+    this.userService.getAllPlayers().subscribe(pls=>{}, err=>{})
+    */
+   getAllPlayers() {
+    return this.apiService.getAllPlayers()
+  }
+
+    /*
     this.userService.updatePlayer(p).subscribe((player)=>{}, (err)=>{})
     */
     updatePlayer(p : Player) {
       return this.apiService.updatePlayer(p)
     }
 
-    /*
-    this.userService.getAllPlayers().subscribe(pls=>{}, err=>{})
-    */
-    getAllPlayers() {
-      return this.apiService.getAllPlayers()
+    deletePlayer(email: string) {
+      return this.apiService.deletePlayer(email)
     }
-
-    //deletePlayers() to be added potentially.
 
 }

@@ -111,7 +111,7 @@ export class ApiService {
   //admin signup
   adminSignup(name: string, email: string, password: string): Observable<any> {
     console.log("F -> B: Admin Signup")
-    var url = `${API_URL}/admin/signup`
+    var url = `${API_URL}/auth/admin/signup`
 
     return this.http.post<any>(url, {name: name, email: email, password: password}, 
                                     {headers: this.headers})
@@ -122,7 +122,7 @@ export class ApiService {
   //admin login
   adminLogin(email: string, password: string): Observable<any> {
     console.log("F -> B: Admin Login")
-    var url = `${API_URL}/admin/login`
+    var url = `${API_URL}/auth/admin/login`
 
     return this.http.post<any>(url, {email: email, password: password},
                                     {headers: this.headers})
@@ -133,7 +133,7 @@ export class ApiService {
   playerSignup(first: string, last: string,
                email: string, password: string): Observable<any> {
       console.log("F -> B: Player Signup")
-      var url = `${API_URL}/players/signup`
+      var url = `${API_URL}/auth/players/signup`
 
       return this.http.post<any>(url, {first: first, last: last, email: email, password: password},
                                       {headers: this.headers})
@@ -143,7 +143,7 @@ export class ApiService {
 
   playerLogin(email: string, password: string): Observable<any> {
     console.log("F -> B: Player Login")
-    var url = `${API_URL}/players/login`
+    var url = `${API_URL}/auth/players/login`
 
     return this.http.post<any>(url, {email: email, password: password},
                                     {headers: this.headers})
@@ -172,15 +172,15 @@ export class ApiService {
 
   /************ PLAYER ****************/ 
 
-  // ADD PLAYER IS CURRENTLY INACTIVE
   // In server.js -> app.post(/api/players)
+  // ADMIN AUTH
   addPlayer(pl : Player): Observable<Player> {
-    console.log("F -> B: Add Player is INACTIVE")
+    console.log("F -> B: Add Player is INACTIVE (ADMIN ONLY")
 
-    return null
-    // return this.http.post<Player>(`${API_URL}/players`, pl, 
-    //                                     {headers: this.headers})
-    //                 .pipe(map(pl => this.convertToPlayer(pl)))
+    return this.http.post<Player>(`${API_URL}/players`, pl, 
+                                  {headers: {'Content-Type': 'application/json',
+                                  'Authorization': `Bearer ${this.getToken()}`}})
+                    .pipe(map(pl => this.convertToPlayer(pl)))
   }
 
 
@@ -206,16 +206,6 @@ export class ApiService {
 
   }
 
-  // In server.js -> app.put(/api/players)
-  // REQUIRES PLAYER AUTH
-  updatePlayer(pl: Player): Observable<Player> {
-    console.log("F -> B: Updating Player")
-
-    return this.http.put<Player>(`${API_URL}/players`, pl, {headers: {'Content-Type': 'application/json',
-                                                                      'Authorization': `Bearer ${this.getToken()}`}})
-                    .pipe(map(player => this.convertToPlayer(player)))
-  }
-
   // In server.js -> app.get(/api/players)
   // REQUIRES ADMIN AUTH
   getAllPlayers(): Observable<Player[]> {
@@ -226,7 +216,23 @@ export class ApiService {
                               db_players.map(pl => this.convertToPlayer(pl))))
   }
 
+  // In server.js -> app.put(/api/players)
+  // REQUIRES PLAYER AUTH
+  updatePlayer(pl: Player): Observable<Player> {
+    console.log("F -> B: Updating Player")
+
+    return this.http.put<Player>(`${API_URL}/players`, pl, {headers: {'Content-Type': 'application/json',
+                                                                      'Authorization': `Bearer ${this.getToken()}`}})
+                    .pipe(map(player => this.convertToPlayer(player)))
+  }
+
   // deletePlayer() to be added potentially.
+  deletePlayer(email: string): Observable<any> {
+    console.log("F -> B: Deleting Player")
+    let url = `${API_URL}/players/${email}`
+    return this.http.delete<any>(url, {headers: {'Content-Type': 'application/json',
+                                                  'Authorization': `Bearer ${this.getToken()}`}})
+  }
 
   /******** LEAGUE ********/
 

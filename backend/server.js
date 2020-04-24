@@ -1,18 +1,15 @@
 var express = require('express')
 var mongoose = require('mongoose')
 
-
 var path = require('path')
 // var favicon = require('serve-favicon')
 // var logger = require('morgan')
 // var cookieParser = require('cookie-parser')
 var bodyparser = require('body-parser')
-var passport = require('passport')
 var app = express()
 var cors = require('cors')
 
 require('dotenv').config() // Developer Mode: Remove when done
-
 
 app.use(cors())
 app.use(bodyparser.urlencoded({ extended: false }))
@@ -54,22 +51,10 @@ console.log('DB Connected')
 function handleError (e, obj, res) {
     if (e) {
         res.status(400).json(e)
-} else {
+    } else {
         res.status(200).json(obj._id)
+    }
 }
-}
-
-/********************* Authentication ***************************************/
-// import passport configuration
-require('./config/passport')
-app.use(passport.initialize())
-
-var jwt = require('express-jwt')
-
-var auth = jwt({
-    secret: process.env.JWT_SECRET,
-    userProperty: 'payload'
-})
 
 // Error Handling
 app.use(function (err, req, res, next) {
@@ -78,315 +63,19 @@ app.use(function (err, req, res, next) {
     }
 })
 
-
-//Admin Signup: Needs name, email, password
-//Tested
-app.post('/api/admin/signup', function(req, res) {
-    console.log("B: Signing up Admin in authorization mode")
-    var admin = new Admin();
-
-    if (!req.body.name || !req.body.email || !req.body.password) {
-        return handleError('Error: Required fields not found', null, res)
-    }
-
-    admin.name = req.body.name
-    admin.email = req.body.email
-
-    admin.setPassword(req.body.password)
-
-    admin.save(function(err, ad) {
-        if (err) {
-            return handleError('Error: Admin could not be saved', null, res)
-        }
-        var token = ad.generateJWT()
-        res.status(200).json({
-            "token": token,
-            "user": ad
-        })
-    })
+/********************* Authentication ***************************************/
+var jwt = require('express-jwt')
+var auth = jwt({
+    secret: process.env.JWT_SECRET,
+    userProperty: 'payload'
 })
 
-//Admin Login: Needs email, password
-app.post('/api/admin/login', function(req, res) {
-    console.log("B: Admin Login")
-    passport.authenticate('admin-local', function(err, user, info) {
-        var token;
-        if (err) {
-            console.log(err)
-            return handleError('Error: Could not authenticate', null, res)
-        }
+var authorizationRouter = require('./routes/auth.js')
+app.use('/api/auth', authorizationRouter)
 
-        if (user) {
-            token = user.generateJWT()
-            res.status(200).json({
-                "token" : token,
-                "user": user
-            })
-        } else {
-            res.status(401).json(info)
-        }
-    })(req, res)
-
-})
-
-
-//Player Signup: Needs first name, last name, email, password
-app.post('/api/players/signup', function(req, res) {
-    console.log("B: Signing up Player in authorization mode")
-    var pl = new Player();
-
-    if (!req.body.first || !req.body.last ||
-        !req.body.email || !req.body.password) {
-        return handleError('Error: Required fields not found', null, res)
-    }
-
-    pl.first = req.body.first
-    pl.last = req.body.last
-    pl.email = req.body.email
-
-    pl.setPassword(req.body.password)
-
-    pl.save(function(err, player) {
-        if (err) {
-            return handleError('Error: Player could not be saved', null, res)
-        }
-        var token = player.generateJWT()
-        res.status(200).json({
-            "token": token, 
-            "user": player
-        })
-    })
-})
-
-//Player Login: needs email and password
-app.post('/api/players/login', function(req, res) {
-    console.log("B: Player Login")
-    passport.authenticate('player-local', function(err, user, info) {
-        var token;
-        if (err) {
-            res.status(404).json(err)
-            return
-        }
-
-        if (user) {
-            token = user.generateJWT();
-            res.status(200).json({
-                "token": token,
-                "user": user
-            })
-        } else {
-            console.log(info)
-            res.status(401).json(info)
-        }
-    })(req, res)
-})
-
-
-
-/****************** Player API *******************/
-
-/** addPlayer ----> CURRENTLY NOT WORKING, ADD PLAYER WILL BE DONE IN AUTH SIGNUP
-Backend: Tested
-ApiService: Tested
-Frontend Service: Tested -> user.service.ts
-*/
-// app.post('/api/players', function (req, res) {
-//     console.log("B: Adding Player")
-//     // Check if player already exists in db.
-//     Player.countDocuments({ email: req.body.email }, function (err, count) {
-//         if (err) {
-//             return handleError('Error: Unexpected result in post player', null, res)
-//         }
-//         if (count > 0) {
-//             return handleError('Error: Email already in use', null, res)
-//         }
-
-//         var new_player = new Player()
-
-//         new_player.first = req.body.first
-//         new_player.last = req.body.last
-//         new_player.email = req.body.email
-
-//         if (req.body.cell !== null) { 
-//             new_player.cell = req.body.cell
-//         }
-
-//         new_player.save(function (err2, player) {
-//             if (err2) {
-//                 return handleError('Error: Player does not abide by schema', null, res) 
-//             }
-
-//             res.status(200).json(player)
-//         })
-//     })
-// })
-
-
-/***  getPlayerByEmail
- - Returns a single player from db.
- -  Expects email as an http param -> req.query.email
- Backend: Tested
- ApiService: Tested
- Frontend Service: Tested
-
- - What kind of authentication should I add?
-*/
-
-app.get('/api/players/:email', auth, function (req, res) {
-    console.log("B: Getting Player by Email")
-
-    if (!req.payload._id || !req.payload.email) {
-        console.log("AUTH FAILED: getplayerbyEmail unathorized access")
-        return res.status(401).json({
-            "message" : "UnauthorizedError: Private Information. Login to access"
-        })
-    }
-
-    if (!req.payload_admin) {
-        console.log("AUTH FAILED: Not Admin")
-        return res.status(401).json({
-            "message" : "UnauthorizedError: Needs Administrative Privileges"
-        })
-    }
-    
-    Player.findOne({ email: req.params.email }, function (err, pl) {
-        if (err || !pl) {
-            return handleError('Error: Could not find player', null, res)
-        }
-        else {
-            res.status(200).json(pl)
-        }
-    })
-})
-
-/*** getTeamsofPlayer
- * Gets all teams for one player. Requires player ID
-*/
-
-app.get('/api/player/teams/', auth, function (req, res) {
-    console.log("B: Getting all Teams of player")
-
-    if (!req.payload._id || !req.payload.email) {
-        console.log("Get teams of player. unauthorized access")
-        return res.status(401).json({
-            "message" : "UnauthorizedError: Private Information. Login to access"
-        })
-    }
-
-    var search_id = mongoose.Types.ObjectId(req.params.id)
-
-    // For now accessible to both player and admin
-    // var search_id = mongoose.Types.ObjectId(req.payload._id)
-    // if (req.payload.admin === true) {
-    //     search_id = mongoose.Types.ObjectId(req.params.id)
-
-    // }
-
-    // testing for auth
-    Team.find({"players": search_id})
-        .populate('players')
-        .populate('captain')
-        .exec(function(err, teams) {
-            if (err) {
-                console.log(err)
-                return handleError("Error: Something went wrong when searching teams", null, res)
-            }
-            else if (teams.length === 0){
-                console.log("Player is not a member of any team")
-                res.status(200).json([])
-            }
-            else {
-                res.status(200).json(teams)
-            }
-        })
-})
-
-/* Update Player
- Backend: Tested
- ApiService: Tested
- Frontend Service: Tested
-*/
-app.put('/api/players', auth, function (req, res) {
-    console.log('B: Updating Player')
-
-    if (!req.payload._id || !req.payload.email) {
-        console.log("Update player. unauthorized access")
-        return res.status(401).json({
-            "message" : "UnauthorizedError: Private Information. Login to access"
-        })
-    }
-
-    //testing for auth
-    Player.findById(req.payload._id, function(err, pl) {
-        if (err || !pl) {
-            return handleError("Error: Player not found in db, cannot update", null, res)
-        }
-
-        // update fields
-        pl.first = req.body.first
-        pl.last = req.body.last
-        pl.cell = req.body.cell
-        pl.email = req.body.email
-        pl.signedWaiver = req.body.waiver
-        pl.pronouns = req.body.pronouns
-
-        pl.save(function(err, player) {
-            if (err) {
-                handleError("Error: Could not update player, does not abide by schema", null, res)
-            }
-            else {
-                res.status(200).json(player)
-            }
-        })
-    })
-})
-
-
-/** ** getPlayers
-- Returns all player documents in db
-Backend: Tested
-ApiService: Tested
-Frontend Service: Tested
-****/
-app.get('/api/players', auth, function (req, res) {
-    console.log('B: Getting All Players')
-
-    if (!req.payload._id || !req.payload.email) {
-        console.log("Error in getting all players. Unauthorized access (Admin privileges required)")
-        return res.status(401).json({
-            "message" : "UnauthorizedError: Private Admin Information. Login to access"
-        })
-    }
-
-    if (!req.payload.admin) {
-        console.log("Error: Not an Administrator")
-        return res.status(401).json({
-            "message" : "UnauthorizedError: Private Admin Information. Login to access"
-        })
-       
-    }
-
-
-    Player.find(function (err, players) {
-        if (err || (players.length === 0)) { 
-            return handleError('Error: Could not find players in db', null, res) 
-        }
-        res.json(players) // return all players in JSON format
-    })
-})
-
-
-/**** deletePlayer: For now does nothing, might be needed later
-Backend: Tested
-ApiService:
-Frontend Service:
-****/
-// app.delete('/api/players/:email', function (req, res) {
-//     Player.deleteOne({_id: req.params.player_id}, function(err, player) {
-//         if (err)
-//             handleError("Error: Could not delete player")
-//     });
-// })
+/************************** Player API *****************************************/
+var playerRouter = require('./routes/player.js')
+app.use('/api/players', playerRouter)
 
 
 /*****************************************************************************/
