@@ -36,7 +36,13 @@ export class InfoEditRulesComponent implements OnInit {
   goToInfo() {
     this.league.setRules(this.newRules);
     this.leagueService.setLeague(this.league);
-    this.leagueService.updateLeague();
+    this.leagueService.updateLeague().subscribe(lg => {
+      console.log("updated")
+      this.league = lg
+      this.leagueService.setLeague(lg)
+    }, err => {
+      console.log(err)
+    });
   }
 
   teamsExist() {

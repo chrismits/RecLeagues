@@ -282,20 +282,4 @@ router.delete('/:email', auth, function (req, res) {
     });
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 module.exports = router

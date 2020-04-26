@@ -19,7 +19,12 @@ export class LeagueFormFiveComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     this.leagueService.setLeague(this.model);
-    this.leagueService.storeLeague();
+    this.leagueService.storeLeague().subscribe(lg => {
+      console.log("stored")
+      this.model = lg
+    }, err => {
+      console.log(err)
+    });
   }
 
   ngOnInit() {

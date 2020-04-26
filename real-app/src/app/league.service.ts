@@ -40,7 +40,11 @@ export class LeagueService {
   getLeagueByID(id : string) {
     console.log("F -> F: Getting League: " + id)
     return this.apiService.getLeague(id)
+  }
 
+  deleteLeague(id: string) {
+    console.log("F -> F: Deleting League " + id)
+    return this.apiService.deleteLeague(id)
   }
 }
 

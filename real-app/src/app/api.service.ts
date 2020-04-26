@@ -239,6 +239,7 @@ export class ApiService {
   // REQUIRES ADMIN AUTHA
   createLeague(lg : League) : Observable<League> {
       console.log("F -> B: Creating League")
+      console.log("LEAGUE BEING CREATED")
       return this.http.post<League>(`${API_URL}/leagues`, 
                             lg, {headers: {'Content-Type': 'application/json',
                             'Authorization': `Bearer ${this.getToken()}`}})
@@ -267,10 +268,18 @@ export class ApiService {
   // REQUIRES PLAYER AUTH
   getLeague(id : string) : Observable<League> {
     console.log("F -> B: Getting single league")
-    let url = `${API_URL}/league/${id}`
+    let url = `${API_URL}/leagues/league/${id}`
     return this.http.get<League>(url, {headers: {'Content-Type': 'application/json',
                                                 'Authorization': `Bearer ${this.getToken()}`}})
                     .pipe(map(league => this.convertToLeague(league)))
+
+  }
+
+  deleteLeague(id: string) : Observable<any> {
+    console.log("F -> B: Deleting League")
+    let url = `${API_URL}/leagues/`
+    return this.http.delete<any>(url, {headers: {'Content-Type': 'application/json',
+                                                'Authorization': `Bearer ${this.getToken()}`}})
 
   }
 
@@ -294,27 +303,24 @@ export class ApiService {
         - Then the approved boolean will be set to true
         - Then the team will be added to the league
   */
- // NO AUTH CURRENTLY
   getTeamsByLeague(league_id: string): Observable<Team []> {
     console.log("F -> B: Getting teams by league ID")
-    let url = `${API_URL}/teams/${league_id}`
+    let url = `${API_URL}/teams/league/${league_id}`
     return this.http.get<Team []>(url, {headers: {'Content-Type': 'application/json',
                                         'Authorization': `Bearer ${this.getToken()}`}})
                     .pipe(map(data => data.map(team => this.convertToTeam(team))));
   }
 
   // gets team by id
-  // NO AUTH CURRENTLY
   getTeamById(team_id: string): Observable<Team> {
     console.log("F -> B: Getting team by team ID")
-    let url = `${API_URL}/team/${team_id}` //team rather than teams to differentiatee
+    let url = `${API_URL}/teams/team/${team_id}` //team rather than teams to differentiatee
     return this.http.get<Team>(url, {headers: {'Content-Type': 'application/json',
                                     'Authorization': `Bearer ${this.getToken()}`}})
                     .pipe(map(data => this.convertToTeam(data)));
   }
 
   // changes existing team in db based on t object
-  // PLAYER AUTH
   updateTeam(t: Team): Observable<Team> {
     console.log("F -> B: Updating Team")
     return this.http.put<Team>(`${API_URL}/teams`, t,
