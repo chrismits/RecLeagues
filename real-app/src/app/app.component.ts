@@ -19,11 +19,7 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    //this.setRole();
     this.checkLogin();
-  	//this.role = "admin";
-    //this.loggedIn = true;
-  	//this.role = "user";
   }
 
   checkLogin() {

@@ -11,51 +11,51 @@ import { PLAYERS } from '../ex_players';
 })
 export class LoginComponent implements OnInit {
 
-	@Output() successfulLogin = new EventEmitter<string>();
-	adminFlag: boolean
+    @Output() successfulLogin = new EventEmitter<string>();
+    adminFlag: boolean
 
-  constructor(public roleService: RoleService, private router: Router,
+    constructor(public roleService: RoleService, private router: Router,
               public userService: UserService) { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
-  signUp() {
-	this.router.navigate(['/signup'])
-  }
+    signUp() {
+    this.router.navigate(['/signup'])
+    }
 
-  logIn() {
-  	var username = (<HTMLInputElement>document.getElementById("username")).value;
-	var password = (<HTMLInputElement>document.getElementById("password")).value;
-	  
-	if (this.adminFlag) {
-		this.roleService.adminLogin(username, password)
-						.subscribe(data => {
-							this.successLogIn('/admin')
-						}, error => {
-							alert("Please try again") // FRONTEND: change to something better 
-						})
-	} 
-	else {
-		this.roleService.playerLogin(username, password)
-						.subscribe(data => {
-							this.successLogIn('/user-home')
-						}, error => {
-							console.log(error)
-							alert("Please try again")
-						})
-					
-	}
-	}
+    logIn() {
+        var username = (<HTMLInputElement>document.getElementById("username")).value;
+        var password = (<HTMLInputElement>document.getElementById("password")).value;
+          
+        if (this.adminFlag) {
+            this.roleService.adminLogin(username, password)
+                            .subscribe(data => {
+                                this.successLogIn('/admin')
+                            }, error => {
+                                alert("Invalid admin. Please try again.") // FRONTEND: change to something better 
+                            })
+        } 
+        else {
+            this.roleService.playerLogin(username, password)
+                            .subscribe(data => {
+                                this.successLogIn('/user-home')
+                            }, error => {
+                                console.log(error)
+                                alert("Invalid user. Please try again.")
+                            })
+                        
+        }
+    }
 
-	successLogIn(route: string) {
-		this.router.navigate([route])
-		if (route === '\admin') {
-			this.roleService.setRole('admin')
-		}
-		else {
-			this.roleService.setRole('user')
-		}
-		this.successfulLogin.emit()
-	}
+    successLogIn(route: string) {
+        this.router.navigate([route])
+        if (route === '/admin') {
+            this.roleService.setRole('admin')
+        }
+        else {
+            this.roleService.setRole('user')
+        }
+        this.successfulLogin.emit()
+    }
 }

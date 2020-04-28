@@ -269,7 +269,7 @@
 </style>
 
 <!-- Toolbar -->
-<app-default-header *ngIf="!role"></app-default-header>
+<app-default-header *ngIf="!role || role == null || role == ''"></app-default-header>
 <app-admin-header *ngIf="role=='admin'"></app-admin-header>
 <app-user-header *ngIf="role=='user'"></app-user-header>
 

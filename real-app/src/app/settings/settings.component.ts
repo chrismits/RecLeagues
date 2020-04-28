@@ -16,7 +16,7 @@ export class SettingsComponent implements OnInit {
   password = '***********';
   settings: Settings;
   isPlayer = true;
-  url = 'assets/img/default_prof.jpeg'; /* default */
+  url = 'assets/img/default_profile.jpeg'; /* default */
 
   toEdit() {
     this.settingsService.setSettings(this.settings);
