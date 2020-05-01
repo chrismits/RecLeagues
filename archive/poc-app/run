@@ -1,3 +1,0 @@
-#!/bin/bash
-# simple local host on port 4200
-ng serve --open

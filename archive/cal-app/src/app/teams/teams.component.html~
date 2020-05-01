@@ -1,8 +1,0 @@
-<h2> All Teams </h2>
-<ul class="teams">
-  <li *ngFor="let team of teams" (click)="onSelect(team)">
-    <span class="badge"> {{team.id}} </span> {{team.name | uppercase }}'s Page
-  </li>
-  <p> {{team_a.name}} </p>
-  <button (click)='toggleVisible()'>Return Home</button>
-</ul>
