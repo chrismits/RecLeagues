@@ -1,6 +1,6 @@
 # RecLeagues App
 
-This is the main repository for production version of RecLeaguees App
+This is the main repository for production version of RecLeagues App
 
 ## Build
 
