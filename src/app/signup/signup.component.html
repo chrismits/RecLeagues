@@ -1,7 +1,7 @@
 <div class="inner-box">
     <div class="first">
         <div class="textlabel"> First Name </div>
-        <input type="text" class="form-control" id="firstname" required
+        <input type="text" class="entry" id="firstname" required
                 [(ngModel)]="firstName" name="firstname" #firstname="ngModel"
                 pattern="[a-zA-Z0-9\- '.,:;]*">
                 <div [hidden]="firstname.valid || firstname.pristine"
@@ -10,7 +10,7 @@
     </div>
     <div class="last">
         <div class="textlabel"> Last Name </div>
-        <input type="text" class="form-control" id="lastname" required
+        <input type="text" class="entry" id="lastname" required
         [(ngModel)]="lastName" name="lastname" #lastname="ngModel"
         pattern="[a-zA-Z0-9\- '.,:;]*">
         <div [hidden]="lastname.valid || lastname.pristine"
@@ -19,7 +19,7 @@
 	</div>
 	<div class="user">
 		<div class="textlabel">Tufts Email</div>
-        <input type="text" class="form-control" id="email" required 
+        <input type="text" class="entry" id="email" required 
         [(ngModel)]="playerEmail" name="email" #email="ngModel"
         pattern="[a-zA-Z0-9\-.]*@tufts.edu"> 
         <div [hidden]="email.valid || email.pristine" 
@@ -31,7 +31,7 @@
     </div>
 	<div class="pass">
 		<div class="textlabel">Password</div>
-        <input type="text" class="form-control" id="password" required
+        <input type="text" class="entry" id="password" required
         [(ngModel)]="password" name="pass" #pass="ngModel">
         <div [hidden]="pass.valid || pass.pristine" 
         class="alert alert-danger"> 
