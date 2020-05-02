@@ -24,7 +24,6 @@ export class AppComponent {
 
   checkLogin() {
     if (!this.isLoggedIn()) {
-      console.log("not logged in homey yyyy")
       this.router.navigateByUrl['\login']
     }
   }
