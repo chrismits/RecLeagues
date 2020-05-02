@@ -1,0 +1,83 @@
+<div class="container">
+	<h1>{{leagueModel.name}}</h1>
+    <progress id="progress-bar" value="80" max="100"></progress>
+    <form (ngSubmit)="onSubmit()" #leagueForm='ngForm' id="form">
+      <div class="row short">
+        <h2> Game Schedule </h2>
+        <p> List times in with 'am/pm' (10:30 am, 6:45 pm) </p>
+        <p> Length and buffer are in minutes </p>
+      </div>
+
+      <div class="form-group row">
+        <div class="col left-col">
+        <!-- ********* DAY ******** -->
+          <label class="labl" for="days">Day</label>
+          <select class="form-control" id="days" required 
+                [(ngModel)]="model.day" name="days" #location="ngModel">
+            <option *ngFor="let day of days" [ngValue]="day"> 
+              {{day}}
+            </option>
+          </select> <br> <br>
+
+          <!-- ********* GAME LENGTH ******** -->
+          <label class="labl" for="length">Game Length </label>
+          <input type="text" class="form-control" id="length" required 
+                 [(ngModel)]="model.length" name="length" #length="ngModel"
+                 pattern="[0-9]*"> 
+          <div [hidden]="length.valid || length.pristine" 
+                class="alert alert-danger"> 
+            Please enter a valid game length.
+          </div>
+        </div>
+
+
+        <div class="form-group col middle-col">
+          <!-- ********* START TIME ******** -->
+          <label class="labl" for="start">Start Time</label>
+          <input type="text" class="form-control" id="start" required 
+                 [(ngModel)]="model.start" name="start" #start="ngModel"
+                 pattern="^((1[0-2]|0?[1-9]):([0-5][0-9]) ([AaPp][Mm]))$"> 
+          <div [hidden]="start.valid || start.pristine" 
+                class="alert alert-danger"> 
+            Please enter a valid game start time.
+          </div> <br> <br>
+
+          <!-- ********* BUFFER TIME ******** -->
+          <label class="labl" for="buffer">Buffer Time</label>
+          <input type="text" class="form-control" id="buffer" required 
+                 [(ngModel)]="model.buffer" name="buffer" #buffer="ngModel"
+                 pattern="[0-9]*"> 
+          <div [hidden]="buffer.valid || buffer.pristine" 
+                class="alert alert-danger"> 
+            Please enter a valid buffer length.
+          </div>
+
+        </div>
+
+        <div class="form-group col right-col">
+          <!-- ********* END TIME ******** -->
+          <label class="labl" for="end">End Time</label>
+          <input type="text" class="form-control" id="end" required 
+                 [(ngModel)]="model.end" name="end" #end="ngModel"
+                 pattern="^((1[0-2]|0?[1-9]):([0-5][0-9]) ([AaPp][Mm]))$"> 
+          <div [hidden]="end.valid || end.pristine" 
+                class="alert alert-danger"> 
+            Please enter a valid game end time.
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <button type="button" (click)="addSlot()" [disabled]="length.invalid || start.invalid || buffer.invalid || end.invalid || days.length === 0"> Add Times </button>
+      </div> <br>
+      <div class="row">
+        <div *ngFor="let slot of slots" class="times">
+          {{slot.getDay()}} from {{slot.getStart()}} to {{slot.getEnd()}}, with {{slot.getLength()}} minute games seperated by {{slot.getBuffer()}} minute buffers. <button type="button" (click)="removeSlot(slot)"> Remove </button>
+        </div>
+      </div>
+      <br> 
+    </form>
+
+	  <button type="button" class="btn btn-success back-btn" routerLink="/leagues-form-three">Back</button>
+
+    <button type="button" class="btn btn-success next-btn" (click)="onSubmit()" [disabled]="length.invalid || start.invalid || buffer.invalid || end.invalid || days.length === 0" routerLink="/leagues-form-five">Next</button>
+  </div>
