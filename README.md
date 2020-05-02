@@ -9,7 +9,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 After `ng build` has finished run `node server.js` and navigate to `http://localhost:4200/`.
 
 ### Build on Heroku
-Push to this repository and check build on Heroku. After a few minutes it should be available on `www.recleagues.herokuapp.com`
+Push to this repository and check build on Heroku. Deploy branch on Heroku (or wait until it is done automatically). After a few minutes it should be available on `www.recleagues.herokuapp.com`
 
 ## Running unit tests
 
