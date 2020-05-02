@@ -43,18 +43,13 @@ export class ApiService {
 
   /***************************** Auth *********************************/
   // Authentication Methods with local storage...
-  private token: string
 
   private saveToken(token : string): void {
     localStorage.setItem('token', token)
-    this.token = token
   }
 
   private getToken(): string {
-    if (!this.token) {
-      this.token = localStorage.getItem('token')
-    }
-    return this.token
+    return localStorage.getItem('token')
   }
 
   public hasToken(): boolean {
@@ -65,9 +60,8 @@ export class ApiService {
   }
 
   public logout(): void {
-    this.token = '';
     window.localStorage.removeItem('token')
-    this.router.navigateByUrl('/login')
+    this.router.navigateByUrl('/')
 
     // succesfuly navigate to sign in screen
   }

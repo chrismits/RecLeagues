@@ -23,10 +23,31 @@ export class AppComponent {
   }
 
   checkLogin() {
-    if (!this.loggedIn) {
-      this.router.navigate['\login']
+    if (!this.isLoggedIn()) {
+      console.log("not logged in homey yyyy")
+      this.router.navigateByUrl['\login']
     }
   }
+
+  isLoggedIn() {
+    return this.roleService.loggedin()
+  }
+
+  isAdmin() {
+    if (this.isLoggedIn() && (this.roleService.getRole() === 'admin')) {
+      return true
+    }
+
+    return false
+  }
+
+  isPlayer() {
+    if (this.isLoggedIn() && (this.roleService.getRole() === 'user')) {
+      return true
+    }
+    return false
+  }
+
 
   setLogin() {
     this.loggedIn = true;
@@ -34,10 +55,10 @@ export class AppComponent {
   }
 
 
-  setRole(r: string) {
-    this.roleService.setRole(r);
-    this.role = this.roleService.getRole();
-  }
+  // setRole(r: string) {
+  //   this.roleService.setRole(r);
+  //   this.role = this.roleService.getRole();
+  // }
 
 
 }

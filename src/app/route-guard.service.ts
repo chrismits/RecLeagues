@@ -11,8 +11,7 @@ export class RouteGuardService implements CanActivate {
 
   canActivate() {
     if (!this.auth.isLoggedIn()) {
-      console.log("!!! Change to navigate to home screen and not /login")
-      this.router.navigateByUrl('/login')
+      this.router.navigateByUrl('/')
       return false
     }
     return true

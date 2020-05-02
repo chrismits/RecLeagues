@@ -270,15 +270,15 @@
 </style>
 
 <!-- Toolbar -->
-<app-default-header *ngIf="!role || role == null || role == ''"></app-default-header>
-<app-admin-header *ngIf="role=='admin'"></app-admin-header>
-<app-user-header *ngIf="role=='user'"></app-user-header>
+<app-default-header *ngIf="!isLoggedIn()"></app-default-header>
+<app-admin-header *ngIf="isAdmin()"></app-admin-header>
+<app-user-header *ngIf="isPlayer()"></app-user-header>
 
 <!-- Login -->
 <!-- <app-login *ngIf="!role" (loggedin)="setRole()"></app-login> -->
-<app-login *ngIf="!loggedIn" (successfulLogin) = "setLogin()"></app-login>
+<app-login *ngIf="!isLoggedIn()" (successfulLogin) = "setLogin()"></app-login>
 
 
 <!-- main content container -->
-<router-outlet></router-outlet>
+<router-outlet *ngIf="isLoggedIn()"></router-outlet>
             

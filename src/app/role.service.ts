@@ -8,7 +8,21 @@ export class RoleService {
 	role: string | null;
 
 	setRole(r : string) { this.role = r; }
-	getRole() { return this.role; }
+	// getRole() { return this.role; }
+
+	getRole() {
+		var deets = this.apiService.getLoginDetails()
+
+		if (!deets)
+			return null
+		
+		if (deets.admin) {
+			return 'admin'
+		}
+		else {
+			return 'user'
+		}
+	}
 
 	constructor(private apiService: ApiService) { }
 	
