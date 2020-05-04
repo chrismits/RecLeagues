@@ -4,7 +4,7 @@ This is the main repository for production version of RecLeagues App
 
 ## Website
 
-www.recleagues.herokuapp.com
+https://recleagues.herokuapp.com/
 
 ## Build
 
