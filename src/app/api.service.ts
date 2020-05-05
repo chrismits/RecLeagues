@@ -330,11 +330,19 @@ export class ApiService {
 
   // ADMIN AUTH
   createMatch(m: Match): Observable<Match> {
-    console.log("F -> B: Creting Match")
+    console.log("F -> B: Creating Match")
     return this.http.post<Match>(`${API_URL}/matches`, m, 
                                 {headers: {'Content-Type': 'application/json',
                                 'Authorization': `Bearer ${this.getToken()}`}})
                     .pipe(map(match => this.convertToMatch(match))) 
+  }
+
+  getMatch(id: string): Observable<Match> {
+    console.log("F -> B: Getting Match")
+    let url = `${API_URL}/matches/${id}`
+    return this.http.get<Match>(url, {headers: {'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${this.getToken()}`}})
+                    .pipe(map(match => this.convertToMatch(match)))
   }
 
 

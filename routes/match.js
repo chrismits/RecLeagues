@@ -87,6 +87,31 @@ router.post('/', auth, function(req, res) {
     }
 })
 
+/* getMatchByID
+- Request needs match id. Returns match object
+*/
+
+router.get('/:match_id', auth, function(req, res) {
+    if (!req.payload._id || !req.payload.email) {
+        console.log("Get match. Unauthorized access")
+        return res.status(401).json({
+            "message" : "UnauthorizedError: Private Information. Login to access"
+        })
+    }
+
+    console.log('B: Getting match id -> ' + req.params.match_id)
+
+    Match.findById(req.params.match_id)
+    .populate({path: 'home'})
+    .populate({path: 'away'})
+    .exec(function(err, populated_match) {
+        if (err) {
+           return handleError("Error: Populating Match failed...", null, res)
+        }
+        res.status(200).json(populated_match)
+    })
+})
+
 
 
 

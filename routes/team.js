@@ -184,7 +184,7 @@ router.get('/team/:team_id', auth,  function (req, res) {
         })
 })
 
-router.put('/api/teams/', auth, function (req, res) {
+router.put('/', auth, function (req, res) {
     console.log('B : Updating team')
 
     if (!req.payload._id || !req.payload.email) {
