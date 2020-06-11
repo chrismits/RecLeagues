@@ -119,6 +119,11 @@ router.post('/', auth, function (req, res) {
             "message" : "UnauthorizedError: Private Information. Login to access"
         })
     } else {
+        if (req.payload.email === "guest@tufts.edu") {
+            return handleError("Error: Cannot create Team as Guest. Please login")
+        }
+
+
         if (req.body.captain.id === "1" || !req.body.captain.id) {
             req.body.captain.id = req.payload._id
         }
@@ -192,6 +197,10 @@ router.put('/', auth, function (req, res) {
         return res.status(401).json({
             "message" : "UnauthorizedError: Private Player Information. Login to access"
         })
+    }
+
+    if (req.payload.email === "guest@tufts.edu") {
+        return handleError("Error: Cannot update team as guest. Please login")
     }
 
     Team.findById(req.body.id, function (err, tm) {

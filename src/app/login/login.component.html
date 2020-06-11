@@ -1,6 +1,8 @@
 <div class="inner-box">
-	<div class="register">
-			<p class="textlabel"> Don't have an account? <button class="login" (click)="signUp()"> Sign Up</button></p>
+	<div class="register"> <p class="textlabel"> Don't have an account? </p></div>
+	<div class="register_two">
+			<button class="login" (click)="signUp()"> Sign Up</button>
+			<button class="guest" (click)="guestEnter()"> Join As Guest</button>
 	</div>
 	<div class="user">
 		<div class="textlabel">Tufts Email</div>
@@ -11,6 +13,9 @@
 		<input type="password" class="entry" id="password">
 		<a class="text" id="recover"> Forgot password? </a>
 	</div>
+
+
+	<!-- Add A Guest Feature -->
 
 	      <!-- ************* Admin or Not ************** -->
 	<div class="row">

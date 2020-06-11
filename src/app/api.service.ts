@@ -101,7 +101,6 @@ export class ApiService {
     return response
   }
 
-
   //admin signup
   adminSignup(name: string, email: string, password: string): Observable<any> {
     console.log("F -> B: Admin Signup")

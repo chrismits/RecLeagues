@@ -114,8 +114,4 @@ router.get('/:match_id', auth, function(req, res) {
 
 
 
-
-
-
-
 module.exports = router

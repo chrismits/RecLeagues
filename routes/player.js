@@ -203,6 +203,10 @@ router.put('/', auth, function (req, res) {
         })
     }
 
+    if (req.payload.email === "guest@tufts.edu") {
+        return handleError("Error: Cannot update guest account.", null, res)
+    }
+
     // For now accessible to both player and admin.
     // If player -> can only update personal account
     // If admin -> can update whatever player they send in body
@@ -252,6 +256,11 @@ router.delete('/:email', auth, function (req, res) {
             "message" : "UnauthorizedError: Private Information. Login to access"
         })
     }
+
+    if (req.payload.email === "guest@tufts.edu") {
+        return handleError("Error: Cannot delete Guest account")
+    }
+    
     console.log("B: Deleting Player")
 
     var email_search = req.payload.email

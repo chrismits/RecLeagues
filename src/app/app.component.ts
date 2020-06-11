@@ -29,6 +29,10 @@ export class AppComponent {
   }
 
   isLoggedIn() {
+    if (this.router.url === '/signup') {
+      return true
+    }
+    
     return this.roleService.loggedin()
   }
 

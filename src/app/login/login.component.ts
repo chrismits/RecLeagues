@@ -21,7 +21,22 @@ export class LoginComponent implements OnInit {
     }
 
     signUp() {
-    this.router.navigate(['/signup'])
+        console.log("Signup")
+        console.log(this.router.url)
+        this.router.navigate(['/signup'])
+    }
+
+    guestEnter() {
+        console.log("Entering as Guest")
+
+        // DOES NOT WORK
+        this.roleService.playerLogin("guest@tufts.edu", "guesttmp").subscribe(data => {
+            console.log("YOOO")
+            this.successLogIn('/user-home')
+        }, error => {
+            console.log(error)
+            alert("Problem logging in as guest. Please try again")
+        })
     }
 
     logIn() {
